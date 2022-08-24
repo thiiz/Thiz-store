@@ -11,7 +11,7 @@ export default function Home() {
     <main className="page">
       <Banner />
       <Infos />
-      <div className={style.content} id='produtos'>
+      <div className={`${style.content} page`} id='produtos'>
         <Filters />
         <section className={style.container}>
           <section className={style.productContainer}>
