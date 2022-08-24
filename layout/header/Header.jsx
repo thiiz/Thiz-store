@@ -13,8 +13,12 @@ function Header() {
 	return (
 		<header className={style.header}>
 			<Head>
+				<meta charset="utf-8" />
 				<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+				<meta name="author" content="thiz"></meta>
+				<title>MaeTerra - Loja</title>
+				<meta name="description" content="Loja de Crochê - MãeTerra"></meta>
 			</Head>
 			<div>
 				<Link href="/"><a><Image className={style.logo} src={logo} alt='logo-natureza' height='77px' width='77px'></Image></a></Link>
