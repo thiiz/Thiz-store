@@ -1,0 +1,36 @@
+.infosContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	height: 85px;
+	background-color: #006eff;
+	width: 100%;
+	color: #fff;
+	font-weight: 200;
+	text-align: center;
+	font-family: 'Raleway', sans-serif;
+	font-size: 14px;
+	align-items: center;
+	position: relative;
+}
+.infosContainer p{
+	font-size: 36px;
+    height: 35px;
+}
+.infoItem{
+	border-right: 1px solid rgb(255, 255, 255);
+	height: 50px;
+}
+
+@media (max-width:980px) {
+	.infos {
+		width: 80vw;
+	}
+}
+
+@media (max-width:660px) {
+	.infos {
+		height: 350px;
+		justify-content: space-around;
+		flex-direction: column;
+	}
+}

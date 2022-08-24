@@ -1,0 +1,66 @@
+.container {
+	display: grid;
+	grid-template-columns: 1fr;
+	justify-items: center;
+	margin-top: 180px;
+
+}
+.sortPrice span{
+	font-family: 'Oswald', sans-serif;
+	font-size: 13PX;
+}
+.categorys span {
+	font-size: 13px;
+	color: #4d4d4d;
+	font-family: 'Oswald', sans-serif;
+	position: absolute;
+	top: 465px;
+}
+
+.btn {
+	border: 1px solid #000;
+	cursor: pointer;
+	padding: 10px;
+}
+
+.btn:not(:nth-child(1)) {
+	margin-left: 10px;
+}
+
+.searchContainer {
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+
+.search {
+	width: 500px;
+	height: 40px;
+	border: 2px solid #cacaca;
+	outline: none;
+	border-radius: 10px;
+	text-indent: 10px;
+}
+
+.searchLupa {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: #fff;
+	background-color: #313131;
+	font-size: 26px;
+	padding: 0 26px;
+	padding-top: 6px;
+	border-radius: 0 7px 0 35px;
+	cursor: pointer;
+	border: none;
+}
+
+.sortPrice {
+	text-align: end;
+	margin-right: 80px;
+	margin-bottom: 20px;
+}
+.priceSorting{
+	border: none;
+}
