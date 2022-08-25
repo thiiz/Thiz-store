@@ -9,8 +9,8 @@ export default function Banner() {
 		<div className={`${style.bannerContainer} animate__animated animate__bounceIn animate__slow`}>
 			<div className={style.bgContainer}>
 				<Image className={style.bg} src={bg} alt='crochê.png' placeholder='blur' layout="fill"></Image>
-				<h3 className={style.mainTitle}>MAIN TITLE <span>HERE</span></h3>
-				<h4 className={style.mainSubTitle}>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h4>
+				<h1 className={style.mainTitle}>MAIN TITLE <span>HERE</span></h1>
+				<h2 className={style.mainSubTitle}>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h2>
 				<a href='#produtos' className={`${style.btn} ${style.btnShop}`} type='button'>SHOP</a>
 			</div>
 		</div>
