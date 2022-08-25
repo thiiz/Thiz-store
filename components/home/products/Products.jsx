@@ -10,7 +10,7 @@ export default function Products() {
         <section className={style.container}>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -18,7 +18,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -26,7 +26,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -34,7 +34,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -42,7 +42,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -50,7 +50,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -58,7 +58,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -66,7 +66,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -74,7 +74,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -82,7 +82,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -90,7 +90,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -98,7 +98,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -106,7 +106,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -114,7 +114,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -122,7 +122,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -130,7 +130,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -138,7 +138,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
@@ -146,7 +146,7 @@ export default function Products() {
           </section>
           <section className={style.productContainer}>
             <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
+              <Image className={style.product} src={Product} alt='Produto' placeholder = "blur" height='450' />
             </div>
             <a href='#'>Roupa de Crochê azul</a>
             <p>R$ 99.90</p>
