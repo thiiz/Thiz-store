@@ -1,14 +1,15 @@
 import Products from '../components/home/products/Products'
-import Banner from "../components/home/banner/Banner";
+import Transition from '../components/transition/Transition';
 
 
 
 
 export default function Produtos() {
 	return (
-		<div className="page">
-			<Banner />
-			<Products />
-		</div>
+		<Transition>
+			<div className="page">
+				<Products />
+			</div>
+		</Transition>
 	);
 }

@@ -1,15 +1,12 @@
-import Head from 'next/head'
-import style from '../styles/Contact.module.css'
-import { motion } from 'framer-motion'
+import Transition from '../components/transition/Transition';
 
 function Contact() {
 	return (
+		<Transition>
 		<div className='page'>
-			<Head>
-				<title>MãeTerra - Contato</title>
-			</Head>
 			<>Pagina Contato</>
 		</div>
+		</Transition>
 
 
 	)
