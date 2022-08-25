@@ -34,7 +34,7 @@ export default function Home({ data }) {
   )
 }
 export async function getStaticProps() {
-  const res = await fetch('http://localhost:3000/api/product-list');
+  const res = await fetch('https://mae-terra.vercel.app/api/product-list');
   const data = await res.json();
   return {
     props: {
