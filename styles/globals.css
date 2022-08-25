@@ -21,6 +21,9 @@ body {
     position: relative;
     margin-bottom: 225px;
   }
+  .background{
+    overflow: hidden;
+  }
   .background::after {
   content: "";
   display: block;
