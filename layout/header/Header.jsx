@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-
-import logo from '../../public/img/logo-maeTerra2.png'
 import style from './Header.module.css'
 /*import { BsSearch } from 'react-icons/bs'*/
 import { FaShoppingCart } from 'react-icons/fa'
@@ -21,7 +19,7 @@ function Header() {
 				<meta name="description" content="Loja de Crochê - MãeTerra"></meta>
 			</Head>
 			<div>
-				<Link href="/"><a><Image className={style.logo} src={logo} alt='logo-natureza' height='77px' width='77px'></Image></a></Link>
+				<Link href="/"><a><Image className={style.logo} src='/img/logo-maeTerra2.png' alt='logo-natureza' height='77px' width='77px'></Image></a></Link>
 			</div>
 			<div className={style.menuBtn}>
 				<ul>
