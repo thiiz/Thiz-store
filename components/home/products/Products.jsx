@@ -3,7 +3,7 @@ import style from '../../../styles/Products.module.css'
 import Product from '../../../public/img/products/product2.jpg'
 import Filters from '../filters/Filters'
 
-export default function Products({ price }) {
+export default function Products() {
 	return (
 		<div className={`${style.content}`} id='produtos'>
         <Filters />
