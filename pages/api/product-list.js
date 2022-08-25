@@ -12,13 +12,13 @@ export default function handler(req, res) {
 		{ id: 10, title: 'Terceira roupa de crochê', price: '79,90', image: '/img/products/product2.jpg' },
 		{ id: 11, title: 'Terceira roupa de crochê', price: '79,90', image: '/img/products/product2.jpg' },
 		{ id: 12, title: 'Terceira roupa de crochê', price: '79,90', image: '/img/products/product2.jpg' },
-		{ id: 13, title: 'Terceira roupa de crochê', price: '79,90', image: '/img/products/product2.jpg' },
-		{ id: 14, title: 'Terceira roupa de crochê', price: '69,90', image: '/img/products/product2.jpg' },
-		{ id: 15, title: 'Terceira roupa de crochê', price: '79,90', image: '/img/products/product2.jpg' },
-		{ id: 16, title: 'Terceira roupa de crochê', price: '79,90', image: '/img/products/product2.jpg' },
-		{ id: 17, title: 'Terceira roupa de crochê', price: '79,90', image: '/img/products/product2.jpg' },
-		{ id: 18, title: 'Terceira roupa de crochê', price: '79,90', image: '/img/products/product2.jpg' },
-		{ id: 19, title: 'Terceira roupa de crochê', price: '79,90', image: '/img/products/product2.jpg' },
+		{ id: 13, title: 'Terceira roupa de crochê', price: '719,90', image: '/img/products/product2.jpg' },
+		{ id: 14, title: 'Terceira roupa de crochê', price: '619,90', image: '/img/products/product2.jpg' },
+		{ id: 15, title: 'Terceira roupa de crochê', price: '179,90', image: '/img/products/product2.jpg' },
+		{ id: 16, title: 'Terceira roupa de crochê', price: '719,90', image: '/img/products/product2.jpg' },
+		{ id: 17, title: 'Terceira roupa de crochê', price: '179,90', image: '/img/products/product2.jpg' },
+		{ id: 18, title: 'Terceira roupa de crochê', price: '179,90', image: '/img/products/product2.jpg' },
+		{ id: 19, title: 'Terceira roupa de crochê', price: '179,90', image: '/img/products/product2.jpg' },
 	]
 	)
 }
