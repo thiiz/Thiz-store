@@ -16,8 +16,8 @@ export default function Home({ data }) {
         <section className={style.container}>
           {data.map((item) => {
             return (
-              <section className={style.productContainer}>
-                <div key={item.id}>
+              <section key={item.id} className={style.productContainer}>
+                <div>
                   <div className={style.imageContainer}>
                     <Image className={style.product} src={item.image} alt='Produto' width='650' height='500px' />
                   </div>
