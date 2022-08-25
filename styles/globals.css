@@ -21,7 +21,7 @@ body {
     position: relative;
     margin-bottom: 225px;
   }
-  .background{
+  .effect{
     overflow: hidden;
   }
   .background::after {
