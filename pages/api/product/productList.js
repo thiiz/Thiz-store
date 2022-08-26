@@ -20,7 +20,7 @@ export default function handler(req, res) {
 				{ id: 16, title: 'Décima sexta de roupa crochê', price: '79,90', image: '/img/products/product2.jpg' },
 				{ id: 17, title: 'Décima sétima roupa de crochê', price: '79,90', image: 'https://res.cloudinary.com/dsdjwmqkk/image/upload/v1661471647/cld-sample-5.jpg' },
 				{ id: 18, title: 'Décima oitava roupa de crochê', price: '79,90', image: '/img/products/product2.jpg' },
-				{ id: 19, title: 'Décima nona roupa de crochê', price: '79,90', image: '/img/products/product2.jpg' },
+				{ id: 19, title: 'Décima nona roupa de crochê', price: '79,90', image: 'https://res.cloudinary.com/dsdjwmqkk/image/upload/v1661471647/cld-sample-5.jpg' },
 			])
 			break
 		default:
