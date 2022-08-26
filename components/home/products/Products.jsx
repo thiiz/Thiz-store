@@ -1,158 +1,40 @@
 import Image from 'next/image'
 import style from '../../../styles/Products.module.css'
-import Product from '../../../public/img/products/product2.jpg'
 import Filters from '../filters/Filters'
 
-export default function Products() {
-	return (
-		<div className={`${style.content}`} id='produtos'>
-        <Filters />
-        <section className={style.container}>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-          <section className={style.productContainer}>
-            <div className={style.imageContainer}>
-              <Image className={style.product} src={Product} alt='Produto' height='450' />
-            </div>
-            <a href='#'>Roupa de Crochê azul</a>
-            <p>R$ 99.90</p>
-            <button className={style.buy} type='button'>comprar</button>
-          </section>
-        </section>
-      </div>
-	);
+export default function Products({ products }) {
+  return (
+    <div className={`${style.content}`} id='produtos'>
+      <Filters />
+      <section className={style.container} >
+        {products.map((product) => {
+          const handleClick = () => {
+            router.push(`/product/${product.slug}`)
+          }
+          return (
+            <section key={product.id} className={style.productContainer}>
+              <div>
+                <div className={style.imageContainer} onClick={handleClick}>
+                  <Image className={style.product} src={product.image.url} alt='Produto' width='650px' height='500px' />
+                </div>
+                <p onClick={handleClick} className={style.title}>{product.title}</p>
+                <p>R$ {product.price}</p>
+                <button className={style.buy} type='button'>comprar</button>
+              </div>
+            </section>
+          );
+        })}
+      </section>
+    </div>
+  )
+}
+
+export async function getStaticProps() {
+  const products = await getAllProducts()
+  return {
+    props: {
+      products,
+    },
+    revalidate: 120,
+  }
 }

@@ -27,7 +27,7 @@ function Home({ products }) {
                     <Image className={style.product} src={product.image.url} alt='Produto' width='650px' height='500px' />
                   </div>
                   <p onClick={handleClick} className={style.title}>{product.title}</p>
-                  <p>R$ {product.price}</p>
+                  <p>R$ {product.slug}</p>
                   <button className={style.buy} type='button'>comprar</button>
                 </div>
               </section>
@@ -41,6 +41,8 @@ function Home({ products }) {
 
 export async function getStaticProps() {
   const products = await getAllProducts()
+  console.log(products.slug)
+
   return {
     props: {
       products,
@@ -48,4 +50,5 @@ export async function getStaticProps() {
     revalidate: 120,
   }
 }
+
 export default Home;
