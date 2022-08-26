@@ -8,6 +8,6 @@ module.exports = nextConfig
 
 module.exports = {
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: ['www.datocms-assets.com'],
   },
 }
