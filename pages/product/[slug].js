@@ -1,9 +1,11 @@
 import { getAllProducts } from "../../lib/dato-cms"
 
-function productPage({ slugs }) {
+function productPage({ product }) {
 	return (
-		<div >
-			{slugs}
+		<div>
+			<img src={product.image.url} alt="" />
+			products - {product.title}.
+			price - {product.price}
 		</div>
 	)
 }
@@ -12,6 +14,7 @@ export async function getStaticProps({ params }) {
 	const slug = params?.slug
 	const products = await getAllProducts()
 	const product = products.find((p) => p.slug === slug) || null
+	console.log(product.image.url)
 
 	if (!product) {
 		return {
@@ -21,9 +24,8 @@ export async function getStaticProps({ params }) {
 
 	return {
 		props: {
-			products,
+			product,
 		},
-		revalidate: 120,
 	}
 }
 
