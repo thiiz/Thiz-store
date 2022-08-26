@@ -31,7 +31,7 @@ export async function getStaticProps({ params }) {
 
 export const getStaticPaths = async () => {
 	const products = await getAllProducts()
-	const slugs = products.map((p) => ({ params: { slug: p.slug } }))
+	const slugs = await products.map((p) => ({ params: { slug: p.slug } }))
 	return {
 		paths: slugs,
 		fallback: false,
