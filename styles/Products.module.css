@@ -27,18 +27,19 @@
 	flex-direction: column;
 	align-items: center;
 }
-.productContainer a{
+.title{
 	text-decoration: none;
 	color: #000;
 	margin-bottom: 20px;
 	margin-top: 10px;
+	cursor: pointer;
 }
 .imageContainer{
 	display: flex;
 	justify-content: center;
 	text-align: center;
 	align-items: center;
-
+	cursor: pointer;
 }
 .buy{
 	width: 100px;

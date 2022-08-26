@@ -8,7 +8,7 @@ import Filters from '../components/home/filters/Filters'
 
 function Home({ products }) {
   const router = useRouter()
-  
+
   return (
     <main className="page">
       <Banner />
@@ -21,12 +21,12 @@ function Home({ products }) {
               router.push(`/product/${product.slug}`)
             }
             return (
-              <section key={product.id} className={style.productContainer} onClick={handleClick}>
+              <section key={product.id} className={style.productContainer}>
                 <div>
-                  <div className={style.imageContainer}>
+                  <div className={style.imageContainer} onClick={handleClick}>
                     <Image className={style.product} src={product.image.url} alt='Produto' width='650px' height='500px' />
                   </div>
-                  <a href='#'>{product.title}</a>
+                  <p onClick={handleClick} className={style.title}>{product.title}</p>
                   <p>R$ {product.price}</p>
                   <button className={style.buy} type='button'>comprar</button>
                 </div>
