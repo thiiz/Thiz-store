@@ -1,12 +1,10 @@
 import Image from 'next/image'
 import Banner from "../components/home/banner/Banner";
 import Infos from '../components/home/infos/Infos'
-import Products from '../components/home/products/Products'
 import style from '../styles/Products.module.css'
 import Filters from '../components/home/filters/Filters'
 
-
-export default function Home({ data }) {
+function Home({ data }) {
   return (
     <main className="page">
       <Banner />
@@ -34,11 +32,12 @@ export default function Home({ data }) {
   )
 }
 export async function getStaticProps() {
-  const res = await fetch('https://mae-terra-git-main-thiizz.vercel.app/api/product/productList');
+  const res = await fetch('http://localhost:3000/api/product/productList');
   const data = await res.json();
   return {
     props: {
-      data: JSON.parse(JSON.stringify(data)),
+      data: data,
     },
-  };
+  }
 }
+export default Home;
