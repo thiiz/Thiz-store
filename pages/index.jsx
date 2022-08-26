@@ -8,27 +8,26 @@ import Filters from '../components/home/filters/Filters'
 
 function Home({ products }) {
   const router = useRouter()
-
-  const handleClick = () => {
-    router.push(`/product/${products.slug}`)
-  }
+  
   return (
     <main className="page">
       <Banner />
       <Infos />
       <div className={`${style.content}`} id='produtos'>
         <Filters />
-        <section className={style.container} onClick={handleClick}>
+        <section className={style.container} >
           {products.map((product) => {
+            const handleClick = () => {
+              router.push(`/product/${product.slug}`)
+            }
             return (
-              <section key={product.id} className={style.productContainer}>
+              <section key={product.id} className={style.productContainer} onClick={handleClick}>
                 <div>
                   <div className={style.imageContainer}>
                     <Image className={style.product} src={product.image.url} alt='Produto' width='650px' height='500px' />
                   </div>
                   <a href='#'>{product.title}</a>
                   <p>R$ {product.price}</p>
-                  <p>R$ {product.slug}</p>
                   <button className={style.buy} type='button'>comprar</button>
                 </div>
               </section>
@@ -39,6 +38,7 @@ function Home({ products }) {
     </main>
   )
 }
+
 export async function getStaticProps() {
   const products = await getAllProducts()
   return {
