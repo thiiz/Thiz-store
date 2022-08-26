@@ -6,7 +6,6 @@ import Filters from '../components/home/filters/Filters'
 import { getAllProducts } from '../lib/dato-cms';
 
 function Home({ products }) {
-  console.log(products)
   return (
     <main className="page">
       <Banner />
