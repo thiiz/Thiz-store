@@ -9,8 +9,8 @@ function MyApp({ Component, pageProps }) {
       <Header />
       <Transition>
         <Component {...pageProps} />
+        <Footer />
       </Transition>
-      <Footer />
     </>
   )
 }
