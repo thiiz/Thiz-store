@@ -41,7 +41,6 @@ function Home({ products }) {
 
 export async function getStaticProps() {
   const products = await getAllProducts()
-  console.log(products.slug)
 
   return {
     props: {
