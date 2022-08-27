@@ -1,9 +1,10 @@
 import { getAllProducts } from "../../lib/dato-cms"
+import Image from "next/image"
 
 function productPage({ product }) {
 	return (
 		<div>
-			<img src={product.image.url} alt="" />
+			<Image src={product.image.url} alt={`Product ${product.title}`} width='550px' height='350px'/>
 			products - {product.title}.
 			price - {product.price}
 		</div>
@@ -40,4 +41,3 @@ export const getStaticPaths = async () => {
 
 
 export default productPage
-
