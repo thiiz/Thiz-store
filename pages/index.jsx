@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Banner from "../components/home/banner/Banner";
 import Infos from '../components/home/infos/Infos'
 import style from '../styles/Products.module.css'
-import Filters from '../components/home/filters/Filters'
+import Filters from '../components/filters/Filters'
 
 function Home({ products }) {
   const router = useRouter()
@@ -27,7 +27,7 @@ function Home({ products }) {
                     <Image className={style.product} src={product.image.url} alt='Produto' width='650px' height='500px' />
                   </div>
                   <p onClick={handleClick} className={style.title}>{product.title}</p>
-                  <p>R$ {product.slug}</p>
+                  <p>R$ {product.price}</p>
                   <button className={style.buy} type='button'>comprar</button>
                 </div>
               </section>
@@ -46,7 +46,7 @@ export async function getStaticProps() {
     props: {
       products,
     },
-    revalidate: 120,
+    revalidate: 1,
   }
 }
 

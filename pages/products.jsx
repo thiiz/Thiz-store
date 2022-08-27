@@ -2,7 +2,6 @@ import { getAllProducts } from '../lib/dato-cms';
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import style from '../styles/Products.module.css'
-import Filters from '../components/home/filters/Filters'
 
 
 function Products({ products }) {
@@ -11,7 +10,6 @@ function Products({ products }) {
 	return (
 		<section className="page">
 			<div className={`${style.content}`} id='produtos'>
-				<Filters />
 				<section className={style.container} >
 					{products?.map((product) => {
 						const handleClick = () => {
@@ -24,7 +22,7 @@ function Products({ products }) {
 										<Image className={style.product} src={product.image.url} alt='Produto' width='650px' height='500px' />
 									</div>
 									<p onClick={handleClick} className={style.title}>{product.title}</p>
-									<p>R$ {product.slug}</p>
+									<p>R$ {product.price}</p>
 									<button className={style.buy} type='button'>comprar</button>
 								</div>
 							</section>
