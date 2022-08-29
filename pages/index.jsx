@@ -4,7 +4,6 @@ import Banner from "../components/home/banner/Banner";
 import Infos from '../components/home/infos/Infos'
 import Filters from '../components/filters/Filters'
 import Products from './products';
-import ProductView  from "../components/products/productView"
 
 
 export default function Home({ data }) {
@@ -18,7 +17,7 @@ export default function Home({ data }) {
     <main className="page">
       <Banner />
       <Infos />
-      <ProductView item={products} />
+      <Products data={products} />
     </main>
   )
 }
@@ -31,7 +30,8 @@ export async function getStaticProps() {
 		  title
 		  price
 		  image {
-      responsiveImage(imgixParams: {fit: crop}){                
+			url
+      responsiveImage(imgixParams: {fit: crop}){      
           src         
           base64
         }

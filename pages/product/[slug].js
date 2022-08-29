@@ -1,20 +1,39 @@
-import { getAllProducts } from "../../lib/dato-cms"
-import Image from "next/image"
+import { request } from "../../lib/datocms"
+import { Image } from 'react-datocms'
+
+const SLUGPAGE_QUERY = `query SlugPage {
+	allProducts {
+		  title
+		  price
+		  image {
+			responsiveImage(imgixParams: {fit: crop}){                
+				src
+				width
+        		height   
+				base64
+			  }
+			}
+		  slug
+		}
+  }`;
 
 function productPage({ product }) {
 	return (
 		<div>
-			<Image src={product.image.url} alt={`Product ${product.title}`} width='550px' height='350px' />
-			products - {product.title}.
-			price - {product.price}
+			<Image data={product.image.responsiveImage} alt={`Product ${product.title}`} />
+			<h1>{product.title}.</h1>
+			<p>{product.price}</p>
 		</div>
 	)
 }
 
 export async function getStaticProps({ params }) {
 	const slug = params?.slug
-	const products = await getAllProducts()
-	const product = products.find((p) => p.slug === slug) || null
+	const data = await request({
+	  query: SLUGPAGE_QUERY,
+	  variables: { }
+	});
+	const product = await data.allProducts.find((p) => p.slug === slug) || null
 
 	if (!product) {
 		return {
@@ -30,11 +49,14 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-	const products = await getAllProducts()
-	const slugs = products.map((p) => ({ params: { slug: p.slug } }))
+	  const products = await request({
+		query: SLUGPAGE_QUERY,
+		variables: { }
+	  });
+	const slugs = await products.allProducts.map((p) => ({ params: { slug: p.slug } }))
 	return {
-		paths: slugs || [],
-		fallback: false,
+		paths: slugs,
+		fallback: true,
 	}
 }
 
