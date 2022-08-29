@@ -1,12 +1,7 @@
 import { useRouter } from 'next/router';
-import { sortLow, sortHigh, getAllProducts } from '../lib/dato-cms';
 import Filters from '../components/filters/Filters';
 import Image from 'next/image'; { }
 import style from '../styles/Products.module.css'
-import filterStyle from '../components/filters/Filters.module.css'
-import { useEffect, useState, useId } from 'react';
-import { BsSearch } from 'react-icons/bs'
-import Select from 'react-select'
 
 export function ProductsItems({ stock }) {
 	const router = useRouter()
@@ -29,7 +24,7 @@ export function ProductsItems({ stock }) {
 }
 
 
-export function Products({ products, lowPrice, highPrice }) {
+export function Products({ products }) {
 	const product = products.map(product => product)
 	const [stock, setStock] = useState(product)
 	return (
@@ -51,8 +46,6 @@ export function Products({ products, lowPrice, highPrice }) {
 export async function getStaticProps() {
 	const products = await fetch(`${process.env.BASE_URL_PRODUCTION}/api/productsApi`) 
 	const data = await products.json()
-	const lowPrice = await sortLow()
-	const highPrice = await sortHigh()
 	return {
 		props: {
 			products: data.map((data) => ({

@@ -1,11 +1,7 @@
-import { sortLow, getAllProducts } from '../lib/dato-cms';
 import { useRouter } from 'next/router'
-import Image from 'next/image'
 import Banner from "../components/home/banner/Banner";
 import Infos from '../components/home/infos/Infos'
-import style from '../styles/Products.module.css'
 import Filters from '../components/filters/Filters'
-import { useState } from 'react';
 import Products from './products';
 
 
