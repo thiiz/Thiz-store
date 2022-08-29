@@ -7,9 +7,7 @@ const SLUGPAGE_QUERY = `query SlugPage {
 		  price
 		  image {
 			responsiveImage(imgixParams: {fit: crop}){                
-				src
-				width
-        		height   
+				src  
 				base64
 			  }
 			}
@@ -20,7 +18,7 @@ const SLUGPAGE_QUERY = `query SlugPage {
 function productPage({ product }) {
 	return (
 		<div>
-			<Image data={product.image.responsiveImage} alt={`Product ${product.title}`} />
+			<Image data={product.image.responsiveImage} alt={product.title} />
 			<h1>{product.title}.</h1>
 			<p>{product.price}</p>
 		</div>

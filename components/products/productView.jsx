@@ -13,7 +13,7 @@ export function ProductsItems({ stock }) {
 		<section key={stock.id} className={style.productContainer}>
 			<div>
 				<div className={style.imageContainer} onClick={handleClick}>
-					<Image className={style.product} data={stock.image.responsiveImage} alt='Produto' width='650px' height='500px' />
+					<Image className={style.product} data={stock.image.responsiveImage} alt={stock.title} width='650px' height='500px' />
 				</div>
 				<p onClick={handleClick} className={style.title}>{stock.title}</p>
 				<p>R$ {stock.price}</p>
