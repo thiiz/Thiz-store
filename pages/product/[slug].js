@@ -1,19 +1,4 @@
 import { request } from "../../lib/datocms"
-
-const SLUGPAGE_QUERY = `query SlugPage {
-	allProducts {
-		  title
-		  price
-		  image {
-			responsiveImage(imgixParams: {fit: crop}){                
-				src  
-				base64
-			  }
-			}
-		  slug
-		}
-  }`;
-
 function productPage({ product }) {
 	return (
 		<div>
@@ -26,7 +11,19 @@ function productPage({ product }) {
 export async function getStaticProps({ params }) {
 	const slug = params?.slug
 	const data = await request({
-	  query: SLUGPAGE_QUERY,
+	  query: `query SlugPage {
+		allProducts {
+			  title
+			  price
+			  image {
+				responsiveImage(imgixParams: {fit: crop}){                
+					src  
+					base64
+				  }
+				}
+			  slug
+			}
+	  }`,
 	  variables: { }
 	});
 	const product = await data.allProducts.find((p) => p.slug === slug) || null
@@ -46,7 +43,19 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
 	  const products = await request({
-		query: SLUGPAGE_QUERY,
+		query: `query SlugPage {
+			allProducts {
+				  title
+				  price
+				  image {
+					responsiveImage(imgixParams: {fit: crop}){                
+						src  
+						base64
+					  }
+					}
+				  slug
+				}
+		  }`,
 		variables: { }
 	  });
 	const slugs = await products.allProducts.map((p) => ({ params: { slug: p.slug } }))
