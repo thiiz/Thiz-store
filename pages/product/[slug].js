@@ -1,7 +1,26 @@
 import { request } from "../../lib/datocms"
+import { Image } from 'react-datocms'
+
+const SLUGPAGE_QUERY = `query SlugPage {
+	allProducts {
+		  title
+		  price
+		  image {
+			responsiveImage(imgixParams: {fit: crop}){                
+				src
+				width
+        		height   
+				base64
+			  }
+			}
+		  slug
+		}
+  }`;
+
 function productPage({ product }) {
 	return (
 		<div>
+			<Image data={product.image.responsiveImage} alt={product.title} />
 			<h1>{product.title}.</h1>
 			<p>{product.price}</p>
 		</div>
@@ -11,22 +30,10 @@ function productPage({ product }) {
 export async function getStaticProps({ params }) {
 	const slug = params?.slug
 	const data = await request({
-	  query: `query SlugPage {
-		allProducts {
-			  title
-			  price
-			  image {
-				responsiveImage(imgixParams: {fit: crop}){                
-					src  
-					base64
-				  }
-				}
-			  slug
-			}
-	  }`,
+	  query: SLUGPAGE_QUERY,
 	  variables: { }
 	});
-	const product = await data.allProducts.find((p) => p.slug === slug) || null
+	const product = data.allProducts.find((p) => p.slug === slug) || null
 
 	if (!product) {
 		return {
@@ -43,22 +50,10 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
 	  const products = await request({
-		query: `query SlugPage {
-			allProducts {
-				  title
-				  price
-				  image {
-					responsiveImage(imgixParams: {fit: crop}){                
-						src  
-						base64
-					  }
-					}
-				  slug
-				}
-		  }`,
+		query: SLUGPAGE_QUERY,
 		variables: { }
 	  });
-	const slugs = await products.allProducts.map((p) => ({ params: { slug: p.slug } }))
+	const slugs = products.allProducts.map((p) => ({ params: { slug: p.slug } }))
 	return {
 		paths: slugs,
 		fallback: true,
