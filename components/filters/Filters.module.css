@@ -58,9 +58,14 @@
 
 .sortPrice {
 	text-align: end;
-	margin-right: 80px;
-	margin-bottom: 20px;
+    margin-right: 80px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 .priceSorting{
-	border: none;
+	display: flex;
+    justify-content: flex-end;
+	text-align: center;
 }

@@ -1,13 +1,35 @@
 import style from './Filters.module.css'
 import { BsSearch } from 'react-icons/bs'
-import { useState } from 'react'
+import { useState, useId } from 'react'
 import { changeSort } from '../../lib/dato-cms'
+import { useRouter } from 'next/router'
+import Select from 'react-select'
 
-export default function Filters(e) {
-	const [sort, setSort] = useState('')
+export default function Filters() {
+	const router = useRouter()
+	const [sort, setSort] = useState(["RECOMENDADO", "MAIOR VALOR", "MENOR VALOR"])
+	const Add = sort.map(Add => Add)
+
+	const options = [
+		{ value: 'recomended', label: 'RECOMENDADO' },
+		{ value: 'sort=highprice', label: 'MAIOR VALOR' },
+		{ value: 'sort=lowprice', label: 'MENOR VALOR' }
+	]
+
 
 	const sorting = (e) => {
-		setSort(e)
+		return (
+			async function getStaticProps(e) {
+				console.log(`esse aqui é o e do filters ${e}`)
+				const products = await changeSort({ order })
+				return {
+					props: {
+						products,
+					},
+					// revalidate: 1,
+				}
+			}
+		)
 	}
 	return (
 		<>
@@ -19,14 +41,15 @@ export default function Filters(e) {
 					</div>
 				</div>
 			</div>
+
 			<h4>DESTAQUE</h4>
 			<div className={style.sortPrice}>
 				<span>ORDENAR POR:</span>
-				<select onChange={e => sorting(e.target.value)} className={style.priceSorting} name="priceSorting">
-					<option value="(orderBy: price_DESC)">MENOR VALOR</option>
-					<option value="(orderBy: price_ASC)">MAIOR VALOR</option>
-				</select>
-				<span>{sort}</span>
+				<Select onChange={e => sorting(e.value)} defaultValue={options[0]} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting">
+					{
+						Add.map((address, key) => <option key={address} value={key}>{address}</option>)
+					}
+				</Select>
 			</div>
 		</>
 	)

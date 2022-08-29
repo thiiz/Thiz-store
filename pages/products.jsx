@@ -1,47 +1,74 @@
-import { getAllProducts } from '../lib/dato-cms';
-import { useRouter } from 'next/router'
-import Image from 'next/image'
+import { useRouter } from 'next/router';
+import { sortLow, sortHigh, getAllProducts } from '../lib/dato-cms';
+import Filters from '../components/filters/Filters';
+import Image from 'next/image'; { }
 import style from '../styles/Products.module.css'
+import filterStyle from '../components/filters/Filters.module.css'
+import { useEffect, useState, useId } from 'react';
+import { BsSearch } from 'react-icons/bs'
+import Select from 'react-select'
 
-
-function Products({ products }) {
+export function ProductsItems({ stock }) {
 	const router = useRouter()
-
+	const handleClick = () => {
+		router.push(`/product/${stock.slug}`)
+	}
 	return (
-		<section className="page">
-			<div className={`${style.content}`} id='produtos'>
-				<section className={style.container} >
-					{products?.map((product) => {
-						const handleClick = () => {
-							router.push(`/product/${product.slug}`)
-						}
-						return (
-							<section key={product.id} className={style.productContainer}>
-								<div>
-									<div className={style.imageContainer} onClick={handleClick}>
-										<Image className={style.product} src={product.image.url} alt='Produto' width='650px' height='500px' />
-									</div>
-									<p onClick={handleClick} className={style.title}>{product.title}</p>
-									<p>R$ {product.price}</p>
-									<button className={style.buy} type='button'>comprar</button>
-								</div>
-							</section>
-						);
-					})}
-				</section>
+		<section key={stock.id} className={style.productContainer}>
+			<div>
+				<div className={style.imageContainer} onClick={handleClick}>
+					<Image className={style.product} src={stock.image.url} alt='Produto' width='650px' height='500px' />
+				</div>
+				<p onClick={handleClick} className={style.title}>{stock.title}</p>
+				<p>R$ {stock.price}</p>
+				{<button className={style.buy} type='button'>comprar</button>}
+				<span>{stock.instock}</span>
 			</div>
 		</section>
 	)
 }
 
-export async function getStaticProps() {
-	const products = await getAllProducts()
 
+export function Products({ products, lowPrice, highPrice }) {
+	const product = products.map(product => product)
+	const [stock, setStock] = useState(product)
+	return (
+
+		<div className={`${style.content}`} id='produtos'>
+			<Filters />
+			<section className={style.container} >
+				{stock.filter(instock => instock.instock > 0).map((stock) => {
+					return (
+						<ProductsItems key={stock.id} stock={stock} />
+					);
+				})}
+			</section>
+		</div>
+
+	)
+}
+
+export async function getStaticProps() {
+	const products = await fetch(`${process.env.BASE_URL_DEV}/api/productsApi`) 
+	const data = await products.json()
+	const lowPrice = await sortLow()
+	const highPrice = await sortHigh()
 	return {
 		props: {
-			products,
+			products: data.map((data) => ({
+				id: data.id,
+				title: data.title,
+				price: data.price,
+				image: data.image,
+				slug: data.slug,
+				instock: data.instock,
+			})),
+			lowPrice,
+			highPrice,
+
 		},
-		revalidate: 120,
+		// revalidate: 1,
 	}
 }
+
 export default Products
