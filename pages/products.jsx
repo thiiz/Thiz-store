@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import Filters from '../components/filters/Filters';
 import Image from 'next/image'; { }
 import style from '../styles/Products.module.css'
@@ -58,7 +59,7 @@ export async function getStaticProps() {
 			})),
 
 		},
-		// revalidate: 1,
+		revalidate: 1,
 	}
 }
 
