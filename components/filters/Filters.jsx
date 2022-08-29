@@ -1,7 +1,6 @@
 import style from './Filters.module.css'
 import { BsSearch } from 'react-icons/bs'
 import { useState, useId } from 'react'
-import { changeSort } from '../../lib/dato-cms'
 import { useRouter } from 'next/router'
 import Select from 'react-select'
 
@@ -16,21 +15,6 @@ export default function Filters() {
 		{ value: 'sort=lowprice', label: 'MENOR VALOR' }
 	]
 
-
-	const sorting = (e) => {
-		return (
-			async function getStaticProps(e) {
-				console.log(`esse aqui é o e do filters ${e}`)
-				const products = await changeSort({ order })
-				return {
-					props: {
-						products,
-					},
-					// revalidate: 1,
-				}
-			}
-		)
-	}
 	return (
 		<>
 			<div className={style.container}>
@@ -45,7 +29,7 @@ export default function Filters() {
 			<h4>DESTAQUE</h4>
 			<div className={style.sortPrice}>
 				<span>ORDENAR POR:</span>
-				<Select onChange={e => sorting(e.value)} defaultValue={options[0]} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting">
+				<Select /*onChange={e => sorting(e.value)}*/ defaultValue={options[0]} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting">
 					{
 						Add.map((address, key) => <option key={address} value={key}>{address}</option>)
 					}
