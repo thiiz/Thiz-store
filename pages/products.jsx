@@ -49,7 +49,7 @@ export function Products({ products, lowPrice, highPrice }) {
 }
 
 export async function getStaticProps() {
-	const products = await fetch(`${process.env.BASE_URL_DEV}/api/productsApi`) 
+	const products = await fetch(`${process.env.BASE_URL_PRODUCTION}/api/productsApi`) 
 	const data = await products.json()
 	const lowPrice = await sortLow()
 	const highPrice = await sortHigh()
