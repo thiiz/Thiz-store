@@ -1,6 +1,8 @@
+import { getAllProducts } from '../lib/dato-cms';
 import { useRouter } from 'next/router'
 import Banner from "../components/home/banner/Banner";
 import Infos from '../components/home/infos/Infos'
+import Filters from '../components/filters/Filters'
 import Products from './products';
 
 
@@ -21,8 +23,7 @@ function Home({ products }) {
 
 
 export async function getStaticProps() {
-  const products = await fetch(`${process.env.BASE_URL_PRODUCTION}/api/productsApi`) 
-  const data = await products.json()
+  const data = await getAllProducts()
   return {
     props: {
       products: data.map((data) => ({
@@ -34,7 +35,7 @@ export async function getStaticProps() {
         instock: data.instock,
       })),
     },
-   revalidate: 15,
+    // revalidate: 1,
   }
 }
 

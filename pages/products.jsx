@@ -45,8 +45,7 @@ export function Products({ products }) {
 }
 
 export async function getStaticProps() {
-	const products = await fetch(`${process.env.BASE_URL_PRODUCTION}/api/productsApi`) 
-	const data = await products.json()
+	const data = await getAllProducts()
 	return {
 		props: {
 			products: data.map((data) => ({
