@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { getAllProducts } from '../lib/dato-cms';
 import Filters from '../components/filters/Filters';
 import Image from 'next/image'; { }
 import style from '../styles/Products.module.css'
