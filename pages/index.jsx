@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import Banner from "../components/home/banner/Banner";
 import Infos from '../components/home/infos/Infos'
-import Filters from '../components/filters/Filters'
 import Products from './products';
 
 
@@ -35,7 +34,7 @@ export async function getStaticProps() {
         instock: data.instock,
       })),
     },
-    // revalidate: 1,
+   revalidate: 15,
   }
 }
 
