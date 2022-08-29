@@ -23,7 +23,7 @@ function Home({ products }) {
 
 
 export async function getStaticProps() {
-  const product = await fetch(`${BASE_URL_PRODUCTION}`)
+  const product = await fetch(`${process.env.BASE_URL_PRODUCTION}`)
   const data = await product.json()
   return {
     props: {
