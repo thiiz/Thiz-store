@@ -1,5 +1,4 @@
 import { request } from "../../lib/datocms"
-import { Image } from 'react-datocms'
 
 const SLUGPAGE_QUERY = `query SlugPage {
 	allProducts {
@@ -18,7 +17,6 @@ const SLUGPAGE_QUERY = `query SlugPage {
 function productPage({ product }) {
 	return (
 		<div>
-			<Image data={product.image.responsiveImage} alt={product.title} />
 			<h1>{product.title}.</h1>
 			<p>{product.price}</p>
 		</div>

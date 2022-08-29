@@ -9,10 +9,6 @@ import Products from './products';
 export default function Home({ data }) {
   const products = data.allProducts;
   const router = useRouter()
-  console.log(products)
-
-
-
   return (
     <main className="page">
       <Banner />
