@@ -46,7 +46,8 @@ export function Products({ products }) {
 }
 
 export async function getStaticProps() {
-	const data = await fetch('https://mae-terra.vercel.app/api/productsApi')
+	const product = await fetch('https://mae-terra.vercel.app/api/productsApi')
+	const data = await product.json()
 	return {
 		props: {
 			products: data.map((data) => ({
