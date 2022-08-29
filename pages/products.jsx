@@ -56,8 +56,6 @@ export async function getStaticProps() {
 				slug: data.slug,
 				instock: data.instock,
 			})),
-			lowPrice,
-			highPrice,
 
 		},
 		// revalidate: 1,
