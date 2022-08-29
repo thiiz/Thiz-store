@@ -10,9 +10,9 @@ export default function Filters() {
 	const Add = sort.map(Add => Add)
 
 	const options = [
-		{ value: 'recomended', label: 'RECOMENDADO' },
-		{ value: 'sort=highprice', label: 'MAIOR VALOR' },
-		{ value: 'sort=lowprice', label: 'MENOR VALOR' }
+		{ query: 'recomended', label: 'RECOMENDADO' },
+		{ query: 'sort=highprice', label: 'MAIOR VALOR' },
+		{ query: 'sort=lowprice', label: 'MENOR VALOR' }
 	]
 
 	return (
@@ -31,7 +31,7 @@ export default function Filters() {
 				<span>ORDENAR POR:</span>
 				<Select /*onChange={e => sorting(e.value)}*/ defaultValue={options[0]} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting">
 					{
-						Add.map((address, key) => <option key={address} value={key}>{address}</option>)
+						Add.map((address, key) => <option key={address} query={key}>{address}</option>)
 					}
 				</Select>
 			</div>
