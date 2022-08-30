@@ -1,18 +1,18 @@
 import style from './Filters.module.css'
 import { BsSearch } from 'react-icons/bs'
-import { useState, useId } from 'react'
-import { useRouter } from 'next/router'
+import { useState, useEffect, useId } from 'react'
 import Select from 'react-select'
 
 export default function Filters() {
-	const [sort, setSort] = useState(["RECOMENDADO", "MAIOR VALOR", "MENOR VALOR"])
-	const Add = sort.map(Add => Add)
-
+	const [selectedOption, setSelectedOption] = useState('')
 	const options = [
-		{ query: 'recomended', label: 'RECOMENDADO' },
-		{ query: 'sort=highprice', label: 'MAIOR VALOR' },
-		{ query: 'sort=lowprice', label: 'MENOR VALOR' }
+		{ value: 'instock_DESC', label: 'RECOMENDADO' },
+		{ value: 'price_ASC', label: 'MAIOR VALOR' },
+		{ value: 'price_DESC', label: 'MENOR VALOR' }
 	]
+	useEffect(() => {
+		console.log(selectedOption)
+	}, [selectedOption])
 
 	return (
 		<>
@@ -28,12 +28,9 @@ export default function Filters() {
 			<h4>DESTAQUE</h4>
 			<div className={style.sortPrice}>
 				<span>ORDENAR POR:</span>
-				<Select /*onChange={e => sorting(e.value)}*/ defaultValue={options[0]} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting">
-					{
-						Add.map((address, key) => <option key={address} query={key}>{address}</option>)
-					}
-				</Select>
+				<Select onChange={e => setSelectedOption(e.value)} defaultValue={selectedOption} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting"/>
 			</div>
+			<div>{selectedOption}</div>
 		</>
 	)
 }

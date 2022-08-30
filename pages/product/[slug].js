@@ -1,5 +1,8 @@
 import { request } from "../../lib/datocms"
 import { Image } from 'react-datocms'
+import { useRouter } from "next/router";
+import LoadingScreen from '../../components/loading-screen/loadingScreen';
+
 
 const SLUGPAGE_QUERY = `query SlugPage($limit: IntType, $slug: String) {
 	allProducts(first: $limit, filter: {slug: {eq: $slug}})  {
@@ -18,7 +21,10 @@ const SLUGPAGE_QUERY = `query SlugPage($limit: IntType, $slug: String) {
   }`;
 
 function productPage({ product }) {
-	console.log(product)
+	const router = useRouter()
+	if(router.isFallback){
+		return <LoadingScreen/>
+	}
 	return (
 		<div>
 			<picture>
@@ -32,11 +38,12 @@ function productPage({ product }) {
 
 export async function getStaticProps({ params }) {
 	const slug = params.slug
+	console.log(slug)
 	const data = await request({
 		query: SLUGPAGE_QUERY,
 		variables: {
 			limit: 100,
-			slug: slug.slug,
+			slug: slug,
 		}
 	});
 	const product = data.allProducts.find((p) => p.slug === slug) || null
@@ -62,6 +69,4 @@ export async function getStaticPaths() {
 		fallback: false,
 	}
 }
-
-
 export default productPage
