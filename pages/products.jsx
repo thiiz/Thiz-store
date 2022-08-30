@@ -28,7 +28,7 @@ export async function getStaticProps() {
 	}`;
 	const data = await request({
 	  query: PRODUCTSPAGE_QUERY,
-	  variables: { limit: 30 }
+	  variables: { limit: 100 }
 	});
 	return {
 	  props: { data: data.allProducts }
