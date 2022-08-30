@@ -7,7 +7,7 @@ import style from '../../styles/Products.module.css'
 export function ProductsItems({ stock }) {
 	const router = useRouter()
 	const handleClick = () => {
-		router.push(`/product/${stock.slug}`, { locale, scroll: false })
+		router.push(`/product/${stock.slug}`)
 	}
 	return (
 		<section key={stock.id} className={style.productContainer}>
