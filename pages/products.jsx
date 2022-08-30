@@ -10,7 +10,7 @@ export default function Products({ data }) {
 	)
 }
 export async function getStaticProps() {
-	const PRODUCTSPAGE = `query HomePage($limit: IntType) {
+	const PRODUCTSPAGE_QUERY = `query HomePage($limit: IntType) {
 		allProducts(first: $limit) {
 		id
 			title
