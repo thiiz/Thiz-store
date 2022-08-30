@@ -16,8 +16,8 @@ export default function Home({ data }) {
 
 
 export async function getStaticProps() {
-  const HOMEPAGE_QUERY = `query HomePage {
-    allProducts(first: "30", orderBy: price_ASC) {
+  const HOMEPAGE_QUERY = `query HomePage($limit: IntType) {
+    allProducts(first: $limit) {
       id
 		  title
 		  price
@@ -33,7 +33,7 @@ export async function getStaticProps() {
   }`;
   const data = await request({
     query: HOMEPAGE_QUERY,
-    variables: { }
+    variables: { limit: 30 }
   });
   return {
     props: { data: data.allProducts }

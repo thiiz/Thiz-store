@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 import Select from 'react-select'
 
 export default function Filters() {
-	const router = useRouter()
 	const [sort, setSort] = useState(["RECOMENDADO", "MAIOR VALOR", "MENOR VALOR"])
 	const Add = sort.map(Add => Add)
 

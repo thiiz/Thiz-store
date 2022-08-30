@@ -10,8 +10,8 @@ export default function Products({ data }) {
 	)
 }
 export async function getStaticProps() {
-	const HOMEPAGE_QUERY = `query HomePage {
-	  allProducts {
+	const HOMEPAGE_QUERY = `query HomePage($limit: IntType) {
+		allProducts(first: $limit) {
 		id
 			title
 			price
@@ -28,7 +28,7 @@ export async function getStaticProps() {
 	}`;
 	const data = await request({
 	  query: HOMEPAGE_QUERY,
-	  variables: { }
+	  variables: { limit: 30 }
 	});
 	return {
 	  props: { data: data.allProducts }

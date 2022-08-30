@@ -23,10 +23,10 @@ function Header() {
 			</div>
 			<div className={style.menuBtn}>
 				<ul>
-					<li><Link href="/"><a>início</a></Link></li>
-					<li><Link href="/category"><a>categorias</a></Link></li>
-					<li><Link href="/products"><a>produtos</a></Link></li>
-					<li><Link href="/contact"><a>contato</a></Link></li>
+					<li><Link scroll={false} href="/"><a>início</a></Link></li>
+					<li><Link scroll={false} href="/category"><a>categorias</a></Link></li>
+					<li><Link scroll={false} href="/products"><a>produtos</a></Link></li>
+					<li><Link scroll={false} href="/contact"><a>contato</a></Link></li>
 				</ul>
 			</div>
 			<div className={style.containerBtn}>
