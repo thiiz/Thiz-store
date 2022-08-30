@@ -6,7 +6,7 @@ const SLUGPAGE_QUERY = `query SlugPage($limit: IntType) {
 		  title
 		  price
 		  image {
-			responsiveImage(imgixParams: {fit: crop}){                
+			responsiveImage(imgixParams: {fit: crop}){         
 				src
 				width
 				height   
@@ -29,11 +29,9 @@ function productPage({ product }) {
 
 export async function getStaticProps({ params }) {
 	const slug = params?.slug
-	const data = await request({
-	  query: SLUGPAGE_QUERY,
-	  variables: { limit: 30 }
-	});
-	const product = data.allProducts.find((p) => p.slug === slug) || null
+	const products = await fetch(process.env.PRODUCTS_API)
+	const data = await products.json()
+	const product = data.find((p) => p.slug === slug) || null
 	if (!product) {
 		return {
 			notFound: true,
@@ -48,10 +46,8 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-	  const products = await request({
-		query: SLUGPAGE_QUERY,
-		variables: { limit: 30 }
-	  });
+	const data = await fetch(process.env.PRODUCTS_API)
+	const products = await data.json()
 	const slugs = products.allProducts.map((p) => ({ params: { slug: p.slug } }))
 	return {
 		paths: slugs,

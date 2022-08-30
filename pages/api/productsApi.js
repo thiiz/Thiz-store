@@ -9,7 +9,8 @@ export default async function handler(req, res) {
 			  price
 			  image {
 				url
-		  responsiveImage(imgixParams: {fit: crop}){      
+		  responsiveImage(imgixParams: {fit: crop}){
+			webpSrcSet
 			  src         
 			  base64
 			}
