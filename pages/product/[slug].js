@@ -1,8 +1,8 @@
 import { request } from "../../lib/datocms"
 import { Image } from 'react-datocms'
 
-const SLUGPAGE_QUERY = `query SlugPage {
-	allProducts {
+const SLUGPAGE_QUERY = `query SlugPage($limit: IntType) {
+	allProducts(first: $limit) {
 		  title
 		  price
 		  image {
@@ -31,7 +31,7 @@ export async function getStaticProps({ params }) {
 	const slug = params?.slug
 	const data = await request({
 	  query: SLUGPAGE_QUERY,
-	  variables: { }
+	  variables: { limit: 30 }
 	});
 	const product = data.allProducts.find((p) => p.slug === slug) || null
 	if (!product) {
