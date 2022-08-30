@@ -34,7 +34,6 @@ export async function getStaticProps({ params }) {
 	  variables: { }
 	});
 	const product = data.allProducts.find((p) => p.slug === slug) || null
-
 	if (!product) {
 		return {
 			notFound: true,

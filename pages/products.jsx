@@ -25,9 +25,6 @@ export async function getStaticProps() {
 			defaultVisible
 			slug
 		  }
-		  _allProductsMeta {
-			count
-	  }
 	}`;
 	const data = await request({
 	  query: HOMEPAGE_QUERY,

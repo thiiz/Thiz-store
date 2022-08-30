@@ -1,19 +1,15 @@
 import { request } from '../lib/datocms';
-import { useRouter } from 'next/router'
 import Banner from "../components/home/banner/Banner";
 import Infos from '../components/home/infos/Infos'
-import Filters from '../components/filters/Filters'
 import Products from './products';
 
 
 export default function Home({ data }) {
-  const products = data.allProducts;
-  const router = useRouter()
   return (
     <main className="page">
       <Banner />
       <Infos />
-      <Products data={products} />
+      <Products data={data} />
     </main>
   )
 }
@@ -21,7 +17,7 @@ export default function Home({ data }) {
 
 export async function getStaticProps() {
   const HOMEPAGE_QUERY = `query HomePage {
-    allProducts(orderBy: price_ASC) {
+    allProducts(first: "30", orderBy: price_ASC) {
       id
 		  title
 		  price
@@ -40,6 +36,6 @@ export async function getStaticProps() {
     variables: { }
   });
   return {
-    props: { data }
+    props: { data: data.allProducts }
   };
 }
