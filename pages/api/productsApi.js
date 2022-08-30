@@ -2,15 +2,23 @@ import { request } from '../../lib/datocms'
 
 
 export default async function handler(req, res) {
-	const HOMEPAGE_QUERY = `query HomePage {
-		
-		allProducts(first: "50") {
-			id
-			title
-		  },
-		}`;
+	const PRODUCTSAPI_QUERY = `query ProductsApi {
+		allProducts(first: 100) {
+		  id
+			  title
+			  price
+			  image {
+				url
+		  responsiveImage(imgixParams: {fit: crop}){      
+			  src         
+			  base64
+			}
+			}
+			  slug
+			}
+	  }`
 	const data = await request({
-		query: HOMEPAGE_QUERY,
+		query: PRODUCTSAPI_QUERY,
 		variables: {}
 	});
 	if (req.method === 'GET') {

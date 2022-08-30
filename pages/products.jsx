@@ -10,27 +10,9 @@ export default function Products({ data }) {
 	)
 }
 export async function getStaticProps() {
-	const PRODUCTSPAGE_QUERY = `query HomePage($limit: IntType) {
-		allProducts(first: $limit) {
-		id
-			title
-			price
-			image {
-			  responsiveImage(imgixParams: {fit: crop}){ 
-				  src          
-				  bgColor 
-				  base64
-				}
-		  }
-			defaultVisible
-			slug
-		  }
-	}`;
-	const data = await request({
-	  query: PRODUCTSPAGE_QUERY,
-	  variables: { limit: 30 }
-	});
+	const productsApi = await fetch('http://localhost:3000/api/productsApi')
+	const data = await productsApi.json()
 	return {
-	  props: { data: data.allProducts }
+	  props: { data: data }
 	};
   }
