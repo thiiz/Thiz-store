@@ -5,20 +5,25 @@ import Select from 'react-select'
 
 export default function Filters() {
 	const [selectedOption, setSelectedOption] = useState('')
+	const [search, setSearch] = useState('')
 	const options = [
 		{ value: 'instock_DESC', label: 'RECOMENDADO' },
 		{ value: 'price_ASC', label: 'MAIOR VALOR' },
 		{ value: 'price_DESC', label: 'MENOR VALOR' }
 	]
 	useEffect(() => {
-		console.log(selectedOption)
-	}, [selectedOption])
+		
+	}, [search])
+
+	function searching(){
+		
+	}
 
 	return (
 		<>
 			<div className={style.container}>
 				<div className={style.searchContainer}>
-					<input className={style.search} type='text' placeholder="Pesquisar" />
+					<input onChange={s => setSearch(s.target.value)} className={style.search} type='text' placeholder="Pesquisar" />
 					<div className={style.searchLupa}>
 						<BsSearch />
 					</div>
