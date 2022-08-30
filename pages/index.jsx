@@ -16,9 +16,26 @@ export default function Home({ data }) {
 
 
 export async function getStaticProps() {
-	const productsApi = await fetch(process.env.PRODUCTS_API)
-	const data = await productsApi.json()
-	return {
-	  props: { data: data }
-	};
-  }
+  const HOMEPAGE_QUERY = `query HomePage($limit: IntType) {
+    allProducts(first: $limit) {
+      id
+		  title
+		  price
+		  image {
+			url
+      responsiveImage(imgixParams: {fit: crop}){      
+          src         
+          base64
+        }
+		}
+		  slug
+		}
+  }`;
+  const data = await request({
+    query: HOMEPAGE_QUERY,
+    variables: { limit: 30 }
+  });
+  return {
+    props: { data: data.allProducts }
+  };
+}
