@@ -1,22 +1,6 @@
 import { request } from "../../lib/datocms"
 import { Image } from 'react-datocms'
 
-const SLUGPAGE_QUERY = `query SlugPage($limit: IntType) {
-	allProducts(first: $limit) {
-		  title
-		  price
-		  image {
-			responsiveImage(imgixParams: {fit: crop}){                
-				src
-				width
-        		height   
-				base64
-			  }
-			}
-		  slug
-		}
-  }`;
-
 function productPage({ product }) {
 	return (
 		<div>
@@ -28,6 +12,21 @@ function productPage({ product }) {
 }
 
 export async function getStaticProps({ params }) {
+	const SLUGPAGE_QUERY = `query SlugPage($limit: IntType) {
+		allProducts(first: $limit) {
+			  title
+			  price
+			  image {
+				responsiveImage(imgixParams: {fit: crop}){                
+					src
+					width
+					height   
+					base64
+				  }
+				}
+			  slug
+			}
+	  }`;
 	const slug = params?.slug
 	const data = await request({
 	  query: SLUGPAGE_QUERY,

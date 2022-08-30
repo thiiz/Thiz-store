@@ -10,7 +10,7 @@ export default function Products({ data }) {
 	)
 }
 export async function getStaticProps() {
-	const HOMEPAGE_QUERY = `query HomePage($limit: IntType) {
+	const PRODUCTSPAGE = `query HomePage($limit: IntType) {
 		allProducts(first: $limit) {
 		id
 			title
@@ -27,7 +27,7 @@ export async function getStaticProps() {
 		  }
 	}`;
 	const data = await request({
-	  query: HOMEPAGE_QUERY,
+	  query: PRODUCTSPAGE_QUERY,
 	  variables: { limit: 30 }
 	});
 	return {
