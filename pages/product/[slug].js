@@ -1,7 +1,5 @@
 import { request } from "../../lib/datocms"
 import { Image } from 'react-datocms'
-import { useRouter } from "next/router";
-import LoadingScreen from '../../components/loading-screen/loadingScreen';
 
 
 const SLUGPAGE_QUERY = `query SlugPage($limit: IntType, $slug: String) {
@@ -21,10 +19,6 @@ const SLUGPAGE_QUERY = `query SlugPage($limit: IntType, $slug: String) {
   }`;
 
 function productPage({ product }) {
-	const router = useRouter()
-	if(router.isFallback){
-		return <LoadingScreen/>
-	}
 	return (
 		<div>
 			<picture>
