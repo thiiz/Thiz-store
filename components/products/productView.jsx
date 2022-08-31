@@ -10,7 +10,7 @@ export default function ProductView({ item }) {
 	return (
 
 		<div className={`${style.content}`} id='produtos'>
-			<Filters order={stock}/>
+			<Filters data={stock}/>
 			<section className={style.container} >
 				{stock.map((stock) => {
 					return (

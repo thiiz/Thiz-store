@@ -2,28 +2,27 @@ import style from './Filters.module.css'
 import { BsSearch } from 'react-icons/bs'
 import { useState, useEffect, useId } from 'react'
 import Select from 'react-select'
+import getProducts from './getProducts'
 
-export default function Filters() {
+export default function Filters({ data }) {
+	const [products, setProducts ] = useState(data)
+	const [searching, setSearching] = useState('')
+	const filters = getProducts({ data, searching })
 	const [selectedOption, setSelectedOption] = useState('')
-	const [search, setSearch] = useState('')
 	const options = [
 		{ value: 'instock_DESC', label: 'RECOMENDADO' },
 		{ value: 'price_ASC', label: 'MAIOR VALOR' },
 		{ value: 'price_DESC', label: 'MENOR VALOR' }
 	]
 	useEffect(() => {
-		
-	}, [search])
-
-	function searching(){
-		
-	}
+		const filtred = (filters.search.filter((product) => product.title.includes(searching)))
+	}, [searching])
 
 	return (
 		<>
 			<div className={style.container}>
 				<div className={style.searchContainer}>
-					<input onChange={s => setSearch(s.target.value)} className={style.search} type='text' placeholder="Pesquisar" />
+					<input onChange={s => setSearching(s.target.value)} value={searching} className={style.search} type='text' placeholder="Pesquisar" />
 					<div className={style.searchLupa}>
 						<BsSearch />
 					</div>
@@ -33,7 +32,7 @@ export default function Filters() {
 			<h4>DESTAQUE</h4>
 			<div className={style.sortPrice}>
 				<span>ORDENAR POR:</span>
-				<Select onChange={e => setSelectedOption(e.value)} defaultValue={selectedOption} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting"/>
+				<Select onChange={e => setSelectedOption(e.value)} defaultValue={selectedOption} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" />
 			</div>
 			<div>{selectedOption}</div>
 		</>

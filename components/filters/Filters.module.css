@@ -5,10 +5,12 @@
 	margin-top: 180px;
 
 }
-.sortPrice span{
+
+.sortPrice span {
 	font-family: 'Oswald', sans-serif;
 	font-size: 13PX;
 }
+
 .categorys span {
 	font-size: 13px;
 	color: #4d4d4d;
@@ -58,14 +60,18 @@
 
 .sortPrice {
 	text-align: end;
-    margin-right: 80px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-.priceSorting{
+	margin-right: 80px;
+	margin-bottom: 20px;
 	display: flex;
-    justify-content: flex-end;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.priceSorting {
+	display: flex;
+	justify-content: flex-end;
 	text-align: center;
+	align-items: flex-end;
+    max-width: 200px;
+	left: 90%;
 }
