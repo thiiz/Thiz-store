@@ -7,14 +7,14 @@ import ProductView from '../products/productView'
 export default function Filters({ data }) {
 	const filters = data.map(product => product)
 	const [searching, setSearching] = useState('')
+	const formatSearch = searching.toLowerCase()
 	const [selectedOption, setSelectedOption] = useState('')
 	const options = [
 		{ value: 'instock_DESC', label: 'RECOMENDADO' },
 		{ value: 'price_ASC', label: 'MAIOR VALOR' },
 		{ value: 'price_DESC', label: 'MENOR VALOR' }
 	]
-	const formatSearch = searching.toLowerCase()
-	const filtred = (filters.filter((product) => product.title.includes(formatSearch)))
+	const filtred = (filters.filter((product) => product.title.startsWith(...formatSearch) || product.title.includes(formatSearch) ))
 
 	return (
 		<>
@@ -33,7 +33,7 @@ export default function Filters({ data }) {
 				<Select onChange={e => setSelectedOption(e.value)} defaultValue={selectedOption} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" />
 			</div>
 			<div>{selectedOption}</div>
-			<ProductView products={filtred} />
+			<ProductView onChange={console.log('product view mudow')} products={filtred} />
 		</>
 	)
 }
