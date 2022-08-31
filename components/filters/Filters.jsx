@@ -13,7 +13,8 @@ export default function Filters({ data }) {
 		{ value: 'price_ASC', label: 'MAIOR VALOR' },
 		{ value: 'price_DESC', label: 'MENOR VALOR' }
 	]
-	const filtred = (filters.filter((product) => product.title.includes(searching)))
+	const formatSearch = searching.toLowerCase()
+	const filtred = (filters.filter((product) => product.title.includes(formatSearch)))
 
 	return (
 		<>
