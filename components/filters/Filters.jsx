@@ -1,13 +1,11 @@
 import style from './Filters.module.css'
 import { BsSearch } from 'react-icons/bs'
-import { useState, useEffect, useId } from 'react'
+import { useState, useId } from 'react'
 import Select from 'react-select'
-import filterProducts from './filterProducts'
 import ProductView from '../products/productView'
 
 export default function Filters({ data }) {
 	const filters = data.map(product => product)
-	const [products, setProducts] = useState(filters)
 	const [searching, setSearching] = useState('')
 	const [selectedOption, setSelectedOption] = useState('')
 	const options = [
@@ -16,9 +14,6 @@ export default function Filters({ data }) {
 		{ value: 'price_DESC', label: 'MENOR VALOR' }
 	]
 	const filtred = (filters.filter((product) => product.title.includes(searching)))
-
-	useEffect(() => {
-	}, [searching])
 
 	return (
 		<>
