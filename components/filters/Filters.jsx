@@ -2,20 +2,22 @@ import style from './Filters.module.css'
 import { BsSearch } from 'react-icons/bs'
 import { useState, useEffect, useId } from 'react'
 import Select from 'react-select'
-import getProducts from './getProducts'
+import filterProducts from './filterProducts'
+import ProductView from '../products/productView'
 
 export default function Filters({ data }) {
-	const [products, setProducts ] = useState(data)
+	const filters = data.map(product => product)
+	const [products, setProducts] = useState(filters)
 	const [searching, setSearching] = useState('')
-	const filters = getProducts({ data, searching })
 	const [selectedOption, setSelectedOption] = useState('')
 	const options = [
 		{ value: 'instock_DESC', label: 'RECOMENDADO' },
 		{ value: 'price_ASC', label: 'MAIOR VALOR' },
 		{ value: 'price_DESC', label: 'MENOR VALOR' }
 	]
+	const filtred = (filters.filter((product) => product.title.includes(searching)))
+
 	useEffect(() => {
-		const filtred = (filters.search.filter((product) => product.title.includes(searching)))
 	}, [searching])
 
 	return (
@@ -35,6 +37,7 @@ export default function Filters({ data }) {
 				<Select onChange={e => setSelectedOption(e.value)} defaultValue={selectedOption} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" />
 			</div>
 			<div>{selectedOption}</div>
+			<ProductView products={filtred} />
 		</>
 	)
 }

@@ -1,12 +1,13 @@
-import ProductView  from "../components/products/productView"
+import Filters from "../components/filters/Filters"
 import { request } from '../lib/datocms';
+import style from '../styles/Products.module.css'
 
 
 export default function Products({ data }) {
 	return (
-		<>
-			<ProductView item={data} />
-		</>
+		<div className={style.content}>
+			<Filters data={data} />
+		</div>
 	)
 }
 export async function getStaticProps() {
@@ -27,10 +28,10 @@ export async function getStaticProps() {
 		  }
 	}`;
 	const data = await request({
-	  query: PRODUCTSPAGE_QUERY,
-	  variables: { limit: 100 }
+		query: PRODUCTSPAGE_QUERY,
+		variables: { limit: 100 }
 	});
 	return {
-	  props: { data: data.allProducts }
+		props: { data: data.allProducts }
 	};
-  }
+}
