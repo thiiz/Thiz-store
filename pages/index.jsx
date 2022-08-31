@@ -28,6 +28,7 @@ export async function getStaticProps() {
           base64
         }
 		}
+      color
 		  slug
 		}
   }`;

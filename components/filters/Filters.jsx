@@ -3,19 +3,36 @@ import { BsSearch } from 'react-icons/bs'
 import { useState, useId } from 'react'
 import Select from 'react-select'
 import ProductView from '../products/productView'
+import { useEffect } from 'react'
 
 export default function Filters({ data }) {
 	const filters = data.map(product => product)
 	const [searching, setSearching] = useState('')
-	const formatSearch = searching.toLowerCase()
+	const formatSearch = searching.toLowerCase().replace(/\s/g, "")
+	const filtring = (filters.filter((product) => 
+	product.title?.includes(formatSearch) 
+	|| product.title?.startsWith(formatSearch) 
+	|| product.title?.endsWith(formatSearch)
+	|| product.slug?.includes(formatSearch) 
+	|| product.slug?.startsWith(...formatSearch)
+	|| product.slug?.endsWith(...formatSearch)
+	|| product.color?.includes(formatSearch)
+	|| product.color?.startsWith(...formatSearch) 
+	|| product.color?.endsWith(...formatSearch)
+	
+	))
+	const [filtred, setFiltred] = useState(filtring)
 	const [selectedOption, setSelectedOption] = useState('')
 	const options = [
 		{ value: 'instock_DESC', label: 'RECOMENDADO' },
 		{ value: 'price_ASC', label: 'MAIOR VALOR' },
 		{ value: 'price_DESC', label: 'MENOR VALOR' }
 	]
-	const filtred = (filters.filter((product) => product.title.startsWith(...formatSearch) || product.title.includes(formatSearch) ))
+	useEffect(() => {
+		setFiltred(filtring)
+		console.log(filtring)
 
+	}, [searching])
 	return (
 		<>
 			<div className={style.container}>
