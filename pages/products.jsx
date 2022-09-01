@@ -1,10 +1,12 @@
+import { useContext } from "react";
+import { ProductsContext } from '../contexts/productContext'
 import Filters from "../components/filters/Filters"
-import { request } from '../lib/datocms';
 import Head from "next/head"
 import style from '../styles/Products.module.css'
 
 
-export default function Products({ data }) {
+export default function Products() {
+	const { data } = useContext(ProductsContext)
 	return (
 		<>
 			<Head>
@@ -22,29 +24,4 @@ export default function Products({ data }) {
 
 	)
 }
-export async function getStaticProps() {
-	const PRODUCTSPAGE_QUERY = `query ProductsPage($limit: IntType, $orderBy: [ProductModelOrderBy]) {
-		allProducts(first: $limit, orderBy: $orderBy) {
-		id
-			title
-			price
-			image {
-			  responsiveImage(imgixParams: {fit: crop}){ 
-				  src          
-				  bgColor 
-				  base64
-				}
-		  }
-		  	color
-			defaultVisible
-			slug
-		  }
-	}`;
-	const data = await request({
-		query: PRODUCTSPAGE_QUERY,
-		variables: { limit: 100 }
-	});
-	return {
-		props: { data: data.allProducts }
-	};
-}
+
