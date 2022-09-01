@@ -4,10 +4,10 @@ import { useState, useId } from 'react'
 import Select from 'react-select'
 import ProductView from '../products/productView'
 import ProductNotFound from '..//product-not-found/productNotFound'
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 
-export default function Filters({ data }) {
-	const products = data.map(product => product)
+export default function Filters({data}) {
+	const products = data.allProducts.map(product => product)
 	const [searching, setSearching] = useState('')
 	const [filters, setFilters] = useState(products)
 	const formatSearch = searching.toLowerCase()

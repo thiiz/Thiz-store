@@ -31,8 +31,7 @@ function productPage({ product }) {
 }
 
 export async function getStaticProps({ params }) {
-	const slug = params.slug
-	console.log(slug)
+	const slug = params?.slug
 	const data = await request({
 		query: SLUGPAGE_QUERY,
 		variables: {

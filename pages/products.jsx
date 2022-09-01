@@ -1,12 +1,10 @@
-import { useContext } from "react";
-import { ProductsContext } from '../contexts/productContext'
 import Filters from "../components/filters/Filters"
 import Head from "next/head"
 import style from '../styles/Products.module.css'
+import { getData } from '../lib/queries';
 
 
-export default function Products() {
-	const { data } = useContext(ProductsContext)
+export default function Products({ data }) {
 	return (
 		<>
 			<Head>
@@ -17,11 +15,15 @@ export default function Products() {
 				<meta name="description" content="Loja de Crochê - MãeTerra"></meta>
 			</Head>
 			<div className={style.content}>
-
 				<Filters data={data} />
 			</div>
 		</>
 
 	)
 }
-
+export async function getStaticProps() {
+	const data = await getData()
+	return {
+	  props: { data: data.data }
+	};
+  }
