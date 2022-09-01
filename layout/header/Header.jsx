@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import style from './Header.module.css'
@@ -10,14 +9,6 @@ import { MdHeadsetMic } from 'react-icons/md'
 function Header() {
 	return (
 		<header className={style.header}>
-			<Head>
-				<meta charSet="utf-8" />
-				<meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-				<meta name="author" content="thiz"></meta>
-				<title>MaeTerra - Loja de crochê</title>
-				<meta name="description" content="Loja de Crochê - MãeTerra"></meta>
-			</Head>
 			<div>
 				<Link href="/"><a><Image className={style.logo} src='/logo-maeTerra2.png' alt='logo-natureza' height='77px' width='77px'></Image></a></Link>
 			</div>

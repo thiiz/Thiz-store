@@ -3,35 +3,45 @@ import { BsSearch } from 'react-icons/bs'
 import { useState, useId } from 'react'
 import Select from 'react-select'
 import ProductView from '../products/productView'
+import ProductNotFound from '..//product-not-found/productNotFound'
 import { useEffect } from 'react'
 
 export default function Filters({ data }) {
-	const filters = data.map(product => product)
+	const products = data.map(product => product)
 	const [searching, setSearching] = useState('')
-	const formatSearch = searching.toLowerCase().replace(/\s/g, "")
-	const filtring = (filters.filter((product) => 
-	product.title?.includes(formatSearch) 
-	|| product.title?.startsWith(formatSearch) 
-	|| product.title?.endsWith(formatSearch)
-	|| product.slug?.includes(formatSearch) 
-	|| product.slug?.startsWith(...formatSearch)
-	|| product.slug?.endsWith(...formatSearch)
-	|| product.color?.includes(formatSearch)
-	|| product.color?.startsWith(...formatSearch) 
-	|| product.color?.endsWith(...formatSearch)
-	
+	const [filters, setFilters] = useState(products)
+	const formatSearch = searching.toLowerCase()
+	const filtring = (filters.filter((product) =>
+		product.title?.toLowerCase().includes(formatSearch)
+		|| product.title?.toLowerCase().startsWith(...formatSearch)
+		|| product.title?.toLowerCase().endsWith(...formatSearch)
+		|| product.slug?.toLowerCase().includes(formatSearch)
+		|| product.slug?.toLowerCase().startsWith(...formatSearch)
+		|| product.slug?.toLowerCase().endsWith(...formatSearch)
+		|| product.color?.toLowerCase().includes(formatSearch)
+		|| product.color?.toLowerCase().startsWith(...formatSearch)
+		|| product.color?.toLowerCase().endsWith(...formatSearch)
+
 	))
 	const [filtred, setFiltred] = useState(filtring)
 	const [selectedOption, setSelectedOption] = useState('')
+	const [load, setLoad] = useState(false)
 	const options = [
 		{ value: 'instock_DESC', label: 'RECOMENDADO' },
 		{ value: 'price_ASC', label: 'MAIOR VALOR' },
 		{ value: 'price_DESC', label: 'MENOR VALOR' }
 	]
 	useEffect(() => {
-		setFiltred(filtring)
-		console.log(filtring)
-
+		if (searching !== ' ') {
+			setFiltred(filtring)
+			//console.log(filtring)
+			if (filtring.length === 0) {
+				setLoad(true)
+			} else {
+				setLoad(false)
+			}
+		}
+		//console.log(load)
 	}, [searching])
 	return (
 		<>
@@ -50,7 +60,8 @@ export default function Filters({ data }) {
 				<Select onChange={e => setSelectedOption(e.value)} defaultValue={selectedOption} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" />
 			</div>
 			<div>{selectedOption}</div>
-			<ProductView onChange={console.log('product view mudow')} products={filtred} />
+			{load && <ProductNotFound search={searching} />}
+			<ProductView onChange={''} products={filtred} />
 		</>
 	)
 }
