@@ -4,7 +4,7 @@ import Header from '../layout/header/Header'
 import Footer from '../layout/footer/Footer'
 import NextNProgress from "nextjs-progressbar";
 
-function MyApp({ Component, pageProps }) {
+function MaeTerra({ Component, pageProps }) {
   return (
     <>
       <Header />
@@ -23,4 +23,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default MaeTerra

@@ -3,10 +3,10 @@ import { BsSearch } from 'react-icons/bs'
 import { useState, useId } from 'react'
 import { Product } from '../products/productView'
 import ProductNotFound from '..//product-not-found/productNotFound'
-import { useEffect, useContext, memo } from 'react'
+import { useEffect, memo } from 'react'
 import Select from 'react-select';
 
-function Filters({ data }) {
+export function ProductFiltred({ data }) {
 	const products = data.allProducts.map(product => product)
 	const [searching, setSearching] = useState('')
 	const [filters, setFilters] = useState(products)
@@ -78,5 +78,3 @@ function Filters({ data }) {
 		</>
 	)
 }
-
-export const ProductFiltred = memo(Filters)

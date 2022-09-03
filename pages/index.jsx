@@ -1,8 +1,6 @@
-import { request } from '../lib/datocms';
 import Banner from "../components/home/banner/Banner";
 import Infos from '../components/home/infos/Infos'
 import style from '../styles/Products.module.css'
-import { useState, useContext, createContext } from 'react';
 import { getData } from '../lib/queries';
 import Head from 'next/head';
 import { ProductFiltred } from '../components/filters/Filters';
