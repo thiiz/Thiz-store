@@ -1,4 +1,4 @@
-import style from './cartMenu.module.css'
+import style from './CartMenu.module.css'
 
 
 export function CartMenu({isOpen, setIsOpen}) {
