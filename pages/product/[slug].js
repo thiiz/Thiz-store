@@ -14,6 +14,7 @@ const SLUGPAGE_QUERY = `query SlugPage($limit: IntType, $slug: String) {
 				base64
 			  }
 			}
+		  instock
 		  slug
 		}
   }`;
@@ -26,6 +27,7 @@ function productPage({ product }) {
 			</picture>
 			<h1>{product.title}.</h1>
 			<p>{product.price}</p>
+			<span>Disponíveis: {product.instock}</span>
 		</div>
 	)
 }

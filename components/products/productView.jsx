@@ -1,8 +1,9 @@
 import ProductsItems from './productItems';
 import style from '../../styles/Products.module.css'
+import { memo } from 'react'
 
 
-export default function ProductView({ products }) {
+function ProductView({ products }) {
 	return (
 
 		<div className={`${style.content}`} id='produtos'>
@@ -17,3 +18,4 @@ export default function ProductView({ products }) {
 
 	)
 }
+export const Product = memo(ProductView)

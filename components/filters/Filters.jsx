@@ -1,17 +1,17 @@
 import style from './Filters.module.css'
 import { BsSearch } from 'react-icons/bs'
 import { useState, useId } from 'react'
-import Select from 'react-select'
-import ProductView from '../products/productView'
+import { Product } from '../products/productView'
 import ProductNotFound from '..//product-not-found/productNotFound'
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, memo } from 'react'
+import Select from 'react-select';
 
-export default function Filters({data}) {
+function Filters({ data }) {
 	const products = data.allProducts.map(product => product)
 	const [searching, setSearching] = useState('')
 	const [filters, setFilters] = useState(products)
 	const formatSearch = searching.toLowerCase()
-	const filtring = (filters.filter((product) =>
+	const filterSearch = (filters.filter((product) =>
 		product.title?.toLowerCase().includes(formatSearch)
 		|| product.title?.toLowerCase().startsWith(...formatSearch)
 		|| product.title?.toLowerCase().endsWith(...formatSearch)
@@ -21,28 +21,43 @@ export default function Filters({data}) {
 		|| product.color?.toLowerCase().includes(formatSearch)
 		|| product.color?.toLowerCase().startsWith(...formatSearch)
 		|| product.color?.toLowerCase().endsWith(...formatSearch)
-
 	))
-	const [filtred, setFiltred] = useState(filtring)
+
+
+
+	const [filtred, setFiltred] = useState(filterSearch)
 	const [selectedOption, setSelectedOption] = useState('')
-	const [load, setLoad] = useState(false)
+	const [notfound, setNotfound] = useState(false)
 	const options = [
-		{ value: 'instock_DESC', label: 'RECOMENDADO' },
+		{ value: '', label: 'RECOMENDADO' },
 		{ value: 'price_ASC', label: 'MAIOR VALOR' },
 		{ value: 'price_DESC', label: 'MENOR VALOR' }
 	]
 	useEffect(() => {
 		if (searching !== ' ') {
-			setFiltred(filtring)
+			setFiltred(filterSearch)
 			//console.log(filtring)
-			if (filtring.length === 0) {
-				setLoad(true)
+			if (filterSearch.length === 0) {
+				setNotfound(true)
 			} else {
-				setLoad(false)
+				setNotfound(false)
 			}
 		}
-		//console.log(load)
 	}, [searching])
+
+	useEffect(() => {
+		if (selectedOption === '') {
+			setFiltred(filterSearch)
+		}
+		if (selectedOption === 'price_ASC') {
+			setFiltred(filterSearch.sort((a,b) => parseFloat(b.price) - (parseFloat(a.price))))
+		}
+		if (selectedOption === 'price_DESC') {
+			setFiltred(filterSearch.sort((a,b) => (parseFloat(a.price) - parseFloat(b.price))))
+		}
+
+	}, [selectedOption])
+
 	return (
 		<>
 			<div className={style.container}>
@@ -53,15 +68,15 @@ export default function Filters({data}) {
 					</div>
 				</div>
 			</div>
-
 			<h4>DESTAQUE</h4>
 			<div className={style.sortPrice}>
 				<span>ORDENAR POR:</span>
 				<Select onChange={e => setSelectedOption(e.value)} defaultValue={selectedOption} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" />
 			</div>
-			<div>{selectedOption}</div>
-			{load && <ProductNotFound search={searching} />}
-			<ProductView onChange={''} products={filtred} />
+			{notfound && <ProductNotFound search={searching} />}
+			<Product onChange={''} products={filtred} />
 		</>
 	)
 }
+
+export const ProductFiltred = memo(Filters)

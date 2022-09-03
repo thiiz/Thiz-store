@@ -7,17 +7,20 @@ export default function ProductsItems({ stock }) {
 	const handleClick = () => {
 		router.push(`/product/${stock.slug}`)
 	}
+	const price = `R$${stock.price.toString().replace(".", ",")}0`
+	price
 	return (
-		<section key={stock.id} className={style.productContainer}>
+		<section className={style.productContainer}>
 			<div>
 				<div className={style.imageContainer} onClick={handleClick}>
 					<Image className={style.product} data={stock.image.responsiveImage} alt={stock.title} width='650px' height='500px' />
 				</div>
 				<p onClick={handleClick} className={style.title}>{stock.title}</p>
-				<p>R$ {stock.price}</p>
-				<button className={style.buy} type='button'>comprar</button>
-				<span>{stock.instock}</span>
+				<p>{price}</p>
+				{stock.instock !== 0 && <button className={style.buy} type='button'>comprar</button>}
+				{stock.instock === 0 && <button className={style.unavailable} type='button' disabled>indisponível</button>}
 			</div>
+			<span>{stock.instock}</span>
 		</section>
 	)
 }
