@@ -30,6 +30,7 @@ export default function Home({ data }) {
 export async function getStaticProps() {
   const data = await getData()
   return {
-    props: { data: data.data }
+    props: { data: data.data },
+    revalidate: 60 * 60 * 24,
   };
 }

@@ -9,23 +9,23 @@ import Select from 'react-select';
 export function ProductFiltred({ data }) {
 	const products = data.allProducts.map(product => product)
 	const [searching, setSearching] = useState('')
-	const [filters, setFilters] = useState(products)
-	const formatSearch = searching.toLowerCase()
-	const filterSearch = (filters.filter((product) =>
-		product.title?.toLowerCase().includes(formatSearch)
-		|| product.title?.toLowerCase().startsWith(...formatSearch)
-		|| product.title?.toLowerCase().endsWith(...formatSearch)
-		|| product.slug?.toLowerCase().includes(formatSearch)
-		|| product.slug?.toLowerCase().startsWith(...formatSearch)
-		|| product.slug?.toLowerCase().endsWith(...formatSearch)
-		|| product.color?.toLowerCase().includes(formatSearch)
-		|| product.color?.toLowerCase().startsWith(...formatSearch)
-		|| product.color?.toLowerCase().endsWith(...formatSearch)
-	))
+	const filtring = () => {
+		const formatSearch = searching.toLowerCase()
+		const filterSearch = (products.filter((product) =>
+			product.title?.toLowerCase().includes(formatSearch)
+			|| product.title?.toLowerCase().startsWith(...formatSearch)
+			|| product.title?.toLowerCase().endsWith(...formatSearch)
+			|| product.slug?.toLowerCase().includes(formatSearch)
+			|| product.slug?.toLowerCase().startsWith(...formatSearch)
+			|| product.slug?.toLowerCase().endsWith(...formatSearch)
+			|| product.color?.toLowerCase().includes(formatSearch)
+			|| product.color?.toLowerCase().startsWith(...formatSearch)
+			|| product.color?.toLowerCase().endsWith(...formatSearch)
+		))
+		return filterSearch
+	}
 
-
-
-	const [filtred, setFiltred] = useState(filterSearch)
+	const [filtred, setFiltred] = useState(filtring())
 	const [selectedOption, setSelectedOption] = useState('')
 	const [notfound, setNotfound] = useState(false)
 	const options = [
@@ -34,10 +34,9 @@ export function ProductFiltred({ data }) {
 		{ value: 'price_DESC', label: 'MENOR VALOR' }
 	]
 	useEffect(() => {
+		setFiltred(filtring())
 		if (searching !== ' ') {
-			setFiltred(filterSearch)
-			//console.log(filtring)
-			if (filterSearch.length === 0) {
+			if (filtred.length === 0) {
 				setNotfound(true)
 			} else {
 				setNotfound(false)
@@ -47,13 +46,13 @@ export function ProductFiltred({ data }) {
 
 	useEffect(() => {
 		if (selectedOption === '') {
-			setFiltred(filterSearch)
+			setFiltred(filtring())
 		}
 		if (selectedOption === 'price_ASC') {
-			setFiltred(filterSearch.sort((a,b) => parseFloat(b.price) - (parseFloat(a.price))))
+			setFiltred(filtring().sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
 		}
 		if (selectedOption === 'price_DESC') {
-			setFiltred(filterSearch.sort((a,b) => (parseFloat(a.price) - parseFloat(b.price))))
+			setFiltred(filtring().sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
 		}
 
 	}, [selectedOption])

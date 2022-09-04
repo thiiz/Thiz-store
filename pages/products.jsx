@@ -19,6 +19,7 @@ export default function Products({ data }) {
 export async function getStaticProps({orderBy}) {
 	const data = await getData({orderBy})
 	return {
-	  props: { data: data.data }
+	  props: { data: data.data },
+	  revalidate: 60 * 60 * 24,
 	};
   }
