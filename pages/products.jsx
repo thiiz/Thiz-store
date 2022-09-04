@@ -1,7 +1,5 @@
 import {ProductFiltred} from "../components/filters/Filters"
 import style from '../styles/Products.module.css'
-import { getData } from '../lib/queries';
-import { useState } from "react";
 
 
 export default function Products({ data }) {
@@ -16,9 +14,11 @@ export default function Products({ data }) {
 	)
 }
 export async function getStaticProps() {
-	const data = await getData()
+	const products = await fetch('https://mae-terra.vercel.app/api/productsApi')
+	const data = await products.json()
 	return {
-	  props: { data: data.data },
+	  props: { data: data },
 	  revalidate: 60 * 60 * 24,
 	};
   }
+  

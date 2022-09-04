@@ -3,11 +3,11 @@ import { BsSearch } from 'react-icons/bs'
 import { useState, useId } from 'react'
 import { Product } from '../products/productView'
 import ProductNotFound from '..//product-not-found/productNotFound'
-import { useEffect, memo } from 'react'
+import { useEffect } from 'react'
 import Select from 'react-select';
 
 export function ProductFiltred({ data }) {
-	const products = data.allProducts.map(product => product)
+	const products = data.map(product => product)
 	const [searching, setSearching] = useState('')
 	const filtring = () => {
 		const formatSearch = searching.toLowerCase()
