@@ -1,6 +1,7 @@
 import Banner from "../components/home/banner/Banner";
 import Infos from '../components/home/infos/Infos'
 import style from '../styles/Products.module.css'
+import { getData } from '../lib/queries';
 import Head from 'next/head';
 import { ProductFiltred } from '../components/filters/Filters';
 
@@ -27,10 +28,9 @@ export default function Home({ data }) {
 }
 
 export async function getStaticProps() {
-  const products = await fetch('https://mae-terra.vercel.app/api/productsApi')
-  const data = await products.json()
+  const data = await getData()
   return {
-    props: { data: data },
+    props: { data: data.data },
     revalidate: 60 * 60 * 24,
   };
 }
