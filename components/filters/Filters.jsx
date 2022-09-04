@@ -7,7 +7,7 @@ import { useEffect, memo } from 'react'
 import Select from 'react-select';
 
 export function ProductFiltred({ data }) {
-	const products = data.allProducts.map(product => product)
+	const products = data.map(product => product)
 	const [searching, setSearching] = useState('')
 	const filtring = () => {
 		const formatSearch = searching.toLowerCase()

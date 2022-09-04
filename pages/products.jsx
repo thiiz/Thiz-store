@@ -1,11 +1,7 @@
 import {ProductFiltred} from "../components/filters/Filters"
 import style from '../styles/Products.module.css'
-import { getData } from '../lib/queries';
-import { useState } from "react";
-
 
 export default function Products({ data }) {
-	const [orderBy, setOrderBy] = useState("")
 	return (
 		<>
 			
@@ -13,13 +9,14 @@ export default function Products({ data }) {
 				<ProductFiltred data={data} />
 			</div>
 		</>
-
 	)
 }
-export async function getStaticProps({orderBy}) {
-	const data = await getData({orderBy})
+export async function getStaticProps() {
+	const products = await fetch(`${process.env.PRODUCTS_API}`)
+	const data = await products.json()
 	return {
-	  props: { data: data.data },
+	  props: { data: data },
 	  revalidate: 60 * 60 * 24,
 	};
   }
+  
