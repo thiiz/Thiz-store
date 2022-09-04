@@ -6,7 +6,7 @@ export default function Products({ data }) {
 	return (
 		<>
 			
-			<div className={style.content}>
+			<div className={`${style.content} page`}>
 				<ProductFiltred data={data} />
 			</div>
 		</>
