@@ -9,7 +9,7 @@ import useSWR from 'swr'
 
 export default function Home({allProducts}) {
   const fetcher = (...args) => fetch(...args).then(res => res.json())
-  const { data, error } = useSWR(process.env.PRODUCTS_API, fetcher, { fallbackData: allProducts, refreshInterval: 1000 })
+  const { data, error } = useSWR(process.env.PRODUCTS_API, fetcher, { fallbackData: allProducts, refreshInterval: 10000 })
   if (error) return console.log('data: ', data)
   if (!data) return <div>loading...</div>
   return (
@@ -37,6 +37,6 @@ export async function getStaticProps() {
   const data = await products.json()
   return {
     props: { allProducts: data },
-    revalidate: 60 * 60 * 24,
+    revalidate: 1,
   };
 }
