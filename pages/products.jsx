@@ -21,7 +21,7 @@ const PRODUCTS_QUERY = gql`{ allProducts(first: 30) {
   }`
 
 export default function Products() {
-	const { data, loading, error } = useQuery(PRODUCTS_QUERY)
+	const { data, loading, error } = useQuery(PRODUCTS_QUERY, { fetchPolicy: 'cache-and-network' })
 
 	if (loading) return <div>LOADING...</div>
 	console.log('data;', data.allProducts)
