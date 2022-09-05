@@ -9,7 +9,7 @@ import useSWR from 'swr'
 
 export default function Home({allProducts}) {
   const fetcher = (...args) => fetch(...args).then(res => res.json())
-  const { data, error } = useSWR(process.env.PRODUCTS_APIa, fetcher, { fallbackData: allProducts, refreshInterval: 1000 })
+  const { data, error } = useSWR(process.env.PRODUCTS_API, fetcher, { fallbackData: allProducts, refreshInterval: 1000 })
   if (error) return console.log('data: ', data)
   if (!data) return <div>loading...</div>
   return (
