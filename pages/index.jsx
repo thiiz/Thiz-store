@@ -4,7 +4,7 @@ import style from '../styles/Products.module.css'
 import Head from 'next/head';
 import { ProductFiltred } from '../components/filters/Filters';
 import { gql } from '@apollo/client';
-import client from '../lib/apolloClient'
+import client from '../lib/apolloclient'
 
 export default function Home({ data }) {
   return (
