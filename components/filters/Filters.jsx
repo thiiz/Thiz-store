@@ -2,7 +2,7 @@ import style from './Filters.module.css'
 import { BsSearch } from 'react-icons/bs'
 import { useState, useId, useMemo } from 'react'
 import { Product } from '../products/productView'
-import ProductNotFound from '..//product-not-found/productNotFound'
+import ProductNotFound from '../product-not-found/productNotFound'
 import { useEffect } from 'react'
 import Select from 'react-select';
 import { useContextProducts } from '../../contexts/productsContext'
