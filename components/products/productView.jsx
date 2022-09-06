@@ -1,6 +1,5 @@
 import ProductsItems from './productItems';
 import style from '../../styles/Products.module.css'
-import { memo } from 'react'
 
 
 function ProductView({ products }) {
@@ -18,4 +17,4 @@ function ProductView({ products }) {
 
 	)
 }
-export const Product = memo(ProductView)
+export const Product = ProductView

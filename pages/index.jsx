@@ -3,32 +3,8 @@ import Infos from '../components/home/infos/Infos'
 import style from '../styles/Products.module.css'
 import Head from 'next/head';
 import { ProductFiltred } from '../components/filters/Filters';
-import { useQuery, gql } from '@apollo/client'
 
-const PRODUCTS_QUERY = gql`{ allProducts(first: 30) {
-  id
-  title
-  price
-  instock
-  image {
-  url
-  responsiveImage(imgixParams: {fit: crop}){      
-      src         
-      base64
-    }
-}
-  color
-  slug
-}
-}`
-export default function Home({ products }) {
-
-
-const {data, loading, error } = useQuery(PRODUCTS_QUERY)
-
-if(loading) return <div>LOADING...</div>
-console.log('data;', data.allProducts)
-
+export default function Home() {
   return (
     <>
       <Head>
@@ -42,7 +18,7 @@ console.log('data;', data.allProducts)
         <Banner />
         <Infos />
         <div className={style.content}>
-          <ProductFiltred data={data.allProducts} />
+          <ProductFiltred />
         </div>
       </main>
     </>

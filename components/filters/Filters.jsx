@@ -1,17 +1,23 @@
 import style from './Filters.module.css'
 import { BsSearch } from 'react-icons/bs'
-import { useState, useId } from 'react'
+import { useState, useId, useMemo } from 'react'
 import { Product } from '../products/productView'
 import ProductNotFound from '..//product-not-found/productNotFound'
 import { useEffect } from 'react'
 import Select from 'react-select';
+import { useContextProducts } from '../../contexts/productsContext'
 
-export function ProductFiltred({ data }) {
-	const products = data.map(product => product)
+export function ProductFiltred() {
+	const [filtred, setFiltred] = useState([])
+	const { products, loading, error } = useContextProducts()
+	const item = products?.items.map(product => product)
+	useMemo(() => {
+		setFiltred(item);
+	}, [products])
 	const [searching, setSearching] = useState('')
 	const filtring = () => {
 		const formatSearch = searching.toLowerCase()
-		const filterSearch = (products.filter((product) =>
+		const filterSearch = (item?.filter((product) =>
 			product.title?.toLowerCase().includes(formatSearch)
 			|| product.title?.toLowerCase().startsWith(...formatSearch)
 			|| product.title?.toLowerCase().endsWith(...formatSearch)
@@ -25,7 +31,6 @@ export function ProductFiltred({ data }) {
 		return filterSearch
 	}
 
-	const [filtred, setFiltred] = useState(filtring())
 	const [selectedOption, setSelectedOption] = useState('')
 	const [notfound, setNotfound] = useState(false)
 	const options = [
@@ -35,7 +40,7 @@ export function ProductFiltred({ data }) {
 	]
 	useEffect(() => {
 		setFiltred(filtring())
-		if (searching !== ' ') {
+		if (searching !== '') {
 			if (filtred.length === 0) {
 				setNotfound(true)
 			} else {
@@ -56,6 +61,9 @@ export function ProductFiltred({ data }) {
 		}
 
 	}, [selectedOption])
+
+	if(loading) return <div>LOADING...</div>
+
 
 	return (
 		<>

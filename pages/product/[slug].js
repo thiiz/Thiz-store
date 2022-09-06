@@ -1,4 +1,4 @@
-import { request } from "../../lib/datocms"
+import { useQuery, gql } from '@apollo/client'
 import { Image } from 'react-datocms'
 
 
