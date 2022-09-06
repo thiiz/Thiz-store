@@ -1,7 +1,7 @@
 import { Image } from 'react-datocms'
 import { gql } from '@apollo/client';
 import client from '../../lib/apolloclient';
-import { PRODUCTS_QUERY } from '../../lib/queries'
+import { VIEW_PRODUCTS_QUERY } from '../../lib/viewProductQuery'
 
 
 function productPage({ product }) {
@@ -18,7 +18,7 @@ function productPage({ product }) {
 }
 
 export async function getStaticProps({ params }) {
-	const { data } = await client.query({query: PRODUCTS_QUERY})
+	const { data } = await client.query({query: VIEW_PRODUCTS_QUERY})
 	const slug = params?.slug
 	const product = data?.allProducts.find((p) => p.slug === slug) || null
 	if (!product) {
@@ -34,7 +34,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
 	const { data } = await client.query({
-		query: gql`query Products{
+		query: gql`query Slug{
 		  allProducts(first: 100) {
 			slug
 		  }

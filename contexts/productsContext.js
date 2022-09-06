@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { createContext, useContext } from "react";
-import { PRODUCTS_QUERY } from "../lib/queries";
+import { PRODUCTS_QUERY } from "../lib/productsQuery";
 
 export const ProductsContext = createContext()
 
