@@ -1,6 +1,6 @@
 import { Image } from 'react-datocms'
-import { ApolloClient, InMemoryCache, createHttpLink, gql } from '@apollo/client';
-import { setContext } from 'apollo-link-context';
+import { gql } from '@apollo/client';
+import client from '../../lib/apolloclient';
 
 
 function productPage({ product }) {
@@ -17,26 +17,6 @@ function productPage({ product }) {
 }
 
 export async function getStaticProps({ params }) {
-	const httpLink = createHttpLink({
-		uri: 'https://graphql.datocms.com/',
-	});
-	const authLink = setContext((_, { headers }) => {
-		return {
-			headers: Object.assign(
-				headers || {},
-				{
-					'Content-Type': 'application/json',
-					'Accept': 'application/json',
-					'Authorization': `Bearer ${process.env.NEXT_PUBLIC_DATO_CMS_READ_ONLY_API_TOKEN}`,
-				}
-			)
-		}
-	});
-	const client = new ApolloClient({
-		ssrMode: typeof window === 'undefined',
-		link: authLink.concat(httpLink),
-		cache: new InMemoryCache(),
-	});
 	const { data } = await client.query({
 		query: gql`query Products{
 		  allProducts(first: 30, orderBy: instock_DESC) {
@@ -72,26 +52,6 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-	const httpLink = createHttpLink({
-		uri: 'https://graphql.datocms.com/',
-	});
-	const authLink = setContext((_, { headers }) => {
-		return {
-			headers: Object.assign(
-				headers || {},
-				{
-					'Content-Type': 'application/json',
-					'Accept': 'application/json',
-					'Authorization': `Bearer ${process.env.NEXT_PUBLIC_DATO_CMS_READ_ONLY_API_TOKEN}`,
-				}
-			)
-		}
-	});
-	const client = new ApolloClient({
-		ssrMode: typeof window === 'undefined',
-		link: authLink.concat(httpLink),
-		cache: new InMemoryCache(),
-	});
 	const { data } = await client.query({
 		query: gql`query Products{
 		  allProducts(first: 30, orderBy: instock_DESC) {
