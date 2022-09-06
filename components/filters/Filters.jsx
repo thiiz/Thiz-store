@@ -6,7 +6,7 @@ import ProductNotFound from '..//product-not-found/productNotFound'
 import { useEffect } from 'react'
 import Select from 'react-select';
 import { useContextProducts } from '../../contexts/productsContext'
-import LoadScreen from '../load-screen/loadScreen'
+import LoadScreen from '../load-screen/LoadScreen'
 
 export function ProductFiltred() {
 	const [filtred, setFiltred] = useState([])
