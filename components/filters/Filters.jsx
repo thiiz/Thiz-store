@@ -6,11 +6,11 @@ import ProductNotFound from '../product-not-found/productNotFound'
 import { useEffect } from 'react'
 import Select from 'react-select';
 import { useContextProducts } from '../../contexts/productsContext'
-import LoadScreen from '../load-screen/LoadScreen'
+import LoadingScreen from '../loading-screen/loadingScreen'
 
 export function ProductFiltred() {
 	const [filtred, setFiltred] = useState([])
-	const { products} = useContextProducts()
+	const { products } = useContextProducts()
 	const item = products?.items.map(product => product)
 	useMemo(() => {
 		setFiltred(item);
@@ -64,7 +64,7 @@ export function ProductFiltred() {
 	}, [selectedOption])
 	return (
 		<>
-		{products.loading && <LoadScreen/>}
+			{products.loading && <LoadingScreen />}
 			<div className={style.container}>
 				<div className={style.searchContainer}>
 					<input onChange={s => setSearching(s.target.value)} value={searching} className={style.search} type='text' placeholder="Pesquisar" />
