@@ -19,25 +19,25 @@ function productPage({ product }) {
 export async function getStaticProps({ params }) {
 	const { data } = await client.query({
 		query: gql`query Products{
-		  allProducts(first: 30, orderBy: instock_DESC) {
+		  allProducts(first: 100) {
 			id
 			title
 			price
 			instock
 			image {
-			url
-			responsiveImage(imgixParams: {fit: crop}) {
-			  src
-			  width
-			  height
-			  base64
+				url
+				responsiveImage(imgixParams: {fit: crop}) {
+					src
+					width
+					height
+					base64
 			}
 			}
 			color
 			slug
 		  }
 		  }`
-	  })
+	})
 	const slug = params?.slug
 	const product = data?.allProducts.find((p) => p.slug === slug) || null
 	if (!product) {
@@ -58,11 +58,11 @@ export async function getStaticPaths() {
 			slug
 		  }
 		  }`
-	  })
+	})
 	const slugs = data?.allProducts.map((p) => ({ params: { slug: p.slug } }))
 	return {
 		paths: slugs,
-		fallback: false,
+		fallback: 'blocking',
 	}
 }
 export default productPage

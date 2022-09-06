@@ -60,7 +60,6 @@ export function ProductFiltred() {
 		if (selectedOption === 'price_DESC') {
 			setFiltred(filtring().sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
 		}
-
 	}, [selectedOption])
 	return (
 		<>
