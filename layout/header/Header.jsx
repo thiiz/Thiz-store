@@ -34,7 +34,7 @@ function Header() {
 				<div>
 					<header className={style.header}>
 						<div>
-							<Link href="/"><a><Image loading='eager' className={style.logo} src='/logo-maeTerra2.png' alt='logo-natureza' height='77px' width='77px'></Image></a></Link>
+							<Link href="/"><a><Image className={style.logo} src='/logo-maeTerra2.png' alt='logo-natureza' height='77px' width='77px'></Image></a></Link>
 						</div>
 						<div className={style.menuBtn}>
 							<ul>

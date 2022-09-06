@@ -3,10 +3,8 @@ import Infos from '../components/home/infos/Infos'
 import style from '../styles/Products.module.css'
 import Head from 'next/head';
 import { ProductFiltred } from '../components/filters/Filters';
-import { gql } from '@apollo/client';
-import client from '../lib/apolloclient'
 
-export default function Home({ data }) {
+export default function Home() {
   return (
     <>
       <Head>
@@ -25,29 +23,4 @@ export default function Home({ data }) {
       </main>
     </>
   )
-}
-
-export async function getStaticProps() {
-  const { data } = await client.query({
-    query: gql`query Products{
-      allProducts(first: 30, orderBy: instock_DESC) {
-        id
-        title
-        price
-        instock
-        image {
-        url
-        responsiveImage(imgixParams: {fit: crop}) {
-          src
-          base64
-        }
-        }
-        color
-        slug
-      }
-      }`
-  })
-  return {
-    props: {data: data}
-  }
 }
