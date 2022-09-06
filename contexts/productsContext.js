@@ -21,6 +21,5 @@ export default function ProductsContextProvider({ children }) {
 }
 
 export const useContextProducts = () => {
-	const products = useContext(ProductsContext)
-	return products
+	return useContext(ProductsContext)
 }

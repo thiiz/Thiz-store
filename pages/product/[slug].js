@@ -1,23 +1,8 @@
-import { useQuery, gql } from '@apollo/client'
 import { Image } from 'react-datocms'
+import { PRODUCTS_QUERY } from '../../lib/queries'
+import { ApolloClient, InMemoryCache, createHttpLink, gql } from '@apollo/client';
+import { setContext } from 'apollo-link-context';
 
-
-const SLUGPAGE_QUERY = `query SlugPage($limit: IntType, $slug: String) {
-	allProducts(first: $limit, filter: {slug: {eq: $slug}})  {
-		  title
-		  price
-		  image {
-			responsiveImage(imgixParams: {fit: crop, fm: webp}){
-				src
-				width
-				height
-				base64
-			  }
-			}
-		  instock
-		  slug
-		}
-  }`;
 
 function productPage({ product }) {
 	return (
@@ -33,15 +18,49 @@ function productPage({ product }) {
 }
 
 export async function getStaticProps({ params }) {
-	const slug = params?.slug
-	const data = await request({
-		query: SLUGPAGE_QUERY,
-		variables: {
-			limit: 100,
-			slug: slug,
+	const httpLink = createHttpLink({
+		uri: 'https://graphql.datocms.com/',
+	});
+	const authLink = setContext((_, { headers }) => {
+		return {
+			headers: Object.assign(
+				headers || {},
+				{
+					'Content-Type': 'application/json',
+					'Accept': 'application/json',
+					'Authorization': `Bearer ${process.env.NEXT_PUBLIC_DATO_CMS_READ_ONLY_API_TOKEN}`,
+				}
+			)
 		}
 	});
-	const product = data.allProducts.find((p) => p.slug === slug) || null
+	const client = new ApolloClient({
+		ssrMode: typeof window === 'undefined',
+		link: authLink.concat(httpLink),
+		cache: new InMemoryCache(),
+	});
+	const { data } = await client.query({
+		query: gql`query Products{
+		  allProducts(first: 30, orderBy: instock_DESC) {
+			id
+			title
+			price
+			instock
+			image {
+			url
+			responsiveImage(imgixParams: {fit: crop}) {
+			  src
+			  width
+			  height
+			  base64
+			}
+			}
+			color
+			slug
+		  }
+		  }`
+	  })
+	const slug = params?.slug
+	const product = data?.allProducts.find((p) => p.slug === slug) || null
 	if (!product) {
 		return {
 			notFound: true,
@@ -54,11 +73,46 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-	const products = await request({
-		query: SLUGPAGE_QUERY,
-		variables: { limit: 100 }
+	const httpLink = createHttpLink({
+		uri: 'https://graphql.datocms.com/',
 	});
-	const slugs = products.allProducts.map((p) => ({ params: { slug: p.slug } }))
+	const authLink = setContext((_, { headers }) => {
+		return {
+			headers: Object.assign(
+				headers || {},
+				{
+					'Content-Type': 'application/json',
+					'Accept': 'application/json',
+					'Authorization': `Bearer ${process.env.NEXT_PUBLIC_DATO_CMS_READ_ONLY_API_TOKEN}`,
+				}
+			)
+		}
+	});
+	const client = new ApolloClient({
+		ssrMode: typeof window === 'undefined',
+		link: authLink.concat(httpLink),
+		cache: new InMemoryCache(),
+	});
+	const { data } = await client.query({
+		query: gql`query Products{
+		  allProducts(first: 30, orderBy: instock_DESC) {
+			id
+			title
+			price
+			instock
+			image {
+			url
+			responsiveImage(imgixParams: {fit: crop}) {
+			  src
+			  base64
+			}
+			}
+			color
+			slug
+		  }
+		  }`
+	  })
+	const slugs = data?.allProducts.map((p) => ({ params: { slug: p.slug } }))
 	return {
 		paths: slugs,
 		fallback: false,

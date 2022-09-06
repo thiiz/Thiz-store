@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { ProductFiltred } from '../components/filters/Filters';
 
 export default function Home() {
+
   return (
     <>
       <Head>

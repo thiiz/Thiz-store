@@ -9,7 +9,7 @@ import { useContextProducts } from '../../contexts/productsContext'
 
 export function ProductFiltred() {
 	const [filtred, setFiltred] = useState([])
-	const { products, loading, error } = useContextProducts()
+	const { products} = useContextProducts()
 	const item = products?.items.map(product => product)
 	useMemo(() => {
 		setFiltred(item);
@@ -62,7 +62,7 @@ export function ProductFiltred() {
 
 	}, [selectedOption])
 
-	if(loading) return <div>LOADING...</div>
+	if(products.loading) return <div>LOADING...</div>
 
 
 	return (
