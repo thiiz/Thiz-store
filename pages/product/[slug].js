@@ -1,5 +1,4 @@
 import { Image } from 'react-datocms'
-import { PRODUCTS_QUERY } from '../../lib/queries'
 import { ApolloClient, InMemoryCache, createHttpLink, gql } from '@apollo/client';
 import { setContext } from 'apollo-link-context';
 

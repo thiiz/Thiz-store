@@ -5,7 +5,7 @@ import Footer from '../layout/footer/Footer'
 import NextNProgress from "nextjs-progressbar";
 import ProductsContextProvider from '../contexts/productsContext';
 import { ApolloProvider } from '@apollo/client';
-import client from '../lib/apolloClient'
+import client from '../lib/apolloclient'
 
 function MaeTerra({ Component, pageProps }) {
   return (
