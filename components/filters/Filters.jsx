@@ -6,6 +6,7 @@ import ProductNotFound from '..//product-not-found/productNotFound'
 import { useEffect } from 'react'
 import Select from 'react-select';
 import { useContextProducts } from '../../contexts/productsContext'
+import LoadScreen from '../load-screen/loadScreen'
 
 export function ProductFiltred() {
 	const [filtred, setFiltred] = useState([])
@@ -61,12 +62,9 @@ export function ProductFiltred() {
 		}
 
 	}, [selectedOption])
-
-	if(products.loading) return <div>LOADING...</div>
-
-
 	return (
 		<>
+		{products.loading && <LoadScreen/>}
 			<div className={style.container}>
 				<div className={style.searchContainer}>
 					<input onChange={s => setSearching(s.target.value)} value={searching} className={style.search} type='text' placeholder="Pesquisar" />

@@ -54,19 +54,7 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
 	const { data } = await client.query({
 		query: gql`query Products{
-		  allProducts(first: 30, orderBy: instock_DESC) {
-			id
-			title
-			price
-			instock
-			image {
-			url
-			responsiveImage(imgixParams: {fit: crop}) {
-			  src
-			  base64
-			}
-			}
-			color
+		  allProducts(first: 100) {
 			slug
 		  }
 		  }`
