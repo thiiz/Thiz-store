@@ -6,8 +6,10 @@
 	justify-content: center;
 	align-items: center;
 	background-color: rgba(0, 0, 0, 0.425);
-	position: absolute;
+	position: fixed;
 	z-index: 999;
+	backdrop-filter: blur(2px);
+	top: 0;
 }
 .spinner {
 	width: 88px;
