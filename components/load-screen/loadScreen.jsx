@@ -1,4 +1,4 @@
-import style from './loadScreen.module.css'
+import style from './loadscreen.module.css'
 
 export default function loadScreen() {
 	return (
