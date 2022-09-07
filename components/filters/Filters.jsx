@@ -76,7 +76,7 @@ export function ProductFiltred() {
 				<h4 className={style.titleProducts} id='filterProducts'>PRODUTOS</h4>
 				<div>
 					<span>ORDENAR POR:</span>
-					<Select onChange={e => setSelectedOption(e.value)} defaultValue={options[0]} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" />
+					<Select onChange={e => setSelectedOption(e.value)} defaultValue={options[0]} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" isSearchable={false} />
 				</div>
 			</div>
 			{notfound && <ProductNotFound search={searching} />}
