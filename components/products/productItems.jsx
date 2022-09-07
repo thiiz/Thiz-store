@@ -20,7 +20,6 @@ export default function ProductsItems({ stock }) {
 				{stock?.instock !== 0 && <button className={style.buy} type='button'>comprar</button>}
 				{stock?.instock === 0 && <button className={style.unavailable} type='button' disabled>indisponível</button>}
 			</div>
-			<span>{stock?.instock}</span>
 		</section>
 	)
 }
