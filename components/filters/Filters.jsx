@@ -72,7 +72,7 @@ export function ProductFiltred() {
 					</div>
 				</div>
 			</div>
-			<h4>DESTAQUE</h4>
+			<h4 id='filterProducts'>PRODUTOS</h4>
 			<div className={style.sortPrice}>
 				<span>ORDENAR POR:</span>
 				<Select onChange={e => setSelectedOption(e.value)} defaultValue={selectedOption} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" />

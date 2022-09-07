@@ -6,17 +6,18 @@ import { CartMenu } from '../../components/cart/CartMenu'
 import { FaShoppingCart } from 'react-icons/fa'
 import { MdHeadsetMic } from 'react-icons/md'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { Link as ScrollLink } from "react-scroll";
 
 
 function Header() {
-	const [scroll, setScroll] = useState(false);
+	const [cartScroll, setCartScroll] = useState(false);
 	useEffect(() => {
 		window.addEventListener('scroll', () => {
 			if (window.scrollY > 60) {
-				setScroll(true);
-			} else setScroll(false);
+				setCartScroll(true);
+			} else setCartScroll(false);
 		});
 		return () => {
 			window.removeEventListener('scroll');
@@ -29,7 +30,7 @@ function Header() {
 	const [isOpen, setIsOpen] = useState(false)
 
 	return (
-		<>		
+		<>
 			<ClickAwayListener onClickAway={() => setIsOpen(false)}>
 				<div>
 					<header className={style.header}>
@@ -38,10 +39,10 @@ function Header() {
 						</div>
 						<div className={style.menuBtn}>
 							<ul>
-								<li><Link scroll={false} href="/"><a>início</a></Link></li>
-								<li><Link scroll={false} href="/category"><a>categorias</a></Link></li>
-								<li><Link scroll={false} href="/products"><a>produtos</a></Link></li>
-								<li><Link scroll={false} href="/contact"><a>contato</a></Link></li>
+								<li><Link cartScroll={false} href="/"><a>início</a></Link></li>
+								<li><Link cartScroll={false} href="/category"><a>categorias</a></Link></li>
+								<li><ScrollLink cartScroll={false} to="filterProducts" spy={true} smooth={true} offset={-70} duration={400}>produtos</ScrollLink></li>
+								<li><Link cartScroll={false} href="/contact"><a>contato</a></Link></li>
 							</ul>
 						</div>
 						<div className={style.containerBtn}>
@@ -57,7 +58,7 @@ function Header() {
 					<motion.nav
 						animate={isOpen ? "open" : "closed"}
 						variants={variants}
-						className={`${style.cart} ${scroll && style.scrollTop}`}
+						className={`${style.cart} ${cartScroll && style.scrollTop}`}
 					>
 						<button onClick={() => setIsOpen(isOpen => !isOpen)} className={style.closeBtn}><AiOutlineCloseCircle /><p className={style.closeText}>Fechar</p></button>
 						<CartMenu />

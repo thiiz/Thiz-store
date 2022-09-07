@@ -1,34 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Oswald:wght@200;300;400&family=Raleway:wght@200&family=Varela+Round&display=swap');
-*{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Varela Round', sans-serif;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Varela Round', sans-serif;
 }
-html{
-  --scroll-behavior: smooth;
-  scroll-behavior: smooth;
-}
+
 body {
-	width: 100vw;
-	min-height: 100vh;
-	overflow-x: hidden;
-  }
-  .page {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    top: 0;
-    position: relative;
-    margin-bottom: 225px;
-  }
-  .effect{
-    overflow: hidden;
-  }
-  .background::after {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  top: 0;
+  position: relative;
+  margin-bottom: 225px;
+}
+
+.effect {
+  overflow: hidden;
+}
+
+.background::after {
   content: "";
   display: block;
   position: fixed;
@@ -38,11 +39,9 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-	  #A4E9F9 0%,
-    #C5AEF2 50%,
-    #8578EA 100%
-  );
+  background: linear-gradient(135deg,
+      #A4E9F9 0%,
+      #C5AEF2 50%,
+      #8578EA 100%);
   z-index: -1;
 }
