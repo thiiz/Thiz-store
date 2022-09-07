@@ -6,7 +6,7 @@
 
 }
 .titleProducts{ 
-	font-size: 26px;
+	font-size: 28px;
 	font-family: 'Oswald', sans-serif;
 }
 
@@ -49,10 +49,9 @@
     display: flex;
     justify-content: space-around;
     gap: 60vw;
-	align-items: center;
+	align-items: flex-end;
 }
 
 .priceSorting {
 	text-align: center;
-    max-width: 200px;
 }
