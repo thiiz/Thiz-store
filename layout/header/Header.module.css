@@ -83,8 +83,8 @@
 	height: 18px;
 	border-radius: 50%;
 	position: absolute;
-	left: 0px;
-	bottom: -3px;
+	left: 25px;
+    bottom: 23px;
 }
 
 .btnInfo:hover {
