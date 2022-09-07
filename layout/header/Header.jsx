@@ -8,7 +8,6 @@ import { MdHeadsetMic } from 'react-icons/md'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { motion } from "framer-motion"
 import ClickAwayListener from '@mui/base/ClickAwayListener';
-import { Link as ScrollLink } from "react-scroll";
 
 
 function Header() {
@@ -41,14 +40,19 @@ function Header() {
 							<ul>
 								<li><Link cartScroll={false} href="/"><a>início</a></Link></li>
 								<li><Link cartScroll={false} href="/category"><a>categorias</a></Link></li>
-								<li><ScrollLink cartScroll={false} to="filterProducts" spy={true} smooth={true} offset={-70} duration={400}>produtos</ScrollLink></li>
+								<li><Link cartScroll={false} href='#'>produtos</Link></li>
 								<li><Link cartScroll={false} href="/contact"><a>contato</a></Link></li>
 							</ul>
 						</div>
 						<div className={style.containerBtn}>
 							<section className={style.btnInfoContainer}>
 								<button className={`${style.btn} ${style.btnInfo}`} type='button'><MdHeadsetMic /></button>
-								<button onClick={() => setIsOpen(isOpen => !isOpen)} className={`${style.btn} ${style.btnInfo}`} type='button'><FaShoppingCart /></button>
+								<div>
+									<button onClick={() => setIsOpen(isOpen => !isOpen)} className={`${style.btn} ${style.btnInfo}`} type='button'>
+										<FaShoppingCart />
+										<div className={style.countCartItems}>0</div>
+									</button>
+								</div>
 								<section className={style.btnLoginSpace}>
 									<button className={`${style.btn} ${style.btnLogin}`} type='button'>LOGIN</button>
 								</section>
