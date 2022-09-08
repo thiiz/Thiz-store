@@ -7,7 +7,6 @@ import client from '../lib/apolloclient'
 import { gql } from "@apollo/client";
 
 export default function Home({ data }) {
-  console.log(data)
   return (
     <>
       <Head>
@@ -27,11 +26,7 @@ export default function Home({ data }) {
     </>
   )
 }
-export async function getStaticProps({req, res}) {
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  );
+export async function getStaticProps(req, res) {
   const { data } = await client.query({
     query: gql`query Products{
       allProducts(first: 30, orderBy: instock_DESC) {
