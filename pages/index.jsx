@@ -20,7 +20,7 @@ export default function Home({ data }) {
         <Banner />
         <Infos />
         <div className={style.content}>
-          <ProductFiltred data={data}/>
+          <ProductFiltred data={data} />
         </div>
       </main>
     </>
@@ -47,5 +47,10 @@ export async function getStaticProps() {
       }
       }`}
   )
-  return { props: { data: data.allProducts } }
+  return {
+    props: {
+      data: data.allProducts
+    },
+    revalidate: 30,
+  }
 }
