@@ -34,11 +34,11 @@ function Header() {
 				<div>
 					<header className={style.header}>
 						<div>
-							<Link prefetch={false} href="/"><a><Image className={style.logo} src='/logo-maeTerra2.png' alt='logo-natureza' height='77px' width='77px'></Image></a></Link>
+							<Link href="/"><a><Image className={style.logo} src='/logo-maeTerra2.png' alt='logo-natureza' height='77px' width='77px'></Image></a></Link>
 						</div>
 						<div className={style.menuBtn}>
 							<ul>
-								<li><Link prefetch={false} cartScroll={false} href="/"><a>início</a></Link></li>
+								<li><Link cartScroll={false} href="/"><a>início</a></Link></li>
 								<li><Link cartScroll={false} href='/man'>masculino</Link></li>
 								<li><Link cartScroll={false} href="/woman"><a>feminino</a></Link></li>
 								<li><Link cartScroll={false} href='/about'>sobre</Link></li>
