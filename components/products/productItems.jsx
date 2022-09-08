@@ -8,7 +8,6 @@ export default function ProductsItems({ stock }) {
 		router.push(`/product/${stock?.slug}`)
 	}
 	const price = `R$${stock?.price.toString().replace(".", ",")}0`
-	price
 	return (
 		<section className={style.productContainer}>
 			<div>

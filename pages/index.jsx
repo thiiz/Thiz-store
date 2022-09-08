@@ -26,7 +26,7 @@ export default function Home({ data }) {
     </>
   )
 }
-export async function getStaticProps(req, res) {
+export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`query Products{
       allProducts(first: 30, orderBy: instock_DESC) {
@@ -40,6 +40,7 @@ export async function getStaticProps(req, res) {
         }
         }
         color
+        slug
       }
       }`}
   )

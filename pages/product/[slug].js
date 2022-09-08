@@ -38,7 +38,7 @@ export async function getStaticPaths() {
 		  allProducts(first: 100) {
 			slug
 		  }
-		  }`
+		  }` 
 	})
 	const slugs = data?.allProducts.map((p) => ({ params: { slug: p.slug } }))
 	return {

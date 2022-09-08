@@ -10,6 +10,7 @@ export function ProductFiltred({data}) {
 	const [filtred, setFiltred] = useState([])
 	const item = data.map(product => product)
 	useMemo(() => {
+		console.log('USE MEMO RENDERIZOU')
 		setFiltred(item);
 	}, [data])
 	const [searching, setSearching] = useState('')
