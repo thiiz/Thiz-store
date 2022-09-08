@@ -27,14 +27,16 @@ export default function Home({ data }) {
     </>
   )
 }
-export async function getStaticProps() {
+export async function getStaticProps({req, res}) {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  );
   const { data } = await client.query({
     query: gql`query Products{
       allProducts(first: 30, orderBy: instock_DESC) {
-        id
         title
         price
-        instock
         image {
         url
         responsiveImage(imgixParams: {fit: crop}) {
@@ -43,7 +45,6 @@ export async function getStaticProps() {
         }
         }
         color
-        slug
       }
       }`}
   )

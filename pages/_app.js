@@ -3,9 +3,6 @@ import Transition from '../components/transition/Transition';
 import Header from '../layout/header/Header'
 import Footer from '../layout/footer/Footer'
 import NextNProgress from "nextjs-progressbar";
-import ProductsContextProvider from '../contexts/productsContext';
-import { ApolloProvider } from '@apollo/client';
-import client from '../lib/apolloclient'
 
 function MaeTerra({ Component, pageProps }) {
   return (
