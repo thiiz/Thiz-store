@@ -19,11 +19,7 @@ function MaeTerra({ Component, pageProps }) {
         showOnShallow={true}
       />
       <Transition>
-        <ApolloProvider client={client}>
-          <ProductsContextProvider>
             <Component {...pageProps} />
-          </ProductsContextProvider>
-        </ApolloProvider>
         <Footer />
       </Transition>
     </>
