@@ -7,12 +7,12 @@ export default function ProductsItems({ stock }) {
 	const handleClick = () => {
 		router.push(`/product/${stock?.slug}`)
 	}
-	const price = `R$${stock?.price.toString().replace(".", ",")}0`
+	const price = `R$${stock?.price.toString().replace(".", ",")}0`;
 	return (
 		<section className={style.productContainer}>
 			<div>
 				<div className={style.imageContainer} onClick={handleClick}>
-					<Image className={style.product} data={stock?.image.responsiveImage} alt={stock?.title} width='650px' height='500px' />
+					<Image className={style.product} data={stock?.image.responsiveImage} alt={`produto: ${stock?.image.alt}`} width='650px' height='500px' />
 				</div>
 				<p onClick={handleClick} className={style.title}>{stock?.title}</p>
 				<p>{price}</p>

@@ -30,6 +30,7 @@ export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`query Products{
       allProducts(first: 30, orderBy: instock_DESC) {
+        id
         title
         price
         image {
@@ -37,9 +38,11 @@ export async function getStaticProps() {
         responsiveImage(imgixParams: {fit: crop}) {
           src
           base64
+          alt
         }
         }
         color
+        instock
         slug
       }
       }`}
