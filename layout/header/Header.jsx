@@ -40,7 +40,7 @@ function Header() {
 							<ul>
 								<li><Link cartScroll={false} href="/"><a>início</a></Link></li>
 								<li><Link cartScroll={false} href='/man'>masculino</Link></li>
-								<li><Link cartScroll={false} href="/woman"><a>feminino</a></Link></li>
+								<li><Link cartScroll={false} href="/#filterProducts"><a>feminino</a></Link></li>
 								<li><Link cartScroll={false} href='/about'>sobre</Link></li>
 								<li><Link cartScroll={false} href="/contact"><a>contato</a></Link></li>
 							</ul>

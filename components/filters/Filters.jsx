@@ -5,8 +5,9 @@ import { Product } from '../products/productView'
 import ProductNotFound from '../product-not-found/productNotFound'
 import { useEffect } from 'react'
 import Select from 'react-select';
+import { setCookie, parseCookies } from 'nookies'
 
-export function ProductFiltred({data}) {
+export function ProductFiltred({ data }) {
 	const [filtred, setFiltred] = useState([])
 	const item = data.map(product => product)
 	useMemo(() => {
@@ -29,10 +30,10 @@ export function ProductFiltred({data}) {
 		return filterSearch
 	}
 
-	const [selectedOption, setSelectedOption] = useState('')
+	const [selectedOption, setSelectedOption] = useState(parseCookies().SORT_BY)
 	const [notfound, setNotfound] = useState(false)
 	const options = [
-		{ value: '', label: 'RECOMENDADO' },
+		{ value: 'default', label: 'RECOMENDADO' },
 		{ value: 'price_ASC', label: 'MAIOR VALOR' },
 		{ value: 'price_DESC', label: 'MENOR VALOR' }
 	]
@@ -48,14 +49,26 @@ export function ProductFiltred({data}) {
 	}, [searching])
 
 	useEffect(() => {
-		if (selectedOption === '') {
+		if (selectedOption === 'default') {
 			setFiltred(filtring())
+			setCookie(null, 'SORT_BY', 'default', {
+				maxAge: 86400,
+				path: '/',
+			})
 		}
 		if (selectedOption === 'price_ASC') {
 			setFiltred(filtring().sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
+			setCookie(null, 'SORT_BY', 'price_ASC', {
+				maxAge: 86400,
+				path: '/',
+			})
 		}
 		if (selectedOption === 'price_DESC') {
 			setFiltred(filtring().sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
+			setCookie(null, 'SORT_BY', 'price_DESC', {
+				maxAge: 86400,
+				path: '/',
+			})
 		}
 	}, [selectedOption])
 	return (
@@ -72,7 +85,7 @@ export function ProductFiltred({data}) {
 				<h3 className={style.titleProducts} id='filterProducts'>PRODUTOS</h3>
 				<div>
 					<span>ORDENAR POR:</span>
-					<Select onChange={e => setSelectedOption(e.value)} defaultValue={options[0]} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" isSearchable={false} />
+					<Select onChange={e => setSelectedOption(e.value)} defaultValue={selectedOption} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" isSearchable={false} />
 				</div>
 			</div>
 			{notfound && <ProductNotFound search={searching} />}
