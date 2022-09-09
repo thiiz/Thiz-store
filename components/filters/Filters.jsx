@@ -10,7 +10,6 @@ export function ProductFiltred({data}) {
 	const [filtred, setFiltred] = useState([])
 	const item = data.map(product => product)
 	useMemo(() => {
-		console.log('USE MEMO RENDERIZOU')
 		setFiltred(item);
 	}, [data])
 	const [searching, setSearching] = useState('')
@@ -70,7 +69,7 @@ export function ProductFiltred({data}) {
 				</div>
 			</div>
 			<div className={style.sortPrice}>
-				<h4 className={style.titleProducts} id='filterProducts'>PRODUTOS</h4>
+				<h3 className={style.titleProducts} id='filterProducts'>PRODUTOS</h3>
 				<div>
 					<span>ORDENAR POR:</span>
 					<Select onChange={e => setSelectedOption(e.value)} defaultValue={options[0]} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" isSearchable={false} />
