@@ -32,7 +32,6 @@ export function ProductFiltred({ data }) {
 
 	const [selectedOption, setSelectedOption] = useState(parseCookies().SORT_BY)
 	const [notfound, setNotfound] = useState(false)
-	const [option, setOption] = useState(null)
 	const options = [
 		{ value: 'default', label: 'RECOMENDADO' },
 		{ value: 'price_ASC', label: 'MAIOR VALOR' },
@@ -56,7 +55,6 @@ export function ProductFiltred({ data }) {
 				maxAge: 86400,
 				path: '/',
 			})
-			setOption(0)
 		}
 		if (selectedOption === 'price_ASC') {
 			setFiltred(filtring().sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
@@ -64,7 +62,6 @@ export function ProductFiltred({ data }) {
 				maxAge: 86400,
 				path: '/',
 			})
-			setOption(1)
 		}
 		if (selectedOption === 'price_DESC') {
 			setFiltred(filtring().sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
@@ -72,7 +69,6 @@ export function ProductFiltred({ data }) {
 				maxAge: 86400,
 				path: '/',
 			})
-			setOption(2)
 		}
 	}, [selectedOption])
 	return (
@@ -89,9 +85,8 @@ export function ProductFiltred({ data }) {
 				<h3 className={style.titleProducts} id='filterProducts'>PRODUTOS</h3>
 				<div>
 					<span>ORDENAR POR:</span>
-					{option &&(
-						<Select onChange={e => setSelectedOption(e.value)} hideSelectedOptions={true} defaultValue={options[option]} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" isSearchable={false} />
-					)}
+
+					<Select onChange={e => setSelectedOption(e.value)} hideSelectedOptions={true} defaultValue={selectedOption} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" isSearchable={false} />
 				</div>
 			</div>
 			{notfound && <ProductNotFound search={searching} />}
