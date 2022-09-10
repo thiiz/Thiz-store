@@ -7,7 +7,6 @@ import { FaShoppingCart } from 'react-icons/fa'
 import { MdHeadsetMic } from 'react-icons/md'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { motion } from "framer-motion"
-import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 
 function Header() {
@@ -30,7 +29,6 @@ function Header() {
 
 	return (
 		<>
-			<ClickAwayListener onClickAway={() => setIsOpen(false)}>
 				<div>
 					<header className={style.header}>
 						<div>
@@ -69,7 +67,6 @@ function Header() {
 						<CartMenu />
 					</motion.nav>
 				</div>
-			</ClickAwayListener>
 		</>
 
 	)

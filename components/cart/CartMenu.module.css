@@ -5,14 +5,47 @@
 }
 
 .container {
-    background-color: #0000004f;
+    background-color: #0000006c;
     height: 100vh;
-    width: 384px;
+    width: 450px;
     color: #ffffff;
     display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    right: 0;
+    flex-direction: column;
     border-radius: 0 0 0 280px;
+    margin: 4px, 4px;
+    padding-left: 46px;
+    padding-bottom: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+.quantity {
+    pointer-events: none;
+    height: 100%;
+    width: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    outline-width: 0;
+    border: 1px solid #000;
+}
+
+
+.Quantity_input {
+    pointer-events: none;
+    height: 100%;
+    width: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    outline-width: 0;
 }
