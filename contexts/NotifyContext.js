@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { createContext, useState } from "react";
+import { createContext} from "react";
 import { Flip, toast } from 'react-toastify'
-import NotifyCart from "../components/notify/notifyCart";
+import NotifyCart from "../components/notify/NotifyCart";
 import { useMenuCart } from "..//contexts/OpenCartMenuContext";
 
 
