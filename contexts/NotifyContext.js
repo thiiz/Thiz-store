@@ -12,7 +12,7 @@ export default function NotifyProvider({ children }) {
 	const { isOpen, setIsOpen } = useMenuCart()
 
 	const notifyCart = () => toast.success(<NotifyCart/>, {
-		closeOnClick: false,
+		closeOnClick: true,
 		pauseOnHover: true,
 		draggable: false,
 		progress: undefined,
