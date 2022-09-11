@@ -4,7 +4,7 @@ import { useCart } from '../../contexts/CartContext'
 
 
 export function CartMenu() {
-	const { cart } = useCart()
+	const { cart, totalPrice } = useCart()
 	return (
 		<div className={style.container}>
 			<div>
@@ -15,6 +15,7 @@ export function CartMenu() {
 						<CartItems key={item.id} item={item} />
 					);
 				})}
+				<div>total: {totalPrice}</div>
 			</div>
 		</div >
 	)

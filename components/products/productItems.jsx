@@ -2,17 +2,19 @@ import { useRouter } from 'next/router';
 import { Image } from 'react-datocms'
 import style from '../../styles/Products.module.css'
 import { useCart } from '../../contexts/CartContext'
-import { useMenuCart } from '../../contexts/OpenCartMenuContext';
 
+import 'react-toastify/dist/ReactToastify.css';
+import { useNotify } from '../../contexts/NotifyContext';
 
 
 export default function ProductsItems({ stock }) {
-	const { isOpen, setIsOpen } = useMenuCart()
+
 	const router = useRouter()
 	const handleViewProduct = () => {
 		router.push(`/product/${stock?.slug}`)
 	}
 	const { add } = useCart()
+	const { notifyCart } = useNotify()
 	const price = `R$${stock?.price.toString().replace(".", ",")}0`;
 	return (
 		<section className={style.productContainer}>
@@ -22,7 +24,7 @@ export default function ProductsItems({ stock }) {
 				</div>
 				<p onClick={handleViewProduct} className={style.title}>{stock?.title}</p>
 				<p>{price}</p>
-				{stock?.instock !== 0 && <button onClick={() => add(stock)} className={style.buy} type='button'>comprar</button>}
+				{stock?.instock !== 0 && <button onClick={() => { add(stock), notifyCart() }} className={style.buy} type='button'>comprar</button>}
 				{stock?.instock === 0 && <button className={style.unavailable} type='button' disabled>indisponível</button>}
 			</div>
 		</section>

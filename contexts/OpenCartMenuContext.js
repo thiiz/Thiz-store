@@ -6,11 +6,7 @@ const OpenCartMenuContext = createContext()
 export default function CartMenuProvider({ children }) {
 	const [isOpen, setIsOpen] = useState(false)
 
-	function taggle() {
-		setIsOpen(true)
-	}
 	const state = {
-		taggle,
 		isOpen,
 		setIsOpen
 	}
@@ -25,12 +21,10 @@ export default function CartMenuProvider({ children }) {
 export function useMenuCart() {
 	const context = useContext(OpenCartMenuContext)
 	const {
-		taggle,
 		isOpen,
 		setIsOpen
 	} = context
 	return {
-		taggle,
 		isOpen,
 		setIsOpen
 	}

@@ -15,12 +15,12 @@ export function CartActions({ item }) {
 	}
 	return (
 		<div className={style.actionContainer}>
-			<button className="remove"><GoX /></button>
+			<button className={style.actions_Button}><GoX /></button>
 			<div className={style.quantity}>
 				{quantity}
 			</div>
-			<button disabled={quantity <= 1 && true} onClick={handleMinus} className="plus"><BiMinus /></button>
-			<button disabled={quantity === item.instock && true} onClick={handlePlus} className="minus"><BiPlus /></button>
+			<button disabled={quantity <= 1 && true} onClick={handleMinus} className={style.actions_Button}><BiMinus /></button>
+			<button disabled={quantity === item.instock && true} onClick={handlePlus} className={style.actions_Button}><BiPlus /></button>
 		</div>
 	)
 }
