@@ -1,0 +1,47 @@
+.content {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+
+.container {
+    background-color: #000000d0;
+    height: 100vh;
+    width: 550px;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 0 280px;
+    padding: 10px 26px 250px 26px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.quantity {
+    text-align: center;
+    pointer-events: none;
+    height: 100%;
+    width: 80%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    outline-width: 0;
+    border: 1.3px solid #000;
+}
+.actionContainer{
+    display: flex;
+    padding-bottom: 25px;
+}
+.item{
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+.cartMenuImg{
+    cursor: pointer;
+}

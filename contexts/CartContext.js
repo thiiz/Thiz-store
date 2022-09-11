@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { useContext } from "react";
 import { createContext, useState } from "react";
+import { useMenuCart } from "./OpenCartMenuContext";
 
 const CartContext = createContext()
 
 export default function CartProvider({ children }) {
 	const [cart, setCart] = useState([])
 	const [totalPrice, setTotalPrice] = useState()
+	const { isOpen, setIsOpen } = useMenuCart()
 
 
 	useEffect(() => {
@@ -18,6 +20,9 @@ export default function CartProvider({ children }) {
 	}, [cart])
 
 	function add(item) {
+		if (!isOpen) {
+			setIsOpen(true)
+		}
 		const newCart = cart;
 		newCart.push(item)
 

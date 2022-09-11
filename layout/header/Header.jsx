@@ -7,9 +7,11 @@ import { FaShoppingCart } from 'react-icons/fa'
 import { MdHeadsetMic } from 'react-icons/md'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { motion } from "framer-motion"
+import { useMenuCart } from '../../contexts/OpenCartMenuContext'
 
 
 function Header() {
+	const { isOpen, setIsOpen } = useMenuCart()
 	const [cartScroll, setCartScroll] = useState(false);
 	useEffect(() => {
 		window.addEventListener('scroll', () => {
@@ -25,8 +27,6 @@ function Header() {
 		open: { opacity: 1, x: 0 },
 		closed: { opacity: 0, x: "100%" },
 	}
-	const [isOpen, setIsOpen] = useState(false)
-
 	return (
 		<>
 				<div>

@@ -2,10 +2,12 @@ import { useRouter } from 'next/router';
 import { Image } from 'react-datocms'
 import style from '../../styles/Products.module.css'
 import { useCart } from '../../contexts/CartContext'
+import { useMenuCart } from '../../contexts/OpenCartMenuContext';
 
 
 
 export default function ProductsItems({ stock }) {
+	const { isOpen, setIsOpen } = useMenuCart()
 	const router = useRouter()
 	const handleViewProduct = () => {
 		router.push(`/product/${stock?.slug}`)

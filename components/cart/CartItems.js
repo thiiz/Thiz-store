@@ -1,21 +1,24 @@
-import { GoX } from 'react-icons/go'
 import Image from 'next/image'
-import style from './CartMenu.module.css'
+import style from './Cart.module.css'
 import { CartActions } from './CartActions'
+import { useRouter } from 'next/router'
 
-export default function CartItems({item}){
-	console.log('item: ', item)
+export default function CartItems({ item }) {
+	const router = useRouter()
+	const handleViewProduct = () => {
+		router.push(`/product/${item?.slug}`)
+	}
 	const price = `R$${item?.price.toString().replace(".", ",")}0`;
 	return (
-		<div>
-			<Image src={item?.image.url} width='120px' height='80px' alt={''} />
-			<p>{item.title}</p>
-			<p>{price}</p>
-			<div className={style.Quantity_actions}>
-				<button className="remove"><GoX /></button>
-				<input className={style.quantity} name="quantity" defaultValue={1} type="number" />
-				<CartActions />
+		<>
+			<div className={style.item}>
+				<Image onClick={handleViewProduct} src={item?.image.url} className={style.cartMenuImg} width='110px' height='80px' max-width='110px' alt={''} />
+				<p>{item.title}</p>
+				<p>{price}</p>
 			</div>
-		</div>
+			<div className={style.Quantity_actions}>
+				<CartActions item={item} />
+			</div>
+		</>
 	)
 }
