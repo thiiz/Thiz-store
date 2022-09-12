@@ -27,8 +27,7 @@ const Transition = ({ children }) => {
     },
   };
   return (
-    <div className='background'>
-      <div className="effect">
+      <main className="effect">
         <AnimatePresence initial={false} mode='wait'>
           <motion.div
             key={asPath}
@@ -40,8 +39,7 @@ const Transition = ({ children }) => {
             {children}
           </motion.div>
         </AnimatePresence>
-      </div>
-    </div>
+      </main>
   );
 };
 export default Transition;

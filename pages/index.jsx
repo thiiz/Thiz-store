@@ -16,13 +16,13 @@ export default function Home({ data }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Loja de Crochê - MãeTerra"></meta>
       </Head>
-      <main className="page">
+      <div className="page">
         <Banner />
         <Infos />
         <div className={style.content}>
           <ProductFiltred data={data} />
         </div>
-      </main>
+      </div>
     </>
   )
 }

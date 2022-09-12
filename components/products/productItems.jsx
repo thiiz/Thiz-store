@@ -2,8 +2,6 @@ import { useRouter } from 'next/router';
 import { Image } from 'react-datocms'
 import style from '../../styles/Products.module.css'
 import { useCart } from '../../contexts/CartContext'
-
-import 'react-toastify/dist/ReactToastify.css';
 import { useNotify } from '../../contexts/NotifyContext';
 
 

@@ -3,13 +3,14 @@ import { createContext} from "react";
 import { Flip, toast } from 'react-toastify'
 import NotifyCart from "../components/notify/NotifyCart";
 import { useMenuCart } from "..//contexts/OpenCartMenuContext";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 const NotifyContext = createContext()
 
 export default function NotifyProvider({ children }) {
-	const { isOpen, setIsOpen } = useMenuCart()
+	const { setIsOpen } = useMenuCart()
 
 	const notifyCart = () => toast.success(<NotifyCart/>, {
 		closeOnClick: true,
@@ -18,7 +19,7 @@ export default function NotifyProvider({ children }) {
 		progress: undefined,
 		transition: Flip,
 		theme: "colored",
-		onClick: () => setIsOpen(isOpen => !isOpen),
+		onClick: () => setIsOpen(true),
 	});
 	const state = {
 		notifyCart
