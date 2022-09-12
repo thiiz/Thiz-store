@@ -29,35 +29,45 @@ function Header() {
 		closed: { opacity: 0, x: "100%" },
 	}
 	const headerVariant = {
-		small: { height: '55px' },
-		normal: { height: "80px" },
+		small: { height: '55px', padding: '0px 285px 0px 295px'},
+		normal: { height: "80px"},
 
 		small_Logo: { width: '50px' },
-		normal_Logo: { width: '72px' }
+		normal_Logo: { width: '72px' },
+
+		small_Font: { fontSize: '20px' },
+		normal_Font: { fontSize: '24px' },
+
+		small_Menu: { fontSize: '22px' },
+		normal_Menu: { fontSize: '26px' },
+
+		small_Button: { fontSize: '20px' },
+		normal_Button: { fontSize: '24px' }
+		
 	}
 	return (
 		<>
-			<motion.header className={style.header} animate={small ? "small" : "normal"} variants={headerVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
+			<motion.header drag={true} className={style.header} animate={small ? "small" : "normal"} variants={headerVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
 				<motion.div animate={small & !logo ? "small_Logo" : "normal_Logo"} variants={headerVariant}>
 					<Link href="/"><a><Image className={style.logo} src='/logo-maeTerra2.png' alt='logo-natureza' height='77px' width='77px'></Image></a></Link>
 				</motion.div>
 				<div className={style.menuBtn}>
 					<ul>
-						<li><Link href="/"><a>início</a></Link></li>
-						<li><Link href='/man'>masculino</Link></li>
-						<li><Link href="/#filterProducts"><a>feminino</a></Link></li>
-						<li><Link href='/about'>sobre</Link></li>
-						<li><Link href="/contact"><a>contato</a></Link></li>
+						<li><Link href="/"><motion.a animate={small ? "small_Font" : "normal_Font"} variants={headerVariant}>início</motion.a></Link></li>
+						<li><Link href='/man'><motion.a animate={small ? "small_Font" : "normal_Font"} variants={headerVariant}>masculino</motion.a></Link></li>
+						<li><Link href="/woman"><motion.a animate={small ? "small_Font" : "normal_Font"} variants={headerVariant}>feminino</motion.a></Link></li>
+						<li><Link href='/about'><motion.a animate={small ? "small_Font" : "normal_Font"} variants={headerVariant}>sobre</motion.a></Link></li>
+						<li><Link href="/contact"><motion.a animate={small ? "small_Font" : "normal_Font"} variants={headerVariant}>contato</motion.a></Link></li>
 					</ul>
 				</div>
 				<div className={style.containerBtn}>
 					<section className={style.btnInfoContainer}>
-						<button className={`${style.btn} ${style.btnInfo}`} type='button'><MdHeadsetMic /></button>
+						<motion.button animate={small ? "small_Menu" : "normal_Menu"} variants={headerVariant} className={`${style.btn} ${style.btnInfo}`} type='button'><MdHeadsetMic /></motion.button>
 						<div>
-							<button onClick={() => setIsOpen(isOpen => !isOpen)} className={`${style.btn} ${style.btnInfo}`} type='button'>
+							<motion.button animate={small ? "small_Menu" : "normal_Menu"} variants={headerVariant} onClick={() => setIsOpen(isOpen => !isOpen)} className={`${style.btn} ${style.btnInfo}`} type='button'>
 								<FaShoppingCart />
 								<div className={style.countCartItems}>0</div>
-							</button>
+							</motion.button>
 						</div>
 						<section className={style.btnLoginSpace}>
 							<button className={`${style.btn} ${style.btnLogin}`} type='button'>LOGIN</button>
