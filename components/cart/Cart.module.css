@@ -68,12 +68,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 0.1px solid #006eff;
+    border: 1px solid #006eff;
 }
 .actions_Button:active{
-    background-color: transparent;
+    background-color: #cfcfcf;
 }
 .actions_Button:disabled{
     cursor: no-drop;
-    background-color: #f1f1f1;
+    background-color: #acacac;
 }

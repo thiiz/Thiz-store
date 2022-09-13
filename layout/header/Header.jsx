@@ -28,7 +28,7 @@ function Header() {
 		closed: { opacity: 0, x: "100%" },
 	}
 	const headerVariant = {
-		small: { height: '55px', padding: '0px 295px 0px 295px'},
+		small: { height: '55px', padding: '0 295px 0 295px'},
 		normal: { height: "80px"},
 
 		small_Logo: { width: '50px' },
