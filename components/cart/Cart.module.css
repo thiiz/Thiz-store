@@ -5,10 +5,10 @@
 }
 
 .container {
-    background-color: #000000d0;
+    background-color: #f1f1f1;
     height: 100vh;
     width: 550px;
-    color: #fff;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -21,8 +21,11 @@
 .quantity {
     text-align: center;
     pointer-events: none;
-    height: 100%;
+    height: 28px;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -31,18 +34,24 @@
     padding-left: 1.5vw;
     padding-right: 1.5vw;
     outline-width: 0;
-    border: 1.3px solid #000;
+    border: 1px solid #006eff;
+
 }
 
 .actionContainer {
     display: flex;
     padding-bottom: 25px;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc
+
 }
 
 .item {
     display: flex;
     align-items: center;
     padding-bottom: 10px;
+    justify-content: space-between;
 }
 
 .cartMenuImg {
@@ -50,18 +59,21 @@
 }
 
 .actions_Button {
-    background-color: #000;
-    width: 26px;
-    height: 23px;
+    background-color: #f1f1f1;
+    width: 44px;
+    height: 28px;
     cursor: pointer;
-    color: #fff;
+    color: #333;
     font-size: 20px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.1px solid #006eff;
 }
 .actions_Button:active{
     background-color: transparent;
 }
 .actions_Button:disabled{
     cursor: no-drop;
-    background-color: #000;
+    background-color: #f1f1f1;
 }

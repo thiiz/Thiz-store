@@ -13,7 +13,6 @@ import { useMenuCart } from '../../contexts/OpenCartMenuContext'
 function Header() {
 	const { isOpen, setIsOpen } = useMenuCart()
 	const [small, setSmall] = useState(false);
-	const [logo, setLogo] = useState(false);
 	useEffect(() => {
 		if (typeof window !== "undefined") {
 			window.addEventListener("scroll", () =>
@@ -29,7 +28,7 @@ function Header() {
 		closed: { opacity: 0, x: "100%" },
 	}
 	const headerVariant = {
-		small: { height: '55px', padding: '0px 285px 0px 295px'},
+		small: { height: '55px', padding: '0px 295px 0px 295px'},
 		normal: { height: "80px"},
 
 		small_Logo: { width: '50px' },
@@ -42,13 +41,13 @@ function Header() {
 		normal_Menu: { fontSize: '26px' },
 
 		small_Button: { fontSize: '20px' },
-		normal_Button: { fontSize: '24px' }
+		normal_Button: { fontSize: '24px' },
 		
 	}
 	return (
 		<>
 			<motion.header drag={true} className={style.header} animate={small ? "small" : "normal"} variants={headerVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
-				<motion.div animate={small & !logo ? "small_Logo" : "normal_Logo"} variants={headerVariant}>
+				<motion.div animate={small ? "small_Logo" : "normal_Logo"} variants={headerVariant}>
 					<Link href="/"><a><Image className={style.logo} src='/logo-maeTerra2.png' alt='logo-natureza' height='77px' width='77px'></Image></a></Link>
 				</motion.div>
 				<div className={style.menuBtn}>
@@ -66,11 +65,11 @@ function Header() {
 						<div>
 							<motion.button animate={small ? "small_Menu" : "normal_Menu"} variants={headerVariant} onClick={() => setIsOpen(isOpen => !isOpen)} className={`${style.btn} ${style.btnInfo}`} type='button'>
 								<FaShoppingCart />
-								<div className={style.countCartItems}>0</div>
+								<div className={`${style.countCartItems} ${small ? style.countCartitemsSmall : style.countCartitemsNormal}`}>0</div>
 							</motion.button>
 						</div>
 						<section className={style.btnLoginSpace}>
-							<button className={`${style.btn} ${style.btnLogin}`} type='button'>LOGIN</button>
+							<button className={`${style.btn} ${style.btnLogin} ${small ? style.btnLoginSmall : style.btnLoginNormal}`} type='button'>LOGIN</button>
 						</section>
 					</section>
 				</div>
