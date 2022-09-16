@@ -14,6 +14,7 @@
 .header ul {
 	list-style-type: none;
 	display: flex;
+	flex-direction: row;
 }
 
 .header ul li {
@@ -167,10 +168,6 @@
 
 
 @media (max-width:980px) {
-	.logo {
-		width: 72px;
-	}
-
 	.header ul li a {
 		font-size: 18px;
 	}
@@ -178,19 +175,47 @@
 	.btnInfo {
 		font-size: 22px;
 	}
+
 	.btnLogin {
-		background-color: #006eff;
-		padding: 8px 16px;
+		padding: 8px 15px;
 	}
-	.btnSpace{
+
+	.btnSpace {
 		margin-left: 25px;
 	}
 }
 
-@media (max-width:745px) {
+@media (max-width: 590px) {
+	.logo {
+		width: 72px;
+	}
+	.header {
+		display: flex;
+		flex-direction: column;
+		gap: 26px;
+	}
+
+	.header ul {
+		display: flex;
+
+		row-gap: 20px;
+		;
+	}
 
 	.btnLogin {
-		background-color: #006eff;
-		padding: 7px 14px;
+		margin-right: 8px;
+	}
+
+	.btnInfoContainer {
+		display: grid;
+		position: relative;
+		justify-items: flex-end;
+		grid-template-columns: 0fr 0fr 1fr;
+		position: relative;
+	}
+	.containerBtnMobile {
+		width: 100%;
+		position: relative;
+		bottom: 0;
 	}
 }
