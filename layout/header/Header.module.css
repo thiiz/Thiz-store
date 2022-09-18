@@ -220,5 +220,8 @@
 		justify-items: center;
 	}
 
-	.header ul li a {}
+	.NavMenuList {
+		position: relative;
+		row-gap: 33px;
+	}
 }
