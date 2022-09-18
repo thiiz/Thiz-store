@@ -82,7 +82,7 @@ function Header() {
 				drag='x'
 				dragElastic={0.1}
 				dragConstraints={{ left: 0, right: 0 }}
-				onDrag={(info) => info.offset >= 382 ? setIsOpen(false) : ''}
+				onDrag={(info) => info.offset.x >= 382 ? setIsOpen(false) : ''}
 			>
 				<button onClick={() => setIsOpen(isOpen => !isOpen)} className={style.closeBtn}><AiOutlineCloseCircle /><p className={style.closeText}>Fechar</p></button>
 				<CartMenu />

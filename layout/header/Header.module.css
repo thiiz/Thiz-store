@@ -170,10 +170,6 @@
 
 @media (max-width:980px) {
 
-	.btnInfo {
-		font-size: 22px;
-	}
-
 	.btnLogin {
 		padding: 8px 15px;
 	}
@@ -184,6 +180,9 @@
 }
 
 @media (max-width: 590px) {
+	.btnInfo {
+		font-size: 23.5px;
+	}
 	.logo {
 		width: 72px;
 	}
