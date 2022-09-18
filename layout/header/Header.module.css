@@ -9,6 +9,7 @@
 			#8578EA 100%);
 	align-items: center;
 	grid-template-columns: 1.05fr 0fr 1fr;
+	overflow: hidden;
 }
 
 .NavMenuList {
@@ -212,16 +213,13 @@
 	}
 
 	.taggleMenuMobile {
-		display: flex;
-		justify-content: space-between;
-		width: 100%;
-		grid-template-columns: 0fr 1fr;
+		display: grid;
+		grid-template-columns: 4fr 1fr 0.3fr;
 		align-items: center;
-		justify-items: center;
 	}
 
 	.NavMenuList {
 		position: relative;
-		row-gap: 33px;
+		row-gap: 36px;
 	}
 }

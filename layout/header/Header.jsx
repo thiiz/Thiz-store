@@ -12,6 +12,7 @@ import { useScrollDirection } from '../../lib/useScrollDirection'
 import { useDesktopSize } from '../../lib/useAnimate'
 import { useMobileSize } from '../../lib/useAnimate'
 import { useIsSmall } from '../../lib/MediaQuery'
+import ToggleButton from '../../components/theme/toggleButton'
 
 function Header() {
 	const small = useIsSmall()
