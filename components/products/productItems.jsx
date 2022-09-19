@@ -13,7 +13,8 @@ export default function ProductsItems({ stock }) {
 	}
 	const { add } = useCart()
 	const { notifyCart } = useNotify()
-	const price = `R$${stock?.price.toString().replace(".", ",")}0`;
+	const price = `${stock?.price.toString().replace(".", ",")}0`;
+	const parcel = stock?.price / 6;
 	return (
 		<section className={style.productContainer}>
 			<div>
@@ -21,7 +22,8 @@ export default function ProductsItems({ stock }) {
 					<Image className={style.product} data={stock?.image.responsiveImage} alt={`produto: ${stock?.image.alt}`} width='650px' height='500px' />
 				</div>
 				<p onClick={handleViewProduct} className={style.title}>{stock?.title}</p>
-				<p>{price}</p>
+				<p className={style.price}>R$ <strong>{price}</strong></p>
+				{parcel >= 10 ? <p>ou 6X R$ {parcel}</p> : ''}
 				{stock?.instock !== 0 && <button onClick={() => { add(stock), notifyCart() }} className={style.buy} type='button'>comprar</button>}
 				{stock?.instock === 0 && <button className={style.unavailable} type='button' disabled>indisponível</button>}
 			</div>

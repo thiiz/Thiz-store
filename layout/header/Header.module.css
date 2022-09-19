@@ -221,4 +221,10 @@
 		position: relative;
 		row-gap: 36px;
 	}
+
+	.menuHamburguer{
+		position: relative;
+		bottom: 2.2px;
+		margin-left: 7px;
+	}
 }

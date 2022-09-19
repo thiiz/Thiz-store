@@ -13,6 +13,7 @@ import { useDesktopSize } from '../../lib/useAnimate'
 import { useMobileSize } from '../../lib/useAnimate'
 import { useIsSmall } from '../../lib/MediaQuery'
 import ToggleButton from '../../components/theme/toggleButton'
+import { Fade as Hamburger } from 'hamburger-react'
 
 function Header() {
 	const small = useIsSmall()
@@ -45,7 +46,7 @@ function Header() {
 							</section>
 						</div>
 						: ''}
-					{small ? <button onClick={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)}>X</button> : ''}
+					{small ? <div className={style.menuHamburguer}><Hamburger toggled={isOpenMobile} toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)}  distance="lg" size={34}  easing="ease-in" style="bottom: 2px;"/></div> : ''}
 				</div>
 				<motion.div className={style.menuBtn} animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant}>
 					<ul className={style.NavMenuList}>
