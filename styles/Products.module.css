@@ -12,7 +12,7 @@
 	display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 4.6vw;
+    gap: 4.6vw, 5vw;
 	align-items: flex-end;
 }
 

@@ -23,7 +23,7 @@ export default function ProductsItems({ stock }) {
 				</div>
 				<p onClick={handleViewProduct} className={style.title}>{stock?.title}</p>
 				<p className={style.price}>R$ <strong>{price}</strong></p>
-				<p>OU 6X R$ {parcel}</p>
+				<p className={style.parcel}>OU 6X R$ {parcel}</p>
 				{stock?.instock !== 0 && <button onClick={() => { add(stock), notifyCart() }} className={style.buy} type='button'>comprar</button>}
 				{stock?.instock === 0 && <button className={style.unavailable} type='button' disabled>indisponível</button>}
 			</div>
