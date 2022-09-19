@@ -14,7 +14,7 @@ export default function ProductsItems({ stock }) {
 	const { add } = useCart()
 	const { notifyCart } = useNotify()
 	const price = `${stock?.price.toString().replace(".", ",")}0`;
-	const parcel = stock?.price / 6;
+	const parcel = (Math.round(stock?.price / 6 * 100))/100.0;
 	return (
 		<section className={style.productContainer}>
 			<div>
@@ -23,7 +23,7 @@ export default function ProductsItems({ stock }) {
 				</div>
 				<p onClick={handleViewProduct} className={style.title}>{stock?.title}</p>
 				<p className={style.price}>R$ <strong>{price}</strong></p>
-				{parcel >= 10 ? <p>ou 6X R$ {parcel}</p> : ''}
+				<p>OU 6X R$ {parcel}</p>
 				{stock?.instock !== 0 && <button onClick={() => { add(stock), notifyCart() }} className={style.buy} type='button'>comprar</button>}
 				{stock?.instock === 0 && <button className={style.unavailable} type='button' disabled>indisponível</button>}
 			</div>
