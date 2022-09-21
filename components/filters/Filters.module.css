@@ -3,7 +3,7 @@
 	grid-template-columns: 1fr;
 	justify-items: center;
 	margin-top: 180px;
-
+	background-color: #fff;
 }
 .titleProducts{ 
 	font-size: 28px;

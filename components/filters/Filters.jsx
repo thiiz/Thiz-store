@@ -72,13 +72,11 @@ export function ProductFiltred({ data }) {
 		}
 	}, [selectedOption])
 	return (
-		<>
-			<div className={style.container}>
-				<div className={style.searchContainer}>
-					<input onChange={s => setSearching(s.target.value)} value={searching} className={style.search} type='text' placeholder="Pesquisar" />
-					<div className={style.searchLupa}>
-						<BsSearch />
-					</div>
+		<div className={style.container}>
+			<div className={style.searchContainer}>
+				<input onChange={s => setSearching(s.target.value)} value={searching} className={style.search} type='text' placeholder="Pesquisar" />
+				<div className={style.searchLupa}>
+					<BsSearch />
 				</div>
 			</div>
 			<div className={style.sortPrice}>
@@ -91,6 +89,6 @@ export function ProductFiltred({ data }) {
 			</div>
 			{notfound && <ProductNotFound search={searching} />}
 			<Product onChange={''} products={filtred} />
-		</>
+		</div>
 	)
 }
