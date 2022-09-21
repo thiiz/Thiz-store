@@ -78,10 +78,6 @@ function Header() {
 				animate={isOpen ? "open" : "closed"}
 				variants={closeVariant}
 				className={style.cart}
-				drag='x'
-				dragElastic={0.1}
-				dragConstraints={{ left: 0, right: 0 }}
-				onDrag={(info) => info.offset.x >= 382 ? setIsOpen(false) : ''}
 			>
 				<CartMenu />
 			</motion.nav>
