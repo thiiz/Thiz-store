@@ -10,6 +10,9 @@
 	align-items: center;
 	grid-template-columns: 1.05fr 0fr 1fr;
 	overflow: hidden;
+	-webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 8px 6px -6px black;
+	        box-shadow: 0 8px 6px -6px black;
 }
 
 .NavMenuList {
