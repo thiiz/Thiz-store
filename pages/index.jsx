@@ -19,9 +19,7 @@ export default function Home({ data }) {
       <div className="page">
         <Banner />
         <Infos />
-        <div className={style.content}>
           <ProductFiltred data={data} />
-        </div>
       </div>
     </>
   )
@@ -35,7 +33,7 @@ export async function getStaticProps() {
         price
         image {
         url
-        responsiveImage(imgixParams: {fit: crop}) {
+        responsiveImage(imgixParams: {fit: fill}) {
           src
           base64
           alt
