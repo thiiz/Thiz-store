@@ -69,15 +69,17 @@
 }
 @media (max-width: 590px) {
 	.mainTitle{
-		font-size: 62px;
+		font-size: 52px;
+		top: 31%;
 	}
 	.mainSubTitle {
-		font-size: 17px;
+		font-size: 15px;
 	}
 	.btnShop{
-		padding: 10px 33px;
+		padding: 8px 28px;
+		font-size: 15px;
 	}
 	.bgContainer {
-		height: 400px;
+		height: 405px;
 	}
 }

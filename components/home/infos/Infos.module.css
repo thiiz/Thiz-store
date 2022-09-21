@@ -21,16 +21,15 @@
 	height: 50px;
 }
 
-@media (max-width:980px) {
-	.infos {
-		width: 80vw;
+@media (max-width:590px) {
+	.infosContainer p{
+		font-size: 28px;
 	}
-}
-
-@media (max-width:660px) {
-	.infos {
-		height: 350px;
-		justify-content: space-around;
-		flex-direction: column;
+	.infosContainer{
+		font-size: 9px;
+		height: 75px;
+	}
+	.infoItem{
+		height: 55px;
 	}
 }
