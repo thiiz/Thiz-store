@@ -41,8 +41,10 @@
 }
 
 .closeText {
-    font-size: 14px;
-    padding-left: 3px;
+    font-size: 15px;
+    padding-left: 2.5px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .titleMyCart {

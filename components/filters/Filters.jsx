@@ -73,14 +73,14 @@ export function ProductFiltred({ data }) {
 	}, [selectedOption])
 	return (
 		<div className={style.container}>
-			<div className={style.searchContainer}>
+			<div className={style.searchContainer} id='filterProducts'>
 				<input onChange={s => setSearching(s.target.value)} value={searching} className={style.search} type='text' placeholder="Pesquisar" />
 				<div className={style.searchLupa}>
 					<BsSearch />
 				</div>
 			</div>
 			<div className={style.sortPrice}>
-				<h3 className={style.titleProducts} id='filterProducts'>PRODUTOS</h3>
+				<h3 className={style.titleProducts}>PRODUTOS</h3>
 				<div>
 					<span>ORDENAR POR:</span>
 
