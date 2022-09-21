@@ -1,6 +1,5 @@
 import Banner from "../components/home/banner/Banner";
 import Infos from '../components/home/infos/Infos'
-import style from '../styles/Products.module.css'
 import Head from 'next/head';
 import { ProductFiltred } from '../components/filters/Filters';
 import client from '../lib/apolloclient'

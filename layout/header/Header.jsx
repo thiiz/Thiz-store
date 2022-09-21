@@ -4,7 +4,6 @@ import style from './Header.module.css'
 import { useState, useEffect, useMemo } from 'react'
 import { CartMenu } from '../../components/cart/CartMenu'
 import { FaShoppingCart } from 'react-icons/fa'
-import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { MdHeadsetMic } from 'react-icons/md'
 import { motion } from "framer-motion"
 import { useMenuCart } from '../../contexts/OpenCartMenuContext'
@@ -12,7 +11,6 @@ import { useScrollDirection } from '../../lib/useScrollDirection'
 import { useDesktopSize } from '../../lib/useAnimate'
 import { useMobileSize } from '../../lib/useAnimate'
 import { useIsSmall } from '../../lib/MediaQuery'
-import ToggleButton from '../../components/theme/toggleButton'
 import { Fade as Hamburger } from 'hamburger-react'
 
 function Header() {
@@ -48,14 +46,14 @@ function Header() {
 						: ''}
 					{small ? <div className={style.menuHamburguer}><Hamburger toggled={isOpenMobile} toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)}  distance="lg" size={34}  easing="ease-in" style="bottom: 2px;"/></div> : ''}
 				</div>
-				<motion.div className={style.menuBtn} animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant}>
+				<motion.nav className={style.menuBtn} animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant}>
 					<ul className={style.NavMenuList}>
 						<li><Link href="/"><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>início</motion.a></Link></li>
 						<li><Link href='/products'><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>produtos</motion.a></Link></li>
 						<li><Link href='/about'><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>sobre</motion.a></Link></li>
 						<li><Link href="/contact"><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>contato</motion.a></Link></li>
 					</ul>
-				</motion.div>
+				</motion.nav>
 				{small ?
 					<motion.div animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant} transition={{ ease: "easeIn", duration: 0.4 }}>
 						<button className={`${style.btn} ${style.btnLogin} ${!small ? scrollDirection === "down" ? style.btnLoginSmall : style.btnLoginNormal : ''}`} type='button'>LOGIN</button>
@@ -85,7 +83,6 @@ function Header() {
 				dragConstraints={{ left: 0, right: 0 }}
 				onDrag={(info) => info.offset.x >= 382 ? setIsOpen(false) : ''}
 			>
-				<button onClick={() => setIsOpen(isOpen => !isOpen)} className={style.closeBtn}><AiOutlineCloseCircle /><p className={style.closeText}>Fechar</p></button>
 				<CartMenu />
 			</motion.nav>
 		</>

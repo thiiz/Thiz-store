@@ -73,6 +73,7 @@
 	border-radius: 50%;
 	transition: background-color 400ms;
 	position: relative;
+	color: inherit;
 }
 
 .countCartItems {
@@ -138,29 +139,6 @@
 	z-index: 15;
 	position: fixed;
 	right: 0;
-}
-
-.closeBtn {
-	z-index: 1;
-	margin: 5px 10px;
-	position: absolute;
-	border: none;
-	background-color: transparent;
-	font-size: 28px;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	transition: ease 250ms;
-}
-
-.closeBtn:hover,
-.closeText:hover {
-	color: rgb(48, 48, 48);
-}
-
-.closeText {
-	font-size: 14px;
-	padding-left: 3px;
 }
 
 .scrollTop {
