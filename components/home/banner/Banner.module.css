@@ -1,9 +1,6 @@
 .bannerContainer {
 	position: relative;
 	width: 100vw;
-	background-color: #fff;
-	overflow: hidden;
-	border-radius: 0 0 85% 85%/ 15%;
 }
 
 .bgContainer {
@@ -61,12 +58,26 @@
 	border-right: 2px solid #000;
 	border-left: 2px solid #000;
 	border-radius: 5px;
-	transition: 800ms ease;
+	transition: 500ms ease;
 	position: absolute;
 	top: 57%;
 	text-decoration: none;
 }
 
 .btnShop:hover {
-	background-color:#00000050;
+	background-color:#00000031;
+}
+@media (max-width: 590px) {
+	.mainTitle{
+		font-size: 62px;
+	}
+	.mainSubTitle {
+		font-size: 17px;
+	}
+	.btnShop{
+		padding: 10px 33px;
+	}
+	.bgContainer {
+		height: 400px;
+	}
 }
