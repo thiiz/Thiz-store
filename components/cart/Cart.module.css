@@ -29,6 +29,7 @@
     display: flex;
     align-items: center;
     transition: ease 250ms;
+    user-select: none;
 }
 
 .closeBtn:hover,
