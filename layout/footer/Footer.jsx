@@ -9,13 +9,13 @@ export default function Footer() {
 	return (
 		<footer className={style.footer}>
 			<div className={style.middle}>
-				<div className={`${style.footerOption}`}>
+				<div className={style.footerOption}>
 					<h4>Atendimento</h4>
 					<a href='#'><span><MdCall /></span>(48) 3332-4327</a>
 					<a href='#'><span><RiWhatsappFill /></span>(48) 3332-4327</a>
 					<a href='#'><span><MdEmail /></span>contato@maeterra.com.br</a>
 				</div>
-				<div className={`${style.footerOption}`}>
+				<div className={style.footerOption}>
 					<h4>Informações</h4>
 					<a href='#'>Sobre a MãeTerra</a>
 					<a href='#'>Termos e condições</a>

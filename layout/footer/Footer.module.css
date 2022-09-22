@@ -90,17 +90,12 @@
 		grid-template-columns: none;
 		grid-template-rows: 120px 120px 1fr;
 		align-items: center;
-		text-align: center;
-
-	}
-
-	.footerOption h4 {
-		font-size: 20px;
-		margin-bottom: 5px;
+		justify-items: center;
 	}
 
 	.footerOption a {
-		font-size: 14px;
+		font-size: 14.5px;
+		line-height: 26px;
 	}
 
 	.social a {
@@ -108,7 +103,18 @@
 	}
 
 	.footerOption:not(:last-child) {
-		padding-bottom: 7px;
 		border-bottom: 1px solid #ffffff1c;
+	}
+	.footerOption{
+		text-align: center;
+	}
+	.footerOption:nth-child(3){
+		margin-top: 20px;
+	}
+	.copyright span {
+		font-size: 11px;
+	}
+	.copyright span:last-child {
+		font-size: 8.5px;
 	}
 }
