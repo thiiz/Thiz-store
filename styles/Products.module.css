@@ -95,7 +95,6 @@
 
 @media (max-width: 590px) {
 	.container {
-		display: block;
 		gap: 4.5vw 4.5vw;
 		padding-bottom: 5vh;
 
