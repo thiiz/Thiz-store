@@ -1,23 +1,32 @@
 .container {
-	text-align: center;
+	width: 94.9vw;
+	height: 100%;
 	color: #000;
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	gap: 1.8vw 4.6vw;
-	align-items: flex-end;
+	gap: 1.8vw 1.6vw;
 	padding-bottom: 5vh;
-	width: 100vw;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
 
 }
 
 .productContainer {
-	max-width: 200px;
-	max-height: 340px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	width: 340px;
+	text-align: center;
 }
+
+.imageContainer {
+	cursor: pointer;
+	height: 300px;
+
+}
+
+.productImg {
+	height: 100%;
+
+}
+
 
 .title {
 	font-size: 17px;
@@ -26,31 +35,33 @@
 	margin-bottom: 20px;
 	margin-top: 10px;
 	cursor: pointer;
-	position: relative;
 	text-transform: capitalize;
+	white-space: nowrap;
+	overflow: hidden;
+	/* "overflow" value must be different from "visible" */
+	text-overflow: ellipsis;
 }
 
-.title::before {
+.price {
+	position: relative;
+	font-size: 18px;
+}
+.price::before {
 	content: '';
 	width: 25px;
 	height: 2px;
 	background-color: #006eff;
 	position: absolute;
-	bottom: -12px;
+	top: -10px;
 	left: 50%;
 	margin-left: -10px;
 }
 
-.price {
-	font-size: 17px;
-}
-
-.imageContainer {
-	display: flex;
-	justify-content: center;
-	text-align: center;
-	align-items: center;
-	cursor: pointer;
+.parcel{
+	margin: 3px 0;
+	font-size: 14px;
+	color: #535353;
+	font-weight: 600;
 }
 
 .buy {
@@ -84,19 +95,10 @@
 
 @media (max-width: 590px) {
 	.container {
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
-		gap: 4.5vw 4.5vw;
-	}
-
-	.content {
 		display: block;
-		text-align: center;
-		width: 100vw;
-		background-color: #fff;
-		color: #000;
+		gap: 4.5vw 4.5vw;
 		padding-bottom: 5vh;
+
 	}
 
 }
