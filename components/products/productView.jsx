@@ -5,7 +5,7 @@ import style from '../../styles/Products.module.css'
 function ProductView({ products }) {
 	return (
 
-		<div className={`${style.content}`} id='produtos'>
+		<>
 			<section className={style.container} >
 				{products?.map((stock) => {
 					return (
@@ -13,7 +13,7 @@ function ProductView({ products }) {
 					);
 				})}
 			</section>
-		</div>
+		</>
 
 	)
 }

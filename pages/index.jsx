@@ -32,7 +32,7 @@ export async function getStaticProps() {
         price
         image {
         url
-        responsiveImage(imgixParams: {fit: fill}) {
+        responsiveImage(imgixParams: {fm: webp, minW: "200", maxW: "200", fit: fill}) {
           src
           base64
           alt

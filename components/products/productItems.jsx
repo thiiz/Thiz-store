@@ -24,7 +24,7 @@ export default function ProductsItems({ stock }) {
 	return (
 		<div className={style.productContainer}>
 				<div className={style.imageContainer} onClick={handleViewProduct}>
-					<Image className={style.product} data={stock?.image.responsiveImage} alt={`produto: ${stock?.image.alt}`} />
+					<Image className={style.productImg} data={stock?.image.responsiveImage} alt={`produto: ${stock?.image.alt}`}/>
 				</div>
 				<p onClick={handleViewProduct} className={style.title}>{title()}</p>
 				<p className={style.price}>R$ <strong>{price}</strong></p>
