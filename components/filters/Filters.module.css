@@ -1,11 +1,12 @@
 .container {
 	display: grid;
-	grid-template-columns: 100vw ;
+	grid-template-columns: 100vw;
 	justify-items: center;
 	padding-top: 180px;
 	background-color: #fff;
 }
-.titleProducts{ 
+
+.titleProducts {
 	font-size: 28px;
 	font-family: 'Oswald', sans-serif;
 }
@@ -43,38 +44,68 @@
 
 .sortPrice {
 	margin-bottom: 20px;
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    gap: 60vw;
-    align-items: flex-end;
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	gap: 20vw;
+	align-items: flex-end;
 }
 
 .priceSorting {
 	text-align: center;
 	min-width: 147px;
 }
+
+.gridContainer {
+	display: flex;
+    background: rgb(255, 255, 255);
+}
+.gridButtonOption {
+	display: flex;
+    background: rgb(255, 255, 255);
+    border: 0px;
+    margin: 0px 8px;
+    cursor: pointer;
+}
+.gridOption{
+	background: rgb(255, 255, 255);
+    height: 20px;
+    width: 20px;
+    border: 1px solid #00000060;
+    border-radius: 10%;
+    margin: 0px 3.5px;
+}
+.gridOptionActive{
+	border: 1px solid #000000;
+}
+
 @media (max-width: 590px) {
-	.container{
+	.container {
 		padding-top: 45px;
 	}
+
 	.search {
 		width: 60vw;
 	}
+
 	.searchLupa {
 		padding: 9px 20px 0 22px;
 		font-size: 23px;
 		border-radius: 0 7px 0 28px;
 	}
-	.sortPrice{
+
+	.sortPrice {
 		gap: 35vw;
 	}
-	.titleProducts{ 
+
+	.titleProducts {
 		font-size: 26px;
 	}
+
 	.priceSorting {
 		font-size: 12.5px;
 	}
+
 	.sortPrice .css-1s2u09g-control {
 		width: 50px;
 	}

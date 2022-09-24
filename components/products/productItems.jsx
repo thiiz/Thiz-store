@@ -5,8 +5,8 @@ import { useCart } from '../../contexts/CartContext'
 import { useNotify } from '../../contexts/NotifyContext';
 
 
-export default function ProductsItems({ stock }) {
-
+export default function ProductsItems({ stock, grid }) {
+	console.log(grid)
 	const router = useRouter()
 	const handleViewProduct = () => {
 		router.push(`/product/${stock?.slug}`)
@@ -16,12 +16,6 @@ export default function ProductsItems({ stock }) {
 	const price = `${stock?.price.toString().replace(".", ",")}0`;
 	const calc = (Math.round(stock?.price / 6 * 100)) / 100.0;
 	const parcel = calc.toString().replace(".", ",");
-	const title = () => {
-		if (stock?.title.length > 36) {
-			return 
-		}
-		return stock.title;
-	}
 	return (
 		<div className={style.productContainer}>
 			<div onClick={handleViewProduct} className={style.imageContainer} >

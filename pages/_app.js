@@ -14,7 +14,6 @@ function MaeTerra({ Component, pageProps }) {
     <>
       <OpenCartMenuProvider>
         <NotifyProvider>
-
           <CartProvider>
             <Header />
             <NextNProgress
