@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import style from './Header.module.css'
-import { useState, useEffect, useMemo } from 'react'
+import { useState } from 'react'
 import { CartMenu } from '../../components/cart/CartMenu'
 import { FaShoppingCart } from 'react-icons/fa'
 import { MdHeadsetMic } from 'react-icons/md'
@@ -12,6 +12,7 @@ import { useDesktopSize } from '../../lib/useAnimate'
 import { useMobileSize } from '../../lib/useAnimate'
 import { useIsSmall } from '../../lib/MediaQuery'
 import { Fade as Hamburger } from 'hamburger-react'
+import { menuLogin } from '../../components/login/menuLogin'
 
 function Header() {
 	const small = useIsSmall()
@@ -44,7 +45,7 @@ function Header() {
 							</section>
 						</div>
 						: ''}
-					{small ? <div className={style.menuHamburguer}><Hamburger toggled={isOpenMobile} toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)}  distance="lg" size={34}  easing="ease-in" style="bottom: 2px;"/></div> : ''}
+					{small ? <div className={style.menuHamburguer}><Hamburger toggled={isOpenMobile} toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)} distance="lg" size={34} easing="ease-in" style="bottom: 2px;" /></div> : ''}
 				</div>
 				<motion.nav className={style.menuBtn} animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant}>
 					<ul className={style.NavMenuList}>
@@ -68,7 +69,7 @@ function Header() {
 								<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>0</div>
 							</motion.button>
 							<div className={style.btnSpace}>
-								<button className={`${style.btn} ${style.btnLogin} ${!small ? scrollDirection === "down" ? style.btnLoginSmall : style.btnLoginNormal : ''}`} type='button'>LOGIN</button>
+								<button onClick={menuLogin} className={`${style.btn} ${style.btnLogin} ${!small ? scrollDirection === "down" ? style.btnLoginSmall : style.btnLoginNormal : ''}`} type='button'>LOGIN</button>
 							</div>
 						</section>
 					}
