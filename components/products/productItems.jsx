@@ -6,7 +6,6 @@ import { useNotify } from '../../contexts/NotifyContext';
 
 
 export default function ProductsItems({ stock, grid }) {
-	console.log(grid)
 	const router = useRouter()
 	const handleViewProduct = () => {
 		router.push(`/product/${stock?.slug}`)

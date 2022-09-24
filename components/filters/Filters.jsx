@@ -6,11 +6,13 @@ import ProductNotFound from '../product-not-found/productNotFound'
 import { useEffect } from 'react'
 import Select from 'react-select';
 import { setCookie, parseCookies } from 'nookies'
+import { useIsLarge } from '../../lib/MediaQuery'
 
 export function ProductFiltred({ data }) {
+	const desktop = useIsLarge()
 	const [filtred, setFiltred] = useState([])
 	const item = data.map(product => product)
-	const [grid, setGrid ] = useState(4)
+	const [grid, setGrid] = useState(4)
 	useMemo(() => {
 		setFiltred(item);
 	}, [data])
@@ -82,11 +84,12 @@ export function ProductFiltred({ data }) {
 			</div>
 			<div className={style.sortPrice}>
 				<h3 className={style.titleProducts}>PRODUTOS</h3>
-				<div className={style.gridContainer}>
-					<button onClick={() => setGrid(2)} className={style.gridButtonOption}><span className={`${style.gridOption} ${grid === 2 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 2 ? style.gridOptionActive : ''}`}></span></button>
-					<button onClick={() => setGrid(3)} className={style.gridButtonOption}><span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span></button>
-					<button onClick={() => setGrid(4)} className={style.gridButtonOption}><span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span></button>
-				</div>
+				{desktop ?
+					<div className={style.gridContainer}>
+						<button onClick={() => setGrid(2)} className={style.gridButtonOption}><span className={`${style.gridOption} ${grid === 2 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 2 ? style.gridOptionActive : ''}`}></span></button>
+						<button onClick={() => setGrid(3)} className={style.gridButtonOption}><span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span></button>
+						<button onClick={() => setGrid(4)} className={style.gridButtonOption}><span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span></button>
+					</div> : ''}
 				<div>
 					<span>ORDENAR POR:</span>
 
