@@ -14,6 +14,8 @@
 .productContainer {
 	width: 325px;
 	text-align: center;
+	box-shadow: 0 0 10px #000000;
+	padding: 0 8px 8px 8px;
 }
 
 .imageContainer {
@@ -24,7 +26,12 @@
 
 .productImg {
 	height: 100%;
+	transition: ease-in-out 250ms;
 
+}
+.productImg:hover{
+	box-shadow: 0 0 10px #000000;
+	scale: 1.05;
 }
 
 
