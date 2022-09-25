@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import style from './Header.module.css'
+import MenuLogin from '../../components/login/MenuLogin'
 import { GrClose } from 'react-icons/gr'
 import { useState } from 'react'
 import { CartMenu } from '../../components/cart/CartMenu'
@@ -13,7 +14,6 @@ import { useDesktopSize } from '../../lib/useAnimate'
 import { useMobileSize } from '../../lib/useAnimate'
 import { useIsSmall } from '../../lib/MediaQuery'
 import { Fade as Hamburger } from 'hamburger-react'
-import MenuLogin from '../../components/login/MenuLogin'
 
 function Header() {
 	const small = useIsSmall()

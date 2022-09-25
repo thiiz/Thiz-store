@@ -7,16 +7,18 @@ export default function MenuLogin() {
 		console.log('The link was clicked.');
 	}
 	return (
-		<form className={style.form}>
-			<label className={style.label}>
-				<AiOutlineMail className={style.icon}/>
-				<input className={style.input} type="email" name="email" placeholder='Email' autoComplete="false" />
-			</label>
-			<label className={style.label}>
-				<RiLockPasswordLine className={style.icon}/>
-				<input className={style.input} type="password" name="current-password" placeholder='Senha' autoComplete="false" />
-			</label>
-			<button onClick={e => handler(e)} className={style.btn}>LOGIN</button>
-		</form>
+		<>
+			<form className={style.form}>
+				<label className={style.label}>
+					<AiOutlineMail className={style.icon} />
+					<input className={style.input} type="email" name="email" placeholder='Email' autoComplete="false" />
+				</label>
+				<label className={style.label}>
+					<RiLockPasswordLine className={style.icon} />
+					<input className={style.input} type="password" name="current-password" placeholder='Senha' autoComplete="false" />
+				</label>
+				<button onClick={e => handler(e)} className={style.btn}>LOGIN</button>
+			</form>
+		</>
 	)
 }
