@@ -2,11 +2,11 @@
 	height: 100%;
 	color: #000;
 	gap: 1.8vw 1.6vw;
-	padding-bottom: 5vh;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
+	padding: 0 30px 5vh 30px;
 }
 
 .productContainer {
