@@ -1,7 +1,7 @@
 import style from './login.module.css'
 import { AiOutlineMail } from 'react-icons/ai'
 import { RiLockPasswordLine } from 'react-icons/ri'
-export function MenuLogin() {
+export default function MenuLogin() {
 	const handler = (e) => {
 		e.preventDefault();
 		console.log('The link was clicked.');
