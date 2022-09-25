@@ -1,13 +1,16 @@
 import style from './login.module.css'
 import { AiOutlineMail } from 'react-icons/ai'
 import { RiLockPasswordLine } from 'react-icons/ri'
-export default function MenuLogin() {
+import { GrClose } from 'react-icons/gr'
+
+export default function MenuLogin({setToggleLogin}) {
 	const handler = (e) => {
 		e.preventDefault();
 		console.log('The link was clicked.');
 	}
 	return (
-		<>
+		<div className={style.container}>
+			<button onClick={() => setToggleLogin(false)} className={style.closeLogin}><GrClose/></button>
 			<form className={style.form}>
 				<label className={style.label}>
 					<AiOutlineMail className={style.icon} />
@@ -19,6 +22,6 @@ export default function MenuLogin() {
 				</label>
 				<button onClick={e => handler(e)} className={style.btn}>LOGIN</button>
 			</form>
-		</>
+		</div>
 	)
 }

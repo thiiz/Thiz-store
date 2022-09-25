@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import style from './Header.module.css'
 import MenuLogin from '../../components/login/MenuLogin'
-import { GrClose } from 'react-icons/gr'
 import { useState } from 'react'
 import { CartMenu } from '../../components/cart/CartMenu'
 import { FaShoppingCart } from 'react-icons/fa'
@@ -24,7 +23,7 @@ function Header() {
 	const desktopVariant = useDesktopSize()
 	const mobileVariant = useMobileSize()
 
-	const closeVariant = {
+	const CartVariant = {
 		open: { opacity: 1, x: 0 },
 		closed: { opacity: 0, x: "100%" },
 	}
@@ -37,7 +36,6 @@ function Header() {
 	return (
 		<>
 			<motion.div animate={toggleLogin ? "open" : "closed"} variants={loginVariant} className={style.containerLogin}>
-				<button onClick={() => setToggleLogin(false)} className={style.closeLogin}><GrClose/></button>
 				<MenuLogin toggleLogin={toggleLogin} setToggleLogin={setToggleLogin} />
 			</motion.div>
 			<motion.header className={style.header} animate={!small ? scrollDirection === "down" ? "small" : "normal" : isOpenMobile ? "normal" : "small"} variants={!small ? desktopVariant : mobileVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
@@ -91,7 +89,7 @@ function Header() {
 			</motion.header>
 			<motion.nav
 				animate={isOpen ? "open" : "closed"}
-				variants={closeVariant}
+				variants={CartVariant}
 				className={style.cart}
 			>
 				<CartMenu />

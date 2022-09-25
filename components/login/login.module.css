@@ -1,3 +1,31 @@
+.container{
+	background-color: #ccc;
+	width: 45vw;
+	height: 65vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	-moz-box-shadow: inset 0 0 10px #000000af;
+    -webkit-box-shadow: inset 0 0 10px #000000af;
+    box-shadow: inset 0 0 10px #000000af;
+	position: relative;
+}
+.closeLogin{
+	position: absolute;
+	top: 8px;
+	right: 10px;
+	font-size: 32px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	transition: ease-in-out 200ms;
+	padding: 6px 6px 0 6px;
+}
+.closeLogin:hover{
+	background-color: #00000020;
+	border-radius: 10px;
+}
 .form{
 	display: flex;
 	flex-direction: column;

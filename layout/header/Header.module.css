@@ -147,14 +147,12 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	top: 15%;
-	height: 600px;
-	width: 100%;
-	background-color: #ccc;
+	top: 0;
+	height: 100vh;
+	width: 100vw;
+	opacity: 0;
+	background-color: #00000060;
 	z-index: 12;
-	-moz-box-shadow: inset 0 0 10px #000000af;
-    -webkit-box-shadow: inset 0 0 10px #000000af;
-    box-shadow: inset 0 0 10px #000000af;
 }
 .closeLogin{
 	position: absolute;
