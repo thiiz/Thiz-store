@@ -183,7 +183,8 @@
 @media (max-width:980px) {
 
 	.btnLogin {
-		padding: 8px 15px;
+		padding: 9px 15px;
+		font-size: 15px;
 	}
 
 	.btnSpace {
