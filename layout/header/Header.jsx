@@ -13,7 +13,7 @@ import { useDesktopSize } from '../../lib/useAnimate'
 import { useMobileSize } from '../../lib/useAnimate'
 import { useIsSmall } from '../../lib/MediaQuery'
 import { Fade as Hamburger } from 'hamburger-react'
-import { MenuLogin, menuLogin } from '../../components/login/MenuLogin'
+import { MenuLogin } from '../../components/login/MenuLogin'
 
 function Header() {
 	const small = useIsSmall()
