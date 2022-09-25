@@ -1,5 +1,5 @@
 .container{
-	background-color: #ccc;
+	background-color: #ececec;
 	width: 45vw;
 	height: 65vh;
 	display: flex;
@@ -22,9 +22,11 @@
 	transition: ease-in-out 200ms;
 	padding: 6px 6px 0 6px;
 }
-.closeLogin:hover{
-	background-color: #00000020;
-	border-radius: 10px;
+.iconClose{
+color: red;
+}
+.iconClose:active > {
+	color: #acacac;
 }
 .form{
 	display: flex;
@@ -48,7 +50,7 @@
 	padding:0 10px;
 	height: 45px;
 	font-size: 42px;
-	background-color: #fff;
+	background-color: #ecf0f1;
 	color: #006eff;
 
 }

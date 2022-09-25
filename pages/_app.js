@@ -23,21 +23,21 @@ function MaeTerra({ Component, pageProps }) {
               height={6}
               showOnShallow={true}
             />
+            <ToastContainer
+              position="bottom-left"
+              autoClose={3500}
+              hideProgressBar={false}
+              newestOnTop={false}
+              onClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              transition
+              theme
+            />
             <Transition>
               <Component {...pageProps} />
-              <ToastContainer
-                position="bottom-left"
-                autoClose={3500}
-                hideProgressBar={false}
-                newestOnTop={false}
-                onClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                transition
-                theme
-              />
               <Footer />
             </Transition >
           </CartProvider>

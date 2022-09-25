@@ -10,7 +10,7 @@ export default function MenuLogin({setToggleLogin}) {
 	}
 	return (
 		<div className={style.container}>
-			<button onClick={() => setToggleLogin(false)} className={style.closeLogin}><GrClose/></button>
+			<button onClick={() => setToggleLogin(false)} className={style.closeLogin}><GrClose className={style.iconClose}/></button>
 			<form className={style.form}>
 				<label className={style.label}>
 					<AiOutlineMail className={style.icon} />
