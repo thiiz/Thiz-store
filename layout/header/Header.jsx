@@ -33,14 +33,14 @@ function Header() {
 		closed: { opacity: 0, x: "-2800px" },
 	}
 	const loginBackgroundVariant = {
-		visible: {transition: {delay: 0.3},backgroundColor: "#0000009c"},
+		visible: {transition: {delay: 0.3},backgroundColor: "#000000c0"},
 		hidden: {backgroundColor: "#00000000"}
 	}
 
 	return (
 		<>
 			<motion.div animate={toggleLogin ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25}}>
-				<motion.div className={style.backgroundLogin} animate={toggleLogin ? "visible" : "hidden" } variants={loginBackgroundVariant} transition={{ ease: "easeOut", duration: 0.2 }}>
+				<motion.div className={style.backgroundLogin} animate={toggleLogin ? "visible" : "hidden" } variants={loginBackgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
 					<MenuLogin toggleLogin={toggleLogin} setToggleLogin={setToggleLogin} />
 				</motion.div>
 			</motion.div>

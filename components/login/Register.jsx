@@ -28,11 +28,12 @@ export default function Register({setLogin}) {
 					</label>
 					<label className={style.label}>
 						<RiLockFill className={style.icon} />
-						<input className={style.input} type="password" name="Confirm-password" placeholder='Senha' autoComplete="false" />
+						<input className={style.input} type="password" name="Confirm-password" placeholder='Confirmar senha' autoComplete="false" />
 					</label>
-					<div className={style.containerRecover}>
-						<button type='button' className={style.recoverPassword}>Esqueceu a senha?</button>
-					</div>
+					<div id="politica-termos">
+                        <input type="checkbox" id="termos" name="termos" value="ok" required/>
+                        <label className={style.labelTermos}>Ao se cadastrar você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</label>
+                    </div>
 					<button type='submit' onClick={e => handler(e)} className={style.btn}>criar conta</button>
 				</form>
 				<div className={style.containerGoogleLogin}>

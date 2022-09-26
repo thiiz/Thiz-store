@@ -136,6 +136,15 @@
 .btn:active {
 	background-color: #006eff46;
 }
+.labelTermos {
+    text-align: center;
+    font-size: 13px;
+    display: inline-block;
+    width: 93%;
+}
+.link{
+	color: #006eff;
+}
 
 .containerGoogleLogin {
 	width: 100%;
