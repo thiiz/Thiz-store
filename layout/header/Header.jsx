@@ -29,15 +29,20 @@ function Header() {
 	}
 
 	const loginVariant = {
-		open: { opacity: 1, y: 0 },
-		closed: { opacity: 0, y: "-2800px" },
+		open: { opacity: 1, x: 0 },
+		closed: { opacity: 0, x: "-2800px" },
+	}
+	const loginBackgroundVariant = {
+		open: {transition: {delay: 0.5},backgroundColor: "#0000009c"},
+		closed: {backgroundColor: "#00000000"}
 	}
 
 	return (
 		<>
-			<motion.div animate={toggleLogin ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.3 }}>
-				<div></div>
-				<MenuLogin toggleLogin={toggleLogin} setToggleLogin={setToggleLogin} />
+			<motion.div animate={toggleLogin ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.5 }}>
+				<motion.div className={style.backgroundLogin} animate={toggleLogin ? "open" : "closed" } variants={loginBackgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
+					<MenuLogin toggleLogin={toggleLogin} setToggleLogin={setToggleLogin} />
+				</motion.div>
 			</motion.div>
 			<motion.header className={style.header} animate={!small ? scrollDirection === "down" ? "small" : "normal" : isOpenMobile ? "normal" : "small"} variants={!small ? desktopVariant : mobileVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
 				<div className={style.taggleMenuMobile}>

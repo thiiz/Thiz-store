@@ -1,7 +1,7 @@
 .container{
 	background-color: #ececec;
-	width: 45vw;
-	height: 65vh;
+	width: 45%;
+	height: 65%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -22,12 +22,6 @@
 	transition: ease-in-out 200ms;
 	padding: 6px 6px 0 6px;
 }
-.iconClose{
-color: red;
-}
-.iconClose:active > {
-	color: #acacac;
-}
 .form{
 	display: flex;
 	flex-direction: column;
@@ -44,6 +38,8 @@ color: red;
 .label{
 	display: flex;
 	align-items: center;
+	border: 1px solid rgba(0, 110, 255, 0.247);
+	border-radius: 3px;
 
 }
 .icon{
