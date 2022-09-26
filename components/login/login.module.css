@@ -1,20 +1,27 @@
-.container{
+.container {
 	background-color: #ececec;
-	width: 45%;
-	height: 65%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 10px;
+	width: 500px;
+	height: 600px;
+	border-radius: 50px 0 50px;
 	-moz-box-shadow: inset 0 0 10px #000000af;
-    -webkit-box-shadow: inset 0 0 10px #000000af;
-    box-shadow: inset 0 0 10px #000000af;
+	-webkit-box-shadow: inset 0 0 10px #000000af;
+	box-shadow: inset 0 0 10px #000000af;
 	position: relative;
+	display: grid;
+	grid-template-rows: 1fr 2.5fr;
+	align-items: center;
+	justify-content: center;
+	justify-items: center;
 }
-.closeLogin{
+
+.formContainer {
+	height: 70%;
+}
+
+.closeLogin {
 	position: absolute;
-	top: 8px;
-	right: 10px;
+	top: 3px;
+	right: 5px;
 	font-size: 32px;
 	background-color: transparent;
 	border: none;
@@ -22,53 +29,137 @@
 	transition: ease-in-out 200ms;
 	padding: 6px 6px 0 6px;
 }
-.form{
+.newUser{
+	top: 8px;
+	right: 42px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	transition: ease-in-out 200ms;
+	padding: 6px 6px 0 6px;
+}
+.register{
+	border: none;
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+.loginTitle {
+	margin-top: auto;
+	font-size: 32px;
+	font-weight: 600;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+.form {
 	display: flex;
 	flex-direction: column;
 	gap: 7px 0;
+	width: 300px;
 }
-.input{
+
+.input {
 	height: 45px;
-	width: 320px;
+	width: 100%;
 	border: none;
 	background-color: #ecf0f1;
 	outline-color: #006eff;
 	text-indent: 10px;
 }
-.label{
+
+.label {
 	display: flex;
 	align-items: center;
 	border: 1px solid rgba(0, 110, 255, 0.247);
 	border-radius: 3px;
 
 }
-.icon{
-	padding:0 10px;
+
+.icon {
+	padding: 0 10px;
 	height: 45px;
 	font-size: 42px;
 	background-color: #ecf0f1;
 	color: #006eff;
 
 }
-.btn{
+
+.containerRecover {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.recoverPassword {
+	border: none;
+	cursor: pointer;
+	user-select: none;
+	font-size: 14.5px;
+	color: #575757;
+	transition: 300ms;
+}
+
+.recoverPassword:hover {
+	color: #000;
+}
+
+.btn {
 	background-color: #006eff;
 	border: 1px solid #006eff;
-    transition: background-color 400ms ease;
-    text-transform: uppercase;
-    border-radius: 15px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 12px;
-    padding: 10px 50px;
-    font-weight: bold;
-    width: 156px;
-    align-self: center;
-    margin-top: 1rem;
+	transition: background-color 400ms ease;
+	text-transform: uppercase;
+	border-radius: 15px;
+	color: #fff;
+	cursor: pointer;
+	font-size: 13px;
+	padding: 10px 50px;
+	align-self: center;
+	margin-top: 1rem;
 }
-.btn:hover{
+
+.btn:hover {
 	background-color: transparent;
 	color: #006eff;
 }
-.btn:active{
-	background-color: #00000017
+
+.btn:active {
+	background-color: #006eff46;
+}
+
+.containerGoogleLogin {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 150px;
+}
+
+.googleLogin {
+	transition: background-color .3s, box-shadow .3s;
+	padding: 10px 14px 10px 14px;
+	border: none;
+	border-radius: 3px;
+	box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+	color: #757575;
+	font-size: 13px;
+	font-weight: 500;
+	display: flex;
+	justify-content: start;
+	gap: 0 20px;
+	align-items: center;
+}
+
+.googleLogin:hover {
+	box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+.googleLogin:focus {
+	outline: none;
+	box-shadow:
+		0 -1px 0 rgba(0, 0, 0, .04),
+		0 2px 4px rgba(0, 0, 0, .25),
+		0 0 0 3px #c8dafc;
+}
+
+.googleIcon {
+	font-size: 24px;
 }

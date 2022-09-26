@@ -15,13 +15,13 @@ import { useIsSmall } from '../../lib/MediaQuery'
 import { Fade as Hamburger } from 'hamburger-react'
 
 function Header() {
-	const small = useIsSmall()
 	const { isOpen, setIsOpen } = useMenuCart()
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
 	const [toggleLogin, setToggleLogin] = useState(false)
 	const scrollDirection = useScrollDirection()
 	const desktopVariant = useDesktopSize()
 	const mobileVariant = useMobileSize()
+	const small = useIsSmall()
 
 	const CartVariant = {
 		open: { opacity: 1, x: 0 },
@@ -33,14 +33,14 @@ function Header() {
 		closed: { opacity: 0, x: "-2800px" },
 	}
 	const loginBackgroundVariant = {
-		open: {transition: {delay: 0.5},backgroundColor: "#0000009c"},
-		closed: {backgroundColor: "#00000000"}
+		visible: {transition: {delay: 0.3},backgroundColor: "#0000009c"},
+		hidden: {backgroundColor: "#00000000"}
 	}
 
 	return (
 		<>
-			<motion.div animate={toggleLogin ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.5 }}>
-				<motion.div className={style.backgroundLogin} animate={toggleLogin ? "open" : "closed" } variants={loginBackgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
+			<motion.div animate={toggleLogin ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25}}>
+				<motion.div className={style.backgroundLogin} animate={toggleLogin ? "visible" : "hidden" } variants={loginBackgroundVariant} transition={{ ease: "easeOut", duration: 0.2 }}>
 					<MenuLogin toggleLogin={toggleLogin} setToggleLogin={setToggleLogin} />
 				</motion.div>
 			</motion.div>
