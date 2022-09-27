@@ -31,14 +31,11 @@ export default function Register({setLogin}) {
 						<input className={style.input} type="password" name="Confirm-password" placeholder='Confirmar senha' autoComplete="false" />
 					</label>
 					<div id="politica-termos">
-                        <input type="checkbox" id="termos" name="termos" value="ok" required/>
+                        <input type="checkbox" id={style.termos} name="termos" value="ok" required/>
                         <label className={style.labelTermos}>Ao se cadastrar você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</label>
                     </div>
-					<button type='submit' onClick={e => handler(e)} className={style.btn}>criar conta</button>
+					<button type='submit' onClick={e => handler(e)} className={style.btn} disabled={false}>criar conta</button>
 				</form>
-				<div className={style.containerGoogleLogin}>
-					<button type="button" className={style.googleLogin}><FcGoogle className={style.googleIcon} /><span>Registrar via Google</span></button>
-				</div>
 			</div>
 		</>
 	)
