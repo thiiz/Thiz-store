@@ -3,7 +3,6 @@ import Transition from '../components/transition/Transition';
 import Header from '../layout/header/Header'
 import Footer from '../layout/footer/Footer'
 import NextNProgress from "nextjs-progressbar";
-import { SessionProvider } from 'next-auth/react';
 import CartProvider from '../contexts/CartContext'
 import OpenCartMenuProvider from '../contexts/OpenCartMenuContext'
 import NotifyProvider from '../contexts/NotifyContext';
@@ -13,7 +12,6 @@ import { ToastContainer } from 'react-toastify';
 function MaeTerra({ Component, pageProps: {session, ...pageProps} }) {
   return (
     <>
-      <SessionProvider session={session}>
         <OpenCartMenuProvider>
           <NotifyProvider>
             <CartProvider>
@@ -45,7 +43,6 @@ function MaeTerra({ Component, pageProps: {session, ...pageProps} }) {
             </CartProvider>
           </NotifyProvider>
         </OpenCartMenuProvider>
-      </SessionProvider>
     </>
   )
 }

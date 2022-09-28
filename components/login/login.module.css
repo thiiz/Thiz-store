@@ -10,17 +10,19 @@
 	justify-content: center;
 	justify-items: center;
 	user-select: none;
-}
-.containerLogin{
-    grid-template-rows: 1fr 1.5fr;
 	width: 450px;
 	height: 550px;
 }
-.containerRegister{
-	grid-template-rows: 1fr 0fr;
-	width: 500px;
-	height: 600px;
+
+.containerLogin {
+	grid-template-rows: 1fr 1.9fr;
+
 }
+
+.containerRegister {
+	grid-template-rows: 1fr 3fr;
+}
+
 .formContainer {
 	height: 70%;
 }
@@ -36,7 +38,8 @@
 	transition: ease-in-out 200ms;
 	padding: 6px 6px 0 6px;
 }
-.newUser{
+
+.newUser {
 	top: 8px;
 	right: 42px;
 	background-color: transparent;
@@ -47,16 +50,19 @@
 	margin-bottom: 4px;
 	font-size: 15px;
 }
-.register{
+
+.register {
 	border: none;
 	cursor: pointer;
 	margin-bottom: 5px;
 	color: #575757;
 	transition: 300ms;
 }
-.register:hover{
+
+.register:hover {
 	color: #000;
 }
+
 .loginTitle {
 	margin: auto auto 10px auto;
 	font-size: 32px;
@@ -83,9 +89,16 @@
 .label {
 	display: flex;
 	align-items: center;
-	border: 1px solid rgba(0, 110, 255, 0.247);
 	border-radius: 3px;
+}
 
+.labelNormal {
+	border: 1px solid rgba(0, 110, 255, 0.247);
+
+}
+
+.labelError {
+	border: 1px solid #ff0000;
 }
 
 .icon {
@@ -93,8 +106,14 @@
 	height: 45px;
 	font-size: 42px;
 	background-color: #ecf0f1;
-	color: #006eff;
+}
 
+.iconNormal {
+	color: #006eff;
+}
+
+.iconError {
+	color: #ff0000;
 }
 
 .containerRecover {
@@ -138,55 +157,34 @@
 .btn:active {
 	background-color: #006eff46;
 }
-.labelTermos {
-    text-align: center;
-    font-size: 13px;
-    display: inline-block;
-    width: 93%;
+
+.labelTerms {
+	text-align: center;
+	font-size: 13px;
+	display: inline-block;
+	width: 93%;
 }
-.link{
+.labelTermosError{
+
+}
+
+.link {
 	color: #006eff;
 }
-#termos{
+
+#terms {
 	height: 25px;
 	width: 16px;
 }
+.termsError{
+	outline: 2px solid red;
+    outline-offset: 1px;
+}
 
-.containerGoogleLogin {
+.error {
 	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 150px;
-}
-
-.googleLogin {
-	transition: background-color .3s, box-shadow .3s;
-	padding: 10px 14px 10px 14px;
-	border: none;
-	border-radius: 3px;
-	box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
-	color: #757575;
-	font-size: 13px;
-	font-weight: 500;
-	display: flex;
-	justify-content: flex-start;
-	gap: 0 20px;
-	align-items: center;
-}
-
-.googleLogin:hover {
-	box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
-}
-
-.googleLogin:focus {
-	outline: none;
-	box-shadow:
-		0 -1px 0 rgba(0, 0, 0, .04),
-		0 2px 4px rgba(0, 0, 0, .25),
-		0 0 0 3px #c8dafc;
-}
-
-.googleIcon {
-	font-size: 24px;
+	border-radius: 8px;
+	text-align: center;
+	color: red;
+	font-size: 15px;
 }

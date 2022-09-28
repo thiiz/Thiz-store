@@ -5,7 +5,7 @@ import { useCart } from '../../contexts/CartContext'
 import { useNotify } from '../../contexts/NotifyContext';
 
 
-export default function ProductsItems({ stock, grid }) {
+export default function ProductsItems({ stock }) {
 	const router = useRouter()
 	const handleViewProduct = () => {
 		router.push(`/product/${stock?.slug}`)

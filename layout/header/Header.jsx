@@ -13,13 +13,11 @@ import { useDesktopSize } from '../../lib/useAnimate'
 import { useMobileSize } from '../../lib/useAnimate'
 import { useIsSmall } from '../../lib/MediaQuery'
 import { Fade as Hamburger } from 'hamburger-react'
-import { signOut } from 'next-auth/react'
 
 function Header() {
-
-	const [account, setAccount] = useState(undefined)
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
 	const [toggleLogin, setToggleLogin] = useState(false)
+	const [login, setLogin] = useState(true)
 
 	const { isOpen, setIsOpen } = useMenuCart()
 	const scrollDirection = useScrollDirection()
@@ -45,7 +43,7 @@ function Header() {
 		<>
 			<motion.div animate={toggleLogin ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
 				<motion.div className={style.backgroundLogin} animate={toggleLogin ? "visible" : "hidden"} variants={loginBackgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
-					<MenuLogin toggleLogin={toggleLogin} setToggleLogin={setToggleLogin} setAccount={setAccount} />
+					<MenuLogin setToggleLogin={setToggleLogin} login={login} setLogin={setLogin} />
 				</motion.div>
 			</motion.div>
 			<motion.header className={style.header} animate={!small ? scrollDirection === "down" ? "small" : "normal" : isOpenMobile ? "normal" : "small"} variants={!small ? desktopVariant : mobileVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
@@ -65,15 +63,9 @@ function Header() {
 									<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>0</div>
 								</button>
 								<div className={style.avatarContainer}>
-									{account?.status === "authenticated"
-										?
-										<button onClick={() => signOut()} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
-											{account?.data?.user ? <Image src={account.data.user.image} className={style.avatar} width="30px" height="30px"></Image> : <FaUserCircle />}
-										</button>
-										: <button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
-											<FaUserCircle />
-										</button>
-									}
+									<button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
+										<FaUserCircle />
+									</button>
 									{account?.data?.user ? <span className={`${style.loginText} ${style.loginTextMobile}`} >Olá, {account?.data?.user?.name}</span> : ''}
 								</div>
 							</section>
@@ -102,16 +94,9 @@ function Header() {
 								<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>0</div>
 							</motion.button>
 							<div className={style.avatarContainer}>
-								{account?.status === "authenticated" ?
-									<button onClick={() => signOut()} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
-										{account?.data?.user ? <Image src={account.data.user.image} className={style.avatar} width="36px" height="36px"></Image> : <FaUserCircle />}
-									</button>
-									:
-									<motion.button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ''} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
-										<FaUserCircle />
-									</motion.button>
-								}
-								{account?.data?.user && scrollDirection !== "down" ? <span className={style.loginText}>Olá, {account?.data?.user?.name}</span> : ''}
+								<motion.button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ''} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
+									<FaUserCircle />
+								</motion.button>
 							</div>
 						</section>}
 				</motion.div>
