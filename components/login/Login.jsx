@@ -40,7 +40,7 @@ export default function Login({ login, setLogin }) {
 					<div className={style.containerRecover}>
 						<button type='button' className={style.recoverPassword}>Esqueceu a senha?</button>
 					</div>
-					<button type='submit' className={style.btn}>iniciar sessão</button>
+					<button type='submit' className={`${style.btn} ${style.btnEnable}`} disabled={false}>iniciar sessão</button>
 				</form>
 			</div>
 		</>
