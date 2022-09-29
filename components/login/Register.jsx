@@ -39,6 +39,7 @@ export default function Register({ setLogin }) {
 		if (errMsg === "As senhas devem ser iguais.") { return setErrorCf(true) }
 		if (data.terms !== "ok") { return setErrorTerms(true) }
 		const res = await postData('auth/register', userData)
+		if(res.err === "This email already exists.") return setErrorAll("Este endereço email já está em uso.")
 		if(res.err) return setErrorAll("Falha ao se cadastrar, por favor tente mais tarde")
 		
 		return setLogin("registred")
@@ -49,7 +50,7 @@ export default function Register({ setLogin }) {
 			<div className={style.loginTitle}>Criar conta</div>
 			<div className={style.formContainer}>
 				<div className={style.newUser}>Já tem uma conta? <button onClick={() => setLogin(true)} className={style.register}><strong>Fazer login.</strong></button></div>
-				{errorAll === "Por favor preencha todos os campos" || errorAll === "Falha ao se cadastrar, por favor tente mais tarde" ?
+				{errorAll === "Por favor preencha todos os campos" || errorAll === "Falha ao se cadastrar, por favor tente mais tarde" || errorAll === "Este endereço email já está em uso." ?
 					<p className={style.error}>{errorAll}</p> : ''}
 				<form className={style.form} onSubmit={handleSubmit(handler)} onClick={() =>
 					errorAll ? setErrorAll("") : errorName ?
