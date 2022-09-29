@@ -15,7 +15,7 @@ const valid = (name, email, password, cf_password, terms) => {
 	if(password !== cf_password)
 	return 'As senhas devem ser iguais.'
 
-	if(!terms)
+	if(terms)
 	return 'Você deve aceitar os termos para criar sua conta.'
 }
 function validateEmail(email) {

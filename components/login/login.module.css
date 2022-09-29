@@ -164,9 +164,6 @@
 	display: inline-block;
 	width: 93%;
 }
-.labelTermosError{
-
-}
 
 .link {
 	color: #006eff;
@@ -176,9 +173,10 @@
 	height: 25px;
 	width: 16px;
 }
-.termsError{
+
+.termsError {
 	outline: 2px solid red;
-    outline-offset: 1px;
+	outline-offset: 1px;
 }
 
 .error {
@@ -187,4 +185,16 @@
 	text-align: center;
 	color: red;
 	font-size: 15px;
+}
+
+.success {
+	width: 100%;
+	height: 28px;
+	background-color: #00c400;
+	border-radius: 6px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	font-size: 14.5px;
 }
