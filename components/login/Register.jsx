@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import style from './login.module.css'
 import valid from './valid'
 import { postData } from '../../utils/fetchData'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 
 export default function Register({ setLogin }) {
