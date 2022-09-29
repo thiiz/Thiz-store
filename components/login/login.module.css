@@ -136,25 +136,32 @@
 }
 
 .btn {
-	background-color: #006eff;
-	border: 1px solid #006eff;
 	transition: background-color 400ms ease;
 	text-transform: uppercase;
 	border-radius: 15px;
 	color: #fff;
-	cursor: pointer;
 	font-size: 13px;
 	padding: 10px 50px;
 	align-self: center;
 	margin-top: 1rem;
 }
+.btnEnable{
+	background-color: #006eff;
+	border: 1px solid #006eff;
+	cursor: pointer;
+}
+.btnDisable{
+	background-color: #6363636b;
+	border: 1px solid #0000006b;
+	cursor: default;
+}
 
-.btn:hover {
+.btnEnable:hover {
 	background-color: transparent;
 	color: #006eff;
 }
 
-.btn:active {
+.btnEnable:active {
 	background-color: #006eff46;
 }
 
