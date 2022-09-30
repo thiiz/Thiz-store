@@ -24,8 +24,8 @@ function MaeTerra({ Component, pageProps: {session, ...pageProps} }) {
                 showOnShallow={true}
               />
               <ToastContainer
-                position="bottom-left"
-                autoClose={3500}
+                position
+                autoClose
                 hideProgressBar={false}
                 newestOnTop={false}
                 onClick

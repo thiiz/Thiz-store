@@ -45,6 +45,10 @@ body {
       #8578EA 100%);
   z-index: -1;
 }
+
+.Toastify{
+  text-align: center;
+}
 @media (max-width: 590px) {
   .page{
     margin-bottom: 425px;
