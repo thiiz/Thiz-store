@@ -33,13 +33,12 @@ export default function Login({ login, setLogin }) {
 		setUserData({ ...userData, [name]: value })
 	}
 
-	async function handler(data) {
-		setBtn(false)
+	async function handler() {
 		notifyLoginPromise()
 		const res = await postData('auth/login', userData)
-		if (res.err === "This user does not exist." || res.err === "Incorrect password.") return notifyLoginError({ msg: "Endereço de email ou senha incorretos." })
-		setCookie(null, 'refreshToken', res.refresh_token, {
-			maxAge: 86400 * 7,
+		if (res.err === "This user does not exist." || res.err === "Incorrect password.") return notifyLoginError({ msg: "Endereço de email ou senha incorretos." }, setBtn(false))
+		setCookie(null, 'refreshtoken', res.refresh_token, {
+			maxAge: 86400, // 24h
 			path: '/api/auth/accessToken',
 		})
 		localStorage.setItem('firstLogin', true)
@@ -52,12 +51,12 @@ export default function Login({ login, setLogin }) {
 			<div className={style.formContainer}>
 				<div className={style.newUser}>Novo usuário? <button onClick={() => setLogin(false)} className={style.register}><strong>Cadastre-se aqui.</strong></button></div>
 				<form className={style.form} method="post" onSubmit={handleSubmit(handler)}>
-					<label className={`${style.label} ${style.labelNormal}`}>
-						<MdEmail className={`${style.icon} ${style.iconNormal}`} />
-						<input {...register('email')} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="email" name="email" value={email} placeholder='Email' autoComplete="false" />
+					<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
+						<MdEmail className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
+						<input {...register('email')} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="email" name="email" value={email} placeholder='Email' autoComplete="false" required />
 					</label>
-					<label className={`${style.label} ${style.labelNormal}`}>
-						<RiLockFill className={`${style.icon} ${style.iconNormal}`} />
+					<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
+						<RiLockFill className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
 						<input {...register('password')} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="password" name="password" value={password} placeholder='Senha' autoComplete="false" />
 					</label>
 					<div className={style.containerRecover}>

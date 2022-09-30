@@ -13,8 +13,10 @@ import { useDesktopSize } from '../../lib/useAnimate'
 import { useMobileSize } from '../../lib/useAnimate'
 import { useIsSmall } from '../../lib/MediaQuery'
 import { Fade as Hamburger } from 'hamburger-react'
+import { useUser } from '../../contexts/GlobalState'
 
 function Header() {
+	const { data } = useUser()
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
 	const [toggleLogin, setToggleLogin] = useState(false)
 	const [login, setLogin] = useState(true)
@@ -62,11 +64,10 @@ function Header() {
 									<FaShoppingCart />
 									<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>0</div>
 								</button>
-								<div className={style.avatarContainer}>
+								<div className={style.userContainer}>
 									<button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
-										<FaUserCircle />
+										<FaUserCircle className={style.avatar}/>
 									</button>
-									{account?.data?.user ? <span className={`${style.loginText} ${style.loginTextMobile}`} >Olá, {account?.data?.user?.name}</span> : ''}
 								</div>
 							</section>
 						</div>
@@ -93,10 +94,11 @@ function Header() {
 								<FaShoppingCart />
 								<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>0</div>
 							</motion.button>
-							<div className={style.avatarContainer}>
-								<motion.button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ''} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
+							<div className={style.userContainer}>
+								<motion.button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
 									<FaUserCircle />
 								</motion.button>
+								{data && scrollDirection !== "down" ? <p className={style.loginText}>{data.user.name}</p> : ''}
 							</div>
 						</section>}
 				</motion.div>

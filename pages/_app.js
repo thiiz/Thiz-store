@@ -7,11 +7,13 @@ import CartProvider from '../contexts/CartContext'
 import OpenCartMenuProvider from '../contexts/OpenCartMenuContext'
 import NotifyProvider from '../contexts/NotifyContext';
 import { ToastContainer } from 'react-toastify';
+import { DataProvider } from '../contexts/GlobalState'
 
 
-function MaeTerra({ Component, pageProps: {session, ...pageProps} }) {
+function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <>
+      <DataProvider>
         <OpenCartMenuProvider>
           <NotifyProvider>
             <CartProvider>
@@ -43,6 +45,7 @@ function MaeTerra({ Component, pageProps: {session, ...pageProps} }) {
             </CartProvider>
           </NotifyProvider>
         </OpenCartMenuProvider>
+      </DataProvider>
     </>
   )
 }

@@ -8,7 +8,7 @@
 			#C5AEF2 50%,
 			#8578EA 100%);
 	align-items: center;
-	grid-template-columns: 1.033fr 0fr 1fr;
+	grid-template-columns: 1.036fr 0fr 1fr;
 	overflow: hidden;
 	-webkit-box-shadow: 0 8px 6px -6px black;
 	-moz-box-shadow: 0 8px 6px -6px black;
@@ -121,16 +121,11 @@
 	align-items: center;
 	border-radius: 10%;
 }
-.avatarContainer{
+.userContainer{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin: 0 15px;
-
-}
-.avatar {
-	border-radius: 50%;
-	width: 100%;
 }
 
 .loginText {
@@ -255,5 +250,9 @@
 		position: relative;
 		bottom: 2.2px;
 		margin-left: 7px;
+	}
+
+	.avatar{
+		font-size: 30px;
 	}
 }

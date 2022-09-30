@@ -28,7 +28,8 @@ export default function NotifyProvider({ children }) {
 	const notifyRegistred = () => toast.success(<NotifyRegistred />, {
 		position: "top-center",
 		closeOnClick: true,
-		autoClose: false,
+		autoClose: 60000,
+		hideProgressBar: true,
 		pauseOnHover: true,
 		draggable: false,
 		progress: undefined,
