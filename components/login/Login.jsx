@@ -11,7 +11,7 @@ import { useUser } from '../../contexts/GlobalState'
 export default function Login({ login, setLogin, setToggleLogin }) {
 
 	const { setData } = useUser()
-	const { notifyRegistred, notifyLoginPromise, notifyLoginSuccess, notifyLoginError } = useNotify()
+	const { notifyRegistred, notifyLoginPromise, notifyLoginSuccess, notifyLoginError, dismiss } = useNotify()
 	const { register, handleSubmit } = useForm()
 	const [msg, setMsg] = useState("Endereço email ou senha incorretos.")
 
@@ -45,6 +45,7 @@ export default function Login({ login, setLogin, setToggleLogin }) {
 			path: '/api/auth/accessToken',
 		})
 		localStorage.setItem('firstLogin', true)
+		dismiss({id: 1})
 		if (res.msg === "Login Success!") return notifyLoginSuccess({ msg: "Logado com sucesso!" }),  setData({token: res.refresh_token, user: res.user}), setToggleLogin(false)
 	}
 

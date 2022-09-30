@@ -28,7 +28,7 @@ export default function NotifyProvider({ children }) {
 	const notifyRegistred = () => toast.success(<NotifyRegistred />, {
 		position: "top-center",
 		closeOnClick: true,
-		autoClose: 10000,
+		autoClose: 60000 * 10,
 		hideProgressBar: true,
 		pauseOnHover: false,
 		draggable: true,
@@ -36,6 +36,7 @@ export default function NotifyProvider({ children }) {
 		transition: Flip,
 		theme: "colored",
 		onClick: () => false,
+		toastId: 1
 	});
 	const notifyLoginPromise = () => toast.loading(<NotifyLoading />, {
 		position: "top-center",
@@ -46,9 +47,9 @@ export default function NotifyProvider({ children }) {
 		transition: Flip,
 		theme: "colored",
 		onClick: () => false,
-		toastId: 1
+		toastId: 2
 	});
-	const notifyLoginSuccess = ({ msg }) => toast.update(1, {
+	const notifyLoginSuccess = ({ msg }) => toast.update(2, {
 		render: msg,
 		type: "success",
 		isLoading: false,
@@ -63,7 +64,7 @@ export default function NotifyProvider({ children }) {
 		transition: Flip,
 		theme: "colored",
 	});
-	const notifyLoginError = ({ msg }) => toast.update(1, {
+	const notifyLoginError = ({ msg }) => toast.update(2, {
 		render: msg,
 		type: "error",
 		isLoading: false,
@@ -79,12 +80,15 @@ export default function NotifyProvider({ children }) {
 		theme: "colored",
 	});
 
+	const dismiss = ({id}) =>  toast.dismiss(id);
+
 	const state = {
 		notifyCart,
 		notifyRegistred,
 		notifyLoginPromise,
 		notifyLoginSuccess,
-		notifyLoginError
+		notifyLoginError,
+		dismiss
 	}
 
 	return (
@@ -101,13 +105,15 @@ export function useNotify() {
 		notifyRegistred,
 		notifyLoginPromise,
 		notifyLoginSuccess,
-		notifyLoginError
+		notifyLoginError,
+		dismiss
 	} = context
 	return {
 		notifyRegistred,
 		notifyCart,
 		notifyLoginPromise,
 		notifyLoginSuccess,
-		notifyLoginError
+		notifyLoginError,
+		dismiss
 	}
 }
