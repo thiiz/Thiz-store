@@ -4,10 +4,13 @@ import style from './login.module.css'
 import { useForm } from 'react-hook-form'
 import { useState, useEffect } from 'react'
 import { postData } from '../../utils/fetchData'
-import { setCookie, parseCookies } from 'nookies'
+import { setCookie } from 'nookies'
 import { useNotify } from '../../contexts/NotifyContext';
+import { useUser } from '../../contexts/GlobalState'
 
-export default function Login({ login, setLogin }) {
+export default function Login({ login, setLogin, setToggleLogin }) {
+
+	const { setData } = useUser()
 	const { notifyRegistred, notifyLoginPromise, notifyLoginSuccess, notifyLoginError } = useNotify()
 	const { register, handleSubmit } = useForm()
 	const [msg, setMsg] = useState("Endereço email ou senha incorretos.")
@@ -42,7 +45,7 @@ export default function Login({ login, setLogin }) {
 			path: '/api/auth/accessToken',
 		})
 		localStorage.setItem('firstLogin', true)
-		if (res.msg === "Login Success!") return notifyLoginSuccess({ msg: "Logado com sucesso!" })
+		if (res.msg === "Login Success!") return notifyLoginSuccess({ msg: "Logado com sucesso!" },  setData({token: res.refresh_token, user: res.user}), setToggleLogin(false))
 	}
 
 	return (

@@ -12,7 +12,7 @@ export default function MenuLogin({ login, setLogin, setToggleLogin }) {
 		<div className={`${style.container} ${login ? style.containerLogin : style.containerRegister}`}>
 			<button onClick={() => setToggleLogin(false)} className={style.closeLogin}><GrClose /></button>
 			{login
-				? <Login login={login} setLogin={setLogin} />
+				? <Login login={login} setLogin={setLogin} setToggleLogin={setToggleLogin} />
 				: <Register setLogin={setLogin} />
 			}
 		</div>

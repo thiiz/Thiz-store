@@ -7,8 +7,7 @@ export const DataContext = createContext()
 
 
 export const DataProvider = ({ children }) => {
-	const initialState = { token: {}, user: {} }
-	const [data, setData] = useState(initialState)
+	const [data, setData] = useState({})
 
 	useEffect(() => {
 		const firstLogin = localStorage.getItem("firstLogin");

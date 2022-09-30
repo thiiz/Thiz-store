@@ -20,7 +20,6 @@ function Header() {
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
 	const [toggleLogin, setToggleLogin] = useState(false)
 	const [login, setLogin] = useState(true)
-
 	const { isOpen, setIsOpen } = useMenuCart()
 	const scrollDirection = useScrollDirection()
 	const desktopVariant = useDesktopSize()
@@ -66,7 +65,7 @@ function Header() {
 								</button>
 								<div className={style.userContainer}>
 									<button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
-										<FaUserCircle className={style.avatar}/>
+										<FaUserCircle className={style.avatar} />
 									</button>
 								</div>
 							</section>
@@ -95,10 +94,16 @@ function Header() {
 								<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>0</div>
 							</motion.button>
 							<div className={style.userContainer}>
+								{Object.keys(data).length === 0 ?
 								<motion.button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
 									<FaUserCircle />
-								</motion.button>
-								{data && scrollDirection !== "down" ? <p className={style.loginText}>{data.user.name}</p> : ''}
+								</motion.button> :
+								<Link href="/profile">
+									<motion.a animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${style.NavMenuList}`} type='button'>
+									<FaUserCircle />
+								</motion.a>
+								</Link>}
+								{Object.keys(data).length !== 0 && scrollDirection !== "down" ? <p className={style.loginText}>{data.user.name}</p> : ''}
 							</div>
 						</section>}
 				</motion.div>
