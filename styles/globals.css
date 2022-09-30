@@ -6,7 +6,9 @@
   box-sizing: border-box;
   font-family: 'Varela Round', sans-serif;
 }
-
+img{
+  object-fit: cover;
+}
 body {
   width: 100vw;
   min-height: 100vh;
@@ -45,7 +47,6 @@ body {
       #8578EA 100%);
   z-index: -1;
 }
-
 .Toastify{
   text-align: center;
 }

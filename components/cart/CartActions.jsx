@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { BiMinus, BiPlus } from 'react-icons/bi'
 import { GoX } from 'react-icons/go'
 import style from './Cart.module.css'
+import { useCart } from '../../contexts/CartContext'
 
 export function CartActions({ item }) {
+	const {add, remove} = useCart()
 	const [quantity, setQuantity] = useState(1)
 	const handlePlus = () => {
 		setQuantity(quantity + 1)
@@ -15,7 +17,7 @@ export function CartActions({ item }) {
 	}
 	return (
 		<div className={style.actionContainer}>
-			<button className={style.actions_Button}><GoX /></button>
+			<button onClick={index => remove(index)} className={style.actions_Button}><GoX /></button>
 			<div className={style.quantity}>
 				{quantity}
 			</div>

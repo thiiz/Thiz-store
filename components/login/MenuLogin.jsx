@@ -1,7 +1,5 @@
 import style from './login.module.css'
-import { useEffect } from 'react'
 import { GrClose } from 'react-icons/gr'
-import { useState } from 'react'
 import Login from './Login'
 import Register from './Register'
 

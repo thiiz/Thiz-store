@@ -23,8 +23,15 @@ export default function CartProvider({ children }) {
 
 		setCart([...newCart])
 	}
+	function remove(index) {
+		let newCart = cart;
+		delete newCart[index]
+
+		setCart([...newCart])
+	}
 	const store = {
 		add,
+		remove,
 		cart,
 		totalPrice
 	}
@@ -41,11 +48,13 @@ export function useCart() {
 	const {
 		cart,
 		add,
+		remove,
 		totalPrice
 	} = context
 	return {
 		cart,
 		add,
+		remove,
 		totalPrice
 	}
 }

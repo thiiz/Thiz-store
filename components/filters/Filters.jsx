@@ -92,7 +92,6 @@ export function ProductFiltred({ data }) {
 					</div> : ''}
 				<div>
 					<span>ORDENAR POR:</span>
-
 					<Select onChange={e => setSelectedOption(e.value)} hideSelectedOptions={true} defaultValue={selectedOption} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" isSearchable={false} />
 				</div>
 			</div>

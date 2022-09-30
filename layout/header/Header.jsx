@@ -14,10 +14,14 @@ import { useMobileSize } from '../../lib/useAnimate'
 import { useIsSmall } from '../../lib/MediaQuery'
 import { Fade as Hamburger } from 'hamburger-react'
 import { useUser } from '../../contexts/GlobalState'
+import { useCart } from '../../contexts/CartContext'
+import { useEffect } from 'react'
 
 function Header() {
+	const { cart } = useCart()
 	const { data } = useUser()
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
+	const [qtdCart, setQtdCart] = useState(0)
 	const [toggleLogin, setToggleLogin] = useState(false)
 	const [login, setLogin] = useState(true)
 	const { isOpen, setIsOpen } = useMenuCart()
@@ -42,11 +46,12 @@ function Header() {
 
 	return (
 		<>
-			<motion.div animate={toggleLogin ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
-				<motion.div className={style.backgroundLogin} animate={toggleLogin ? "visible" : "hidden"} variants={loginBackgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
-					<MenuLogin setToggleLogin={setToggleLogin} login={login} setLogin={setLogin} />
-				</motion.div>
-			</motion.div>
+			{Object.keys(data).length === 0 ?
+				<motion.div animate={toggleLogin ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
+					<motion.div className={style.backgroundLogin} animate={toggleLogin ? "visible" : "hidden"} variants={loginBackgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
+						<MenuLogin setToggleLogin={setToggleLogin} login={login} setLogin={setLogin} />
+					</motion.div>
+				</motion.div> : ''}
 			<motion.header className={style.header} animate={!small ? scrollDirection === "down" ? "small" : "normal" : isOpenMobile ? "normal" : "small"} variants={!small ? desktopVariant : mobileVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
 				<div className={style.taggleMenuMobile}>
 					<motion.div animate={!small ? scrollDirection === "down" ? "small_Logo" : "normal_Logo" : "normal_Logo"} variants={small ? mobileVariant : desktopVariant}>
@@ -61,7 +66,7 @@ function Header() {
 								</button>
 								<button onClick={() => setIsOpen(isOpen => !isOpen)} className={`${style.btn} ${style.btnInfo}`} type='button'>
 									<FaShoppingCart />
-									<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>0</div>
+									<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>{Object.keys(cart).length}</div>
 								</button>
 								<div className={style.userContainer}>
 									<button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
@@ -91,18 +96,18 @@ function Header() {
 							</motion.button>
 							<motion.button animate={!small ? scrollDirection === "down" ? "small_Menu" : "normal_Menu" : ''} variants={desktopVariant} onClick={() => setIsOpen(isOpen => !isOpen)} className={`${style.btn} ${style.btnInfo}`} type='button'>
 								<FaShoppingCart />
-								<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>0</div>
+								<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>{Object.keys(cart).length}</div>
 							</motion.button>
 							<div className={style.userContainer}>
 								{Object.keys(data).length === 0 ?
-								<motion.button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
-									<FaUserCircle />
-								</motion.button> :
-								<Link href="/profile">
-									<motion.a animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${style.NavMenuList}`} type='button'>
-									<FaUserCircle />
-								</motion.a>
-								</Link>}
+									<motion.button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
+										<FaUserCircle />
+									</motion.button> :
+									<Link href="/profile">
+										<motion.a animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${style.NavMenuList}`} type='button'>
+											<FaUserCircle />
+										</motion.a>
+									</Link>}
 								{Object.keys(data).length !== 0 && scrollDirection !== "down" ? <p className={style.loginText}>{data.user.name}</p> : ''}
 							</div>
 						</section>}

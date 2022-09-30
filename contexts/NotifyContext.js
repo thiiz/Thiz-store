@@ -15,7 +15,7 @@ export default function NotifyProvider({ children }) {
 	const { setIsOpen } = useMenuCart()
 
 	const notifyCart = () => toast.success(<NotifyCart />, {
-		position: "bottom-left",
+		position: "top-right",
 		closeOnClick: true,
 		autoClose: 3500,
 		pauseOnHover: true,
