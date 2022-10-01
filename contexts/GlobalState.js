@@ -7,21 +7,21 @@ export const DataContext = createContext()
 
 
 export const DataProvider = ({ children }) => {
-	const [data, setData] = useState({})
+	const [auth, setAuth] = useState({})
 
 	useEffect(() => {
 		const firstLogin = localStorage.getItem("firstLogin");
 		if (firstLogin) {
 			getData('auth/accessToken').then(res => {
 				if (res.err) return localStorage.removeItem("firstLogin")
-				setData({ token: res.access_token, user: res.user })
+				setAuth({ token: res.access_token, user: res.user })
 			})
 		}
 	}, [])
 
 	const state = {
-		data,
-		setData
+		auth,
+		setAuth
 	}
 
 	return (
@@ -34,11 +34,11 @@ export const DataProvider = ({ children }) => {
 export function useUser() {
 	const context = useContext(DataContext)
 	const {
-		data,
-		setData
+		auth,
+		setAuth
 	} = context
 	return {
-		data,
-		setData
+		auth,
+		setAuth
 	}
 }

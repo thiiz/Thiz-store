@@ -17,7 +17,7 @@ export function CartActions({ item }) {
 	}
 	return (
 		<div className={style.actionContainer}>
-			<button onClick={index => remove(index)} className={style.actions_Button}><GoX /></button>
+			<button onClick={() => remove(item.id)} className={style.actions_Button}><GoX /></button>
 			<div className={style.quantity}>
 				{quantity}
 			</div>
