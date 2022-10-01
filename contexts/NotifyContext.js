@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { createContext } from "react";
 import { Flip, toast } from 'react-toastify'
-import { NotifyCart, NotifyLoading, NotifyRegistred, NotifyLogout } from "../components/notify/Notify";
+import { NotifyCart, NotifyLoading, NotifyRegistred, NotifyError, NotifyInfo, NotifySuccess, NotifyInfoCart } from "../components/notify/Notify";
 import { useMenuCart } from "..//contexts/OpenCartMenuContext";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,8 +12,21 @@ const NotifyContext = createContext()
 export default function NotifyProvider({ children }) {
 	const { setIsOpen } = useMenuCart()
 
-	const notifyCart = () => toast.success(<NotifyCart />, {
-		position: "top-right",
+	const notifySuccess = ({ msg }) => toast.success(<NotifySuccess msg={msg} />, {
+		position: "top-center",
+		autoClose: 5000,
+		hideProgressBar: true,
+		closeOnClick: true,
+		closeButton: true,
+		pauseOnHover: false,
+		draggable: true,
+		progress: undefined,
+		transition: Flip,
+		theme: "colored",
+	});
+
+	const notifyInfo = ({ msg }) => toast.info(<NotifyInfo msg={msg} />, {
+		position: "top-center",
 		closeOnClick: true,
 		autoClose: 3500,
 		pauseOnHover: true,
@@ -21,7 +34,19 @@ export default function NotifyProvider({ children }) {
 		progress: undefined,
 		transition: Flip,
 		theme: "colored",
-		onClick: () => setIsOpen(true),
+		onClick: () => false,
+	});
+
+	const notifyError = ({ msg }) => toast.error(<NotifyError msg={msg} />, {
+		position: "top-center",
+		closeOnClick: true,
+		autoClose: 3500,
+		pauseOnHover: true,
+		draggable: false,
+		progress: undefined,
+		transition: Flip,
+		theme: "colored",
+		onClick: () => false,
 	});
 	const notifyRegistred = () => toast.success(<NotifyRegistred />, {
 		position: "top-center",
@@ -78,28 +103,41 @@ export default function NotifyProvider({ children }) {
 		transition: Flip,
 		theme: "colored",
 	});
-	const notifyLogout = () => toast.success(<NotifyLogout/>, {
-		position: "top-right",
-		autoClose: 5000,
-		hideProgressBar: true,
+	const notifyCart = ({ msg }) => toast.success(<NotifyCart msg={msg} />, {
+		position: "top-center",
 		closeOnClick: true,
-		closeButton: true,
-		pauseOnHover: false,
-		draggable: true,
+		autoClose: 3500,
+		pauseOnHover: true,
+		draggable: false,
 		progress: undefined,
 		transition: Flip,
 		theme: "colored",
+		onClick: () => setIsOpen(true),
+	});
+	const notifyInfoCart = ({ msg }) => toast.info(<NotifyInfoCart msg={msg} />, {
+		position: "top-center",
+		closeOnClick: true,
+		autoClose: 3500,
+		pauseOnHover: true,
+		draggable: false,
+		progress: undefined,
+		transition: Flip,
+		theme: "colored",
+		onClick: () => setIsOpen(true),
 	});
 
 	const dismiss = ({ id }) => toast.dismiss(id);
 
 	const state = {
-		notifyCart,
+		notifySuccess,
+		notifyInfo,
+		notifyError,
 		notifyRegistred,
 		notifyLoginPromise,
 		notifyLoginSuccess,
 		notifyLoginError,
-		notifyLogout,
+		notifyCart,
+		notifyInfoCart,
 		dismiss
 	}
 
@@ -113,21 +151,27 @@ export default function NotifyProvider({ children }) {
 export function useNotify() {
 	const context = useContext(NotifyContext)
 	const {
-		notifyCart,
+		notifySuccess,
+		notifyInfo,
+		notifyError,
 		notifyRegistred,
 		notifyLoginPromise,
 		notifyLoginSuccess,
 		notifyLoginError,
-		notifyLogout,
+		notifyCart,
+		notifyInfoCart,
 		dismiss
 	} = context
 	return {
+		notifySuccess,
+		notifyInfo,
+		notifyError,
 		notifyRegistred,
-		notifyCart,
 		notifyLoginPromise,
 		notifyLoginSuccess,
 		notifyLoginError,
-		notifyLogout,
+		notifyCart,
+		notifyInfoCart,
 		dismiss
 	}
 }

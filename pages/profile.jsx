@@ -5,7 +5,7 @@ import { useEffect } from "react"
 import { useRouter} from 'next/router'
 export default function Profile() {
 	const router = useRouter()
-	const {notifyLogout } = useNotify()
+	const {notifySuccess } = useNotify()
 	const { auth, setAuth } = useUser()
 	useEffect(() => {
 		if(Object.keys(auth).length === 0) router.push('/')
@@ -14,7 +14,7 @@ export default function Profile() {
 		setAuth({})
 		destroyCookie(undefined, 'refreshtoken', { path: '/api/auth/accessToken' })
 		localStorage.removeItem('firstLogin')
-		notifyLogout({ msg: "Login encerrado!" })
+		notifySuccess({ msg: "Login encerrado!" })
 	}
 	return (
 		<div className='page'>

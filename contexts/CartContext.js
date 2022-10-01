@@ -1,27 +1,28 @@
 import { useEffect } from "react";
 import { useContext } from "react";
 import { createContext, useState } from "react";
-import { setCookie } from 'nookies'
+import { useNotify } from './NotifyContext'
 
 
 const CartContext = createContext()
 
 export default function CartProvider({ children }) {
 	const [cart, setCart] = useState([])
-	const [qtd, setQtd] = useState(1)
+	const [qty, setQty] = useState(1)
 	const [totalPrice, setTotalPrice] = useState()
+	const { notifyCart, notifyError, notifyInfoCart, notifySuccess } = useNotify()
 
 	useEffect(() => {
 		const cartLocal = localStorage.getItem('EcommerceShopingCart')
-		if(cartLocal){
+		if (cartLocal) {
 			setCart(JSON.parse(cartLocal))
 		}
-	},[])
+	}, [])
 
 	useEffect(() => {
 		let value = 0;
 		cart.map((item) => {
-			value = value + item.price
+			value = value + item.price * qty
 		})
 		setTotalPrice(value)
 		localStorage.setItem('EcommerceShopingCart', JSON.stringify(cart))
@@ -29,26 +30,48 @@ export default function CartProvider({ children }) {
 	}, [cart])
 
 	function add(item) {
-		const newCart = cart;
+		const newCart = [...cart];
 		const check = newCart.find((product) => product.id === item.id)
-		if (!check) {
-			newCart.push(item)
+
+		if (check) {
+			if (check.instock - 1 >= check.qty) {
+				setQty(check.qty += 1)
+				notifyInfoCart({ msg: `Quantidade do produto alterada para ${check.qty}` })
+			} else {
+				return notifyError({ msg: "Quantidade do produto indisponível." })
+			}
+		} else {
+			newCart.push({ ...item, qty: qty })
+			setQty(1)
+			notifyCart({ msg: "Produto adicinado ao carrinho!" })
 		}
-		setCart([...newCart])
-
-
-
-
+		setCart(newCart)
 	}
+
 	function remove(id) {
-		const newCart = cart.filter((item) => item.id !== id)
-		setCart(newCart);
+		const newCart = cart.filter((product) => product.id !== id)
+		setQty(1)
+		setCart(newCart)
+		notifySuccess({ msg: "Produto removido do carrinho!" })
 	}
+
+	function removeQty(item) {
+		const newCart = [...cart];
+		const check = newCart.find((product) => product.id === item.id)
+		if (check.qty > 1) {
+			setQty(check.qty -= 1)
+			setCart(newCart)
+			return notifyInfoCart({ msg: `Quantidade do produto alterada para ${check.qty}` })
+		}
+	}
+
 	const store = {
 		add,
+		removeQty,
 		remove,
 		cart,
-		qtd,
+		qty,
+		setQty,
 		totalPrice
 	}
 
@@ -63,15 +86,19 @@ export function useCart() {
 	const context = useContext(CartContext)
 	const {
 		cart,
-		qtd,
+		qty,
+		setQty,
 		add,
+		removeQty,
 		remove,
 		totalPrice
 	} = context
 	return {
 		cart,
-		qtd,
+		qty,
+		setQty,
 		add,
+		removeQty,
 		remove,
 		totalPrice
 	}

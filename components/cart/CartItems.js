@@ -21,7 +21,7 @@ export default function CartItems({ item }) {
 				</div>
 			</div>
 			<div className={style.Quantity_actions}>
-				<CartActions item={item} />
+				<CartActions item={item}  />
 			</div>
 		</>
 	)

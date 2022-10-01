@@ -5,24 +5,23 @@ import style from './Cart.module.css'
 import { useCart } from '../../contexts/CartContext'
 
 export function CartActions({ item }) {
-	const {add, remove} = useCart()
-	const [quantity, setQuantity] = useState(1)
+	const {add, remove, removeQty} = useCart()
 	const handlePlus = () => {
-		setQuantity(quantity + 1)
+		add(item)
 	}
 	const handleMinus = () => {
-		if (quantity !== 0) {
-			setQuantity(quantity - 1)
+		if (item.qty !== 0) {
+			removeQty(item)
 		}
 	}
 	return (
 		<div className={style.actionContainer}>
 			<button onClick={() => remove(item.id)} className={style.actions_Button}><GoX /></button>
 			<div className={style.quantity}>
-				{quantity}
+				{item.qty}
 			</div>
-			<button disabled={quantity <= 1 && true} onClick={handleMinus} className={style.actions_Button}><BiMinus /></button>
-			<button disabled={quantity === item.instock && true} onClick={handlePlus} className={style.actions_Button}><BiPlus /></button>
+			<button disabled={item.qty <= 1 && true} onClick={handleMinus} className={style.actions_Button}><BiMinus /></button>
+			<button disabled={item.qty === item.instock && true} onClick={handlePlus} className={style.actions_Button}><BiPlus /></button>
 		</div>
 	)
 }

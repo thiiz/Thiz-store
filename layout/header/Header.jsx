@@ -67,9 +67,20 @@ function Header() {
 									<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>{Object.keys(cart).length}</div>
 								</button>
 								<div className={style.userContainer}>
-									<button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
-										<FaUserCircle className={style.avatar} />
-									</button>
+									{Object.keys(auth).length === 0 ?
+										<button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
+											<FaUserCircle className={style.avatar} />
+										</button>
+										:
+										<>
+											<Link href="/profile">
+												<a className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${style.NavMenuList}`} type='button'>
+													<FaUserCircle />
+												</a>
+											</Link>
+											{isOpenMobile ? <p className={style.loginText}>{auth.user.name}</p> : ''}								
+										</>
+									}
 								</div>
 							</section>
 						</div>
@@ -101,12 +112,15 @@ function Header() {
 									<motion.button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
 										<FaUserCircle />
 									</motion.button> :
-									<Link href="/profile">
-										<motion.a animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${style.NavMenuList}`} type='button'>
-											<FaUserCircle />
-										</motion.a>
-									</Link>}
-								{Object.keys(auth).length !== 0 && scrollDirection !== "down" ? <p className={style.loginText}>{auth.user.name}</p> : ''}
+									<>
+										<Link href="/profile">
+											<motion.a animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${style.NavMenuList}`} type='button'>
+												<FaUserCircle />
+											</motion.a>
+										</Link>
+										{scrollDirection !== "down" ? <p className={style.loginText}>{auth.user.name}</p> : ''}
+									</>
+								}
 							</div>
 						</section>}
 				</motion.div>
