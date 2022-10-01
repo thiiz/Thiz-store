@@ -22,7 +22,7 @@ export default function CartProvider({ children }) {
 	useEffect(() => {
 		let value = 0;
 		cart.map((item) => {
-			value = value += item.price * qty
+			value = value += item.price * item.qty
 		})
 		setTotalPrice(value)
 		localStorage.setItem('EcommerceShopingCart', JSON.stringify(cart))
@@ -35,14 +35,13 @@ export default function CartProvider({ children }) {
 
 		if (check) {
 			if (check.instock - 1 >= check.qty) {
-				setQty(check.qty += 1)
+				check.qty += 1;
 				notifyInfoCart({ msg: `Quantidade do produto alterada para ${check.qty}` })
 			} else {
 				return notifyError({ msg: "Quantidade do produto indisponível." })
 			}
 		} else {
-			setQty(1)
-			newCart.push({ ...item, qty: qty })
+			newCart.push({ ...item, qty: 1 })
 			notifyCart({ msg: "Produto adicinado ao carrinho!" })
 		}
 		setCart(newCart)
@@ -68,7 +67,7 @@ export default function CartProvider({ children }) {
 		const newCart = [...cart];
 		const check = newCart.find((product) => product.id === item.id)
 		if (check.qty > 1) {
-			setQty(check.qty -= 1)
+			check.qty -= 1;
 			setCart(newCart)
 			return notifyInfoCart({ msg: `Quantidade do produto alterada para ${check.qty}` })
 		}
@@ -79,8 +78,6 @@ export default function CartProvider({ children }) {
 		removeQty,
 		remove,
 		cart,
-		qty,
-		setQty,
 		totalPrice
 	}
 
@@ -95,8 +92,6 @@ export function useCart() {
 	const context = useContext(CartContext)
 	const {
 		cart,
-		qty,
-		setQty,
 		add,
 		removeQty,
 		remove,
@@ -104,8 +99,6 @@ export function useCart() {
 	} = context
 	return {
 		cart,
-		qty,
-		setQty,
 		add,
 		removeQty,
 		remove,
