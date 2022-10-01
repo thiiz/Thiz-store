@@ -22,7 +22,7 @@ export default function CartProvider({ children }) {
 	useEffect(() => {
 		let value = 0;
 		cart.map((item) => {
-			value = value + item.price * qty
+			value = value += item.price * qty
 		})
 		setTotalPrice(value)
 		localStorage.setItem('EcommerceShopingCart', JSON.stringify(cart))
@@ -41,19 +41,28 @@ export default function CartProvider({ children }) {
 				return notifyError({ msg: "Quantidade do produto indisponível." })
 			}
 		} else {
-			newCart.push({ ...item, qty: qty })
 			setQty(1)
+			newCart.push({ ...item, qty: qty })
 			notifyCart({ msg: "Produto adicinado ao carrinho!" })
 		}
 		setCart(newCart)
 	}
 
 	function remove(id) {
-		const newCart = cart.filter((product) => product.id !== id)
-		setQty(1)
-		setCart(newCart)
-		notifySuccess({ msg: "Produto removido do carrinho!" })
+		const newCart = [...cart];
+		try {
+			const productExists = newCart.find((product) => product.id === id);
+			if(!productExists){
+				return notifyError({msg: "Erro ao remover o produto."})
+			}
+			const updatedCart = cart.filter(cartItem => cartItem.id !== id)
+			setCart(updatedCart)
+
+		} catch {
+			notifyError({msg: "Erro ao remover o produto."})
+		}
 	}
+
 
 	function removeQty(item) {
 		const newCart = [...cart];

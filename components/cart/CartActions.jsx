@@ -20,7 +20,7 @@ export function CartActions({ item }) {
 			<div className={style.quantity}>
 				{item.qty}
 			</div>
-			<button disabled={item.qty <= 1 && true} onClick={handleMinus} className={style.actions_Button}><BiMinus /></button>
+			<button disabled={item.qty <= 1} onClick={handleMinus} className={style.actions_Button}><BiMinus /></button>
 			<button disabled={item.qty === item.instock && true} onClick={handlePlus} className={style.actions_Button}><BiPlus /></button>
 		</div>
 	)
