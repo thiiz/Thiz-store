@@ -106,7 +106,7 @@ function Header() {
 											<FaUserCircle />
 										</motion.a>
 									</Link>}
-								{Object.keys(auth).length !== 0 && scrollDirection !== "down" ? <p className={style.loginText}>{data.user.name}</p> : ''}
+								{Object.keys(auth).length !== 0 && scrollDirection !== "down" ? <p className={style.loginText}>{auth.user.name}</p> : ''}
 							</div>
 						</section>}
 				</motion.div>

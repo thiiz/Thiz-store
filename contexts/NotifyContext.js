@@ -1,9 +1,7 @@
 import { useContext } from "react";
 import { createContext } from "react";
 import { Flip, toast } from 'react-toastify'
-import NotifyCart from "../components/notify/NotifyCart";
-import NotifyRegistred from "../components/notify/NotifyRegistred";
-import NotifyLoading from "../components/notify/NotifyLoading";
+import { NotifyCart, NotifyLoading, NotifyRegistred, NotifyLogout } from "../components/notify/Notify";
 import { useMenuCart } from "..//contexts/OpenCartMenuContext";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -41,6 +39,7 @@ export default function NotifyProvider({ children }) {
 	const notifyLoginPromise = () => toast.loading(<NotifyLoading />, {
 		position: "top-center",
 		closeOnClick: true,
+		hideProgressBar: false,
 		pauseOnHover: false,
 		draggable: true,
 		progress: undefined,
@@ -79,8 +78,20 @@ export default function NotifyProvider({ children }) {
 		transition: Flip,
 		theme: "colored",
 	});
+	const notifyLogout = () => toast.success(<NotifyLogout/>, {
+		position: "top-right",
+		autoClose: 5000,
+		hideProgressBar: true,
+		closeOnClick: true,
+		closeButton: true,
+		pauseOnHover: false,
+		draggable: true,
+		progress: undefined,
+		transition: Flip,
+		theme: "colored",
+	});
 
-	const dismiss = ({id}) =>  toast.dismiss(id);
+	const dismiss = ({ id }) => toast.dismiss(id);
 
 	const state = {
 		notifyCart,
@@ -88,6 +99,7 @@ export default function NotifyProvider({ children }) {
 		notifyLoginPromise,
 		notifyLoginSuccess,
 		notifyLoginError,
+		notifyLogout,
 		dismiss
 	}
 
@@ -106,6 +118,7 @@ export function useNotify() {
 		notifyLoginPromise,
 		notifyLoginSuccess,
 		notifyLoginError,
+		notifyLogout,
 		dismiss
 	} = context
 	return {
@@ -114,6 +127,7 @@ export function useNotify() {
 		notifyLoginPromise,
 		notifyLoginSuccess,
 		notifyLoginError,
+		notifyLogout,
 		dismiss
 	}
 }
