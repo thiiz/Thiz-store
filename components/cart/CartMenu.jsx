@@ -4,10 +4,13 @@ import { useCart } from '../../contexts/CartContext'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { useMenuCart } from '../../contexts/OpenCartMenuContext'
 import { MdDeleteForever } from 'react-icons/md'
+import Link from 'next/link'
 
 export function CartMenu() {
 	const { setIsOpen } = useMenuCart()
 	const { cart, subTotalPrice, clearCart } = useCart()
+	const price = subTotalPrice * 0.95
+	const calc = (Math.round(subTotalPrice / 6 * 100)) / 100.0;
 
 	return (
 		<div className={style.container}>
@@ -29,7 +32,19 @@ export function CartMenu() {
 				</div >
 			</div>
 			<div className={style.sideContainer}>
-				<div>total: {subTotalPrice}</div>
+				<ul>
+					<li><span>Valor dos produtos</span> <span>{`${subTotalPrice?.toFixed(2).toString().replace(".", ",")}`}</span></li>
+					<li><span>Frete</span> <input type="text" placeholder="00000-000" inputmode="numeric" maxlength="9" name="cep" className=""></input></li>
+
+				</ul>
+				<div>
+					<span>Total da compra</span>
+					<div>
+						<span>a vista {price.toFixed(2).toString().replace(".", ",")}</span>
+						<span>6x sem juros {calc.toString().replace(".", ",")}</span>
+					</div>
+				</div>
+				<div><Link href="#"><a>continuar</a></Link></div>
 			</div>
 		</div>
 	)

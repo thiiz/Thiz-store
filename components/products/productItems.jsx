@@ -10,7 +10,7 @@ export default function ProductsItems({ stock }) {
 		router.push(`/product/${stock?.slug}`)
 	}
 	const { add } = useCart()
-	const price = `${stock?.price.toString().replace(".", ",")}0`;
+	const price = stock?.price.toFixed(2).toString().replace(".", ",")
 	const calc = (Math.round(stock?.price / 6 * 100)) / 100.0;
 	const parcel = calc.toString().replace(".", ",");
 	return (
