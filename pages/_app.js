@@ -6,7 +6,7 @@ import NextNProgress from "nextjs-progressbar";
 import CartProvider from '../contexts/CartContext'
 import OpenCartMenuProvider from '../contexts/OpenCartMenuContext'
 import NotifyProvider from '../contexts/NotifyContext';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, Flip } from 'react-toastify';
 import { DataProvider } from '../contexts/GlobalState'
 
 
@@ -19,7 +19,7 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
             <CartProvider>
               <Header />
               <NextNProgress
-                color="#29D"
+                color="#0099ff"
                 startPosition={0.2}
                 stopDelayMs={200}
                 height={6}
@@ -27,16 +27,19 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
               />
               <ToastContainer
                 position
-                autoClose
+                autoClose={3500}
                 hideProgressBar={false}
                 newestOnTop={false}
                 onClick
+                closeOnClick={true}
                 rtl={false}
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
-                transition
-                theme
+                progress={undefined}
+                transition={Flip}
+                theme="colored"
+                limit={3}
               />
               <Transition>
                 <Component {...pageProps} />

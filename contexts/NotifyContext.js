@@ -16,114 +16,80 @@ export default function NotifyProvider({ children }) {
 		position: "top-center",
 		autoClose: 5000,
 		hideProgressBar: true,
-		closeOnClick: true,
 		closeButton: true,
 		pauseOnHover: false,
 		draggable: true,
-		progress: undefined,
-		transition: Flip,
-		theme: "colored",
+		onClick: () => false,
+		toastId: "success"
 	});
 
 	const notifyInfo = ({ msg }) => toast.info(<NotifyInfo msg={msg} />, {
 		position: "top-center",
-		closeOnClick: true,
 		autoClose: 3500,
 		pauseOnHover: true,
 		draggable: false,
-		progress: undefined,
-		transition: Flip,
-		theme: "colored",
 		onClick: () => false,
 	});
 
 	const notifyError = ({ msg }) => toast.error(<NotifyError msg={msg} />, {
 		position: "top-center",
-		closeOnClick: true,
 		autoClose: 3500,
 		pauseOnHover: true,
 		draggable: false,
-		progress: undefined,
-		transition: Flip,
-		theme: "colored",
 		onClick: () => false,
 	});
 	const notifyRegistred = () => toast.success(<NotifyRegistred />, {
 		position: "top-center",
-		closeOnClick: true,
-		autoClose: 60000 * 10,
+		autoClose: false,
 		hideProgressBar: true,
 		pauseOnHover: false,
 		draggable: true,
-		progress: undefined,
-		transition: Flip,
-		theme: "colored",
 		onClick: () => false,
-		toastId: 1
+		toastId: "registred"
 	});
 	const notifyLoginPromise = () => toast.loading(<NotifyLoading />, {
 		position: "top-center",
-		closeOnClick: true,
 		hideProgressBar: false,
 		pauseOnHover: false,
 		draggable: true,
-		progress: undefined,
-		transition: Flip,
-		theme: "colored",
 		onClick: () => false,
-		toastId: 2
+		toastId: "login"
 	});
-	const notifyLoginSuccess = ({ msg }) => toast.update(2, {
+	const notifyLoginSuccess = ({ msg }) => toast.update("login", {
 		render: msg,
 		type: "success",
 		isLoading: false,
 		position: "top-center",
-		autoClose: 5000,
+		autoClose: 3500,
 		hideProgressBar: true,
-		closeOnClick: true,
 		closeButton: true,
 		pauseOnHover: false,
 		draggable: true,
-		progress: undefined,
-		transition: Flip,
-		theme: "colored",
 	});
-	const notifyLoginError = ({ msg }) => toast.update(2, {
+	const notifyLoginError = ({ msg }) => toast.update("login", {
 		render: msg,
 		type: "error",
 		isLoading: false,
 		position: "top-center",
-		autoClose: 5000,
+		autoClose: false,
 		hideProgressBar: true,
-		closeOnClick: true,
 		closeButton: true,
 		pauseOnHover: false,
 		draggable: true,
-		progress: undefined,
-		transition: Flip,
-		theme: "colored",
 	});
 	const notifyCart = ({ msg }) => toast.success(<NotifyCart msg={msg} />, {
-		position: "top-center",
-		closeOnClick: true,
+		position: "top-left",
 		autoClose: 3500,
 		pauseOnHover: true,
 		draggable: false,
-		progress: undefined,
-		transition: Flip,
-		theme: "colored",
 		onClick: () => setIsOpen(true),
 	});
 	const notifyInfoCart = ({ msg }) => toast.info(<NotifyInfoCart msg={msg} />, {
-		position: "top-center",
-		closeOnClick: true,
+		position: "top-left",
 		autoClose: 3500,
 		pauseOnHover: true,
 		draggable: false,
-		progress: undefined,
-		transition: Flip,
-		theme: "colored",
-		onClick: () => setIsOpen(true),
+		onClick: () => setIsOpen(true)
 	});
 
 	const dismiss = ({ id }) => toast.dismiss(id);

@@ -8,9 +8,8 @@ const CartContext = createContext()
 
 export default function CartProvider({ children }) {
 	const [cart, setCart] = useState([])
-	const [qty, setQty] = useState(1)
 	const [totalPrice, setTotalPrice] = useState()
-	const { notifyCart, notifyError, notifyInfoCart, notifySuccess } = useNotify()
+	const { notifyCart, notifyError, notifyInfoCart } = useNotify()
 
 	useEffect(() => {
 		const cartLocal = localStorage.getItem('EcommerceShopingCart')
@@ -51,14 +50,17 @@ export default function CartProvider({ children }) {
 		const newCart = [...cart];
 		try {
 			const productExists = newCart.find((product) => product.id === id);
-			if(!productExists){
-				return notifyError({msg: "Erro ao remover o produto."})
+			if (!productExists) {
+				return notifyError({ msg: "Erro ao remover o produto." })
+			} else {
+				const updatedCart = cart.filter(cartItem => cartItem.id !== id)
+				setCart(updatedCart)
+				return notifyInfoCart({msg: "Produto removido do carrinho"})
 			}
-			const updatedCart = cart.filter(cartItem => cartItem.id !== id)
-			setCart(updatedCart)
+
 
 		} catch {
-			notifyError({msg: "Erro ao remover o produto."})
+			notifyError({ msg: "Erro ao remover o produto." })
 		}
 	}
 
@@ -75,9 +77,9 @@ export default function CartProvider({ children }) {
 
 	const store = {
 		add,
+		cart,
 		removeQty,
 		remove,
-		cart,
 		totalPrice
 	}
 
@@ -91,15 +93,15 @@ export default function CartProvider({ children }) {
 export function useCart() {
 	const context = useContext(CartContext)
 	const {
-		cart,
 		add,
+		cart,
 		removeQty,
 		remove,
 		totalPrice
 	} = context
 	return {
-		cart,
 		add,
+		cart,
 		removeQty,
 		remove,
 		totalPrice

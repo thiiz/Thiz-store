@@ -45,7 +45,7 @@ export default function Login({ login, setLogin, setToggleLogin }) {
 			path: '/api/auth/accessToken',
 		})
 		localStorage.setItem('firstLogin', true)
-		dismiss({id: 1})
+		dismiss({id: "registred"})
 		if (res.msg === "Login Success!") return notifyLoginSuccess({ msg: "Logado com sucesso!" }),  setAuth({token: res.refresh_token, user: res.user}), setToggleLogin(false)
 	}
 
