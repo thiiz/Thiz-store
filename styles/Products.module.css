@@ -44,7 +44,6 @@
 	text-transform: capitalize;
 	white-space: nowrap;
 	overflow: hidden;
-	/* "overflow" value must be different from "visible" */
 	text-overflow: ellipsis;
 }
 

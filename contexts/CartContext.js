@@ -8,7 +8,7 @@ const CartContext = createContext()
 
 export default function CartProvider({ children }) {
 	const [cart, setCart] = useState([])
-	const [totalPrice, setTotalPrice] = useState()
+	const [subTotalPrice, setSubTotalPrice] = useState()
 	const { notifyCart, notifyError, notifyInfoCart } = useNotify()
 
 	useEffect(() => {
@@ -23,7 +23,7 @@ export default function CartProvider({ children }) {
 		cart.map((item) => {
 			value = value += item.price * item.qty
 		})
-		setTotalPrice(value)
+		setSubTotalPrice(value)
 		localStorage.setItem('EcommerceShopingCart', JSON.stringify(cart))
 
 	}, [cart])
@@ -55,7 +55,7 @@ export default function CartProvider({ children }) {
 			} else {
 				const updatedCart = cart.filter(cartItem => cartItem.id !== id)
 				setCart(updatedCart)
-				return notifyInfoCart({msg: "Produto removido do carrinho"})
+				return notifyInfoCart({ msg: "Produto removido do carrinho!" })
 			}
 
 
@@ -74,13 +74,21 @@ export default function CartProvider({ children }) {
 			return notifyInfoCart({ msg: `Quantidade do produto alterada para ${check.qty}` })
 		}
 	}
+	function clearCart() {
+		if (cart.length > 0) {
+			setCart([])
+			return notifyInfoCart({ msg: "O carrinho foi limpo!" })
+		}
+		return notifyError({msg: "O carrinho já está vazio."})
+	}
 
 	const store = {
 		add,
 		cart,
 		removeQty,
 		remove,
-		totalPrice
+		clearCart,
+		subTotalPrice
 	}
 
 	return (
@@ -97,13 +105,15 @@ export function useCart() {
 		cart,
 		removeQty,
 		remove,
-		totalPrice
+		clearCart,
+		subTotalPrice
 	} = context
 	return {
 		add,
 		cart,
 		removeQty,
 		remove,
-		totalPrice
+		clearCart,
+		subTotalPrice
 	}
 }

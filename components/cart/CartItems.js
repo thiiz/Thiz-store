@@ -12,17 +12,20 @@ export default function CartItems({ item }) {
 	return (
 		<>
 			<div className={style.item}>
-				<div>
-					<Image onClick={handleViewProduct} src={item?.image.url} className={style.cartMenuImg} width='110px' height='80px' max-width='110px' alt={''} />
-					<p>{item.title}</p>
+				<div className={style.containerImg}>
+					<Image className={style.productImg} onClick={handleViewProduct} src={item?.image.url} width="105" height="120px" alt={item?.title} blurDataURL placeholder="blur" />
 				</div>
-				<div>
-					<p>{price}</p>
+				<div className={style.infoProduct}>
+					<div className={style.Quantity_actions}>
+						<div className={style.titleAndPrice}>
+							<p className={style.productTitle}>{item?.title}</p>
+							<p className={style.price}>{price}</p>
+						</div>
+						<CartActions item={item} />
+					</div>
 				</div>
 			</div>
-			<div className={style.Quantity_actions}>
-				<CartActions item={item}  />
-			</div>
+
 		</>
 	)
 }
