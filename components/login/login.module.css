@@ -38,6 +38,15 @@
 	transition: ease-in-out 200ms;
 	padding: 6px 6px 0 6px;
 }
+.closeLogin svg{
+	transition: 400ms ease-in-out;
+	background-color: #fff;
+	border-radius: 10%;
+}
+.closeLogin svg:hover{
+	padding: 3px;
+	background-color: #57575760;
+}
 
 .newUser {
 	top: 8px;

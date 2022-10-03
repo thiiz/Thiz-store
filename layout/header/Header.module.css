@@ -120,7 +120,8 @@
 	align-items: center;
 	border-radius: 10%;
 }
-.userContainer{
+
+.userContainer {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -162,16 +163,6 @@
 	z-index: 12;
 }
 
-.backgroundLogin {
-	/*background-color: #000000a4;*/
-	background-color: #00000000;
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
 .closeLogin {
 	position: absolute;
 	top: 7px;
@@ -191,6 +182,30 @@
 
 .scrollTop {
 	top: 0;
+}
+
+.background {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.focusOut {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.backdrop {
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	right: 0;
+	z-index: -1;
+	position: absolute;
 }
 
 @media (max-width: 590px) {
@@ -251,7 +266,7 @@
 		margin-left: 7px;
 	}
 
-	.avatar{
+	.avatar {
 		font-size: 30px;
 	}
 }

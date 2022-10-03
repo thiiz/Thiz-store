@@ -1,10 +1,16 @@
 .container {
     background-color: #f1f1f1;
-    -moz-box-shadow: inset 0 0 10px #00000080;
-    -webkit-box-shadow: inset 0 0 10px #00000080;
-    box-shadow: inset 0 0 10px #00000080;
     height: 100vh;
     width: 550px;
+    border-left: 2px solid #000;
+}
+.backdrop{
+    height: 100vh;
+	width: 100vw;
+    position: fixed;
+    background-color: red;
+    top: 0;
+    left: 0;
 }
 
 .content {
@@ -12,6 +18,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     height: 70%;
+
 }
 
 .containerProduct {
@@ -29,10 +36,12 @@
     margin: 0 0 5px 0;
     text-align: center;
     position: fixed;
+    border-radius: 2%;
+
 }
 
-.closeBtn {
-    margin: 0 0 0 10px;
+.closeCart {
+    margin: 5px 0 0 5px;
     padding-right: 10px;
     border: none;
     font-size: 28px;
@@ -44,10 +53,15 @@
     transition: ease 250ms;
     user-select: none;
 }
-
-.closeBtn:hover,
+.closeCart svg{
+	transition: 400ms ease-in-out;
+	background-color: #fff;
+	border-radius: 10%;
+}
+.closeCart svg:hover,
 .closeText:hover {
-    color: rgb(48, 48, 48);
+    padding: 3px;
+	background-color: #57575760;
 }
 
 .closeText {
@@ -62,6 +76,25 @@
     font-weight: 560;
     text-transform: uppercase;
     font-family: 'Josefin Sans', sans-serif;
+}
+
+.deleteAll {
+    position: fixed;
+    z-index: 13;
+    right: 3px;
+    top: 3px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    -webkit-box-shadow: 0px 0px 6px 2px #00000048;
+    box-shadow: 0px 0px 6px 2px #00000048;
+}
+
+.deleteAllIcon {
+    font-size: 20px;
 }
 
 .quantity {
@@ -150,33 +183,26 @@
     background-color: #acacac;
 }
 
-.sideContainer {
+.btContainer {
     background-color: #fff;
     border-top: 3px solid #000;
     width: 100%;
     height: 30vh;
     position: absolute;
     bottom: 0;
-    -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px #00000000;
-    box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #0000009a, 5px 5px 15px 5px #00000000;
 }
+.summaryContainer{
+    margin: 15px 20px 0px 20px;
+    border-bottom: 1px solid #ccc;
 
-.deleteAll {
-    position: fixed;
-    z-index: 13;
-    right: 3px;
-    top: 3px;
-    font-size: 13px;
+}
+.summaryList{
+    font-size: 17px;
     font-weight: 600;
-    text-transform: uppercase;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    -webkit-box-shadow: 0px 0px 6px 2px #00000048;
-    box-shadow: 0px 0px 6px 2px #00000048;
-}
-
-.deleteAllIcon {
-    font-size: 20px;
+    height: 2.5rem;
 }
 
 @media (max-width: 590px) {

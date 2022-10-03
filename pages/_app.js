@@ -9,6 +9,7 @@ import NotifyProvider from '../contexts/NotifyContext';
 import { ToastContainer, Flip } from 'react-toastify';
 import { DataProvider } from '../contexts/GlobalState'
 
+//Política de Cookies Usamos cookies para garantir que você obtenha a melhor experiência em nosso site.
 
 function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
   return (

@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import style from './Header.module.css'
 import MenuLogin from '../../components/login/MenuLogin'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { CartMenu } from '../../components/cart/CartMenu'
 import { FaShoppingCart, FaUserCircle } from 'react-icons/fa'
 import { MdHeadsetMic } from 'react-icons/md'
@@ -15,8 +15,10 @@ import { useIsSmall } from '../../lib/MediaQuery'
 import { Fade as Hamburger } from 'hamburger-react'
 import { useUser } from '../../contexts/GlobalState'
 import { useCart } from '../../contexts/CartContext'
+import { disableBodyScroll, enableBodyScroll, } from 'body-scroll-lock';
 
 function Header() {
+	const popupLogin = useRef(null)
 	const { cart } = useCart()
 	const { auth } = useUser()
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
@@ -28,16 +30,24 @@ function Header() {
 	const mobileVariant = useMobileSize()
 	const small = useIsSmall()
 
+	useEffect(() => {
+		if (toggleLogin || isOpen) {
+			popupLogin.current && disableBodyScroll(popupLogin.current)
+		} else {
+			popupLogin.current && enableBodyScroll(popupLogin.current)
+		}
+	}, [toggleLogin, isOpen])
+
 	const CartVariant = {
 		open: { opacity: 1, x: 0 },
-		closed: { opacity: 0, x: "100%" },
+		closed: { opacity: 1, x: "400%" },
 	}
 
 	const loginVariant = {
 		open: { opacity: 1, x: 0 },
 		closed: { opacity: 0, x: "-2800px" },
 	}
-	const loginBackgroundVariant = {
+	const backgroundVariant = {
 		visible: { transition: { delay: 0.3 }, backgroundColor: "#000000c0" },
 		hidden: { backgroundColor: "#00000000" }
 	}
@@ -45,8 +55,9 @@ function Header() {
 	return (
 		<>
 			{Object.keys(auth).length === 0 ?
-				<motion.div animate={toggleLogin ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
-					<motion.div className={style.backgroundLogin} animate={toggleLogin ? "visible" : "hidden"} variants={loginBackgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
+				<motion.div ref={popupLogin} animate={toggleLogin ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
+					<motion.div className={style.background} animate={toggleLogin ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
+						<div onClick={() => setToggleLogin(false)} className={style.focusOut}></div>
 						<MenuLogin setToggleLogin={setToggleLogin} login={login} setLogin={setLogin} />
 					</motion.div>
 				</motion.div> : ''}
@@ -78,7 +89,7 @@ function Header() {
 													<FaUserCircle />
 												</a>
 											</Link>
-											{isOpenMobile ? <p className={style.loginText}>{auth.user.name}</p> : ''}								
+											{isOpenMobile ? <p className={style.loginText}>{auth.user.name}</p> : ''}
 										</>
 									}
 								</div>
@@ -131,6 +142,7 @@ function Header() {
 				className={style.cart}
 			>
 				<CartMenu />
+				<motion.div onClick={() => setIsOpen(false)} className={style.backdrop} animate={isOpen ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.1 }}></motion.div>
 			</motion.nav>
 		</>
 	)

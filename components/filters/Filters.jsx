@@ -95,7 +95,7 @@ export function ProductFiltred({ data }) {
 					<Select onChange={e => setSelectedOption(e.value)} hideSelectedOptions={true} defaultValue={selectedOption} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" isSearchable={false} />
 				</div>
 			</div>
-			{notfound && <ProductNotFound search={searching} />}
+			{notfound ? <ProductNotFound search={searching} /> : ''}
 			<Product onChange={''} products={filtred} grid={grid} />
 		</div>
 	)
