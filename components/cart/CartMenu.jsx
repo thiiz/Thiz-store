@@ -34,8 +34,14 @@ export function CartMenu() {
 				<div className={style.btContainer}>
 					<ul className={style.summaryContainer}>
 						<li className={style.summaryList}><span>Valor dos produtos</span> <span>R${subTotalPrice?.toFixed(2).toString().replace(".", ",")}</span></li>
-						<li className={style.summaryList}><span>Frete</span> <input type="text" placeholder="00000-000" inputmode="numeric" maxlength="9" name="cep" className=""></input></li>
 
+						<li className={style.summaryList}>
+							<span>Calcular frete</span>
+							<div className={style.zipCode}>
+								<label>CEP:</label>
+								<input className={style.zipCodeInput} type="text" placeholder="00000-000" maxLength="9" name="cep" />
+							</div>
+						</li>
 					</ul>
 					<div>
 						<span>Total da compra</span>

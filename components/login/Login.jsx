@@ -6,16 +6,15 @@ import { useState, useEffect } from 'react'
 import { postData } from '../../utils/fetchData'
 import { setCookie } from 'nookies'
 import { useNotify } from '../../contexts/NotifyContext';
-import { useUser } from '../../contexts/GlobalState'
+import { useAuth } from '../../contexts/AuthContext'
+import { useRouter } from 'next/router'
 
-export default function Login({ login, setLogin, setToggleLogin }) {
+export default function Login({ login, setLogin, setToggleLoginMenu }) {
 
-	const { setAuth } = useUser()
+	const {query, push} = useRouter()
+	const { setAuth } = useAuth()
 	const { notifyRegistred, notifyLoginPromise, notifyLoginSuccess, notifyLoginError, dismiss } = useNotify()
 	const { register, handleSubmit } = useForm()
-	const [msg, setMsg] = useState("Endereço email ou senha incorretos.")
-
-
 
 	useEffect(() => {
 		if (login === "registred") {
@@ -46,7 +45,10 @@ export default function Login({ login, setLogin, setToggleLogin }) {
 		})
 		localStorage.setItem('firstLogin', true)
 		dismiss({id: "registred"})
-		if (res.msg === "Login Success!") return notifyLoginSuccess({ msg: "Logado com sucesso!" }),  setAuth({token: res.refresh_token, user: res.user}), setToggleLogin(false)
+		if(query.profile === "redirect"){
+			push('/profile')
+		}
+		if (res.msg === "Login Success!") return notifyLoginSuccess({ msg: "Logado com sucesso!" }),  setAuth({token: res.refresh_token, user: res.user}), setToggleLoginMenu(false)
 	}
 
 	return (

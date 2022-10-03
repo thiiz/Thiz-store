@@ -3,10 +3,10 @@ import { createContext, useContext, useEffect } from 'react'
 import { getData } from '../utils/fetchData'
 
 
-export const DataContext = createContext()
+export const AuthContext = createContext()
 
 
-export const DataProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
 	const [auth, setAuth] = useState({})
 
 	useEffect(() => {
@@ -25,14 +25,14 @@ export const DataProvider = ({ children }) => {
 	}
 
 	return (
-		<DataContext.Provider value={state}>
+		<AuthContext.Provider value={state}>
 			{children}
-		</DataContext.Provider>
+		</AuthContext.Provider>
 	)
 }
 
-export function useUser() {
-	const context = useContext(DataContext)
+export function useAuth() {
+	const context = useContext(AuthContext)
 	const {
 		auth,
 		setAuth

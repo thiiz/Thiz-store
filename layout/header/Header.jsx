@@ -13,16 +13,21 @@ import { useDesktopSize } from '../../lib/useAnimate'
 import { useMobileSize } from '../../lib/useAnimate'
 import { useIsSmall } from '../../lib/MediaQuery'
 import { Fade as Hamburger } from 'hamburger-react'
-import { useUser } from '../../contexts/GlobalState'
+import { useAuth } from '../../contexts/AuthContext'
 import { useCart } from '../../contexts/CartContext'
+import { useLoginMenu } from '../../contexts/LoginMenuContext'
 import { disableBodyScroll, enableBodyScroll, } from 'body-scroll-lock';
+import { useRouter } from 'next/router'
 
 function Header() {
 	const popupLogin = useRef(null)
 	const { cart } = useCart()
-	const { auth } = useUser()
+	const { auth } = useAuth()
+	const { toggleLoginMenu, setToggleLoginMenu } = useLoginMenu()
+
+	const router = useRouter()
+
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
-	const [toggleLogin, setToggleLogin] = useState(false)
 	const [login, setLogin] = useState(true)
 	const { isOpen, setIsOpen } = useMenuCart()
 	const scrollDirection = useScrollDirection()
@@ -31,12 +36,12 @@ function Header() {
 	const small = useIsSmall()
 
 	useEffect(() => {
-		if (toggleLogin || isOpen) {
+		if (toggleLoginMenu || isOpen) {
 			popupLogin.current && disableBodyScroll(popupLogin.current)
 		} else {
 			popupLogin.current && enableBodyScroll(popupLogin.current)
 		}
-	}, [toggleLogin, isOpen])
+	}, [toggleLoginMenu, isOpen])
 
 	const CartVariant = {
 		open: { opacity: 1, x: 0 },
@@ -55,10 +60,10 @@ function Header() {
 	return (
 		<>
 			{Object.keys(auth).length === 0 ?
-				<motion.div ref={popupLogin} animate={toggleLogin ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
-					<motion.div className={style.background} animate={toggleLogin ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
-						<div onClick={() => setToggleLogin(false)} className={style.focusOut}></div>
-						<MenuLogin setToggleLogin={setToggleLogin} login={login} setLogin={setLogin} />
+				<motion.div ref={popupLogin} animate={toggleLoginMenu ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
+					<motion.div className={style.background} animate={toggleLoginMenu ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
+						{router.pathname !== "/profile" ? <div onClick={() => setToggleLoginMenu(false)} className={style.focusOut}></div> : ''}
+						<MenuLogin setToggleLoginMenu={setToggleLoginMenu} login={login} setLogin={setLogin} />
 					</motion.div>
 				</motion.div> : ''}
 			<motion.header className={style.header} animate={!small ? scrollDirection === "down" ? "small" : "normal" : isOpenMobile ? "normal" : "small"} variants={!small ? desktopVariant : mobileVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
@@ -79,7 +84,7 @@ function Header() {
 								</button>
 								<div className={style.userContainer}>
 									{Object.keys(auth).length === 0 ?
-										<button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
+										<button onClick={() => setToggleLoginMenu(toggleLoginMenu => !toggleLoginMenu)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
 											<FaUserCircle className={style.avatar} />
 										</button>
 										:
@@ -120,7 +125,7 @@ function Header() {
 							</motion.button>
 							<div className={style.userContainer}>
 								{Object.keys(auth).length === 0 ?
-									<motion.button onClick={() => setToggleLogin(toggleLogin => !toggleLogin)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
+									<motion.button onClick={() => setToggleLoginMenu(toggleLoginMenu => !toggleLoginMenu)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
 										<FaUserCircle />
 									</motion.button> :
 									<>

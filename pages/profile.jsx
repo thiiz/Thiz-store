@@ -1,20 +1,30 @@
-import { useUser } from "../contexts/GlobalState"
+import { useAuth } from "../contexts/AuthContext"
 import { destroyCookie } from 'nookies'
 import { useNotify } from "../contexts/NotifyContext"
 import { useEffect } from "react"
-import { useRouter} from 'next/router'
+import { useRouter } from 'next/router'
+import { useLoginMenu } from '../contexts/LoginMenuContext'
 export default function Profile() {
-	const router = useRouter()
-	const {notifySuccess } = useNotify()
-	const { auth, setAuth } = useUser()
+	const { push, pathname } = useRouter()
+	const { notifySuccess, notifyError } = useNotify()
+	const { setToggleLoginMenu } = useLoginMenu()
+	const { auth, setAuth } = useAuth()
 	useEffect(() => {
-		if(Object.keys(auth).length === 0) router.push('/')
-	},[auth])
+		const firstLogin = localStorage.getItem("firstLogin");
+		if (!firstLogin) {
+			notifyError({ msg: "Você precisa fazer login para acessar essa página." })
+			push({pathname: '/', query: 'profile=redirect'})
+			setToggleLoginMenu(true)
+		}
+	}, [])
 	const handleLogout = () => {
+		if (pathname !== "/") {
+			push('/')
+		}
 		setAuth({})
 		destroyCookie(undefined, 'refreshtoken', { path: '/api/auth/accessToken' })
 		localStorage.removeItem('firstLogin')
-		notifySuccess({ msg: "Login encerrado!" })
+		return notifySuccess({ msg: "Login encerrado!" })
 	}
 	return (
 		<div className='page'>

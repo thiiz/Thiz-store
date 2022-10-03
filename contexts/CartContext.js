@@ -33,7 +33,7 @@ export default function CartProvider({ children }) {
 		const check = newCart.find((product) => product.id === item.id)
 
 		if (check) {
-			if (check.instock - 1 >= check.qty) {
+			if (9 >= check.qty) {
 				check.qty += 1;
 				notifyInfoCart({ msg: `Quantidade do produto alterada para ${check.qty}` })
 			} else {
