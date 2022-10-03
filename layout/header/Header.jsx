@@ -50,7 +50,7 @@ function Header() {
 
 	const loginVariant = {
 		open: { opacity: 1, x: 0 },
-		closed: { opacity: 0, x: "-2800px" },
+		closed: { opacity: 0, x: "-400%" },
 	}
 	const backgroundVariant = {
 		visible: { transition: { delay: 0.3 }, backgroundColor: "#000000c0" },
@@ -62,7 +62,7 @@ function Header() {
 			{Object.keys(auth).length === 0 ?
 				<motion.div ref={popupLogin} animate={toggleLoginMenu ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
 					<motion.div className={style.background} animate={toggleLoginMenu ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
-						{router.pathname !== "/profile" ? <div onClick={() => setToggleLoginMenu(false)} className={style.focusOut}></div> : ''}
+						<div onClick={() => setToggleLoginMenu(false)} className={style.focusOut}></div>
 						<MenuLogin setToggleLoginMenu={setToggleLoginMenu} login={login} setLogin={setLogin} />
 					</motion.div>
 				</motion.div> : ''}
@@ -106,7 +106,7 @@ function Header() {
 
 				<motion.nav className={style.menuBtn} animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant}>
 					<ul className={style.NavMenuList}>
-						<li><Link href="/"><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>início</motion.a></Link></li>
+						<li><Link href="/" as=''><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>início</motion.a></Link></li>
 						<li><Link href='/products'><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>produtos</motion.a></Link></li>
 						<li><Link href='/about'><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>sobre</motion.a></Link></li>
 						<li><Link href="/contact"><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>contato</motion.a></Link></li>
