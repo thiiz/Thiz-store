@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import style from './Header.module.css'
 import MenuLogin from '../../components/login/MenuLogin'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { CartMenu } from '../../components/cart/CartMenu'
 import { FaShoppingCart, FaUserCircle } from 'react-icons/fa'
 import { MdHeadsetMic } from 'react-icons/md'
@@ -16,32 +16,27 @@ import { Fade as Hamburger } from 'hamburger-react'
 import { useAuth } from '../../contexts/AuthContext'
 import { useCart } from '../../contexts/CartContext'
 import { useLoginMenu } from '../../contexts/LoginMenuContext'
-import { disableBodyScroll, enableBodyScroll, } from 'body-scroll-lock';
-import { useRouter } from 'next/router'
 
 function Header() {
-	const popupLogin = useRef(null)
 	const { cart } = useCart()
 	const { auth } = useAuth()
+
 	const { toggleLoginMenu, setToggleLoginMenu } = useLoginMenu()
-
-	const router = useRouter()
-
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
 	const [login, setLogin] = useState(true)
-	const { isOpen, setIsOpen } = useMenuCart()
+	const { openCart, setOpenCart } = useMenuCart()
 	const scrollDirection = useScrollDirection()
 	const desktopVariant = useDesktopSize()
 	const mobileVariant = useMobileSize()
 	const small = useIsSmall()
 
 	useEffect(() => {
-		if (toggleLoginMenu || isOpen) {
-			popupLogin.current && disableBodyScroll(popupLogin.current)
+		if (toggleLoginMenu || openCart) {
+			document.body.style.overflowY = 'hidden'
 		} else {
-			popupLogin.current && enableBodyScroll(popupLogin.current)
+			document.body.style.overflowY = 'auto'
 		}
-	}, [toggleLoginMenu, isOpen])
+	}, [toggleLoginMenu, openCart]);
 
 	const CartVariant = {
 		open: { opacity: 1, x: 0 },
@@ -60,7 +55,7 @@ function Header() {
 	return (
 		<>
 			{Object.keys(auth).length === 0 ?
-				<motion.div ref={popupLogin} animate={toggleLoginMenu ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
+				<motion.div animate={toggleLoginMenu ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
 					<motion.div className={style.background} animate={toggleLoginMenu ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
 						<div onClick={() => setToggleLoginMenu(false)} className={style.focusOut}></div>
 						<MenuLogin setToggleLoginMenu={setToggleLoginMenu} login={login} setLogin={setLogin} />
@@ -78,7 +73,7 @@ function Header() {
 								<button className={`${style.btn} ${style.btnInfo}`} type='button'>
 									<MdHeadsetMic />
 								</button>
-								<button onClick={() => setIsOpen(isOpen => !isOpen)} className={`${style.btn} ${style.btnInfo}`} type='button'>
+								<button onClick={() => setOpenCart(openCart => !openCart)} className={`${style.btn} ${style.btnInfo}`} type='button'>
 									<FaShoppingCart />
 									<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>{Object.keys(cart).length}</div>
 								</button>
@@ -119,7 +114,7 @@ function Header() {
 							<motion.button animate={!small ? scrollDirection === "down" ? "small_Menu" : "normal_Menu" : ''} variants={desktopVariant} className={`${style.btn} ${style.btnInfo}`} type='button'>
 								<MdHeadsetMic />
 							</motion.button>
-							<motion.button animate={!small ? scrollDirection === "down" ? "small_Menu" : "normal_Menu" : ''} variants={desktopVariant} onClick={() => setIsOpen(isOpen => !isOpen)} className={`${style.btn} ${style.btnInfo}`} type='button'>
+							<motion.button animate={!small ? scrollDirection === "down" ? "small_Menu" : "normal_Menu" : ''} variants={desktopVariant} onClick={() => setOpenCart(openCart => !openCart)} className={`${style.btn} ${style.btnInfo}`} type='button'>
 								<FaShoppingCart />
 								<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>{Object.keys(cart).length}</div>
 							</motion.button>
@@ -142,12 +137,12 @@ function Header() {
 				</motion.div>
 			</motion.header>
 			<motion.nav
-				animate={isOpen ? "open" : "closed"}
+				animate={openCart ? "open" : "closed"}
 				variants={CartVariant}
 				className={style.cart}
 			>
 				<CartMenu />
-				<motion.div onClick={() => setIsOpen(false)} className={style.backdrop} animate={isOpen ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.1 }}></motion.div>
+				<motion.div onClick={() => setOpenCart(false)} className={style.backdrop} animate={openCart ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.1 }}></motion.div>
 			</motion.nav>
 		</>
 	)

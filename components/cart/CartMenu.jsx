@@ -7,7 +7,7 @@ import { MdDeleteForever } from 'react-icons/md'
 import Link from 'next/link'
 
 export function CartMenu() {
-	const { setIsOpen } = useMenuCart()
+	const { setOpenCart } = useMenuCart()
 	const { cart, subTotalPrice, clearCart } = useCart()
 	const price = subTotalPrice * 0.95
 	const calc = (Math.round(subTotalPrice / 6 * 100)) / 100.0;
@@ -17,7 +17,7 @@ export function CartMenu() {
 			<div className={style.container}>
 				<div className={style.headerCart}>
 					<button onClick={() => clearCart()} className={style.deleteAll}><MdDeleteForever className={style.deleteAllIcon} />limpar carrinho</button>
-					<button onClick={() => setIsOpen(false)} className={style.closeCart}><GrClose /><p className={style.closeText}></p></button>
+					<button onClick={() => setOpenCart(false)} className={style.closeCart}><GrClose /><p className={style.closeText}></p></button>
 					<p className={style.titleMyCart}>meu carrinho</p>
 				</div>
 				<div className={style.content}>

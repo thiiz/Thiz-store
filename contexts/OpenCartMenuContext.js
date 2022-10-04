@@ -4,11 +4,11 @@ import { createContext, useState } from "react";
 const OpenCartMenuContext = createContext()
 
 export default function CartMenuProvider({ children }) {
-	const [isOpen, setIsOpen] = useState(false)
+	const [openCart, setOpenCart] = useState(false)
 
 	const state = {
-		isOpen,
-		setIsOpen
+		openCart,
+		setOpenCart
 	}
 
 	return (
@@ -21,11 +21,11 @@ export default function CartMenuProvider({ children }) {
 export function useMenuCart() {
 	const context = useContext(OpenCartMenuContext)
 	const {
-		isOpen,
-		setIsOpen
+		openCart,
+		setOpenCart
 	} = context
 	return {
-		isOpen,
-		setIsOpen
+		openCart,
+		setOpenCart
 	}
 }

@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const NotifyContext = createContext()
 
 export default function NotifyProvider({ children }) {
-	const { setIsOpen } = useMenuCart()
+	const { setOpenCart } = useMenuCart()
 
 	const notifySuccess = ({ msg }) => toast.success(<NotifySuccess msg={msg} />, {
 		position: "top-center",
@@ -84,14 +84,14 @@ export default function NotifyProvider({ children }) {
 		autoClose: 3500,
 		pauseOnHover: true,
 		draggable: false,
-		onClick: () => setIsOpen(true),
+		onClick: () => setOpenCart(true),
 	});
 	const notifyInfoCart = ({ msg }) => toast.info(<NotifyInfoCart msg={msg} />, {
 		position: "top-left",
 		autoClose: 3500,
 		pauseOnHover: true,
 		draggable: false,
-		onClick: () => setIsOpen(true)
+		onClick: () => setOpenCart(true)
 	});
 
 	const dismiss = ({ id }) => toast.dismiss(id);
