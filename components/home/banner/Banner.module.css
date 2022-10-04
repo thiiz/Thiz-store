@@ -1,5 +1,6 @@
 .bannerContainer {
 	position: relative;
+	margin-top: 50px;
 	width: 100vw;
 	height: 420px;
 	display: flex;
@@ -32,6 +33,7 @@
 	font-size: 20px;
 	font-family: 'Oswald', sans-serif;
 	color: #000;
+	margin-bottom: 20px;
 }
 
 .btn {
@@ -41,71 +43,103 @@
 }
 
 .btnShop {
-	position: relative;
-	top: 22px;
-	outline: none;
-	user-select: none;
-	border: 0;
-	vertical-align: middle;
-	text-decoration: none;
-	font-family: inherit;
-	font-size: 16px;
+	background-color: transparent;
+	border: 2px solid #000;
+	border-radius: 0;
+	color: #fff;
 	font-weight: 600;
-	color: #382b22;
-	text-transform: uppercase;
-	padding: 1.20em 3.5em;
-	background: #f0f9ff;
-	border: 2px solid #4d95d8;
-	border-radius: 0.75em;
-	-webkit-transform-style: preserve-3d;
-	transform-style: preserve-3d;
-	-webkit-transition: background 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
-	transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
-}
-
-.btnShop::before {
+	letter-spacing: 0.05em;
+	outline: none;
+	overflow: visible;
+	padding: 1.25em 2em;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	text-transform: none;
+	transition: all 0.3s ease-in-out;
+	user-select: none;
+	font-size: 13px;
+   }
+   
+   .btnShop::before {
+	content: "";
+	width: 1.5625rem;
+	height: 2px;
+	background: black;
+	top: 50%;
+	left: 1.5em;
 	position: absolute;
-	content: '';
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
+	transform: translateY(-50%);
+	transform-origin: center;
+	transition: background 0.3s linear, width 0.3s linear;
+   }
+   
+   .btnText {
+	font-size: 1.125em;
+	line-height: 1.33333em;
+	padding-left: 2em;
+	display: block;
+	text-align: left;
+	transition: all 0.3s ease-in-out;
+	text-transform: uppercase;
+	color: black;
+   }
+   
+   .topKey {
+	height: 2px;
+	width: 1.5625rem;
+	top: -2px;
+	left: 0.625rem;
+	position: absolute;
+	background: #e8e8e8;
+	transition: width 0.5s ease-out, left 0.3s ease-out;
+   }
+   
+   .bottomKey1 {
+	height: 2px;
+	width: 1.5625rem;
+	right: 1.875rem;
+	bottom: -2px;
+	position: absolute;
+	background: #e8e8e8;
+	transition: width 0.5s ease-out, right 0.3s ease-out;
+   }
+   
+   .bottomKey2 {
+	height: 2px;
+	width: 0.625rem;
+	right: 0.625rem;
+	bottom: -2px;
+	position: absolute;
+	background: #e8e8e8;
+	transition: width 0.5s ease-out, right 0.3s ease-out;
+   }
+   
+   .btnShop:hover {
+	color: white;
+	background: black;
+   }
+   
+   .btnShop:hover::before {
+	width: 0.9375rem;
+	background: white;
+   }
+   
+   .btnShop:hover .btnText {
+	color: white;
+	padding-left: 1.5em;
+   }
+   
+   .btnShop:hover .topKey {
+	left: -2px;
+	width: 0px;
+   }
+   
+   .btnShop:hover .bottomKey1,
+   .btnShop:hover .bottomKey2 {
 	right: 0;
-	bottom: 0;
-	background: #c4e5f9;
-	border-radius: inherit;
-	-webkit-box-shadow: 0 0 0 2px #5b89b4, 0 0.625em 0 0 #e2f6ff;
-	box-shadow: 0 0 0 2px #5b89b4, 0 0.625em 0 0 #e2f4ff;
-	-webkit-transform: translate3d(0, 0.75em, -1em);
-	transform: translate3d(0, 0.75em, -1em);
-	transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
-}
-
-.btnShop:hover {
-	background: #e9f5ff;
-	-webkit-transform: translate(0, 0.25em);
-	transform: translate(0, 0.25em);
-}
-
-.btnShop:hover::before {
-	-webkit-box-shadow: 0 0 0 2px #5b89b4, 0 0.5em 0 0 #e2efff;
-	box-shadow: 0 0 0 2px #5b89b4, 0 0.5em 0 0 #e2f3ff;
-	-webkit-transform: translate3d(0, 0.5em, -1em);
-	transform: translate3d(0, 0.5em, -1em);
-}
-
-.btnShop:active {
-	background: #e9f4ff;
-	-webkit-transform: translate(0em, 0.75em);
-	transform: translate(0em, 0.75em);
-}
-
-.btnShop:active::before {
-	-webkit-box-shadow: 0 0 0 2px #5b89b4, 0 0 #e2eeff;
-	box-shadow: 0 0 0 2px #5b89b4, 0 0 #e2f6ff;
-	-webkit-transform: translate3d(0, 0, -1em);
-	transform: translate3d(0, 0, -1em);
-}
+	width: 0;
+   }
 
 @media (max-width: 590px) {
 	.mainTitle {
@@ -114,11 +148,6 @@
 	}
 
 	.mainSubTitle {
-		font-size: 15px;
-	}
-
-	.btnShop {
-		padding: 8px 28px;
 		font-size: 15px;
 	}
 
