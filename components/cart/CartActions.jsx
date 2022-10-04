@@ -1,7 +1,6 @@
-import { useState } from 'react'
 import { BiMinus, BiPlus } from 'react-icons/bi'
 import { GoX } from 'react-icons/go'
-import style from './Cart.module.css'
+import style from './styles/Cart.module.css'
 import { useCart } from '../../contexts/CartContext'
 
 export function CartActions({ item }) {

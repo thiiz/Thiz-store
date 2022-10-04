@@ -38,7 +38,7 @@ export default function Profile() {
 		<div className='page'>
 			{Object.keys(auth).length === 0 ? ''
 				:
-				<><button onClick={handleLogout}>xxxxxx</button>
+				<><button onClick={handleLogout}>SAIR</button>
 					<p>Nome: {auth.user.name}</p>
 					<p>Email: {auth.user.email}</p>
 					<p>Privilegios: {auth.user.role}</p>

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import style from './Cart.module.css'
+import style from './styles/Cart.module.css'
 import { CartActions } from './CartActions'
 import { useRouter } from 'next/router'
 
