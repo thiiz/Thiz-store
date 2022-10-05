@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useCart } from '../../contexts/CartContext';
 import style from './styles/Cart.module.css'
 import CartItems from './CartItems';
+import HeaderCart from './HeaderCart';
 
 export default function CartContent() {
 	const { cart, subTotalPrice } = useCart()
@@ -41,7 +42,7 @@ export default function CartContent() {
 					</div>
 				</div>
 				<div className={style.checkout}>
-					<Link href="/checkout"><a className={style.checkoutLink}>continuar</a></Link>
+					<Link href="#"><a className={style.checkoutLink}>continuar</a></Link>
 				</div>
 			</div>
 		</>

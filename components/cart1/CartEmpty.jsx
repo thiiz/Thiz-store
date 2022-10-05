@@ -1,4 +1,5 @@
 import style from './styles/CartEmpty.module.css'
+import HeaderCart from './HeaderCart'
 
 export default function CartEmpty() {
 	return (

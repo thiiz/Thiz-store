@@ -16,9 +16,9 @@ export function CartActions({ item }) {
 	return (
 		<div className={style.actionContainer}>
 			<button onClick={() => remove(item.id)} className={style.actions_Button}><GoX /></button>
-			<span className={style.quantity}>
+			<div className={style.quantity}>
 				{item.qty}
-			</span>
+			</div>
 			<button disabled={item.qty <= 1} onClick={handleMinus} className={style.actions_Button}><BiMinus /></button>
 			<button disabled={item.qty >= 10 && true} onClick={handlePlus} className={style.actions_Button}><BiPlus /></button>
 		</div>

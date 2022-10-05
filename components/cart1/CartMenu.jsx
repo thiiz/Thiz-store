@@ -12,7 +12,7 @@ export function CartMenu() {
 
 		<div className={style.container}>
 			<HeaderCart />
-			{cart?.length !== 0 ?
+			{cart.length !== 0 ?
 				<CartContent/> : <CartEmpty/>}
 		</div>
 
