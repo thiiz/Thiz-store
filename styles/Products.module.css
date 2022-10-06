@@ -14,6 +14,7 @@
 	text-align: center;
 	box-shadow: 0 0 8px #000000de;
 	padding: 0 8px 8px 8px;
+	border-radius: 8px;
 }
 
 .imageContainer {
@@ -23,8 +24,9 @@
 
 .productImg {
 	height: 100%;
-	transition: ease-in-out 250ms;
+	transition: ease-in-out 200ms;
 	user-select: none;
+	border-radius: 8px;
 
 }
 
@@ -72,31 +74,66 @@
 
 .buy {
 	width: 100%;
-	height: 46px;
 	cursor: pointer;
 	margin-top: 10px;
-	border: 1px solid rgba(0, 0, 0, 0.568);
-	background-color: #006eff;
+	background-color: #0e0e0e;
 	text-transform: uppercase;
-	text-align: center;
-	font-size: 16px;
+	font-size: 17px;
 	color: #fff;
+	padding: 0.35em;
+	border-radius: 0.9em;
+	border: none;
+	letter-spacing: 0.05em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	position: relative;
+	height: 2.8em;
 }
 
-.buy:active {
-	background-color: #0261dd;
+.iconContainer {
+	background: #f1f1f1;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 2.2em;
+	width: 2.2em;
+	border-radius: 0.7em;
+	right: 0.3em;
+	transition: all 0.3s;
+}
+
+.buy:hover .iconContainer {
+	width: calc(100% - 0.6em);
+}
+
+.icon {
+	font-size: 1.3em;
+	transition: transform 0.3s;
+	color: #000;
+}
+
+.buy:hover .icon{
+	transform: translateX(0.1em);
+}
+
+.buy:active .iconContainer {
+	transform: scale(0.95);
 }
 
 .unavailable {
 	width: 100%;
-	height: 46px;
+	height: 50px;
 	margin-top: 10px;
 	border: 1px solid #000000;
-	background-color: #535353;
+	background-color: #535353c0;
 	text-transform: uppercase;
-	font-size: 14px;
+	font-size: 16px;
 	text-align: center;
 	color: #fff;
+	border-radius: 5px;
 }
 
 @media (max-width: 590px) {
