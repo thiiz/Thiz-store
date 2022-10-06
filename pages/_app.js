@@ -43,6 +43,7 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
                   transition={Flip}
                   theme="colored"
                   limit={3}
+                  closeButton
                 />
                 <Transition>
                   <Component {...pageProps} />

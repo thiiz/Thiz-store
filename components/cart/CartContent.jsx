@@ -35,9 +35,9 @@ export default function CartContent() {
 				<div className={style.totalContainer}>
 					<span className={style.totalPrice}>Total da compra</span>
 					<div className={style.pagament}>
-						<span className={style.spot}>á vista<strong>R${price.toFixed(1).toString().replace(".", ",")}0</strong><span className={style.or}>ou</span></span>
+						<span className={style.spot}>á vista R$<strong>{price.toFixed(1).toString().replace(".", ",")}0</strong><span className={style.or}>ou</span></span>
 
-						<span className={style.creditCart}>6x sem juros de <strong>R${calc.toString().replace(".", ",")}</strong></span>
+						<span className={style.creditCart}>6x sem juros de R$<strong>{calc.toString().replace(".", ",")}</strong></span>
 					</div>
 				</div>
 				<div className={style.checkout}>

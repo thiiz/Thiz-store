@@ -6,11 +6,17 @@ import { useMenuCart } from '../../contexts/OpenCartMenuContext'
 
 export default function HeaderCart() {
 	const { setOpenCart } = useMenuCart()
-	const { clearCart } = useCart()
+	const { clearCart, cart } = useCart()
 	return (
 		<div className={style.headerCart}>
-			<button onClick={() => clearCart()} className={style.deleteAll}><MdDeleteForever className={style.deleteAllIcon} />limpar</button>
-			<button onClick={() => setOpenCart(false)} className={style.closeCart}><GrClose /><p className={style.closeText}></p></button>
+			{cart.length === 0 ? '' :
+				<button onClick={() => clearCart()} className={style.deleteAll} type='button'>
+					<div className={style.iconContainer}>
+						<MdDeleteForever className={style.deleteAllIcon} />
+					</div>
+				</button>
+			}
+			<button onClick={() => setOpenCart(false)} className={style.closeCart}><GrClose /></button>
 			<p className={style.titleMyCart}>meu carrinho</p>
 		</div>
 	)

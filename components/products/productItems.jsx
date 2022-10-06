@@ -2,7 +2,8 @@ import { useRouter } from 'next/router';
 import { Image } from 'react-datocms'
 import style from '../../styles/Products.module.css'
 import { useCart } from '../../contexts/CartContext'
-import { BsFillBagFill} from 'react-icons/bs'
+import { BsFillBagFill } from 'react-icons/bs'
+import { ImBlocked } from 'react-icons/im'
 
 
 export default function ProductsItems({ stock }) {
@@ -22,13 +23,18 @@ export default function ProductsItems({ stock }) {
 			<p onClick={handleViewProduct} className={style.title}>{stock.title}</p>
 			<p className={style.price}><strong>R$ {price}</strong></p>
 			<p className={style.parcel}>OU 6X <strong>R$ {parcel}</strong></p>
-			{stock?.instock !== 0 && <button onClick={() => {add(stock)}} className={style.buy} type='button'> comprar
+			{stock?.instock !== 0 && <button onClick={() => { add(stock) }} className={`${style.btn} ${style.buy}`} type='button'> comprar
 				<div className={style.iconContainer}>
 					<BsFillBagFill className={style.icon} />
 				</div>
 			</button>
 			}
-			{stock?.instock === 0 && <button className={style.unavailable} type='button' disabled>indisponível</button>}
+			{stock?.instock === 0 && <button onClick={() => { add(stock) }} className={`${style.btn} ${style.unavailable}`} type='button' disabled>indisponível
+				<div className={style.iconContainer}>
+					<ImBlocked className={style.icon} />
+				</div>
+			</button>
+			}
 		</div>
 	)
 }
