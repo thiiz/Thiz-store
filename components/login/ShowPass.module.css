@@ -1,0 +1,8 @@
+.showPassContainer {
+	border: none;
+	position: relative;
+	top: 4px;
+	font-size: 22px;
+	cursor: pointer;
+	background-color: transparent;
+}

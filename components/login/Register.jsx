@@ -6,12 +6,14 @@ import style from './login.module.css'
 import valid from './valid'
 import { postData } from '../../utils/fetchData'
 import { useState } from 'react'
+import ShowPass from './ShowPass'
 
 
 export default function Register({ setLogin }) {
 	const initialState = { name: '', email: '', password: '', cf_password: '' }
 	const [userData, setUserData] = useState(initialState)
 	const { name, email, password, cf_password } = userData
+	const [showPass, setShowPass] = useState(false)
 
 	const { register, handleSubmit } = useForm()
 	const [error, setError] = useState("")
@@ -74,7 +76,8 @@ export default function Register({ setLogin }) {
 					{errorPassword ? <p className={style.error}>{error}</p> : ''}
 					<label className={`${style.label} ${!errorPassword ? style.labelNormal : style.labelError}`}>
 						<RiLockFill className={`${style.icon} ${!errorPassword ? style.iconNormal : style.iconError}`} />
-						<input {...register('password')} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="password" name="password" placeholder='Senha' autoComplete="false" required />
+						<input {...register('password')} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type={showPass ? "text" : "password"} name="password" placeholder='Senha' autoComplete="false" required />
+						<ShowPass showPass={showPass} setShowPass={setShowPass} />
 					</label>
 					{errorCf ? <p className={style.error}>{error}</p> : ''}
 					<label className={`${style.label} ${!errorCf ? style.labelNormal : style.labelError}`}>

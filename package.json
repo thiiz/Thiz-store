@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
+    "@paypal/react-paypal-js": "^7.8.1",
     "apollo-link-context": "^1.0.20",
     "bcrypt": "^5.0.1",
     "framer-motion": "^7.2.1",

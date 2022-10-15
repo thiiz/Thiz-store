@@ -13,16 +13,8 @@ export default function Profile() {
 		const firstLogin = localStorage.getItem("firstLogin");
 		if (!firstLogin) {
 			notifyError({ msg: "Você precisa fazer login para acessar essa página." })
-			router.push({ pathname: '/', query: 'profile=redirect' })
+			router.push({ pathname: '/', query: 'redirect=profile' })
 			setToggleLoginMenu(true)
-		}
-		if (router.query.profile) {
-			router.replace(
-				{
-					query: router.query,
-				},
-				undefined
-			)
 		}
 	}, [])
 	const handleLogout = () => {

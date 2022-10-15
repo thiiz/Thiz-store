@@ -24,7 +24,7 @@
 	width: 30vw;
 	height: 40px;
 	border: 2px solid #cacaca;
-	outline: none;
+	outline-color: #006eff;
 	border-radius: 10px;
 	text-indent: 10px;
 }
@@ -36,7 +36,7 @@
 	color: #fff;
 	background-color: #313131;
 	font-size: 26px;
-	padding: 6px 26px 0 26px;
+	padding: 6px 26px 1px 26px;
 	border-radius: 0 7px 0 35px;
 	cursor: pointer;
 	border: none;

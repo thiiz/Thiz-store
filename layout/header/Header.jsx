@@ -16,11 +16,12 @@ import { Fade as Hamburger } from 'hamburger-react'
 import { useAuth } from '../../contexts/AuthContext'
 import { useCart } from '../../contexts/CartContext'
 import { useLoginMenu } from '../../contexts/LoginMenuContext'
+import { useRouter } from 'next/router'
 
 function Header() {
 	const { cart } = useCart()
 	const { auth } = useAuth()
-
+	const router = useRouter()
 	const { toggleLoginMenu, setToggleLoginMenu } = useLoginMenu()
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
 	const [login, setLogin] = useState(true)
@@ -52,12 +53,18 @@ function Header() {
 		hidden: { backgroundColor: "#00000000" }
 	}
 
+	useEffect(() => {
+		if (router.query.redirect) {
+			window.history.replaceState(null, '', '/')
+		}
+	}, [toggleLoginMenu])
+
 	return (
 		<>
 			{Object.keys(auth).length === 0 ?
 				<motion.div animate={toggleLoginMenu ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
 					<motion.div className={style.background} animate={toggleLoginMenu ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
-						<div onClick={() => setToggleLoginMenu(false)} className={style.focusOut}></div>
+						{router.pathname === "/checkout" ? '' : <div onClick={() => setToggleLoginMenu(false)} className={style.focusOut}></div>}
 						<MenuLogin setToggleLoginMenu={setToggleLoginMenu} login={login} setLogin={setLogin} />
 					</motion.div>
 				</motion.div> : ''}

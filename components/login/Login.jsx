@@ -8,11 +8,12 @@ import { setCookie } from 'nookies'
 import { useNotify } from '../../contexts/NotifyContext';
 import { useAuth } from '../../contexts/AuthContext'
 import { useRouter } from 'next/router'
+import ShowPass from './ShowPass'
 
 export default function Login({ login, setLogin, setToggleLoginMenu }) {
-
-	const {query, push} = useRouter()
+	const { query, push } = useRouter()
 	const { setAuth } = useAuth()
+	const [showPass, setShowPass] = useState(false)
 	const { notifyRegistred, notifyLoginPromise, notifyLoginSuccess, notifyLoginError, dismiss } = useNotify()
 	const { register, handleSubmit } = useForm()
 
@@ -22,7 +23,6 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 			notifyRegistred()
 		}
 	}, [login])
-
 
 	const initialState = { email: '', password: '' }
 	const [userData, setUserData] = useState(initialState)
@@ -44,11 +44,11 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 			path: '/api/auth/accessToken',
 		})
 		localStorage.setItem('firstLogin', true)
-		dismiss({id: "registred"})
-		if(query.profile === "redirect"){
-			push('/profile')
+		dismiss({ id: "registred" })
+		if (query.redirect) {
+			push(`/${query.redirect}`)
 		}
-		if (res.msg === "Login Success!") return notifyLoginSuccess({ msg: "Logado com sucesso!" }),  setAuth({token: res.refresh_token, user: res.user}), setToggleLoginMenu(false)
+		if (res.msg === "Login Success!") return notifyLoginSuccess({ msg: "Logado com sucesso!" }), setAuth({ token: res.refresh_token, user: res.user }), setToggleLoginMenu(false)
 	}
 
 	return (
@@ -63,7 +63,8 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 					</label>
 					<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 						<RiLockFill className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
-						<input {...register('password')} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="password" name="password" value={password} placeholder='Senha' autoComplete="false" />
+						<input {...register('password')} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type={showPass ? "text" : "password"} name="password" value={password} placeholder='Senha' autoComplete="false" required />
+						<ShowPass showPass={showPass} setShowPass={setShowPass} />
 					</label>
 					<div className={style.containerRecover}>
 						<button type='button' className={style.recoverPassword}>Esqueceu a senha?</button>
