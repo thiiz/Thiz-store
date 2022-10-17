@@ -10,7 +10,7 @@ export default function MenuLogin({ login, setLogin, setToggleLoginMenu }) {
 
 	return (
 		<div className={`${style.container} ${login ? style.containerLogin : style.containerRegister}`}>
-			{pathname === "/checkout" ? <button onClick={() => push('/') && setToggleLoginMenu(false)} className={`${style.returnLogin} ${style.topBtn}`}><MdKeyboardBackspace /></button>
+			{pathname === "/pagamento" ? <button onClick={() => push('/') && setToggleLoginMenu(false)} className={`${style.returnLogin} ${style.topBtn}`}><MdKeyboardBackspace /></button>
 				:
 				<button onClick={() => setToggleLoginMenu(false)} className={`${style.closeLogin} ${style.topBtn}`}><GrClose /></button>
 			}

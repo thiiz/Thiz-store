@@ -9,12 +9,17 @@ import OpenCartMenuProvider from '../contexts/OpenCartMenuContext'
 import NotifyProvider from '../contexts/NotifyContext';
 import { ToastContainer, Flip } from 'react-toastify';
 import { AuthProvider } from '../contexts/AuthContext'
+import Head from 'next/head';
+
 
 //Política de Cookies Usamos cookies para garantir que você obtenha a melhor experiência em nosso site.
 
 function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
       <AuthProvider>
         <OpenCartMenuProvider>
           <NotifyProvider>

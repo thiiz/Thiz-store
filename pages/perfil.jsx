@@ -4,7 +4,10 @@ import { useNotify } from "../contexts/NotifyContext"
 import { useEffect } from "react"
 import { useRouter } from 'next/router'
 import { useLoginMenu } from '../contexts/LoginMenuContext'
-export default function Profile() {
+import Head from "next/head"
+
+
+export default function Perfil() {
 	const router = useRouter()
 	const { notifySuccess, notifyError } = useNotify()
 	const { setToggleLoginMenu } = useLoginMenu()
@@ -13,7 +16,7 @@ export default function Profile() {
 		const firstLogin = localStorage.getItem("firstLogin");
 		if (!firstLogin) {
 			notifyError({ msg: "Você precisa fazer login para acessar essa página." })
-			router.push({ pathname: '/', query: 'redirect=profile' })
+			router.push({ pathname: '/', query: 'redirect=perfil' })
 			setToggleLoginMenu(true)
 		}
 	}, [])
@@ -27,15 +30,20 @@ export default function Profile() {
 		return notifySuccess({ msg: "Login encerrado!" })
 	}
 	return (
-		<div className='page'>
-			{Object.keys(auth).length === 0 ? ''
-				:
-				<><button onClick={handleLogout}>SAIR</button>
-					<p>Nome: {auth.user.name}</p>
-					<p>Email: {auth.user.email}</p>
-					<p>Privilegios: {auth.user.role}</p>
-				</>
-			}
-		</div>
+		<>
+			<Head>
+				<title>Mãe Terra - Perfil</title>
+			</Head>
+			<div className='page'>
+				{Object.keys(auth).length === 0 ? ''
+					:
+					<><button onClick={handleLogout}>SAIR</button>
+						<p>Nome: {auth.user.name}</p>
+						<p>Email: {auth.user.email}</p>
+						<p>Privilegios: {auth.user.role}</p>
+					</>
+				}
+			</div>
+		</>
 	)
 }

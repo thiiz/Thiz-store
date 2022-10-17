@@ -55,7 +55,7 @@ export default function CartContent() {
 					</div>
 				</div>
 				<div onClick={() => setOpenCart(false)} className={style.checkout}>
-					<Link href="/checkout"><a className={style.checkoutLink}>continuar</a></Link>
+					<Link href="/pagamento"><a className={style.checkoutLink}>continuar</a></Link>
 				</div>
 			</div>
 

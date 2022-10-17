@@ -64,7 +64,7 @@ function Header() {
 			{Object.keys(auth).length === 0 ?
 				<motion.div animate={toggleLoginMenu ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
 					<motion.div className={style.background} animate={toggleLoginMenu ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
-						{router.pathname === "/checkout" ? '' : <div onClick={() => setToggleLoginMenu(false)} className={style.focusOut}></div>}
+						{router.pathname === "/pagamento" ? '' : <div onClick={() => setToggleLoginMenu(false)} className={style.focusOut}></div>}
 						<MenuLogin setToggleLoginMenu={setToggleLoginMenu} login={login} setLogin={setLogin} />
 					</motion.div>
 				</motion.div> : ''}
@@ -91,7 +91,7 @@ function Header() {
 										</button>
 										:
 										<>
-											<Link href="/profile">
+											<Link href="/perfil">
 												<a className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${style.NavMenuList}`} type='button'>
 													<FaUserCircle />
 												</a>
@@ -109,9 +109,9 @@ function Header() {
 				<motion.nav className={style.menuBtn} animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant}>
 					<ul className={style.NavMenuList}>
 						<li><Link href="/" as=''><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>início</motion.a></Link></li>
-						<li><Link href='/products'><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>produtos</motion.a></Link></li>
-						<li><Link href='/about'><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>sobre</motion.a></Link></li>
-						<li><Link href="/contact"><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>contato</motion.a></Link></li>
+						<li><Link href='/produtos'><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>produtos</motion.a></Link></li>
+						<li><Link href='/sobre'><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>sobre</motion.a></Link></li>
+						<li><Link href="/contato"><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>contato</motion.a></Link></li>
 					</ul>
 				</motion.nav>
 
@@ -131,7 +131,7 @@ function Header() {
 										<FaUserCircle />
 									</motion.button> :
 									<>
-										<Link href="/profile">
+										<Link href="/perfil">
 											<motion.a animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${style.NavMenuList}`} type='button'>
 												<FaUserCircle />
 											</motion.a>

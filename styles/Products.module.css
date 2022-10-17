@@ -10,16 +10,33 @@
 }
 
 .productContainer {
-	width: 325px;
 	text-align: center;
 	box-shadow: 0 0 8px #000000de;
 	padding: 0 8px 8px 8px;
 	border-radius: 8px;
 }
 
+.productContainerDefault {
+	width: 325px;
+}
+.productContainerThree{
+	width: 425px;
+}
+.productContainerTwo{
+	width: 525px;
+}
+
 .imageContainer {
 	cursor: pointer;
+}
+.imageContainerDefault{
 	height: 300px;
+}
+.imageContainerThree{
+	height: 405px;
+}
+.imageContainerTwo{
+	height: 510px;
 }
 
 .productImg {
@@ -115,7 +132,7 @@
 	color: #000;
 }
 
-.buy:hover .icon{
+.buy:hover .icon {
 	transform: translateX(0.1em);
 }
 

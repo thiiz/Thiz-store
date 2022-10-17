@@ -9,7 +9,7 @@ export default function Home({ data }) {
   return (
     <>
       <Head>
-        <title>Mãe Terra - Loja de crochê</title>
+        <title>Mãe Terra - Página Inicial</title>
       </Head>
       <div className="page">
         <Banner />

@@ -12,7 +12,7 @@ export function ProductFiltred({ data }) {
 	const desktop = useIsLarge()
 	const [filtred, setFiltred] = useState([])
 	const item = data.map(product => product)
-	const [grid, setGrid] = useState(4)
+	const [grid, setGrid] = useState(Math.floor(parseCookies().GRID || 4))
 	useMemo(() => {
 		setFiltred(item);
 	}, [data])
@@ -21,14 +21,7 @@ export function ProductFiltred({ data }) {
 		const formatSearch = searching.toLowerCase()
 		const filterSearch = (item?.filter((product) =>
 			product.title?.toLowerCase().includes(formatSearch)
-			|| product.title?.toLowerCase().startsWith(...formatSearch)
-			|| product.title?.toLowerCase().endsWith(...formatSearch)
-			|| product.slug?.toLowerCase().includes(formatSearch)
-			|| product.slug?.toLowerCase().startsWith(...formatSearch)
-			|| product.slug?.toLowerCase().endsWith(...formatSearch)
 			|| product.color?.toLowerCase().includes(formatSearch)
-			|| product.color?.toLowerCase().startsWith(...formatSearch)
-			|| product.color?.toLowerCase().endsWith(...formatSearch)
 		))
 		return filterSearch
 	}
@@ -40,6 +33,14 @@ export function ProductFiltred({ data }) {
 		{ value: 'price_ASC', label: 'MAIOR VALOR' },
 		{ value: 'price_DESC', label: 'MENOR VALOR' }
 	]
+
+	useEffect(() => {
+		setCookie(null, 'GRID', grid, {
+			maxAge: 86400,
+			path: '/',
+		})
+	}, [grid])
+
 	useEffect(() => {
 		setFiltred(filtring())
 		if (searching !== '') {
