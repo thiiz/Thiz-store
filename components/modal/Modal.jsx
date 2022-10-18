@@ -4,8 +4,8 @@ import { GrClose } from 'react-icons/gr'
 export default function Modal({ item, setRemoveModal }) {
 	const { remove } = useCart()
 	return (
-		<div className={style.container} role="dialog">
-			<div className={style.modalDialog} role="document">
+		<div className={style.container}>
+			<div className={style.modalDialog}>
 				<div className={style.modalContent}>
 					<div className={style.modalHeader}>
 						<h5 className={style.modalTitle}>Remover produto.</h5>
