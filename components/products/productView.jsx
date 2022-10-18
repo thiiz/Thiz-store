@@ -7,7 +7,7 @@ function ProductView({ products, grid }) {
 	const desktop = useIsLarge()
 	return (
 		<>
-			<section className={`${style.container} ${desktop ? grid === 2 ? style.containerTwo : grid === 3 ? style.containerThree : style.containerFour : ''}`} >
+			<section className={`${style.container} ${desktop ? grid === 2 ? style.containerTwo : grid === 3 ? style.containerThree : style.containerDefault : ''}`} >
 				{products?.map((stock) => {
 					return (
 						<ProductsItems key={stock.id} stock={stock} grid={grid} />

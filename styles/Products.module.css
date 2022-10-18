@@ -17,7 +17,7 @@
 }
 
 .productContainerDefault {
-	width: 325px;
+	width: 350px;
 }
 .productContainerThree{
 	width: 425px;
@@ -30,7 +30,7 @@
 	cursor: pointer;
 }
 .imageContainerDefault{
-	height: 300px;
+	height: 325px;
 }
 .imageContainerThree{
 	height: 405px;
@@ -172,14 +172,14 @@
 @media (min-width: 1072px) {
 
 	.containerTwo {
-		width: 53%;
+		width: 80%;
 	}
 
 	.containerThree {
-		width: 72%;
+		width: 90%;
 	}
 
-	.containerFour {
-		width: 91%;
+	.containerDefault {
+		width: 100%;
 	}
 }

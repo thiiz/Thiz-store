@@ -4,10 +4,11 @@ import style from '../../styles/Products.module.css'
 import { useCart } from '../../contexts/CartContext'
 import { BsFillBagFill } from 'react-icons/bs'
 import { ImBlocked } from 'react-icons/im'
-import { useState } from 'react';
+import { useState, memo } from 'react';
+import { useEffect } from 'react';
 
 
-export default function ProductsItems({ stock, grid }) {
+function ProductsItems({ stock, grid }) {
 	const router = useRouter()
 	const handleViewProduct = () => {
 		router.push(`/product/${stock?.slug}`)
@@ -16,36 +17,20 @@ export default function ProductsItems({ stock, grid }) {
 	const price = stock?.price.toFixed(2).toString().replace(".", ",")
 	const calc = (Math.round(stock?.price / 6 * 100)) / 100.0;
 	const parcel = calc.toString().replace(".", ",");
-	const [newGrid, setNewGrid] = useState(style.productContainerDefault)
+	const [newGrid, setNewGrid] = useState({ productContainer: style.productContainerDefault, imageContainer: style.imageContainerDefault })
 
-	const Product = () => {
-		if (grid === 2) {
-			setNewGrid(style.productContainerTwo)
-			return (
-				<div onClick={handleViewProduct} className={`${style.imageContainer} ${style.imageContainerTwo}`} >
-					<Image className={style.productImg} data={stock?.image.responsiveImage} alt={`produto: ${stock?.image.alt}`} />
-				</div>
-			)
-		}
-		if (grid === 3) {
-			setNewGrid(style.productContainerThree)
-			return (
-				<div onClick={handleViewProduct} className={`${style.imageContainer} ${style.imageContainerThree}`} >
-					<Image className={style.productImg} data={stock?.image.responsiveImage} alt={`produto: ${stock?.image.alt}`} />
-				</div>
-			)
-		}
-		setNewGrid(style.productContainerDefault)
-		return (
-			<div onClick={handleViewProduct} className={`${style.imageContainer} ${style.imageContainerDefault}`} >
-				<Image className={style.productImg} data={stock?.image.responsiveImage} alt={`produto: ${stock?.image.alt}`} />
-			</div>
-		)
-	}
+
+	useEffect(() => {
+		if (grid === 2) return setNewGrid({ productContainer: style.productContainerTwo, imageContainer: style.imageContainerTwo })
+		if (grid === 3) return setNewGrid({ productContainer: style.productContainerThree, imageContainer: style.imageContainerThree })
+		return setNewGrid({ productContainer: style.productContainerDefault, imageContainer: style.imageContainerDefault })
+	}, [grid])
 
 	return (
-		<div className={`${style.productContainer} ${newGrid}`}>
-			<Product />
+		<div className={`${style.productContainer} ${newGrid.productContainer}`}>
+			<div onClick={handleViewProduct} className={`${style.imageContainer} ${newGrid.imageContainer}`} >
+				<Image className={style.productImg} data={stock?.image.responsiveImage} alt={`produto: ${stock?.image.alt}`} />
+			</div>
 			<p onClick={handleViewProduct} className={style.title}>{stock.title}</p>
 			<p className={style.price}><strong>R$ {price}</strong></p>
 			<p className={style.parcel}>OU 6X <strong>R$ {parcel}</strong></p>
@@ -64,3 +49,5 @@ export default function ProductsItems({ stock, grid }) {
 		</div>
 	)
 }
+
+export default memo(ProductsItems);
