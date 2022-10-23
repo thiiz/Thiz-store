@@ -11,9 +11,7 @@ export default function HeaderCart() {
 		<div className={style.headerCart}>
 			{cart.length === 0 ? '' :
 				<button onClick={() => clearCart()} className={style.deleteAll} type='button'>
-					<div className={style.iconContainer}>
-						<MdDeleteForever className={style.deleteAllIcon} />
-					</div>
+					<MdDeleteForever className={style.deleteAllIcon} />
 				</button>
 			}
 			<button onClick={() => setOpenCart(false)} className={style.closeCart}><GrClose /></button>

@@ -85,16 +85,17 @@ export default function NotifyProvider({ children }) {
 		pauseOnHover: true,
 		draggable: false,
 		onClick: () => setOpenCart(true),
-	});
+	}, dismissAll());
 	const notifyInfoCart = ({ msg }) => toast.info(<NotifyInfoCart msg={msg} />, {
 		position: "top-left",
 		autoClose: 3500,
 		pauseOnHover: true,
 		draggable: false,
 		onClick: () => setOpenCart(true)
-	});
+	}, dismissAll());
 
 	const dismiss = ({ id }) => toast.dismiss(id);
+	const dismissAll = () => toast.dismiss();
 
 	const state = {
 		notifySuccess,

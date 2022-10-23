@@ -1,21 +1,29 @@
 import style from './Filters.module.css'
 import { BsSearch } from 'react-icons/bs'
 import { useState, useId, useMemo } from 'react'
-import { Product } from '../products/productView'
+import ProductView from '../products/productView'
 import ProductNotFound from '../product-not-found/productNotFound'
 import { useEffect } from 'react'
 import Select from 'react-select';
-import { setCookie, parseCookies } from 'nookies'
+import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import { useIsLarge } from '../../lib/MediaQuery'
 
 export function ProductFiltred({ data }) {
 	const desktop = useIsLarge()
+	const options = [
+		{ value: 'default', label: 'RECOMENDADO' },
+		{ value: 'price_ASC', label: 'MAIOR VALOR' },
+		{ value: 'price_DESC', label: 'MENOR VALOR' }
+	]
+	const [notfound, setNotfound] = useState(false)
+	const [selectedOption, setSelectedOption] = useState(undefined)
 	const [filtred, setFiltred] = useState([])
 	const item = data.map(product => product)
 	const [grid, setGrid] = useState(Math.floor(parseCookies().GRID || 4))
 	useMemo(() => {
 		setFiltred(item);
 	}, [data])
+
 	const [searching, setSearching] = useState('')
 	const filtring = () => {
 		const formatSearch = searching.toLowerCase()
@@ -26,19 +34,35 @@ export function ProductFiltred({ data }) {
 		return filterSearch
 	}
 
-	const [selectedOption, setSelectedOption] = useState(parseCookies().SORT_BY)
-	const [notfound, setNotfound] = useState(false)
-	const options = [
-		{ value: 'default', label: 'RECOMENDADO' },
-		{ value: 'price_ASC', label: 'MAIOR VALOR' },
-		{ value: 'price_DESC', label: 'MENOR VALOR' }
-	]
+	const HandelChangeSortBy = (option) => {
+		setSelectedOption(option);
+	};
 
 	useEffect(() => {
-		setCookie(null, 'GRID', grid, {
-			maxAge: 86400,
-			path: '/',
-		})
+		if (parseCookies().SORT_BY === options[1].value) {
+			setSelectedOption(options[1])
+			return
+		}
+		if (parseCookies().SORT_BY === options[2].value) {
+			setSelectedOption(options[2])
+			return
+		}
+		setSelectedOption(options[0])
+	}, [])
+
+
+
+	useEffect(() => {
+		if (parseCookies().AcceptedCookies === "all") {
+			if (grid === 4) {
+				destroyCookie(null, 'GRID', { path: '/' })
+				return
+			}
+			setCookie(null, 'GRID', grid, {
+				maxAge: 86400,
+				path: '/',
+			})
+		}
 	}, [grid])
 
 	useEffect(() => {
@@ -53,28 +77,38 @@ export function ProductFiltred({ data }) {
 	}, [searching])
 
 	useEffect(() => {
-		if (selectedOption === 'default') {
+
+		if (selectedOption?.value === options[0].value) {
 			setFiltred(filtring())
-			setCookie(null, 'SORT_BY', 'default', {
-				maxAge: 86400,
-				path: '/',
-			})
+			if (parseCookies().AcceptedCookies === "all") {
+				destroyCookie(null, 'SORT_BY', {
+					path: '/'
+				})
+				return
+			}
 		}
-		if (selectedOption === 'price_ASC') {
+		if (selectedOption?.value === options[1].value) {
 			setFiltred(filtring().sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
-			setCookie(null, 'SORT_BY', 'price_ASC', {
-				maxAge: 86400,
-				path: '/',
-			})
+			if (parseCookies().AcceptedCookies === "all") {
+				setCookie(null, 'SORT_BY', "price_ASC", {
+					maxAge: 86400,
+					path: '/',
+				})
+				return
+			}
 		}
-		if (selectedOption === 'price_DESC') {
+		if (selectedOption?.value === options[2].value) {
 			setFiltred(filtring().sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
-			setCookie(null, 'SORT_BY', 'price_DESC', {
-				maxAge: 86400,
-				path: '/',
-			})
+			if (parseCookies().AcceptedCookies === "all") {
+				setCookie(null, 'SORT_BY', "price_DESC", {
+					maxAge: 86400,
+					path: '/',
+				})
+				return
+			}
 		}
 	}, [selectedOption])
+
 	return (
 		<div className={style.container}>
 			<div className={style.searchContainer} id='filterProducts'>
@@ -85,19 +119,38 @@ export function ProductFiltred({ data }) {
 			</div>
 			<div className={style.sortPrice}>
 				<h3 className={style.titleProducts}>PRODUTOS</h3>
-				{desktop ?
+				{desktop &&
 					<div className={style.gridContainer}>
-						<button onClick={() => setGrid(2)} className={style.gridButtonOption}><span className={`${style.gridOption} ${grid === 2 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 2 ? style.gridOptionActive : ''}`}></span></button>
-						<button onClick={() => setGrid(3)} className={style.gridButtonOption}><span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span></button>
-						<button onClick={() => setGrid(4)} className={style.gridButtonOption}><span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span><span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span></button>
-					</div> : ''}
+						<button onClick={() => setGrid(2)} className={style.gridButtonOption}>
+							<span className={`${style.gridOption} ${grid === 2 ? style.gridOptionActive : ''}`}></span>
+							<span className={`${style.gridOption} ${grid === 2 ? style.gridOptionActive : ''}`}></span>
+						</button>
+						<button onClick={() => setGrid(3)} className={style.gridButtonOption}>
+							<span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span>
+							<span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span>
+							<span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span>
+						</button>
+						<button onClick={() => setGrid(4)} className={style.gridButtonOption}>
+							<span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span>
+							<span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span>
+							<span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span>
+							<span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span>
+						</button>
+					</div>}
 				<div>
 					<span>ORDENAR POR:</span>
-					<Select onChange={e => setSelectedOption(e.value)} hideSelectedOptions={true} defaultValue={selectedOption} instanceId={useId} options={options} className={style.priceSorting} name="priceSorting" isSearchable={false} />
+					<Select
+						onChange={(option) => HandelChangeSortBy(option)}
+						value={selectedOption}
+						instanceId={useId}
+						options={options}
+						className={style.priceSorting}
+						name="priceSorting"
+						isSearchable={false} />
 				</div>
 			</div>
 			{notfound ? <ProductNotFound search={searching} /> : ''}
-			<Product onChange={''} products={filtred} grid={grid} />
+			<ProductView onChange={''} products={filtred} grid={grid} />
 		</div>
 	)
 }

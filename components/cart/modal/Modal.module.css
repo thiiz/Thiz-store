@@ -31,6 +31,7 @@
 	border: none;
 	font-size: 17px;
 	cursor: pointer;
+	background-color: transparent;
 }
 .close svg{
 	transition: ease 250ms;
@@ -61,7 +62,7 @@
 	background-color: #5a6268;
 }
 .btnPrimary{
-	background-color: #007bff;
+	background-color: #006eff;
 }
 .btnPrimary:hover{
 	background-color: #0069d9;

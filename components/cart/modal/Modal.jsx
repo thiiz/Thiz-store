@@ -1,5 +1,5 @@
 import style from './Modal.module.css'
-import { useCart } from '../../contexts/CartContext'
+import { useCart } from '../../../contexts/CartContext'
 import { GrClose } from 'react-icons/gr'
 export default function Modal({ item, setRemoveModal }) {
 	const { remove } = useCart()

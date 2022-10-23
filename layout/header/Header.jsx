@@ -61,6 +61,7 @@ function Header() {
 
 	return (
 		<>
+			
 			{Object.keys(auth).length === 0 ?
 				<motion.div animate={toggleLoginMenu ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
 					<motion.div className={style.background} animate={toggleLoginMenu ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>

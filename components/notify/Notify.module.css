@@ -8,5 +8,6 @@
 
 .msg{
 	font-size: 16.3px;
-	font-weight: 200;
+	font-weight: lighter;
+	font-family: 'Varela Round', 'Arial', sans-serif;
 }

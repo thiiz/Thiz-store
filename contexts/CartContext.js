@@ -24,8 +24,11 @@ export default function CartProvider({ children }) {
 			value = value += item.price * item.qty
 		})
 		setSubTotalPrice(value)
-		localStorage.setItem('EcommerceShopingCart', JSON.stringify(cart))
-
+		if (cart.length > 0) {
+			return localStorage.setItem('EcommerceShopingCart', JSON.stringify(cart))
+		} else {
+			return localStorage.removeItem("EcommerceShopingCart")
+		}
 	}, [cart])
 
 	function add(item) {
@@ -57,8 +60,6 @@ export default function CartProvider({ children }) {
 				setCart(updatedCart)
 				return notifyInfoCart({ msg: "Produto removido do carrinho!" })
 			}
-
-
 		} catch {
 			notifyError({ msg: "Erro ao remover o produto." })
 		}
@@ -79,7 +80,7 @@ export default function CartProvider({ children }) {
 			setCart([])
 			return notifyInfoCart({ msg: "O carrinho foi limpo!" })
 		}
-		return notifyError({msg: "O carrinho já está vazio."})
+		return notifyError({ msg: "O carrinho já está vazio." })
 	}
 
 	const store = {

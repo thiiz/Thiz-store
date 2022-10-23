@@ -34,7 +34,7 @@ export default function Register({ setLogin }) {
 
 	async function handler(data) {
 		const errMsg = valid(data.name, data.email, data.password, data.cf_password, data.terms)
-		if (errMsg) { setError(errMsg)}
+		if (errMsg) { setError(errMsg) }
 		setBtn(false)
 		if (errMsg === "all") return setErrorAll("Por favor preencha todos os campos")
 		if (errMsg === "O nome de usúario é muito curto.") { return setErrorName(true) }
@@ -56,13 +56,13 @@ export default function Register({ setLogin }) {
 				<div className={style.newUser}>Já tem uma conta? <button onClick={() => setLogin(true)} className={style.register}><strong>Fazer login.</strong></button></div>
 				{errorAll === "Por favor preencha todos os campos" || errorAll === "Falha ao se cadastrar, por favor tente mais tarde" || errorAll === "Este endereço email já está em uso." ?
 					<p className={style.error}>{errorAll}</p> : ''}
-				<form className={style.form}  onSubmit={handleSubmit(handler)} onClick={() =>
+				<form className={style.form} onSubmit={handleSubmit(handler)} onClick={() =>
 					errorAll ? setErrorAll("") : errorName ?
 						setErrorName(false) : errorEmail ?
 							setErrorEmail(false) : errorPassword ?
 								setErrorPassword(false) : errorCf ?
 									setErrorCf(false) : errorTerms ?
-										setErrorTerms(false) : '' }>
+										setErrorTerms(false) : ''}>
 					{errorName ? <p className={style.error}>{error}</p> : ''}
 					<label className={`${style.label} ${!errorName ? style.labelNormal : style.labelError}`}>
 						<ImUser className={`${style.icon} ${!errorName ? style.iconNormal : style.iconError}`} />
@@ -87,7 +87,7 @@ export default function Register({ setLogin }) {
 					{errorTerms ? <p className={style.error}>{error}</p> : ''}
 					<div id="politica-termos">
 						<input {...register('terms')} onFocus={() => !btn ? setBtn(true) : ''} className={errorTerms ? style.termsError : ''} type="checkbox" id={style.terms} name="terms" value="ok" required />
-						<label className={`${style.labelTerms} ${style.labelTermsError}`}>Ao se cadastrar você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</label>
+						<span className={`${style.labelTerms} ${style.labelTermsError}`}>Ao se cadastrar você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</span>
 					</div>
 					{btn ?
 						<button type='submit' className={`${style.btn} ${style.btnEnable}`} disabled={false}>criar conta</button>

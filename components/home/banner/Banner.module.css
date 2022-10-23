@@ -83,6 +83,7 @@
 	transition: all 0.3s ease-in-out;
 	text-transform: uppercase;
 	color: black;
+	font-family: 'Varela Round', 'Arial', sans-serif;
    }
    
    .topKey {

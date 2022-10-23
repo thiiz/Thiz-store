@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import style from './Banner.module.css'
 import { Link } from "react-scroll";
 

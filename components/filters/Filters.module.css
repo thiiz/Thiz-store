@@ -43,40 +43,55 @@
 }
 
 .sortPrice {
-	margin-bottom: 20px;
 	display: flex;
-	justify-content: space-around;
-	width: 100%;
-	gap: 20vw;
-	align-items: flex-end;
+	width: 80%;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
 }
 
 .priceSorting {
 	text-align: center;
-	min-width: 147px;
+	min-width: 163px;
+	font-family: 'Varela Round', 'Arial', sans-serif;
 }
 
 .gridContainer {
 	display: flex;
-    background: rgb(255, 255, 255);
+	background: rgb(255, 255, 255);
 }
+
 .gridButtonOption {
 	display: flex;
-    background: rgb(255, 255, 255);
-    border: 0px;
-    margin: 0px 8px;
-    cursor: pointer;
-}
-.gridOption{
 	background: rgb(255, 255, 255);
-    height: 20px;
-    width: 20px;
-    border: 1px solid #00000060;
-    border-radius: 10%;
-    margin: 0px 3.5px;
+	border: 0px;
+	margin: 0px 8px;
+	cursor: pointer;
 }
-.gridOptionActive{
+
+.gridOption {
+	background: rgb(255, 255, 255);
+	height: 20px;
+	width: 20px;
+	border: 1px solid #00000060;
+	border-radius: 10%;
+	margin: 0px 3.5px;
+}
+
+.gridOptionActive {
 	border: 1px solid #000000;
+}
+
+@media (min-width: 1024px) {
+	.sortPrice {
+		
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		justify-items: center;
+		width: 100%;
+		grid-gap: 5vw;
+		align-items: flex-end;
+	}
 }
 
 @media (max-width: 590px) {

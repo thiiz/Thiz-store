@@ -1,0 +1,87 @@
+.container {
+	background-color: #ecececf3;
+    border-radius: 5px;
+    box-shadow: 0 8px 6px -6px #424242;
+    width: 92%;
+    height: 92px;
+    padding: 5px 10px;
+    position: relative;
+
+}
+
+.content {
+	text-align: start;
+	width: 100%;
+	display: flex;
+	align-items: flex-end;
+	font-family: 'Roboto', 'Arial', sans-serif;
+}
+.main{
+	width: 100%;
+}
+
+.title {
+	color: #00000091;
+	margin-bottom: 3px;
+	font-size: 16px;
+	font-weight: 500;
+	font-style: italic;
+	text-transform: uppercase;
+}
+.btnClose {
+	position: absolute;
+	right: 10px;
+	background-color: transparent;
+	border: none;
+	font-size: 15px;
+	cursor: pointer;
+	margin-top: 2px;
+}
+
+.btnClose svg {
+	transition: ease 250ms;
+}
+
+.btnClose:hover svg {
+	padding: 1.14px;
+}
+
+.btnContainer {
+	display: flex;
+	justify-content: flex-end;
+    width: 84%;
+}
+
+.btn {
+	padding: 5px;
+	font-size: 15px;
+	cursor: pointer;
+	transition: ease-in-out 250ms;
+}
+
+.btnRequired {
+	margin-right: 5px;
+	border: 2px solid #006eff;
+	color: #006eff;
+	;
+}
+
+.btnAccept {
+	background-color: #006eff;
+	color: #fff;
+	border: 2px solid #006eff;
+	display: flex;
+	align-items: center;
+}
+
+.btn:hover {
+	opacity: 0.7;
+}
+
+.cookieIcon {
+	font-size: 21px;
+	margin-right: 5px;
+}
+.policy{
+	color: #006eff;
+}

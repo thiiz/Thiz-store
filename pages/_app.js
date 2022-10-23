@@ -52,8 +52,8 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
                 />
                 <Transition>
                   <Component {...pageProps} />
-                  <Footer />
                 </Transition >
+                <Footer />
               </CartProvider>
             </LoginMenuProvider>
           </NotifyProvider>

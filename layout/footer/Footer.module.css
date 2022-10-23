@@ -1,17 +1,19 @@
 .footer {
 	width: 100%;
-	height: 225px;
+	height: 14.063rem;
 	bottom: 0px;
 	background: #181818;
 	color: #fff;
 	position: fixed;
+	font-family: 'Varela Round', 'Arial', sans-serif;
+
 }
 
 .middle {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	justify-items: center;
-	margin-top: 30px;
+	margin-top: 1.875rem;
 }
 
 .footerOption {
@@ -21,16 +23,16 @@
 
 .footerOption h4 {
 	font-family: 'Josefin Sans', sans-serif;
-	font-size: 22px;
+	font-size: 1.375rem;
 }
 
 .footerOption a {
 	text-decoration: none;
 	color: #cacaca;
-	font-size: 13px;
+	font-size: 0.813rem;
 	display: flex;
 	align-items: center;
-	line-height: 22px;
+	line-height: 1.375rem;
 }
 
 .footerOption a:hover {
@@ -38,8 +40,8 @@
 }
 
 .footerOption a span {
-	font-size: 26px;
-	padding-right: 8px;
+	font-size: 1.625rem;
+	padding-right: .5rem;
 }
 
 .socialMedia {
@@ -48,19 +50,19 @@
 }
 
 .social a {
-	font-size: 26px;
+	font-size: 1.625rem;
 	background-color: #006eff;
-	padding: 5px;
+	padding: 0.313rem;
 	border-radius: 50%;
-	margin-top: 10px;
+	margin-top: 0.625rem;
 }
 
 .social a:not(:last-child) {
-	margin-right: 15px;
+	margin-right: 0.938rem;
 }
 
 .copyright {
-	margin-top: 30px;
+	margin-top: 1.875rem;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
@@ -68,11 +70,11 @@
 
 .copyright span {
 	color: #a3a3a3;
-	font-size: 13px;
+	font-size: 0.813rem;
 }
 
 .copyright span:last-child {
-	font-size: 10px;
+	font-size: 0.625rem;
 }
 
 .copyright a {
@@ -86,35 +88,53 @@
 	}
 
 	.middle {
-		margin-top: 20px;
+		margin-top: 1.25rem;
 		grid-template-columns: none;
-		grid-template-rows: 120px 120px 1fr;
+		grid-template-rows: 7.5rem 7.5rem 1fr;
 		align-items: center;
 		justify-items: center;
 	}
 
 	.footerOption a {
-		font-size: 14.5px;
-		line-height: 26px;
+		font-size: 0.906rem;
+		line-height: 1.625rem;
 	}
 
 	.social a {
-		font-size: 25px;
+		font-size: 1.563rem;
 	}
 
 	.footerOption:not(:last-child) {
 		border-bottom: 1px solid #ffffff1c;
 	}
-	.footerOption{
+
+	.footerOption {
 		text-align: center;
 	}
-	.footerOption:nth-child(3){
-		margin-top: 20px;
+
+	.footerOption:nth-child(3) {
+		margin-top: 1.25rem;
 	}
+
 	.copyright span {
-		font-size: 11px;
+		font-size: 0.688rem;
 	}
+
 	.copyright span:last-child {
-		font-size: 8.5px;
+		font-size: 0.531rem;
+	}
+}
+
+.containerCookies {
+	position: fixed;
+	bottom: .5vw;
+	width: 49.375rem;
+	display: flex;
+	justify-content: center;
+	z-index: 99;
+}
+@media (min-width: 830px) {
+	.containerCookies {
+		left: 1.5vw;
 	}
 }
