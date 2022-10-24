@@ -28,8 +28,8 @@ export async function getStaticProps() {
 		  title
 		  price
 		  image {
-		  url
-		  responsiveImage(imgixParams: {fm: webp, fit: crop}) {
+      url
+		  responsiveImage(imgixParams: {fm: webp}) {
 			src
 			base64
 			alt
@@ -43,6 +43,6 @@ export async function getStaticProps() {
   )
   return {
     props: { data: data.allProducts },
-    revalidate: 15,
+    revalidate: 60 * 60 * 24,
   }
 }

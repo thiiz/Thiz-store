@@ -1,8 +1,8 @@
 .bannerContainer {
 	position: relative;
-	margin-top: 50px;
+	margin-top: 3.125rem;
 	width: 100vw;
-	height: 420px;
+	height: 26.25rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -18,8 +18,8 @@
 .mainTitle {
 	font-family: 'Oswald', sans-serif;
 	font-weight: 200;
-	font-size: 72px;
-	line-height: 60px;
+	font-size: 4.5rem;
+	line-height: 3.75rem;
 	color: #000;
 }
 
@@ -30,10 +30,10 @@
 
 .mainSubTitle {
 	font-weight: 400;
-	font-size: 20px;
+	font-size: 1.25rem;
 	font-family: 'Oswald', sans-serif;
 	color: #000;
-	margin-bottom: 20px;
+	margin-bottom: 1.25rem;
 }
 
 .btn {
@@ -58,7 +58,7 @@
 	text-transform: none;
 	transition: all 0.3s ease-in-out;
 	user-select: none;
-	font-size: 13px;
+	font-size: 0.813rem;
    }
    
    .btnShop::before {

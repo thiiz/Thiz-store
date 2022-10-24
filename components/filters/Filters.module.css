@@ -82,9 +82,8 @@
 	border: 1px solid #000000;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1072px) {
 	.sortPrice {
-		
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
 		justify-items: center;

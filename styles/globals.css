@@ -16,8 +16,7 @@ img{
   object-fit: cover;
 }
 body {
-  width: 100vw;
-  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 .page {
