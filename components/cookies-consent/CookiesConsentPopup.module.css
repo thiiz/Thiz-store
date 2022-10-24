@@ -3,8 +3,8 @@
     border-radius: 5px;
     box-shadow: 0 8px 6px -6px #424242;
     width: 92%;
-    height: 92px;
-    padding: 5px 10px;
+    height: 5.75rem;
+    padding: .313rem .625rem;
     position: relative;
 
 }
@@ -22,8 +22,8 @@
 
 .title {
 	color: #00000091;
-	margin-bottom: 3px;
-	font-size: 16px;
+	margin-bottom: 0.188rem;
+	font-size: 1rem;
 	font-weight: 500;
 	font-style: italic;
 	text-transform: uppercase;
@@ -33,9 +33,9 @@
 	right: 10px;
 	background-color: transparent;
 	border: none;
-	font-size: 15px;
+	font-size: .938rem;
 	cursor: pointer;
-	margin-top: 2px;
+	margin-top: .125rem;
 }
 
 .btnClose svg {
@@ -43,7 +43,7 @@
 }
 
 .btnClose:hover svg {
-	padding: 1.14px;
+	padding: .071rem;
 }
 
 .btnContainer {
@@ -53,14 +53,14 @@
 }
 
 .btn {
-	padding: 5px;
-	font-size: 15px;
+	padding: .313rem;
+	font-size: .938rem;
 	cursor: pointer;
 	transition: ease-in-out 250ms;
 }
 
 .btnRequired {
-	margin-right: 5px;
+	margin-right: .313rem;
 	border: 2px solid #006eff;
 	color: #006eff;
 	;
@@ -79,8 +79,8 @@
 }
 
 .cookieIcon {
-	font-size: 21px;
-	margin-right: 5px;
+	font-size: 1.313rem;
+	margin-right: .313rem;
 }
 .policy{
 	color: #006eff;
