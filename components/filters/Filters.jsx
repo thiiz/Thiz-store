@@ -18,8 +18,9 @@ export function ProductFiltred({ data }) {
 	const [notfound, setNotfound] = useState(false)
 	const [selectedOption, setSelectedOption] = useState(undefined)
 	const [filtred, setFiltred] = useState([])
-	const item = data.map(product => product)
 	const [grid, setGrid] = useState(Math.floor(parseCookies().GRID || 4))
+	const [lastGrid, setLastGrid] = useState(undefined)
+	const item = data.map(product => product)
 	useMemo(() => {
 		setFiltred(item);
 	}, [data])
@@ -50,8 +51,17 @@ export function ProductFiltred({ data }) {
 		setSelectedOption(options[0])
 	}, [])
 
-
-
+	useEffect(() => {
+		if (lastGrid) {
+			setGrid(lastGrid)
+			setLastGrid(undefined)
+			return
+		}
+		if (!desktop) {
+			setLastGrid(grid)
+			setGrid(4)
+		}
+	}, [desktop])
 	useEffect(() => {
 		if (parseCookies().AcceptedCookies === "all") {
 			if (grid === 4) {
