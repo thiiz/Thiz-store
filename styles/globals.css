@@ -3,24 +3,29 @@
   padding: 0;
   box-sizing: border-box;
 }
-html{
+
+html {
   font-size: 100%
 }
-button, input {
+
+button,
+input {
   font-family: 'Varela Round', 'Arial', sans-serif;
 }
-button{
+
+button {
   user-select: none;
 }
-img{
+
+img {
   object-fit: cover;
 }
+
 body {
   max-width: 100vw;
 }
 
 .page {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,6 +33,9 @@ body {
   z-index: 10;
   top: 0;
   position: relative;
+}
+
+.marginFooter {
   margin-bottom: 14.063rem;
 }
 
@@ -51,11 +59,13 @@ body {
       #8578EA 100%);
   z-index: -1;
 }
-.Toastify{
+
+.Toastify {
   text-align: center;
 }
+
 @media (max-width: 590px) {
-  .page{
+  .page {
     margin-bottom: 26.563rem;
   }
 }

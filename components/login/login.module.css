@@ -112,12 +112,14 @@
 	background-color: #ecf0f1;
 	outline-color: #006eff;
 	text-indent: 10px;
+	padding-right: 24px;
 }
 
 .label {
 	display: flex;
 	align-items: center;
 	border-radius: 3px;
+	position: relative;
 }
 
 .labelNormal {

@@ -1,12 +1,10 @@
 .container {
 	background-color: #ecececf3;
-    border-radius: 5px;
-    box-shadow: 0 8px 6px -6px #424242;
-    width: 92%;
-    height: 5.75rem;
-    padding: .313rem .625rem;
-    position: relative;
-
+	border-radius: 5px;
+	box-shadow: 0 8px 6px -6px #424242;
+	width: 58%;
+	padding: .313rem .625rem;
+	position: relative;
 }
 
 .content {
@@ -16,7 +14,8 @@
 	align-items: flex-end;
 	font-family: 'Roboto', 'Arial', sans-serif;
 }
-.main{
+
+.main {
 	width: 100%;
 }
 
@@ -28,6 +27,7 @@
 	font-style: italic;
 	text-transform: uppercase;
 }
+
 .btnClose {
 	position: absolute;
 	right: 10px;
@@ -49,7 +49,7 @@
 .btnContainer {
 	display: flex;
 	justify-content: flex-end;
-    width: 84%;
+	width: 84%;
 }
 
 .btn {
@@ -63,7 +63,6 @@
 	margin-right: .313rem;
 	border: 2px solid #006eff;
 	color: #006eff;
-	;
 }
 
 .btnAccept {
@@ -82,6 +81,20 @@
 	font-size: 1.313rem;
 	margin-right: .313rem;
 }
-.policy{
+
+.policy {
 	color: #006eff;
+}
+
+@media (max-width: 890px) {
+	.content {
+		width: 100%;
+		flex-direction: column;
+	}
+
+	.btn {
+		margin-top: 4px;
+		padding: .25rem;
+		font-size: .838rem;
+	}
 }

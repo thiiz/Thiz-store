@@ -66,27 +66,37 @@ export default function Register({ setLogin }) {
 					{errorName ? <p className={style.error}>{error}</p> : ''}
 					<label className={`${style.label} ${!errorName ? style.labelNormal : style.labelError}`}>
 						<ImUser className={`${style.icon} ${!errorName ? style.iconNormal : style.iconError}`} />
-						<input {...register('name')} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="text" name="name" placeholder='Usúario' autoComplete="false" required />
+						<input {...register('name', {
+							required: " "
+						})} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="text" name="name" placeholder='Usúario' autoComplete="false" required />
 					</label>
 					{errorEmail ? <p className={style.error}>{error}</p> : ''}
 					<label className={`${style.label} ${!errorEmail ? style.labelNormal : style.labelError}`}>
 						<MdEmail className={`${style.icon} ${!errorEmail ? style.iconNormal : style.iconError}`} />
-						<input {...register('email')} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="email" name="email" placeholder='Email' autoComplete="false" required />
+						<input {...register('email', {
+							required: " "
+						})} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="email" name="email" placeholder='Email' autoComplete="false" required />
 					</label>
 					{errorPassword ? <p className={style.error}>{error}</p> : ''}
 					<label className={`${style.label} ${!errorPassword ? style.labelNormal : style.labelError}`}>
 						<RiLockFill className={`${style.icon} ${!errorPassword ? style.iconNormal : style.iconError}`} />
-						<input {...register('password')} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type={showPass ? "text" : "password"} name="password" placeholder='Senha' autoComplete="false" required />
+						<input {...register('password', {
+							required: " "
+						})} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type={showPass ? "text" : "password"} name="password" placeholder='Senha' autoComplete="false" required />
 						<ShowPass showPass={showPass} setShowPass={setShowPass} />
 					</label>
 					{errorCf ? <p className={style.error}>{error}</p> : ''}
 					<label className={`${style.label} ${!errorCf ? style.labelNormal : style.labelError}`}>
 						<RiLockFill className={`${style.icon} ${!errorCf ? style.iconNormal : style.iconError}`} />
-						<input {...register('cf_password')} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="password" name="cf_password" placeholder='Confirmar senha' autoComplete="false" required />
+						<input {...register('cf_password', {
+							required: " "
+						})} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="password" name="cf_password" placeholder='Confirmar senha' autoComplete="false" required />
 					</label>
 					{errorTerms ? <p className={style.error}>{error}</p> : ''}
 					<div id="politica-termos">
-						<input {...register('terms')} onFocus={() => !btn ? setBtn(true) : ''} className={errorTerms ? style.termsError : ''} type="checkbox" id={style.terms} name="terms" value="ok" required />
+						<input {...register('terms', {
+							required: " "
+						})} onFocus={() => !btn ? setBtn(true) : ''} className={errorTerms ? style.termsError : ''} type="checkbox" id={style.terms} name="terms" value="ok" required />
 						<span className={`${style.labelTerms} ${style.labelTermsError}`}>Ao se cadastrar você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</span>
 					</div>
 					{btn ?

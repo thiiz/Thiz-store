@@ -1,3 +1,4 @@
+import style from '../styles/Profile.module.css'
 import { useAuth } from "../contexts/AuthContext"
 import { destroyCookie } from 'nookies'
 import { useNotify } from "../contexts/NotifyContext"
@@ -35,6 +36,7 @@ export default function Perfil() {
 				<title>Mãe Terra - Perfil</title>
 			</Head>
 			<div className='page'>
+				<div className={style.container}></div>
 				{Object.keys(auth).length === 0 ? ''
 					:
 					<><button onClick={handleLogout}>SAIR</button>

@@ -1,5 +1,5 @@
 import ProductsItems from './productItems';
-import style from '../../styles/Products.module.css'
+import style from './styles/Products.module.css'
 import { useIsLarge } from '../../lib/MediaQuery';
 import { memo } from 'react';
 

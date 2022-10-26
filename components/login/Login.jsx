@@ -59,11 +59,15 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 				<form className={style.form} method="post" onSubmit={handleSubmit(handler)}>
 					<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 						<MdEmail className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
-						<input {...register('email')} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="email" name="email" value={email} placeholder='Email' autoComplete="false" required />
+						<input {...register('email', {
+							required: " "
+						})} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="email" name="email" value={email} placeholder='Email' autoComplete="false" required />
 					</label>
 					<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 						<RiLockFill className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
-						<input {...register('password')} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type={showPass ? "text" : "password"} name="password" value={password} placeholder='Senha' autoComplete="false" required />
+						<input {...register('password', {
+							required: " "
+						})} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type={showPass ? "text" : "password"} name="password" value={password} placeholder='Senha' autoComplete="false" required />
 						<ShowPass showPass={showPass} setShowPass={setShowPass} />
 					</label>
 					<div className={style.containerRecover}>

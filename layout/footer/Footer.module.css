@@ -127,14 +127,11 @@
 
 .containerCookies {
 	position: fixed;
+	right: 50%;
+	transform: translate(50%, 0);
 	bottom: .5vw;
-	width: 49.375rem;
+	width: 70%;
 	display: flex;
 	justify-content: center;
 	z-index: 99;
-}
-@media (min-width: 830px) {
-	.containerCookies {
-		left: 1.5vw;
-	}
 }

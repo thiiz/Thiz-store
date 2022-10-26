@@ -8,9 +8,11 @@ import { useEffect, useState } from 'react'
 import CookiesConsentPopup from '../../components/cookies-consent/CookiesConsentPopup'
 import { parseCookies } from 'nookies'
 import Link from 'next/link'
+import { useAuth } from '../../contexts/AuthContext'
 
 export default function Footer() {
 	const [isAcceptedCookies, setIsAcceptedCookies] = useState(false)
+	const { auth } = useAuth()
 	const handleCookieConsentPopup = () => {
 		return setTimeout(() => {
 			setIsAcceptedCookies(true)
@@ -21,7 +23,7 @@ export default function Footer() {
 	}, [])
 	return (
 		<>
-			{isAcceptedCookies ?
+			{isAcceptedCookies && Object.keys(auth).length === 0 ?
 				<div className={style.containerCookies}>
 					<CookiesConsentPopup isAcceptedCookies={isAcceptedCookies} setIsAcceptedCookies={setIsAcceptedCookies} />
 				</div> : ''}

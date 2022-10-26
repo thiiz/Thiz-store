@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { Image } from 'react-datocms'
-import style from '../../styles/Products.module.css'
+import style from './styles/Products.module.css'
 import { useCart } from '../../contexts/CartContext'
 import { BsFillBagFill } from 'react-icons/bs'
 import { ImBlocked } from 'react-icons/im'

@@ -1,0 +1,104 @@
+.container {
+	width: 100%;
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+	justify-content: center;
+	align-items: center;
+	justify-items: center;
+	background-color: #fff;
+	font-family: 'Varela Round', 'Arial', sans-serif;
+	margin-top: 2.2rem;
+}
+
+.title {
+	font-size: 3rem;
+	font-family: 'Oswald', sans-serif;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 7px 0;
+	width: 300px;
+}
+
+.input {
+	height: 45px;
+	width: 100%;
+	border: none;
+	background-color: #ecf0f1;
+	outline-color: #141414;
+	text-indent: 10px;
+	padding-right: 24px;
+}
+
+.label {
+	display: flex;
+	align-items: center;
+	border-radius: 3px;
+	position: relative;
+}
+
+.labelNormal {
+	border: 1px solid rgba(68, 68, 68, 0.247);
+
+}
+
+.labelError {
+	border: 1px solid #ff0000;
+}
+
+.icon {
+	padding: 0 10px;
+	height: 45px;
+	font-size: 42px;
+	background-color: #ecf0f1;
+}
+
+.iconNormal {
+	color: #141414;
+}
+
+.iconError {
+	color: #ff0000;
+}
+
+.btn {
+	transition: background-color 400ms ease;
+	text-transform: uppercase;
+	border-radius: 5px;
+	color: #fff;
+	font-size: .813rem;
+	padding: .625rem 3.125rem;
+	align-self: center;
+	margin-top: 1rem;
+}
+
+.btnEnable {
+	background-color: #141414;
+	border: 1px solid #141414;
+	cursor: pointer;
+}
+
+.btnDisable {
+	background-color: #6363636b;
+	border: 1px solid #ff0000;
+	cursor: default;
+}
+
+.btnEnable:hover {
+	background-color: transparent;
+	color: #141414;
+}
+
+.btnEnable:active {
+	background-color: #006eff46;
+}
+
+.error {
+	width: 100%;
+	border-radius: 8px;
+	text-align: center;
+	color: red;
+	font-size: .938rem;
+}

@@ -28,7 +28,7 @@ export default function CookiesConsentPopup({ isAcceptedCookies, setIsAcceptedCo
 			<div className={style.content}>
 				<div className={style.main}>
 					<h3 className={style.title}>Política de Cookies</h3>
-					<span className={style.text}>Nós usamos cookies para melhorar a sua experiência de navegação. Ao utilizar nossos serviços, você concorda com a nossa <Link href='/politica'><a className={style.policy}>Politica de Privacidade</a></Link></span>
+					<span className={style.text}>Nós usamos cookies para melhorar a sua experiência de navegação. Ao utilizar nossos serviços, você concorda com a nossa <Link href='/politica'><a className={style.policy}>Politica de Privacidade.</a></Link></span>
 				</div>
 				<div className={style.btnContainer}>
 					<button onClick={() => handleRequired()} className={`${style.btn} ${style.btnRequired}`}>Aceitar Necessários</button>

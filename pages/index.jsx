@@ -16,6 +16,7 @@ export default function Home({ data }) {
         <Infos />
         <ProductFiltred data={data} />
       </div>
+      <div className="marginFooter"></div>
     </>
   )
 }
