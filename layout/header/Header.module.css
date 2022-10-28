@@ -124,6 +124,14 @@
 	opacity: 0;
 	z-index: 16;
 }
+.containerLoginModal{
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100vh;
+	width: 100vw;
+	z-index: 16;
+}
 
 .closeLogin {
 	position: absolute;
@@ -159,15 +167,6 @@
 	position: absolute;
 	width: 100%;
 	height: 100%;
-}
-
-.backdrop {
-	width: 100vw;
-	height: 100vh;
-	top: 0;
-	right: 0;
-	z-index: -1;
-	position: absolute;
 }
 
 @media (max-width: 590px) {

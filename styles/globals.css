@@ -64,10 +64,20 @@ body {
   text-align: center;
 }
 
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  position: absolute;
+}
+
 @media (max-width: 590px) {
-  html{
+  html {
     font-size: 92%
   }
+
   .marginFooter {
     margin-bottom: 29.063rem;
   }

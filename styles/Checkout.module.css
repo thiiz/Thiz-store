@@ -103,3 +103,23 @@
 	color: red;
 	font-size: .938em;
 }
+
+.containerRecover {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.recoverPassword {
+	border: none;
+	cursor: pointer;
+	user-select: none;
+	font-size: 13.5px;
+	color: #575757;
+	transition: 300ms;
+	background-color: transparent;
+}
+
+.recoverPassword:hover {
+	color: #000;
+}

@@ -20,13 +20,16 @@ import { useRouter } from 'next/router'
 import HeaderLinks from './HeaderLinks'
 import HeaderMobile from './HeaderMobile'
 import HeaderDesktop from './HeaderDesktop'
+import {useBackgroundVariant} from '../../lib/useBackgroundVariant'
 
 function Header() {
+	const backgroundVariant = useBackgroundVariant()
 	const { cart } = useCart()
 	const { auth } = useAuth()
 	const router = useRouter()
 	const { toggleLoginMenu, setToggleLoginMenu } = useLoginMenu()
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
+	const [isLoginModal, setIsLoginModal] = useState(false)
 	const [login, setLogin] = useState(true)
 	const { openCart, setOpenCart } = useMenuCart()
 	const scrollDirection = useScrollDirection()
@@ -35,12 +38,12 @@ function Header() {
 	const small = useIsSmall()
 
 	useEffect(() => {
-		if (toggleLoginMenu || openCart) {
+		if (toggleLoginMenu || openCart || isLoginModal) {
 			document.body.style.overflowY = 'hidden'
 		} else {
 			document.body.style.overflowY = 'auto'
 		}
-	}, [toggleLoginMenu, openCart]);
+	}, [toggleLoginMenu, openCart, isLoginModal]);
 
 	const CartVariant = {
 		open: { opacity: 1, x: 0 },
@@ -51,10 +54,7 @@ function Header() {
 		open: { opacity: 1, x: 0 },
 		closed: { opacity: 0, x: "-400%" },
 	}
-	const backgroundVariant = {
-		visible: { transition: { delay: 0.3 }, backgroundColor: "#000000c0" },
-		hidden: { backgroundColor: "#00000000" }
-	}
+	
 
 	useEffect(() => {
 		if (router.query.redirect) {
@@ -79,7 +79,7 @@ function Header() {
 
 					{small ?
 						<>
-							<HeaderMobile isOpenMobile={isOpenMobile} small={small} scrollDirection={scrollDirection} setToggleLoginMenu={setToggleLoginMenu} setOpenCart={setOpenCart} cart={cart} auth={auth} />
+							<HeaderMobile isOpenMobile={isOpenMobile} small={small} scrollDirection={scrollDirection} setToggleLoginMenu={setToggleLoginMenu} setOpenCart={setOpenCart} cart={cart} auth={auth} isLoginModal={isLoginModal} setIsLoginModal={setIsLoginModal} />
 							<div className={style.menuHamburguer}><Hamburger toggled={isOpenMobile} toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)} distance="lg" size={34} easing="ease-in" style="bottom: 2px;" /></div>
 						</>
 						: ''}
@@ -89,7 +89,7 @@ function Header() {
 				</motion.nav>
 				<motion.div className={!small ? style.containerBtn : style.containerBtnMobile} animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant} transition={{ ease: "easeOut", duration: 0.4 }}>
 					{small ? '' :
-						<HeaderDesktop desktopVariant={desktopVariant} small={small} scrollDirection={scrollDirection} setToggleLoginMenu={setToggleLoginMenu} setOpenCart={setOpenCart} cart={cart} auth={auth} />
+						<HeaderDesktop backgroundVariant={backgroundVariant} desktopVariant={desktopVariant} small={small} scrollDirection={scrollDirection} setToggleLoginMenu={setToggleLoginMenu} setOpenCart={setOpenCart} cart={cart} auth={auth} isLoginModal={isLoginModal} setIsLoginModal={setIsLoginModal} />
 					}
 				</motion.div>
 			</motion.header>
@@ -99,7 +99,7 @@ function Header() {
 				className={style.cart}
 			>
 				<CartMenu />
-				<motion.div onClick={() => setOpenCart(false)} className={style.backdrop} animate={openCart ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.1 }}></motion.div>
+				<motion.div onClick={() => setOpenCart(false)} className="backdrop" animate={openCart ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.1 }}></motion.div>
 			</motion.nav>
 		</>
 	)

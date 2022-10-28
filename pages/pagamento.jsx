@@ -67,10 +67,10 @@ export default function Pagamento({ amount }) {
 		}
 	}
 	const handleInfos = (data) => {
-		const phoneNumber = isPossiblePhoneNumber(`+ 55${data.mobile}`)
-		if (phoneNumber) {
-			console.log(phoneNumber)
+		if (errorZipCode) {
+			return
 		}
+		if (data.bairro === "") console.log('bairro vazio')
 		console.log(data)
 	}
 	return (
@@ -84,6 +84,7 @@ export default function Pagamento({ amount }) {
 						<h1 className={style.title}>FINALIZAR COMPRA</h1>
 						<form onSubmit={handleSubmit(handleInfos)} className={style.form}>
 							{errors.zipCode?.message.length > 1 && <p className={style.error}>{errors.zipCode && errors.zipCode.message}</p>}
+
 							<label className={`${style.label} ${!errorZipCode ? style.labelNormal : style.labelError}`}>
 								<BsGeoAltFill className={`${style.icon} ${!errorZipCode ? style.iconNormal : style.iconError}`} />
 								<input {...register("cep", {
@@ -93,6 +94,7 @@ export default function Pagamento({ amount }) {
 										message: 'Utilize apenas números.',
 									}
 								})} placeholder="CEP (obrigatório)" className={style.input} onFocus={() => errorZipCode ? setErrorZipCode(false) : ''} onBlur={checkZip} maxlength={8} minLength={8} inputMode="numeric" />
+
 							</label>
 							<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 								<RiRoadMapFill className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
