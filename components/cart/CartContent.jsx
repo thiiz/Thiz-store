@@ -2,31 +2,13 @@ import Link from 'next/link';
 import style from './styles/Cart.module.css'
 import CartItems from './CartItems';
 import { useCart } from '../../contexts/CartContext';
-import { useNotify } from '../../contexts/NotifyContext';
-import { useLoginMenu } from '../../contexts/LoginMenuContext'
-import { useRouter } from 'next/router';
 import { useMenuCart } from '../../contexts/OpenCartMenuContext';
 
 export default function CartContent() {
-	const router = useRouter()
-	const firstLogin = localStorage.getItem("firstLogin");
-	const { notifyError } = useNotify()
-	const { setToggleLoginMenu } = useLoginMenu()
-	const { openCart, setOpenCart } = useMenuCart()
+	const { setOpenCart } = useMenuCart()
 	const { cart, subTotalPrice } = useCart()
 	const price = subTotalPrice * 0.95
 	const calc = (Math.round(subTotalPrice / 6 * 100)) / 100.0;
-
-	const checkout = (zip) => {
-		if (!firstLogin) {
-			setToggleLoginMenu(true)
-
-			if (openCart) {
-				setOpenCart(false)
-			}
-			return notifyError({ msg: "Você precisa fazer login para continuar." })
-		}
-	}
 
 	return (
 		<>

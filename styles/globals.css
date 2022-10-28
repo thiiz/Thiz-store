@@ -65,7 +65,10 @@ body {
 }
 
 @media (max-width: 590px) {
-  .page {
-    margin-bottom: 26.563rem;
+  html{
+    font-size: 92%
+  }
+  .marginFooter {
+    margin-bottom: 29.063rem;
   }
 }

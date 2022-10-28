@@ -18,7 +18,7 @@
 .mainTitle {
 	font-family: 'Oswald', sans-serif;
 	font-weight: 200;
-	font-size: 4.5rem;
+	font-size: 5.2rem;
 	line-height: 3.75rem;
 	color: #000;
 }
@@ -30,7 +30,7 @@
 
 .mainSubTitle {
 	font-weight: 400;
-	font-size: 1.25rem;
+	font-size: 1.45rem;
 	font-family: 'Oswald', sans-serif;
 	color: #000;
 	margin-bottom: 1.25rem;
@@ -51,7 +51,7 @@
 	letter-spacing: 0.05em;
 	outline: none;
 	overflow: visible;
-	padding: 1.25em 2em;
+	padding: 1.1rem 1.5rem;
 	position: relative;
 	text-align: center;
 	text-decoration: none;
@@ -67,7 +67,7 @@
 	height: 2px;
 	background: black;
 	top: 50%;
-	left: 1.5em;
+	left: 1.5rem;
 	position: absolute;
 	transform: translateY(-50%);
 	transform-origin: center;
@@ -75,9 +75,9 @@
    }
    
    .btnText {
-	font-size: 1.125em;
-	line-height: 1.33333em;
-	padding-left: 2em;
+	font-size: 1.125rem;
+	line-height: 1.33333rem;
+	padding-left: 2rem;
 	display: block;
 	text-align: left;
 	transition: all 0.3s ease-in-out;
@@ -128,7 +128,7 @@
    
    .btnShop:hover .btnText {
 	color: white;
-	padding-left: 1.5em;
+	padding-left: 1.5rem;
    }
    
    .btnShop:hover .topKey {
@@ -143,16 +143,7 @@
    }
 
 @media (max-width: 590px) {
-	.mainTitle {
-		font-size: 52px;
-		top: 31%;
-	}
-
-	.mainSubTitle {
-		font-size: 15px;
-	}
-
 	.bgContainer {
-		height: 405px;
+		height: 25.313rem;
 	}
 }

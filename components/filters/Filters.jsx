@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import Select from 'react-select';
 import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import { useIsLarge } from '../../lib/MediaQuery'
+import Search from './search/Search'
 
 export function ProductFiltred({ data }) {
 	const desktop = useIsLarge()
@@ -121,14 +122,22 @@ export function ProductFiltred({ data }) {
 
 	return (
 		<div className={style.container}>
-			<div className={style.searchContainer} id='filterProducts'>
-				<input onChange={s => setSearching(s.target.value)} value={searching} className={style.search} type='text' placeholder="Pesquisar" />
-				<div className={style.searchLupa}>
-					<BsSearch />
+			<div className={style.sortPrice} id='filterProducts'>
+				<h3 className={style.titleProducts}>PRODUTOS</h3>
+				<Search searching={searching} setSearching={setSearching} />
+				<div>
+					<span>ORDENAR POR:</span>
+					<Select
+						onChange={(option) => HandelChangeSortBy(option)}
+						value={selectedOption}
+						instanceId={useId}
+						options={options}
+						className={style.priceSorting}
+						name="priceSorting"
+						isSearchable={false} />
 				</div>
 			</div>
-			<div className={style.sortPrice}>
-				<h3 className={style.titleProducts}>PRODUTOS</h3>
+			<div className={style.filterOptions}>
 				{desktop &&
 					<div className={style.gridContainer}>
 						<button onClick={() => setGrid(2)} className={style.gridButtonOption}>
@@ -147,17 +156,6 @@ export function ProductFiltred({ data }) {
 							<span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span>
 						</button>
 					</div>}
-				<div>
-					<span>ORDENAR POR:</span>
-					<Select
-						onChange={(option) => HandelChangeSortBy(option)}
-						value={selectedOption}
-						instanceId={useId}
-						options={options}
-						className={style.priceSorting}
-						name="priceSorting"
-						isSearchable={false} />
-				</div>
 			</div>
 			{notfound ? <ProductNotFound search={searching} /> : ''}
 			<ProductView onChange={''} products={filtred} grid={grid} />

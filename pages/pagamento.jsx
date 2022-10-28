@@ -52,6 +52,7 @@ export default function Pagamento({ amount }) {
 				return setErrorZipCode(true), notifyError({ msg: "Por favor informe um CEP válido." })
 			}
 			setErrorZipCode(false)
+			setFocus("complemento")
 			if (address.bairro !== "") {
 				setValue("bairro", address.bairro)
 			} else {
@@ -91,30 +92,29 @@ export default function Pagamento({ amount }) {
 										value: /^[0-9]+$/,
 										message: 'Utilize apenas números.',
 									}
-								})} placeholder="CEP" className={style.input} onFocus={() => errorZipCode ? setErrorZipCode(false) : ''} onBlur={checkZip} maxlength={8} minLength={8} inputMode="numeric" />
+								})} placeholder="CEP (obrigatório)" className={style.input} onFocus={() => errorZipCode ? setErrorZipCode(false) : ''} onBlur={checkZip} maxlength={8} minLength={8} inputMode="numeric" />
 							</label>
 							<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 								<RiRoadMapFill className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
 								<input {...register("endereço", {
 									required: " ",
-								})} inputMode="text" placeholder="Endereço" className={style.input} maxlength={32} />
+								})} inputMode="text" placeholder="Endereço (obrigatório)" className={style.input} maxlength={32} />
 							</label>
 							<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 								<FaSearchLocation className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
 								<input {...register("bairro", {
 									required: " ",
-								})} inputMode="text" placeholder="Bairro" className={style.input} maxlength={32} />
+								})} inputMode="text" placeholder="Bairro (obrigatório)" className={style.input} maxlength={32} />
 							</label>
 							<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 								<MdOutlineLocationCity className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
-								<input {...register("complemento", {
-								})} inputMode="text" placeholder="Complemento" className={style.input} maxlength={100} />
+								<input {...register("complemento")} inputMode="text" placeholder="Complemento" className={style.input} maxlength={100} />
 							</label>
 							<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 								<BsPhoneFill className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
 								<Input {...register("telefone", {
 									required: " ",
-								})} inputMode="tel" defaultCountry="BR" value={mobile} onChange={setMobile} placeholder="Telefone" className={style.input} maxlength={15} />
+								})} inputMode="tel" defaultCountry="BR" value={mobile} onChange={setMobile} placeholder="Telefone (obrigatório)" className={style.input} maxlength={15} />
 							</label>
 							{btn ?
 								<button type='submit' className={`${style.btn} ${style.btnEnable}`} disabled={false}>Confirmar</button>

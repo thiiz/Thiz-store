@@ -7,39 +7,13 @@
 }
 
 .titleProducts {
-	font-size: 1.75rem;
+	font-size: 2.2rem;
 	font-family: 'Oswald', sans-serif;
 }
 
 .sortPrice span {
 	font-family: 'Oswald', sans-serif;
 	font-size: .813rem;
-}
-
-.searchContainer {
-	position: relative;
-}
-
-.search {
-	width: 30vw;
-	height: 2.5rem;
-	border: 2px solid #cacaca;
-	outline-color: #006eff;
-	border-radius: 10px;
-	text-indent: .625rem;
-}
-
-.searchLupa {
-	position: absolute;
-	top: 0;
-	right: 0;
-	color: #fff;
-	background-color: #313131;
-	font-size: 1.625rem;
-	padding: .375rem 1.625rem .063rem 1.625rem;
-	border-radius: 0 7px 0 35px;
-	cursor: pointer;
-	border: none;
 }
 
 .sortPrice {
@@ -54,6 +28,9 @@
 	text-align: center;
 	min-width: 163px;
 	font-family: 'Varela Round', 'Arial', sans-serif;
+}
+.filterOptions{
+	margin-bottom: 2.25rem;
 }
 
 .gridContainer {
@@ -106,14 +83,6 @@
 		padding: .563rem 1.25rem 0 1.375rem;
 		font-size: 1.438rem;
 		border-radius: 0 7px 0 28px;
-	}
-
-	.titleProducts {
-		font-size: 1.625rem;
-	}
-
-	.priceSorting {
-		font-size: .781rem;
 	}
 
 	.sortPrice .css-1s2u09g-control {
