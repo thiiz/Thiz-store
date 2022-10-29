@@ -93,7 +93,7 @@ export default function Pagamento({ amount }) {
 										value: /^[0-9]+$/,
 										message: 'Utilize apenas números.',
 									}
-								})} placeholder="CEP (obrigatório)" className={style.input} onFocus={() => errorZipCode ? setErrorZipCode(false) : ''} onBlur={checkZip} maxlength={8} minLength={8} inputMode="numeric" />
+								})} placeholder="CEP (obrigatório)" className={style.input} onFocus={() => errorZipCode ? setErrorZipCode(false) : ''} onBlur={checkZip} maxLength={8} minLength={8} inputMode="numeric" />
 
 							</label>
 							<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
