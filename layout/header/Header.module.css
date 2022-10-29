@@ -87,11 +87,11 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 0 0 0 .938rem;
+	margin-left: .938rem;
+	position: relative;
 }
 
 .loginText {
-	padding-top: 0.125rem;
 	font-family: 'Varela Round', sans-serif;
 	font-size: 0.989rem;
 	font-weight: bold;
@@ -99,7 +99,6 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	position: relative;
-	bottom: .438rem;
 }
 
 .btnLoginNormal {
@@ -124,12 +123,10 @@
 	opacity: 0;
 	z-index: 16;
 }
-.containerLoginModal{
+
+.containerLoginModal {
 	position: fixed;
 	top: 0;
-	right: 0;
-	height: 100vh;
-	width: 100vw;
 	z-index: 16;
 }
 
@@ -186,11 +183,11 @@
 	}
 
 	.btnLogin {
-		font-size: 1.813rem;
+		font-size: 1.983rem;
 	}
 
 	.loginText {
-		font-size: 0.688rem;
+		font-size: 0.888rem;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;

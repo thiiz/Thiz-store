@@ -10,6 +10,7 @@ import NotifyProvider from '../contexts/NotifyContext';
 import { ToastContainer, Flip } from 'react-toastify';
 import { AuthProvider } from '../contexts/AuthContext'
 import Head from 'next/head';
+import ModalLoginContextProvider from '../contexts/ModalLoginContext';
 
 
 //Política de Cookies Usamos cookies para garantir que você obtenha a melhor experiência em nosso site.
@@ -25,7 +26,9 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
           <NotifyProvider>
             <LoginMenuProvider>
               <CartProvider>
-                <Header />
+                <ModalLoginContextProvider>
+                  <Header />
+                </ModalLoginContextProvider>
                 <NextNProgress
                   color="#0099ff"
                   startPosition={0.2}

@@ -136,20 +136,6 @@
     height: 2.5rem;
 }
 
-.zipCode {
-    display: flex;
-    flex-direction: column;
-    font-size: 0.8rem;
-}
-
-.zipCodeInput {
-    width: 12rem;
-    height: 1.8rem;
-    text-indent: 5px;
-    outline-color: #006eff;
-    border: 1px solid #000;
-}
-
 .totalContainer {
     display: flex;
     justify-content: space-around;

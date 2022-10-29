@@ -20,16 +20,17 @@ import { useRouter } from 'next/router'
 import HeaderLinks from './HeaderLinks'
 import HeaderMobile from './HeaderMobile'
 import HeaderDesktop from './HeaderDesktop'
-import {useBackgroundVariant} from '../../lib/useBackgroundVariant'
+import { useBackgroundVariant } from '../../lib/useBackgroundVariant'
+import { useContextModalLogin } from '../../contexts/ModalLoginContext'
 
 function Header() {
 	const backgroundVariant = useBackgroundVariant()
 	const { cart } = useCart()
 	const { auth } = useAuth()
+	const { isLoginModal, setIsLoginModal } = useContextModalLogin()
 	const router = useRouter()
 	const { toggleLoginMenu, setToggleLoginMenu } = useLoginMenu()
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
-	const [isLoginModal, setIsLoginModal] = useState(false)
 	const [login, setLogin] = useState(true)
 	const { openCart, setOpenCart } = useMenuCart()
 	const scrollDirection = useScrollDirection()
@@ -38,12 +39,12 @@ function Header() {
 	const small = useIsSmall()
 
 	useEffect(() => {
-		if (toggleLoginMenu || openCart || isLoginModal) {
+		if (toggleLoginMenu || openCart) {
 			document.body.style.overflowY = 'hidden'
 		} else {
 			document.body.style.overflowY = 'auto'
 		}
-	}, [toggleLoginMenu, openCart, isLoginModal]);
+	}, [toggleLoginMenu, openCart]);
 
 	const CartVariant = {
 		open: { opacity: 1, x: 0 },
@@ -54,13 +55,17 @@ function Header() {
 		open: { opacity: 1, x: 0 },
 		closed: { opacity: 0, x: "-400%" },
 	}
-	
+
 
 	useEffect(() => {
 		if (router.query.redirect) {
 			window.history.replaceState(null, '', '/')
 		}
 	}, [toggleLoginMenu])
+
+	useEffect(() => {
+		if (isLoginModal && router.pathname === "/perfil" || auth) return setIsLoginModal(false)
+	}, [router.pathname, auth])
 
 	return (
 		<>
@@ -79,7 +84,7 @@ function Header() {
 
 					{small ?
 						<>
-							<HeaderMobile isOpenMobile={isOpenMobile} small={small} scrollDirection={scrollDirection} setToggleLoginMenu={setToggleLoginMenu} setOpenCart={setOpenCart} cart={cart} auth={auth} isLoginModal={isLoginModal} setIsLoginModal={setIsLoginModal} />
+							<HeaderMobile mobileVariant={mobileVariant} isOpenMobile={isOpenMobile} small={small} scrollDirection={scrollDirection} setToggleLoginMenu={setToggleLoginMenu} setOpenCart={setOpenCart} cart={cart} auth={auth}/>
 							<div className={style.menuHamburguer}><Hamburger toggled={isOpenMobile} toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)} distance="lg" size={34} easing="ease-in" style="bottom: 2px;" /></div>
 						</>
 						: ''}
@@ -89,7 +94,7 @@ function Header() {
 				</motion.nav>
 				<motion.div className={!small ? style.containerBtn : style.containerBtnMobile} animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant} transition={{ ease: "easeOut", duration: 0.4 }}>
 					{small ? '' :
-						<HeaderDesktop backgroundVariant={backgroundVariant} desktopVariant={desktopVariant} small={small} scrollDirection={scrollDirection} setToggleLoginMenu={setToggleLoginMenu} setOpenCart={setOpenCart} cart={cart} auth={auth} isLoginModal={isLoginModal} setIsLoginModal={setIsLoginModal} />
+						<HeaderDesktop backgroundVariant={backgroundVariant} desktopVariant={desktopVariant} small={small} scrollDirection={scrollDirection} setToggleLoginMenu={setToggleLoginMenu} setOpenCart={setOpenCart} cart={cart} auth={auth} />
 					}
 				</motion.div>
 			</motion.header>
