@@ -7,21 +7,21 @@ const Transition = ({ children }) => {
     inactive: {
       opacity: 1,
       transition: {
-        duration: 0.1,
+        duration: 0.25,
         ease: 'easeInOut'
       },
     },
     out: {
       opacity: 0,
       transition: {
-        duration: 0.1,
+        duration: 0.25,
         ease: 'easeInOut'
       },
     },
     in: {
       opacity: 0,
       transition: {
-        duration: 0.1,
+        duration: 0.25,
         ease: 'easeInOut'
       }
     },
