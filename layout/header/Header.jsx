@@ -1,11 +1,7 @@
-import Link from 'next/link'
-import Image from 'next/image'
 import style from './Header.module.css'
-import MenuLogin from '../../components/login/MenuLogin'
+import ModalLogin from '../../components/login/ModalLogin'
 import { useState, useEffect } from 'react'
-import { CartMenu } from '../../components/cart/CartMenu'
-import { FaShoppingCart, FaUserCircle } from 'react-icons/fa'
-import { MdHeadsetMic } from 'react-icons/md'
+import CartMenu from '../../components/cart/CartMenu'
 import { motion } from "framer-motion"
 import { useMenuCart } from '../../contexts/OpenCartMenuContext'
 import { useScrollDirection } from '../../lib/useScrollDirection'
@@ -18,10 +14,11 @@ import { useCart } from '../../contexts/CartContext'
 import { useLoginMenu } from '../../contexts/LoginMenuContext'
 import { useRouter } from 'next/router'
 import HeaderLinks from './HeaderLinks'
-import HeaderMobile from './HeaderMobile'
-import HeaderDesktop from './HeaderDesktop'
+import ButtonsMobile from './ButtonsMobile'
+import ButtonsDesktop from './ButtonsDesktop'
 import { useBackgroundVariant } from '../../lib/useBackgroundVariant'
 import { useContextModalLogin } from '../../contexts/ModalLoginContext'
+import HeaderLogo from './HeaderLogo'
 
 function Header() {
 	const backgroundVariant = useBackgroundVariant()
@@ -69,32 +66,22 @@ function Header() {
 
 	return (
 		<>
-			{Object.keys(auth).length === 0 ?
-				<motion.div animate={toggleLoginMenu ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
-					<motion.div className={style.background} animate={toggleLoginMenu ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
-						{router.pathname === "/pagamento" ? '' : <div onClick={() => setToggleLoginMenu(false)} className={style.focusOut}></div>}
-						<MenuLogin setToggleLoginMenu={setToggleLoginMenu} login={login} setLogin={setLogin} />
-					</motion.div>
-				</motion.div> : ''}
 			<motion.header className={style.header} animate={!small ? scrollDirection === "down" ? "small" : "normal" : isOpenMobile ? "normal" : "small"} variants={!small ? desktopVariant : mobileVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
 				<div className={style.taggleMenuMobile}>
-					<motion.div animate={!small ? scrollDirection === "down" ? "small_Logo" : "normal_Logo" : "normal_Logo"} variants={small ? mobileVariant : desktopVariant}>
-						<Link href="/"><a><Image className={style.logo} src='/logo-maeTerra2.png' alt='logo-natureza' height='77px' width='77px'></Image></a></Link>
-					</motion.div>
-
+					<HeaderLogo />
 					{small ?
 						<>
-							<HeaderMobile mobileVariant={mobileVariant} isOpenMobile={isOpenMobile} small={small} scrollDirection={scrollDirection} setToggleLoginMenu={setToggleLoginMenu} setOpenCart={setOpenCart} cart={cart} auth={auth}/>
+							<ButtonsMobile isOpenMobile={isOpenMobile} />
 							<div className={style.menuHamburguer}><Hamburger toggled={isOpenMobile} toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)} distance="lg" size={34} easing="ease-in" style="bottom: 2px;" /></div>
 						</>
 						: ''}
 				</div>
 				<motion.nav className={style.menuBtn} animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant}>
-					<HeaderLinks small={small} scrollDirection={scrollDirection} desktopVariant={desktopVariant} mobileVariant={mobileVariant} />
+					<HeaderLinks />
 				</motion.nav>
 				<motion.div className={!small ? style.containerBtn : style.containerBtnMobile} animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant} transition={{ ease: "easeOut", duration: 0.4 }}>
-					{small ? '' :
-						<HeaderDesktop backgroundVariant={backgroundVariant} desktopVariant={desktopVariant} small={small} scrollDirection={scrollDirection} setToggleLoginMenu={setToggleLoginMenu} setOpenCart={setOpenCart} cart={cart} auth={auth} />
+					{!small &&
+						<ButtonsDesktop />
 					}
 				</motion.div>
 			</motion.header>
@@ -106,6 +93,13 @@ function Header() {
 				<CartMenu />
 				<motion.div onClick={() => setOpenCart(false)} className="backdrop" animate={openCart ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.1 }}></motion.div>
 			</motion.nav>
+			{Object.keys(auth).length === 0 &&
+				<motion.div animate={toggleLoginMenu ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
+					<motion.div className={style.background} animate={toggleLoginMenu ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
+						{router.pathname === "/pagamento" ? '' : <div onClick={() => setToggleLoginMenu(false)} className={style.focusOut}></div>}
+						<ModalLogin login={login} setLogin={setLogin} />
+					</motion.div>
+				</motion.div>}
 		</>
 	)
 }

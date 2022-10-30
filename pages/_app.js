@@ -12,9 +12,6 @@ import { AuthProvider } from '../contexts/AuthContext'
 import Head from 'next/head';
 import ModalLoginContextProvider from '../contexts/ModalLoginContext';
 
-
-//Política de Cookies Usamos cookies para garantir que você obtenha a melhor experiência em nosso site.
-
 function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <>

@@ -3,14 +3,25 @@ import { FaShoppingCart, FaUserCircle } from 'react-icons/fa'
 import { MdHeadsetMic } from 'react-icons/md'
 import { motion } from 'framer-motion'
 import LoginModal from './LoginModal'
-import { useBackgroundVariant } from '../../lib/useBackgroundVariant'
 import { useContextModalLogin } from '../../contexts/ModalLoginContext'
 import { useEffect, useRef } from 'react'
+import ButtonLogin from './ButtonLogin'
+import { useDesktopSize } from '../../lib/useAnimate'
+import { useIsSmall } from '../../lib/MediaQuery'
+import { useScrollDirection } from '../../lib/useScrollDirection'
+import { useLoginMenu } from '../../contexts/LoginMenuContext'
+import { useAuth } from '../../contexts/AuthContext'
+import ButtonCart from './ButtonCart'
+import { useMenuCart } from '../../contexts/OpenCartMenuContext'
 
-export default function HeaderDesktop({ desktopVariant, small, scrollDirection, setToggleLoginMenu, setOpenCart, auth, cart }) {
+export default function ButtonsDesktop() {
 	const { isLoginModal, setIsLoginModal } = useContextModalLogin()
+	const { setToggleLoginMenu } = useLoginMenu()
+	const { auth } = useAuth()
 	const refLogin = useRef();
-
+	const desktopVariant = useDesktopSize()
+	const small = useIsSmall()
+	const scrollDirection = useScrollDirection()
 	useEffect(() => {
 		function handleClickOutside(event) {
 			if (!isLoginModal) {
@@ -39,23 +50,14 @@ export default function HeaderDesktop({ desktopVariant, small, scrollDirection, 
 			<motion.button animate={!small ? scrollDirection === "down" ? "small_Menu" : "normal_Menu" : ''} variants={desktopVariant} className={`${style.btn} ${style.btnInfo}`} type='button'>
 				<MdHeadsetMic />
 			</motion.button>
-			<motion.button animate={!small ? scrollDirection === "down" ? "small_Menu" : "normal_Menu" : ''} variants={desktopVariant} onClick={() => setOpenCart(openCart => !openCart)} className={`${style.btn} ${style.btnInfo}`} type='button'>
-				<FaShoppingCart />
-				<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>{Object.keys(cart).length}</div>
-			</motion.button>
+			<ButtonCart />
 			<div ref={refLogin} className={style.userContainer}>
 				{Object.keys(auth).length === 0 ?
 					<motion.button onClick={() => setToggleLoginMenu(toggleLoginMenu => !toggleLoginMenu)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
 						<FaUserCircle />
-					</motion.button> :
-					<>
-						<motion.button onClick={() => setIsLoginModal(isLoginModal => !isLoginModal)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
-							<FaUserCircle />
-							{scrollDirection !== "down" ? <p className={style.loginText}>{auth.user.name}</p> : ''}
-
-						</motion.button>
-					</>
-				}
+					</motion.button>
+					:
+					<ButtonLogin scrollDirection={scrollDirection} />}
 				{isLoginModal &&
 					<div className={style.containerLoginModal}>
 						<LoginModal isLoginModal={isLoginModal} scrollDirection={scrollDirection} />

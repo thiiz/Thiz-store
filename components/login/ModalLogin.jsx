@@ -4,9 +4,12 @@ import {MdKeyboardBackspace } from 'react-icons/md'
 import Login from './Login'
 import Register from './Register'
 import { useRouter } from 'next/router'
+import { memo } from 'react'
+import { useLoginMenu } from '../../contexts/LoginMenuContext'
 
-export default function MenuLogin({ login, setLogin, setToggleLoginMenu }) {
+function MenuLogin({ login, setLogin, }) {
 	const { pathname, push } = useRouter()
+	const { setToggleLoginMenu } = useLoginMenu()
 
 	return (
 		<div className={`${style.container} ${login ? style.containerLogin : style.containerRegister}`}>
@@ -22,3 +25,4 @@ export default function MenuLogin({ login, setLogin, setToggleLoginMenu }) {
 		</div >
 	)
 }
+export default memo(MenuLogin)

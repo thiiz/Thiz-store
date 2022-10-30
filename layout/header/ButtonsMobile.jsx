@@ -1,16 +1,26 @@
 import { FaShoppingCart, FaUserCircle } from 'react-icons/fa'
 import { MdHeadsetMic } from 'react-icons/md'
 import style from './Header.module.css'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useContextModalLogin } from '../../contexts/ModalLoginContext'
 import LoginModal from './LoginModal'
-import { useBackgroundVariant } from '../../lib/useBackgroundVariant'
 import { useEffect, useRef } from 'react'
+import { useMobileSize } from '../../lib/useAnimate'
+import { useScrollDirection } from '../../lib/useScrollDirection'
+import { useLoginMenu } from '../../contexts/LoginMenuContext'
+import { useAuth } from '../../contexts/AuthContext'
+import { useIsSmall } from '../../lib/MediaQuery'
+import { useCart } from '../../contexts/CartContext'
 
-export default function HeaderMobile({ mobileVariant, isOpenMobile, small, scrollDirection, setToggleLoginMenu, setOpenCart, auth, cart }) {
+export default function ButtonsMobile({ isOpenMobile }) {
 	const { isLoginModal, setIsLoginModal } = useContextModalLogin()
+	const { setToggleLoginMenu } = useLoginMenu()
+	const { auth } = useAuth()
+	const { cart } = useCart()
 	const refLogin = useRef();
+	const mobileVariant = useMobileSize()
+	const small = useIsSmall()
+	const scrollDirection = useScrollDirection()
 	useEffect(() => {
 		function handleClickOutside(event) {
 			if (!isLoginModal) {

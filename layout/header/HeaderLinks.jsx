@@ -1,8 +1,16 @@
 import style from './HeaderLinks.module.css'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { memo } from 'react'
+import { useDesktopSize, useMobileSize } from '../../lib/useAnimate'
+import { useIsSmall } from '../../lib/MediaQuery'
+import { useScrollDirection } from '../../lib/useScrollDirection'
 
-export default function HeaderLinks({ small, scrollDirection, desktopVariant, mobileVariant }) {
+function HeaderLinks() {
+	const desktopVariant = useDesktopSize()
+	const small = useIsSmall()
+	const scrollDirection = useScrollDirection()
+	const mobileVariant = useMobileSize()
 	return (
 		<ul className={style.NavMenuList}>
 			<li><Link href="/" as=''><motion.a animate={!small ? scrollDirection === "down" ? "small_Font" : "normal_Font" : "normal_Font"} variants={!small ? desktopVariant : mobileVariant}>início</motion.a></Link></li>
@@ -12,3 +20,4 @@ export default function HeaderLinks({ small, scrollDirection, desktopVariant, mo
 		</ul>
 	)
 }
+export default memo(HeaderLinks)
