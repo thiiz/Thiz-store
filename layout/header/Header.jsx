@@ -56,7 +56,7 @@ function Header() {
 					<HeaderLogo />
 					{small ?
 						<>
-							<ButtonsMobile isOpenMobile={isOpenMobile} />
+							<ButtonsMobile isOpenMobile={isOpenMobile} setIsOpenMobile={setIsOpenMobile} />
 							<div className={style.menuHamburguer}><Hamburger toggled={isOpenMobile} toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)} distance="lg" size={34} easing="ease-in" style="bottom: 2px;" /></div>
 						</>
 						: ''}

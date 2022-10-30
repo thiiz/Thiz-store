@@ -42,6 +42,7 @@ export default function ButtonsDesktop() {
 			document.removeEventListener("click", handleClickOutside, { capture: true });
 		};
 	}, [isLoginModal])
+	console.log
 	return (
 		<section className={style.btnInfoContainer}>
 			<motion.button animate={!small ? scrollDirection === "down" ? "small_Menu" : "normal_Menu" : ''} variants={desktopVariant} className={`${style.btn} ${style.btnInfo}`} type='button'>

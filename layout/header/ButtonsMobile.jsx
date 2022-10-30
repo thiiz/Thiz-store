@@ -1,7 +1,6 @@
 import { FaShoppingCart, FaUserCircle } from 'react-icons/fa'
 import { MdHeadsetMic } from 'react-icons/md'
 import style from './Header.module.css'
-import { motion } from 'framer-motion'
 import { useContextModalLogin } from '../../contexts/ModalLoginContext'
 import LoginModal from './LoginModal'
 import { useEffect, useRef } from 'react'
@@ -13,14 +12,13 @@ import { useIsSmall } from '../../lib/MediaQuery'
 import { useCart } from '../../contexts/CartContext'
 import { useMenuCart } from '../../contexts/OpenCartMenuContext'
 
-export default function ButtonsMobile({ isOpenMobile }) {
+export default function ButtonsMobile({ isOpenMobile, setIsOpenMobile }) {
 	const { isLoginModal, setIsLoginModal } = useContextModalLogin()
 	const { setToggleLoginMenu } = useLoginMenu()
 	const { auth } = useAuth()
 	const { setOpenCart } = useMenuCart()
 	const { cart } = useCart()
 	const refLogin = useRef();
-	const mobileVariant = useMobileSize()
 	const small = useIsSmall()
 	const scrollDirection = useScrollDirection()
 	useEffect(() => {
@@ -45,6 +43,12 @@ export default function ButtonsMobile({ isOpenMobile }) {
 			document.removeEventListener("click", handleClickOutside, { capture: true });
 		};
 	}, [isLoginModal])
+
+	useEffect(() => {
+		if (small && isOpenMobile) {
+			return setIsOpenMobile(false)
+		}
+	}, [small])
 	return (
 		<div className={!small ? style.containerBtn : style.containerBtnMobile}>
 			<section className={style.btnInfoContainer}>
@@ -53,7 +57,7 @@ export default function ButtonsMobile({ isOpenMobile }) {
 				</button>
 				<button onClick={() => setOpenCart(openCart => !openCart)} className={`${style.btn} ${style.btnInfo}`} type='button'>
 					<FaShoppingCart />
-					<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>{Object.keys(cart).length}</div>
+					<div className={`${style.countCartItems} ${style.countCartitemsNormal}`}><span>{Object.keys(cart).length}</span></div>
 				</button>
 				<div ref={refLogin} className={style.userContainer}>
 					{Object.keys(auth).length === 0 ?
@@ -61,10 +65,10 @@ export default function ButtonsMobile({ isOpenMobile }) {
 							<FaUserCircle className={style.avatar} />
 						</button>
 						:
-						<motion.button onClick={() => setIsLoginModal(isLoginModal => !isLoginModal)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={mobileVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
+						<button onClick={() => setIsLoginModal(isLoginModal => !isLoginModal)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
 							<FaUserCircle />
 							{isOpenMobile ? <p className={style.loginText}>{auth.user.name}</p> : ''}
-						</motion.button>}
+						</button>}
 					{isLoginModal &&
 						<div className={style.containerLoginModal}>
 							<LoginModal isLoginModal={isLoginModal} scrollDirection={scrollDirection} />
