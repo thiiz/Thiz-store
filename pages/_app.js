@@ -12,6 +12,8 @@ import { AuthProvider } from '../contexts/AuthContext'
 import Head from 'next/head';
 import ModalLoginContextProvider from '../contexts/ModalLoginContext';
 import MenuLogin from '../components/login/MenuLogin';
+import CartMenu from '../components/cart/CartMenu';
+import CookiesConsentPopup from '../components/cookies-consent/CookiesConsentPopup';
 
 function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
   return (
@@ -27,7 +29,6 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
                 <ModalLoginContextProvider>
                   <Header />
                 </ModalLoginContextProvider>
-                <MenuLogin />
                 <NextNProgress
                   color="#0099ff"
                   startPosition={0.2}
@@ -52,15 +53,18 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
                   limit={3}
                   closeButton
                 />
+                <MenuLogin />
+                <CartMenu />
                 <Transition>
                   <Component {...pageProps} />
                 </Transition >
-                <Footer />
               </CartProvider>
             </LoginMenuProvider>
           </NotifyProvider>
         </OpenCartMenuProvider>
+        <CookiesConsentPopup />
       </AuthProvider>
+      <Footer />
     </>
   )
 }

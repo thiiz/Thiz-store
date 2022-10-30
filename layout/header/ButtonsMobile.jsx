@@ -11,11 +11,13 @@ import { useLoginMenu } from '../../contexts/LoginMenuContext'
 import { useAuth } from '../../contexts/AuthContext'
 import { useIsSmall } from '../../lib/MediaQuery'
 import { useCart } from '../../contexts/CartContext'
+import { useMenuCart } from '../../contexts/OpenCartMenuContext'
 
 export default function ButtonsMobile({ isOpenMobile }) {
 	const { isLoginModal, setIsLoginModal } = useContextModalLogin()
 	const { setToggleLoginMenu } = useLoginMenu()
 	const { auth } = useAuth()
+	const { setOpenCart } = useMenuCart()
 	const { cart } = useCart()
 	const refLogin = useRef();
 	const mobileVariant = useMobileSize()
@@ -39,7 +41,6 @@ export default function ButtonsMobile({ isOpenMobile }) {
 		// anytime user clics anywhere on the dom, that click event will bubble up into our body element
 		// without { capture: true } it might not work
 		document.addEventListener("click", handleClickOutside, { capture: true });
-		console.log("documento")
 		return () => {
 			document.removeEventListener("click", handleClickOutside, { capture: true });
 		};

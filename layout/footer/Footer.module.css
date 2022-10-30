@@ -124,14 +124,3 @@
 		font-size: 0.531rem;
 	}
 }
-
-.containerCookies {
-	position: fixed;
-	right: 50%;
-	transform: translate(50%, 0);
-	bottom: .5vw;
-	width: 70%;
-	display: flex;
-	justify-content: center;
-	z-index: 99;
-}

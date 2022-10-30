@@ -115,13 +115,6 @@
 	background-color: #0000006e;
 }
 
-.cart {
-	z-index: 15;
-	position: fixed;
-	right: 0;
-	opacity: 0;
-}
-
 .scrollTop {
 	top: 0;
 }

@@ -4,7 +4,7 @@ import style from './styles/Products.module.css'
 import { useCart } from '../../contexts/CartContext'
 import { BsFillBagFill } from 'react-icons/bs'
 import { ImBlocked } from 'react-icons/im'
-import { useState, memo } from 'react';
+import { useState, memo, useMemo } from 'react';
 import { useEffect } from 'react';
 
 
@@ -20,7 +20,7 @@ function ProductsItems({ stock, grid }) {
 	const [newGrid, setNewGrid] = useState({ productContainer: style.productContainerDefault, imageContainer: style.imageContainerDefault })
 
 
-	useEffect(() => {
+	useMemo(() => {
 		if (grid === 2) return setNewGrid({ productContainer: style.productContainerTwo, imageContainer: style.imageContainerTwo })
 		if (grid === 3) return setNewGrid({ productContainer: style.productContainerThree, imageContainer: style.imageContainerThree })
 		return setNewGrid({ productContainer: style.productContainerDefault, imageContainer: style.imageContainerDefault })

@@ -11,22 +11,8 @@ import Link from 'next/link'
 import { useAuth } from '../../contexts/AuthContext'
 
 export default function Footer() {
-	const [isAcceptedCookies, setIsAcceptedCookies] = useState(false)
-	const { auth } = useAuth()
-	const handleCookieConsentPopup = () => {
-		return setTimeout(() => {
-			setIsAcceptedCookies(true)
-		}, 4000)
-	}
-	useEffect(() => {
-		if (parseCookies().AcceptedCookies !== "all" && parseCookies().AcceptedCookies !== "required") { handleCookieConsentPopup() }
-	}, [])
 	return (
 		<>
-			{isAcceptedCookies && Object.keys(auth).length === 0 ?
-				<div className={style.containerCookies}>
-					<CookiesConsentPopup isAcceptedCookies={isAcceptedCookies} setIsAcceptedCookies={setIsAcceptedCookies} />
-				</div> : ''}
 			<footer className={style.footer}>
 				<div className={style.middle}>
 					<div className={style.footerOption}>

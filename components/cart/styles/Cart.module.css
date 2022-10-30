@@ -94,10 +94,12 @@
     align-items: center;
     border: 1px solid #006eff;
 }
-.actions_Button svg{
+
+.actions_Button svg {
     transition: ease 200ms;
 }
-.actions_Button:hover svg{
+
+.actions_Button:hover svg {
     padding: 2px;
 }
 
@@ -187,6 +189,13 @@
     text-transform: uppercase;
     text-decoration: none;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.cart {
+    z-index: 15;
+    position: fixed;
+    right: 0;
+    opacity: 0;
 }
 
 @media (max-width: 590px) {

@@ -1,5 +1,4 @@
 import style from './Header.module.css'
-import ModalLogin from '../../components/login/MenuLogin'
 import { useState, useEffect } from 'react'
 import CartMenu from '../../components/cart/CartMenu'
 import { motion } from "framer-motion"
@@ -20,13 +19,12 @@ import { useContextModalLogin } from '../../contexts/ModalLoginContext'
 import HeaderLogo from './HeaderLogo'
 
 function Header() {
-	const backgroundVariant = useBackgroundVariant()
 	const { auth } = useAuth()
 	const { isLoginModal, setIsLoginModal } = useContextModalLogin()
 	const router = useRouter()
 	const { toggleLoginMenu } = useLoginMenu()
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
-	const { openCart, setOpenCart } = useMenuCart()
+	const { openCart } = useMenuCart()
 	const scrollDirection = useScrollDirection()
 	const desktopVariant = useDesktopSize()
 	const mobileVariant = useMobileSize()
@@ -39,11 +37,6 @@ function Header() {
 			document.body.style.overflowY = 'auto'
 		}
 	}, [toggleLoginMenu, openCart]);
-
-	const CartVariant = {
-		open: { opacity: 1, x: 0 },
-		closed: { opacity: 1, x: "400%" },
-	}
 
 
 	useEffect(() => {
@@ -77,15 +70,6 @@ function Header() {
 					}
 				</motion.div>
 			</motion.header>
-			<motion.nav
-				animate={openCart ? "open" : "closed"}
-				variants={CartVariant}
-				className={style.cart}
-				transition={{ ease: "easeOut", duration: 0.3 }}
-			>
-				<CartMenu />
-				<motion.div onClick={() => setOpenCart(false)} className="backdrop" animate={openCart ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.1 }}></motion.div>
-			</motion.nav>
 		</>
 	)
 }

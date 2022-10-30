@@ -38,7 +38,6 @@ export default function ButtonsDesktop() {
 		// anytime user clics anywhere on the dom, that click event will bubble up into our body element
 		// without { capture: true } it might not work
 		document.addEventListener("click", handleClickOutside, { capture: true });
-		console.log("documento")
 		return () => {
 			document.removeEventListener("click", handleClickOutside, { capture: true });
 		};

@@ -14,7 +14,7 @@ function ButtonCart() {
 	const { setOpenCart } = useMenuCart()
 	const { cart } = useCart()
 	return (
-		<motion.button animate={!small ? scrollDirection === "down" ? "small_Menu" : "normal_Menu" : ''} variants={desktopVariant} onClick={() => setOpenCart(openCart => !openCart)} className={`${style.btn} ${style.btnInfo}`} type='button'>
+		<motion.button animate={scrollDirection === "down" ? "small_Menu" : "normal_Menu"} variants={desktopVariant} onClick={() => setOpenCart(openCart => !openCart)} className={`${style.btn} ${style.btnInfo}`} type='button'>
 			<FaShoppingCart />
 			<div className={`${style.countCartItems} ${!small ? scrollDirection === "down" ? style.countCartitemsSmall : style.countCartitemsNormal : style.countCartitemsNormal}`}>{Object.keys(cart).length}</div>
 		</motion.button>
