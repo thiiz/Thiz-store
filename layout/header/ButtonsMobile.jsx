@@ -60,13 +60,10 @@ export default function ButtonsMobile({ isOpenMobile }) {
 							<FaUserCircle className={style.avatar} />
 						</button>
 						:
-						<>
-							<motion.button onClick={() => setIsLoginModal(isLoginModal => !isLoginModal)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={mobileVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
-								<FaUserCircle />
-								{isOpenMobile ? <p className={style.loginText}>{auth.user.name}</p> : ''}
-							</motion.button>
-						</>
-					}
+						<motion.button onClick={() => setIsLoginModal(isLoginModal => !isLoginModal)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={mobileVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
+							<FaUserCircle />
+							{isOpenMobile ? <p className={style.loginText}>{auth.user.name}</p> : ''}
+						</motion.button>}
 					{isLoginModal &&
 						<div className={style.containerLoginModal}>
 							<LoginModal isLoginModal={isLoginModal} scrollDirection={scrollDirection} />

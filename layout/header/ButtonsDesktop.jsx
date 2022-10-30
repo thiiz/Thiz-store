@@ -5,14 +5,12 @@ import { motion } from 'framer-motion'
 import LoginModal from './LoginModal'
 import { useContextModalLogin } from '../../contexts/ModalLoginContext'
 import { useEffect, useRef } from 'react'
-import ButtonLogin from './ButtonLogin'
 import { useDesktopSize } from '../../lib/useAnimate'
 import { useIsSmall } from '../../lib/MediaQuery'
 import { useScrollDirection } from '../../lib/useScrollDirection'
 import { useLoginMenu } from '../../contexts/LoginMenuContext'
 import { useAuth } from '../../contexts/AuthContext'
 import ButtonCart from './ButtonCart'
-import { useMenuCart } from '../../contexts/OpenCartMenuContext'
 
 export default function ButtonsDesktop() {
 	const { isLoginModal, setIsLoginModal } = useContextModalLogin()
@@ -57,7 +55,10 @@ export default function ButtonsDesktop() {
 						<FaUserCircle />
 					</motion.button>
 					:
-					<ButtonLogin scrollDirection={scrollDirection} />}
+					<motion.button onClick={() => setIsLoginModal(isLoginModal => !isLoginModal)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
+						<FaUserCircle />
+						{scrollDirection !== "down" && <p className={style.loginText}>{auth.user.name}</p>}
+					</motion.button>}
 				{isLoginModal &&
 					<div className={style.containerLoginModal}>
 						<LoginModal isLoginModal={isLoginModal} scrollDirection={scrollDirection} />
