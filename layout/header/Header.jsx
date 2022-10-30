@@ -1,5 +1,5 @@
 import style from './Header.module.css'
-import ModalLogin from '../../components/login/ModalLogin'
+import ModalLogin from '../../components/login/MenuLogin'
 import { useState, useEffect } from 'react'
 import CartMenu from '../../components/cart/CartMenu'
 import { motion } from "framer-motion"
@@ -10,7 +10,6 @@ import { useMobileSize } from '../../lib/useAnimate'
 import { useIsSmall } from '../../lib/MediaQuery'
 import { Fade as Hamburger } from 'hamburger-react'
 import { useAuth } from '../../contexts/AuthContext'
-import { useCart } from '../../contexts/CartContext'
 import { useLoginMenu } from '../../contexts/LoginMenuContext'
 import { useRouter } from 'next/router'
 import HeaderLinks from './HeaderLinks'
@@ -22,13 +21,11 @@ import HeaderLogo from './HeaderLogo'
 
 function Header() {
 	const backgroundVariant = useBackgroundVariant()
-	const { cart } = useCart()
 	const { auth } = useAuth()
 	const { isLoginModal, setIsLoginModal } = useContextModalLogin()
 	const router = useRouter()
-	const { toggleLoginMenu, setToggleLoginMenu } = useLoginMenu()
+	const { toggleLoginMenu } = useLoginMenu()
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
-	const [login, setLogin] = useState(true)
 	const { openCart, setOpenCart } = useMenuCart()
 	const scrollDirection = useScrollDirection()
 	const desktopVariant = useDesktopSize()
@@ -46,11 +43,6 @@ function Header() {
 	const CartVariant = {
 		open: { opacity: 1, x: 0 },
 		closed: { opacity: 1, x: "400%" },
-	}
-
-	const loginVariant = {
-		open: { opacity: 1, x: 0 },
-		closed: { opacity: 0, x: "-400%" },
 	}
 
 
@@ -89,17 +81,11 @@ function Header() {
 				animate={openCart ? "open" : "closed"}
 				variants={CartVariant}
 				className={style.cart}
+				transition={{ ease: "easeOut", duration: 0.3 }}
 			>
 				<CartMenu />
 				<motion.div onClick={() => setOpenCart(false)} className="backdrop" animate={openCart ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.1 }}></motion.div>
 			</motion.nav>
-			{Object.keys(auth).length === 0 &&
-				<motion.div animate={toggleLoginMenu ? "open" : "closed"} variants={loginVariant} className={style.containerLogin} transition={{ ease: "easeOut", duration: 0.25 }}>
-					<motion.div className={style.background} animate={toggleLoginMenu ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
-						{router.pathname === "/pagamento" ? '' : <div onClick={() => setToggleLoginMenu(false)} className={style.focusOut}></div>}
-						<ModalLogin login={login} setLogin={setLogin} />
-					</motion.div>
-				</motion.div>}
 		</>
 	)
 }

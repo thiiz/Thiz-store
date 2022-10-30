@@ -115,31 +115,6 @@
 	background-color: #0000006e;
 }
 
-.containerLogin {
-	position: fixed;
-	top: 0;
-	height: 100vh;
-	width: 100vw;
-	opacity: 0;
-	z-index: 16;
-}
-
-.containerLoginModal {
-	position: fixed;
-	top: 0;
-	z-index: 16;
-}
-
-.closeLogin {
-	position: absolute;
-	top: 7px;
-	right: 10px;
-	font-size: 2rem;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-}
-
 .cart {
 	z-index: 15;
 	position: fixed;
@@ -149,21 +124,6 @@
 
 .scrollTop {
 	top: 0;
-}
-
-.background {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: relative;
-}
-
-.focusOut {
-	position: absolute;
-	width: 100%;
-	height: 100%;
 }
 
 @media (max-width: 590px) {

@@ -9,7 +9,6 @@ import { useState } from 'react'
 export default function ({ isLoginModal, scrollDirection }) {
 	const router = useRouter()
 	const { notifySuccess } = useNotify()
-	const [darkMode, setDarkMode] = useState(false)
 	const { setAuth } = useAuth()
 	const dropdownVariant = {
 		open: { opacity: 1, height: "4.738rem", padding: ".5rem 1rem .5rem 1rem" },
@@ -24,7 +23,6 @@ export default function ({ isLoginModal, scrollDirection }) {
 		localStorage.removeItem('firstLogin')
 		return notifySuccess({ msg: "Login encerrado!" })
 	}
-	console.log(scrollDirection)
 
 	return (
 		<motion.div className={`${style.container} ${scrollDirection !== "down" ? style.containerNormal : style.containerSmall}`} animate={isLoginModal ? "open" : "closed"} variants={dropdownVariant}>

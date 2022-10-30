@@ -11,6 +11,7 @@ import { ToastContainer, Flip } from 'react-toastify';
 import { AuthProvider } from '../contexts/AuthContext'
 import Head from 'next/head';
 import ModalLoginContextProvider from '../contexts/ModalLoginContext';
+import MenuLogin from '../components/login/MenuLogin';
 
 function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
   return (
@@ -26,6 +27,7 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
                 <ModalLoginContextProvider>
                   <Header />
                 </ModalLoginContextProvider>
+                <MenuLogin />
                 <NextNProgress
                   color="#0099ff"
                   startPosition={0.2}

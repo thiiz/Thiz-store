@@ -1,15 +1,11 @@
 .NavMenuList {
+	column-gap: 1.563rem;
 	list-style-type: none;
 	display: flex;
-	flex-direction: row;
 }
 
 .NavMenuList li {
 	position: relative;
-}
-
-.NavMenuList li:not(:last-child) {
-	margin-right: 1.563rem;
 }
 
 .NavMenuList li a {

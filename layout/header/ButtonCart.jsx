@@ -6,7 +6,8 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { useDesktopSize } from '../../lib/useAnimate';
 import { useMenuCart } from '../../contexts/OpenCartMenuContext';
 import { useCart } from '../../contexts/CartContext';
-export default function ButtonCart() {
+import { memo } from 'react';
+function ButtonCart() {
 	const small = useIsSmall()
 	const desktopVariant = useDesktopSize()
 	const scrollDirection = useScrollDirection()
@@ -19,3 +20,4 @@ export default function ButtonCart() {
 		</motion.button>
 	)
 }
+export default memo(ButtonCart)
