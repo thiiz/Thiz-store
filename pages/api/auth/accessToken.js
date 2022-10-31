@@ -1,6 +1,5 @@
 import connectDB from '../../../lib/connectDB'
 import Users from '../../../models/useModels'
-import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { createAccessToken } from '../../../utils/generateToken'
 
@@ -24,6 +23,7 @@ const access = async (req, res) => {
                 name: user.name,
                 email: user.email,
                 role: user.role,
+                avatar: user.avatar,
                 root: user.root
             }
         })

@@ -14,7 +14,7 @@ export default function ButtonLogin({ scrollDirection }) {
 	return (
 		<motion.button onClick={() => setIsLoginModal(isLoginModal => !isLoginModal)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
 			<FaUserCircle />
-			{scrollDirection === "up" && <p className={style.loginText}>{auth.user.name}</p>}
+			{scrollDirection === "up" && <p className={style.loginText}>{auth.user.avatar ? " " : auth.user.name}</p>}
 		</motion.button>
 	)
 }

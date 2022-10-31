@@ -8,13 +8,9 @@ html {
   font-size: 100%
 }
 
-button,
-input {
-  font-family: 'Varela Round', 'Arial', sans-serif;
-}
-
 button {
   user-select: none;
+  cursor: pointer;
 }
 
 img {

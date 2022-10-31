@@ -277,3 +277,10 @@
 	border: none;
 	cursor: pointer;
 }	
+.name{
+	display: flex;
+	column-gap: 10px
+}
+.name input{
+	border: 1px solid rgba(0, 110, 255, 0.247);
+}

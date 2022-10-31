@@ -1,0 +1,11 @@
+.container {
+	display: flex;
+	justify-content: center;
+}
+
+.containerTitle {
+	margin-top: 5rem;
+	padding: 2rem;
+	width: 80%;
+	border-bottom: 2px solid black;
+}
