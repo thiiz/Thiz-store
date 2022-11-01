@@ -15,9 +15,9 @@ export default async (req, res) => {
 
 const register = async (req, res) => {
 	try {
-		const { name, email, password, cf_password } = req.body
+		const { name, secondName, email, password, cf_password } = req.body
 
-		const errMsg = valid(name, email, password, cf_password)
+		const errMsg = valid(name, secondName, email, password, cf_password)
 		if (errMsg) return res.status(400).json({ err: errMsg })
 
 		const user = await Users.findOne({ email })
@@ -26,7 +26,7 @@ const register = async (req, res) => {
 		const passwordHash = await bcrypt.hash(password, 12)
 
 		const newUser = new Users({
-			name, email, password: passwordHash, cf_password
+			name, secondName, email, password: passwordHash, cf_password
 		})
 
 		await newUser.save()

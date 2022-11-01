@@ -5,6 +5,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    secondName: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true,
@@ -24,7 +28,7 @@ const userSchema = new mongoose.Schema({
     },
     avatar: {
         type: String,
-        default: undefined
+        default: "none"
     }
 }, {
     timestamps: true

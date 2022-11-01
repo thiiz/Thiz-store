@@ -17,13 +17,6 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 	const { notifyRegistred, notifyLoginPromise, notifyLoginSuccess, notifyLoginError, dismiss } = useNotify()
 	const { register, handleSubmit } = useForm()
 
-	useEffect(() => {
-		if (login === "registred") {
-			setLogin(true)
-			notifyRegistred()
-		}
-	}, [login])
-
 	const initialState = { email: '', password: '' }
 	const [userData, setUserData] = useState(initialState)
 	const { email, password } = userData
