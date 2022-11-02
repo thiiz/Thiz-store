@@ -41,8 +41,7 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 		if (query.redirect) {
 			push(`/${query.redirect}`)
 		}
-		if (res.msg === "Login Success!") setAuth({ token: res.refresh_token, user: res.user }), setToggleLoginMenu(false)
-		reload(pathname)
+		if (res.msg === "Login Success!") return notifyLoginSuccess({ msg: "Logado com sucesso!" }), setAuth({ token: res.refresh_token, user: res.user }), setToggleLoginMenu(false)
 	}
 
 	return (
