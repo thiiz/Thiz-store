@@ -6,7 +6,7 @@ import style from './login.module.css'
 import valid from './valid'
 import { postData } from '../../utils/fetchData'
 import { useState } from 'react'
-import ShowPass from './ShowPass'
+import ShowPass from '../showpass/ShowPass'
 import { useNotify } from '../../contexts/NotifyContext'
 
 

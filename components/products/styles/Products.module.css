@@ -88,6 +88,7 @@
 .price {
 	position: relative;
 	font-size: 1.125em;
+	font-family: 'Roboto', sans-serif;
 }
 
 .price::before {
@@ -103,7 +104,7 @@
 
 .parcel {
 	margin: .188em 0;
-	font-size: 0.875em;
+	font-size: 0.775em;
 	color: #535353;
 	font-weight: 600;
 }
@@ -125,6 +126,7 @@
 	justify-content: center;
 	overflow: hidden;
 	position: relative;
+	font-family: 'Varela Round', sans-serif;
 }
 
 .iconContainer {

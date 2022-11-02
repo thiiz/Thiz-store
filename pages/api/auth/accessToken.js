@@ -1,5 +1,5 @@
 import connectDB from '../../../lib/connectDB'
-import Users from '../../../models/useModels'
+import Users from '../../../models/userModels'
 import jwt from 'jsonwebtoken'
 import { createAccessToken } from '../../../utils/generateToken'
 
@@ -24,7 +24,6 @@ const access = async (req, res) => {
                 secondName: user.secondName,
                 email: user.email,
                 role: user.role,
-                avatar: user.avatar,
                 root: user.root
             }
         })

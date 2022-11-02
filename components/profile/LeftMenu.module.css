@@ -1,37 +1,45 @@
 .containerTitle {
 	margin: 3rem 0 2rem 0rem;
-	font-size: 1.5rem;
+	font-size: 1.14rem;
 	font-family: 'Oswald', sans-serif;
 	text-align: center;
+	font-weight: 400;
+	text-transform: uppercase;
+	color: #424242;
 }
 
 .header {
 	margin-left: auto;
-    margin-right: 2rem;
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.85rem;
+	margin-right: 2rem;
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.35rem;
 }
+
 .leftContainer {
 	display: flex;
 	flex-direction: column;
 	width: 17%;
-	height: 90%;
-	margin-left: auto;
+	margin: 6vh 0 auto auto;
 }
+
 .btn {
 	background-color: transparent;
-    border: none;
-    font-weight: bold;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    -moz-column-gap: .3rem;
-    column-gap: 0.4rem;
-    color: #4d5052;
-    transition: 250ms ease;
-    width: 11.95rem;
-    padding: 0.2rem 1rem;
+	border: none;
+	font-weight: 600;
+	font-size: 1rem;
+	text-transform: capitalize;
+	display: grid;
+	grid-template-columns: 15% 85%;
+	align-items: center;
+	justify-items: flex-start;
+	-moz-column-gap: .3rem;
+	column-gap: 0.4rem;
+	color: #4d5052;
+	transition: 250ms ease;
+	width: 11.85rem;
+	padding: .188rem;
+	font-family: 'Roboto', sans-serif;
 }
 
 .btn:hover {
@@ -47,6 +55,7 @@
 .icon {
 	font-size: 1.6rem;
 }
+
 .iconSettings {
 	font-size: 1.8rem;
 }

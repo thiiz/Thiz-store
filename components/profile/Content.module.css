@@ -1,12 +1,14 @@
 .container {
-	display: flex;
-	width: 70vw;
-	height: 80vh;
-	margin: 8vw auto auto 0;
-	background-color: #ffffff;
-	box-shadow: 0 0 4px #818181;
+    display: flex;
+    width: 70vw;
+    margin: 12.5vh auto 12.5vh 0;
+    background-color: #ffffff;
+    box-shadow: 0 0 4px #818181;
+    padding-bottom: 5vh;
+
 }
-.content{
-	width: 100%;
-	height: 100%;
+
+.content {
+    width: 100%;
+    height: 100%;
 }

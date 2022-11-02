@@ -2,13 +2,13 @@ import { MdEmail } from 'react-icons/md'
 import { RiLockFill } from 'react-icons/ri'
 import style from './login.module.css'
 import { useForm } from 'react-hook-form'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { postData } from '../../utils/fetchData'
 import { setCookie } from 'nookies'
 import { useNotify } from '../../contexts/NotifyContext';
 import { useAuth } from '../../contexts/AuthContext'
 import { useRouter } from 'next/router'
-import ShowPass from './ShowPass'
+import ShowPass from '../showpass/ShowPass'
 
 export default function Login({ login, setLogin, setToggleLoginMenu }) {
 	const { query, push } = useRouter()

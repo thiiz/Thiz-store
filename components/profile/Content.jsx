@@ -1,8 +1,7 @@
 import style from './Content.module.css'
 import { AnimatePresence, motion } from 'framer-motion'
-import Account from './Account';
+import Account from './account/Account';
 import Orders from './Orders';
-import Settings from './Settings';
 export default function Content({ active }) {
 	const variants = {
 		hidden: { opacity: 0, },
@@ -24,7 +23,6 @@ export default function Content({ active }) {
 					>
 						{active === "account" && <Account />}
 						{active === "orders" && <Orders />}
-						{active === "settings" && <Settings />}
 					</motion.div>
 				</div>
 			</AnimatePresence>

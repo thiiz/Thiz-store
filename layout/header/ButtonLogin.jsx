@@ -1,7 +1,6 @@
 import style from "./Header.module.css"
 import { motion } from 'framer-motion'
 import { useIsSmall } from "../../lib/MediaQuery"
-import { useScrollDirection } from "../../lib/useScrollDirection"
 import { useDesktopSize } from '../../lib/useAnimate'
 import { FaUserCircle } from "react-icons/fa"
 import { useAuth } from "../../contexts/AuthContext"

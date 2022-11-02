@@ -8,7 +8,6 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
 	const [auth, setAuth] = useState({})
-
 	useEffect(() => {
 		const firstLogin = localStorage.getItem("firstLogin");
 		if (firstLogin) {

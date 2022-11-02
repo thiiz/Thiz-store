@@ -1,0 +1,69 @@
+.container {
+	display: grid;
+	grid-template-rows: 8.3rem 1fr;
+	justify-items: center;
+}
+
+.containerTitle {
+	margin-top: 5rem;
+	font-size: .8rem;
+	padding: 1rem 0;
+	width: 90%;
+	border-bottom: 1px solid #cecece;
+}
+
+.content {
+	margin-top: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 0.51rem;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
+}
+
+.label {
+	font-family: "Roboto", sans-serif;
+	text-transform: uppercase;
+	font-size: .795rem;
+	font-weight: bold;
+}
+
+.input {
+	height: 2.8rem;
+	border: none;
+	background-color: #ecf0f1;
+	outline-color: #151515;
+	text-indent: 10px;
+	padding-right: 24px;
+	font-size: 1rem;
+	border: 1px solid #151515;
+	border-radius: .3rem;
+	width: 20rem;
+
+}
+
+.nameInput {
+	text-transform: capitalize;
+}
+.showPass{
+	position: absolute;
+	right: .1rem;
+	top: .85rem;
+}
+.inputContainer{
+	position: relative;
+}
+.editBtn{
+	position: absolute;
+	right: .1rem;
+	top: .78rem;
+	font-size: 1.2rem;
+	background-color: transparent;
+	border: none;
+}

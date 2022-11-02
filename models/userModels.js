@@ -25,10 +25,6 @@ const userSchema = new mongoose.Schema({
     root: {
         type: Boolean,
         default: false
-    },
-    avatar: {
-        type: String,
-        default: "none"
     }
 }, {
     timestamps: true
