@@ -15,12 +15,9 @@ export default async (req, res) => {
 
 const email = async (req, res) => {
 	try {
-		console.log("req body")
-		const { email, password } = req.body
-		console.log("result")
 		const result = await auth(req, res)
+		const { email, password } = req.body
 		const id = result.id;
-		console.log("user")
 		const user = await Users.findOne({ id })
 		const newUser = await Users.findOne({ email })
 		if (newUser) return res.status(400).json({ err: 'Este endereço de email já está sendo utilizado.' })

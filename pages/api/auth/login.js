@@ -22,7 +22,7 @@ const login = async (req, res) => {
 
 		const isMatch = await bcrypt.compare(password, user.password)
 		if (!isMatch) return res.status(400).json({ err: 'Incorrect password.' })
-
+		
 		const access_token = createAccessToken({ id: user._id })
 		const refresh_token = createRefreshToken({ id: user._id })
 

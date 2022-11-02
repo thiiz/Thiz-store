@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 import ShowPass from '../showpass/ShowPass'
 
 export default function Login({ login, setLogin, setToggleLoginMenu }) {
-	const { query, push } = useRouter()
+	const { query, push, reload, pathname } = useRouter()
 	const { setAuth } = useAuth()
 	const [showPass, setShowPass] = useState(false)
 	const { notifyRegistred, notifyLoginPromise, notifyLoginSuccess, notifyLoginError, dismiss } = useNotify()
@@ -41,7 +41,8 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 		if (query.redirect) {
 			push(`/${query.redirect}`)
 		}
-		if (res.msg === "Login Success!") return notifyLoginSuccess({ msg: "Logado com sucesso!" }), setAuth({ token: res.refresh_token, user: res.user }), setToggleLoginMenu(false)
+		if (res.msg === "Login Success!") setAuth({ token: res.refresh_token, user: res.user }), setToggleLoginMenu(false)
+		reload(pathname)
 	}
 
 	return (
