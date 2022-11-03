@@ -10,6 +10,7 @@ import validName from './validName'
 import validEmail from './validEmail'
 import { postData } from '../../../utils/fetchData'
 import Email from './Email'
+import Name from './Name'
 export default function Account() {
 	const { auth } = useAuth()
 	const { register, setValue, handleSubmit } = useForm();
@@ -23,15 +24,10 @@ export default function Account() {
 	const [showNewPass, setShowNewPass] = useState()
 	const [showPass, setShowPass] = useState()
 	const { notifyError, notifySuccess } = useNotify()
-	const [editName, setEditName] = useState(false)
 	const [editSecondName, setEditSecondName] = useState(false)
 	const [update, setUpdate] = useState(false)
 
-	const cancelName = () => {
-		setData({ ...data, name: auth.user.name })
-		setValue("name", auth.user.name)
-		setEditName(false)
-	}
+	
 	const cancelSecondName = () => {
 		setData({ ...data, secondName: auth.user.secondName })
 		setValue("secondName", auth.user.secondName)
@@ -41,17 +37,17 @@ export default function Account() {
 		const { name, value } = e.target;
 		setData({ ...data, [name]: value })
 	}
-	async function handleUpdate(e) {
-		e.preventDefault()
-		const res = await postData('edit_user/email', data)
-		if (res.err === "This user does not exist." || res.err === "Incorrect password.") return notifyError({ msg: res.err })
-		if (email !== auth.user.email) {
-			const errEmail = validEmail(email, password)
-			if (errEmail) return notifyError({ msg: errEmail })
-		}
+	// async function handleUpdate(e) {
+	// 	e.preventDefault()
+	// 	const res = await postData('edit_user/email', data)
+	// 	if (res.err === "This user does not exist." || res.err === "Incorrect password.") return notifyError({ msg: res.err })
+	// 	if (email !== auth.user.email) {
+	// 		const errEmail = validEmail(email, password)
+	// 		if (errEmail) return notifyError({ msg: errEmail })
+	// 	}
 
 
-	}
+	// }
 
 	return (
 		<div className={style.container}>
@@ -59,18 +55,8 @@ export default function Account() {
 				<h2 className={style.Title}>Detalhes da conta</h2>
 			</div>
 			<div className={style.content}>
-				<form onSubmit={handleSubmit([])}>
-					<div className={style.form}>
-						<label htmlFor='name' className={style.label}>primeiro nome</label>
-						<label className={style.inputContainer}>
-							<input {...register("name")} className={`${style.input} ${style.nameInput}`} type="text" onChange={handleChange} defaultValue={auth.user.name} name='name' placeholder='Primeiro nome' disabled={!editName && true} />
-							{editName ?
-								<button onClick={() => cancelName()} type='button' className={style.editBtn}> <MdCancel /></button>
-								:
-								<button onClick={() => setEditName(true)} type='button' className={style.editBtn}> <FiEdit /></button>
-							}
-						</label>
-					</div>
+				<Name />
+				<form onSubmit={handleSubmit(() => { })}>
 					<div className={style.form}>
 						<label htmlFor='secondName' className={style.label}>segundo nome</label>
 						<label className={style.inputContainer}>
@@ -82,7 +68,9 @@ export default function Account() {
 							}
 						</label>
 					</div>
-				<button type='submit' onClick={() => {}}>Salvar</button>
+					<div className={style.containerBtn}>
+						<button className={style.btn} type='submit'>Alterar</button>
+					</div>
 				</form>
 				<Email />
 			</div>

@@ -1,13 +1,10 @@
-const valid = (name, secondName) => {
+const validName = (name) => {
 
-	if (!name || !secondName)
-		return 'all'
+	if (!name)
+		return 'Por favor insira um nome.'
 
 	if (name.length < 3)
-		return 'O seu primeiro nome é muito curto.'
-
-	if (secondName.length < 3)
-		return 'O seu segundo nome é muito curto.'
+		return 'O seu nome precisa conter mais de 3 caracteres.'
 }
 
-export default valid
+export default validName

@@ -31,14 +31,14 @@ export default function Email() {
 		const { name, value } = e.target;
 		setData({ ...data, [name]: value })
 	}
-	async function handleUpdate(e) {
-		e.preventDefault()
+	async function handleUpdate() {
 		const errEmail = validEmail(email)
 		if (errEmail) return notifyError({ msg: errEmail })
 		const res = await patchData('edit_user/email', data, auth.token)
 		if (res.err) return notifyError({ msg: res.err })
 
 		setEditEmail(false)
+		setValue("password", '')
 		return notifySuccess({ msg: res.msg })
 	}
 
@@ -65,7 +65,7 @@ export default function Email() {
 						</div>
 					</div>
 					<div className={style.containerBtn}>
-						<button type='submit' onClick={handleUpdate}>Salvar</button>
+						<button className={style.btn} type='submit'>Alterar</button>
 					</div>
 				</>
 			}
