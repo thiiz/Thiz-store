@@ -11,6 +11,7 @@ import validEmail from './validEmail'
 import { postData } from '../../../utils/fetchData'
 import Email from './Email'
 import Name from './Name'
+import SecondName from './SecondName'
 export default function Account() {
 	const { auth } = useAuth()
 	const { register, setValue, handleSubmit } = useForm();
@@ -27,7 +28,7 @@ export default function Account() {
 	const [editSecondName, setEditSecondName] = useState(false)
 	const [update, setUpdate] = useState(false)
 
-	
+
 	const cancelSecondName = () => {
 		setData({ ...data, secondName: auth.user.secondName })
 		setValue("secondName", auth.user.secondName)
@@ -56,22 +57,7 @@ export default function Account() {
 			</div>
 			<div className={style.content}>
 				<Name />
-				<form onSubmit={handleSubmit(() => { })}>
-					<div className={style.form}>
-						<label htmlFor='secondName' className={style.label}>segundo nome</label>
-						<label className={style.inputContainer}>
-							<input {...register("secondName")} className={`${style.input} ${style.nameInput}`} type="text" onChange={handleChange} defaultValue={auth.user.secondName} name='secondName' placeholder='Segundo nome' disabled={!editSecondName && true} />
-							{editSecondName ?
-								<button onClick={() => cancelSecondName()} type='button' className={style.editBtn}> <MdCancel /></button>
-								:
-								<button onClick={() => setEditSecondName(editSecondName => !editSecondName)} type='button' className={style.editBtn}> <FiEdit /></button>
-							}
-						</label>
-					</div>
-					<div className={style.containerBtn}>
-						<button className={style.btn} type='submit'>Alterar</button>
-					</div>
-				</form>
+				<SecondName />
 				<Email />
 			</div>
 			<div className={style.containerTitle}>
