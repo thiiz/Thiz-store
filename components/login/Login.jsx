@@ -34,7 +34,7 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 		if (res.err === "This user does not exist." || res.err === "Incorrect password.") return notifyLoginError({ msg: "Endereço de email ou senha incorretos." }, setBtn(false))
 		setCookie(null, 'refreshtoken', res.refresh_token, {
 			maxAge: 86400 * 7, // 7 days
-			path: 'api/auth/accessToken',
+			path: '/api/auth/accessToken',
 		})
 		localStorage.setItem('firstLogin', true)
 		dismiss({ id: "registred" })

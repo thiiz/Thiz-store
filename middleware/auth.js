@@ -3,7 +3,6 @@ import Users from '../models/userModels'
 
 const auth = async (req, res) => {
     const token = req.headers.authorization;
-    console.log(token)
     if (!token) return res.status(400).json({ err: 'Invalid Authentication.' })
 
     const decoded = verify(token, process.env.ACCESS_TOKEN_SECRET)

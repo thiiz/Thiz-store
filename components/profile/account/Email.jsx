@@ -1,14 +1,13 @@
 import style from './Account.module.css'
 import { useAuth } from '../../../contexts/AuthContext'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import ShowPass from '../../showpass/ShowPass'
 import { FiEdit } from 'react-icons/fi'
 import { MdCancel } from 'react-icons/md'
 import { useForm } from 'react-hook-form'
 import { useNotify } from '../../../contexts/NotifyContext'
 import validEmail from './validEmail'
-import { getData, patchData } from '../../../utils/fetchData'
-import { useRouter } from 'next/router'
+import { patchData } from '../../../utils/fetchData'
 
 export default function Email() {
 	const { auth, setAuth } = useAuth()

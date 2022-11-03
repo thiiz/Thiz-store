@@ -18,15 +18,15 @@ const email = async (req, res) => {
 		const result = await auth(req, res)
 		const { email, password } = req.body
 		const user = await Users.findOne({ _id: result.id })
-		const newUser = await Users.findOne({ email })
-		if (newUser) return res.status(400).json({ err: 'Este endereço de email já está sendo utilizado.' })
+		const emailExist = await Users.findOne({ email })
+		if (emailExist) return res.status(400).json({ err: 'Este endereço de email já está sendo utilizado.' })
 
 		const isMatch = await bcrypt.compare(password, user.password)
 		if (!isMatch) return res.status(400).json({ err: 'Senha incorreta.' })
 
 		await Users.findOneAndUpdate({ _id: result.id }, { email: email })
 
-		res.json({ msg: "Atualizado com sucesso!" })
+		res.json({ msg: "Endereço de email atualizado com sucesso!" })
 
 	} catch (err) {
 		return res.status(500).json({ err: err.message })
