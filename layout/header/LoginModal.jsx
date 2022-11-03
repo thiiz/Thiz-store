@@ -19,7 +19,7 @@ export default function ({ isLoginModal, scrollDirection }) {
 			router.push('/')
 		}
 		setAuth({})
-		destroyCookie(undefined, 'refreshtoken', { path: '/api/auth/accessToken' })
+		destroyCookie(undefined, 'refreshtoken', { path: 'api/auth/accessToken' })
 		localStorage.removeItem('firstLogin')
 		return notifySuccess({ msg: "Login encerrado!" })
 	}

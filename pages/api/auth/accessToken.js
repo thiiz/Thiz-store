@@ -1,6 +1,6 @@
 import connectDB from '../../../lib/connectDB'
 import Users from '../../../models/userModels'
-import jwt from 'jsonwebtoken'
+import { verify } from 'jsonwebtoken'
 import { createAccessToken } from '../../../utils/generateToken'
 
 connectDB()
@@ -10,7 +10,7 @@ const access = async (req, res) => {
         const rf_token = req.cookies.refreshtoken;
         if (!rf_token) return res.status(400).json({ err: 'Please login now' })
 
-        const result = jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET)
+        const result = verify(rf_token, process.env.REFRESH_TOKEN_SECRET)
         if (!result) return res.status(400).json({ err: 'Your token is incorrect or has expired.' })
 
         const user = await Users.findById(result.id)

@@ -1,6 +1,6 @@
 import connectDB from '../../../lib/connectDB'
 import Users from '../../../models/userModels'
-import bcrypt from 'bcrypt'
+import { compare } from 'bcrypt'
 import { createAccessToken, createRefreshToken } from '../../../utils/generateToken'
 
 connectDB()
@@ -20,16 +20,16 @@ const login = async (req, res) => {
 		const user = await Users.findOne({ email })
 		if (!user) return res.status(400).json({ err: 'This user does not exist.' })
 
-		const isMatch = await bcrypt.compare(password, user.password)
+		const isMatch = await compare(password, user.password)
 		if (!isMatch) return res.status(400).json({ err: 'Incorrect password.' })
-		
+
 		const access_token = createAccessToken({ id: user._id })
 		const refresh_token = createRefreshToken({ id: user._id })
 
 		res.json({
 			msg: "Login Success!",
-			access_token,
 			refresh_token,
+			access_token,
 			user: {
 				name: user.name,
 				secondName: user.secondName,

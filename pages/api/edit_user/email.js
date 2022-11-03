@@ -17,8 +17,7 @@ const email = async (req, res) => {
 	try {
 		const result = await auth(req, res)
 		const { email, password } = req.body
-		const id = result.id;
-		const user = await Users.findOne({ id })
+		const user = await Users.findOne({ _id: result.id })
 		const newUser = await Users.findOne({ email })
 		if (newUser) return res.status(400).json({ err: 'Este endereço de email já está sendo utilizado.' })
 

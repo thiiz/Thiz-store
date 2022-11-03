@@ -38,9 +38,7 @@ export default function Email() {
 		if (errEmail) return notifyError({ msg: errEmail })
 		const res = await patchData('edit_user/email', data, auth.token)
 		if (res.err) return notifyError({ msg: res.err })
-		getData('auth/accessToken').then(res => {
-			setAuth({ token: res.access_token, user: res.user })
-		})
+
 		setEditEmail(false)
 		return notifySuccess({ msg: res.msg })
 	}

@@ -3,7 +3,7 @@ import { RiLockFill } from 'react-icons/ri'
 import style from './login.module.css'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { postData } from '../../utils/fetchData'
+import { getData, postData } from '../../utils/fetchData'
 import { setCookie } from 'nookies'
 import { useNotify } from '../../contexts/NotifyContext';
 import { useAuth } from '../../contexts/AuthContext'
@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 import ShowPass from '../showpass/ShowPass'
 
 export default function Login({ login, setLogin, setToggleLoginMenu }) {
-	const { query, push, reload, pathname } = useRouter()
+	const { query, push } = useRouter()
 	const { setAuth } = useAuth()
 	const [showPass, setShowPass] = useState(false)
 	const { notifyRegistred, notifyLoginPromise, notifyLoginSuccess, notifyLoginError, dismiss } = useNotify()
@@ -33,15 +33,19 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 		const res = await postData('auth/login', userData)
 		if (res.err === "This user does not exist." || res.err === "Incorrect password.") return notifyLoginError({ msg: "Endereço de email ou senha incorretos." }, setBtn(false))
 		setCookie(null, 'refreshtoken', res.refresh_token, {
-			maxAge: 86400, // 24h
-			path: '/api/auth/accessToken',
+			maxAge: 86400 * 7, // 7 days
+			path: 'api/auth/accessToken',
 		})
 		localStorage.setItem('firstLogin', true)
 		dismiss({ id: "registred" })
 		if (query.redirect) {
 			push(`/${query.redirect}`)
 		}
-		if (res.msg === "Login Success!") return notifyLoginSuccess({ msg: "Logado com sucesso!" }), setAuth({ token: res.refresh_token, user: res.user }), setToggleLoginMenu(false)
+		console.log('token login')
+		getData('auth/accessToken').then(res => {
+			setAuth({ token: res.access_token, user: res.user })
+		})
+		if (res.msg === "Login Success!") return notifyLoginSuccess({ msg: "Logado com sucesso!" }), setToggleLoginMenu(false)
 	}
 
 	return (
