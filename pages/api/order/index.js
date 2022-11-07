@@ -1,6 +1,5 @@
-import connectDB from '../../../utils/connectDB'
+import connectDB from '../../../lib/connectDB'
 import Orders from '../../../models/orderModel'
-import Products from '../../../models/productModel'
 import auth from '../../../middleware/auth'
 import { SiteClient } from 'datocms-client'
 
