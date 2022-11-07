@@ -27,9 +27,11 @@ export default function SecondName() {
 		setData({ ...data, [name]: value })
 	}
 	async function handleUpdate() {
-		const errEmail = validName({ name: secondName })
+		console.log(secondName)
+		if (auth.user.secondName === secondName) return notifyError({ msg: "Você já está utilizando este Sobrenome." })
+		const errEmail = validName(secondName)
 		if (errEmail) return notifyError({ msg: errEmail })
-		const res = await patchData('edit_user/secondName', data, auth.token)
+		const res = await patchData('edit/secondName', data, auth.token)
 		if (res.err) return notifyError({ msg: res.err })
 
 		setEditSecondName(false)

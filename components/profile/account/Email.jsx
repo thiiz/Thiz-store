@@ -8,12 +8,13 @@ import { useForm } from 'react-hook-form'
 import { useNotify } from '../../../contexts/NotifyContext'
 import validEmail from './validEmail'
 import { patchData } from '../../../utils/fetchData'
+import validPassword from './validPassword'
 
 export default function Email() {
 	const { auth, setAuth } = useAuth()
-	const { register, setValue, handleSubmit } = useForm();
+	const { register, setValue, setFocus, handleSubmit } = useForm();
 	const initialState = {
-		email: '',
+		email: auth.user.email,
 		password: '',
 	}
 	const [data, setData] = useState(initialState)
@@ -23,7 +24,7 @@ export default function Email() {
 	const { notifyError, notifySuccess } = useNotify()
 	const [editEmail, setEditEmail] = useState(false)
 	const cancelEmail = () => {
-		setData({ ...data, email: '' })
+		setData({ ...data, email: auth.user.email })
 		setValue("email", auth.user.email)
 		setEditEmail(false)
 	}
@@ -32,12 +33,16 @@ export default function Email() {
 		setData({ ...data, [name]: value })
 	}
 	async function handleUpdate() {
+		if (auth.user.email === email) return notifyError({ msg: "Você já está utilizando este email." })
 		const errEmail = validEmail(email)
-		if (errEmail) return notifyError({ msg: errEmail })
-		const res = await patchData('edit_user/email', data, auth.token)
+		const errPassword = validPassword(password)
+		if (errEmail) return notifyError({ msg: errEmail }), setFocus("email")
+		if (errPassword) return notifyError({ msg: errPassword }), setFocus("password")
+		const res = await patchData('edit/email', data, auth.token)
 		if (res.err) return notifyError({ msg: res.err })
-
+		setAuth({ token: auth.token, user: res.user })
 		setEditEmail(false)
+		setData(initialState)
 		setValue("password", '')
 		return notifySuccess({ msg: res.msg })
 	}

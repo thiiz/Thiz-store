@@ -1,6 +1,5 @@
 import connectDB from '../../../lib/connectDB'
 import Users from '../../../models/userModels'
-import bcrypt from 'bcrypt'
 import auth from '../../../middleware/auth'
 
 connectDB()

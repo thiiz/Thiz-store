@@ -12,5 +12,6 @@ module.exports = {
   },
   env: {
     NEXT_PUBLIC_DATO_CMS_READ_ONLY_API_TOKEN: process.env.DATO_CMS_READ_ONLY_API_TOKEN,
+    NEXT_PUBLIC_DATO_CMS_FULL_ACCESS_API_TOKEN: process.env.DATO_CMS_FULL_ACCESS_API_TOKEN,
   },
 };

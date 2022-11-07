@@ -15,7 +15,7 @@
 }
 
 .containerProduct {
-    margin-top: 90px;
+    margin-top: 5rem;
 }
 
 .quantity {
@@ -41,16 +41,13 @@
 
 .actionContainer {
     display: flex;
-    padding-bottom: 10px;
     align-items: center;
 }
 
 .item {
-    padding-top: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding-bottom: 10px;
     border-bottom: 1px solid #ccc
 }
 
@@ -79,8 +76,9 @@
 
 }
 
-.containerImg {
+.containerImg img {
     cursor: pointer;
+    min-height: 63% !important;
 }
 
 .actions_Button {
@@ -182,7 +180,7 @@
     width: 70%;
     height: 70px;
     cursor: pointer;
-    background-color: black;
+    background-color: #006eff;
     color: #f1f1f1;
     font-size: 19px;
     border-radius: 5px;

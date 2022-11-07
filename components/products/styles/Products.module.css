@@ -193,6 +193,23 @@
 	.container {
 		font-size: 80%;
 	}
+
+	.iconContainer {
+		height: 1.8em;
+		width: 1.8em;
+	}
+
+	.buy {
+		height: 2.4em;
+	}
+
+	.unavailable {
+		height: 2.4em;
+	}
+
+	.icon {
+		font-size: 1.15em;
+	}
 }
 
 @media (min-width: 1332px) and (max-width: 1533px) {
@@ -200,6 +217,8 @@
 		font-size: 100%;
 
 	}
+
+
 }
 
 @media (min-width: 1534px) {

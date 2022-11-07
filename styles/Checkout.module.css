@@ -1,14 +1,20 @@
 .container {
 	width: 100%;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	background-color: #fff;
+	font-size: 100%;
+}
+
+.checkout {
 	display: grid;
 	grid-template-rows: 1fr 1fr 1fr;
 	justify-content: center;
 	align-items: center;
 	justify-items: center;
-	background-color: #fff;
 	font-family: 'Varela Round', 'Arial', sans-serif;
 	margin-top: 2.2rem;
-	font-size: 100%;
 }
 
 .title {
@@ -83,7 +89,7 @@
 
 .btnDisable {
 	background-color: #6363636b;
-	border: 1px solid #ff0000;
+	border: 1px solid #666666;
 	cursor: default;
 }
 
