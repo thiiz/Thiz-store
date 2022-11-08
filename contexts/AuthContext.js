@@ -20,8 +20,8 @@ export const AuthProvider = ({ children }) => {
 				}
 				setAuth({ token: res.access_token, user: res.user })
 			})
-			setLoadingAuth(false)
 		}
+		setLoadingAuth(false)
 	}, [])
 
 	if (loadingAuth) {
