@@ -9,9 +9,11 @@ export default function SearchModal({ data, searching, setItems, setSearch, scro
 		setItems([])
 	}
 	if (searching) {
-		<div className={`${style.container} ${scrollDirection !== 'down' ? style.containerNormal : style.containerSmall}`}>
-			<span>PROCURANDO...</span>
-		</div>
+		return (
+			<div className={`${style.container} ${scrollDirection !== 'down' ? style.containerNormal : style.containerSmall}`}>
+				<span>PROCURANDO...</span>
+			</div>
+		)
 	}
 	if (data.length !== 0) {
 		return (
