@@ -2,13 +2,13 @@ import { VscChromeClose } from 'react-icons/vsc';
 import Items from './Items';
 import style from './SearchModal.module.css'
 
-export default function SearchModal({ data, setItems, setSearch, scrollDirection }) {
+export default function SearchModal({ data, searching, setItems, setSearch, scrollDirection }) {
 	const quantity = data?.data?.map(product => product)
 	const handleClose = () => {
 		setSearch(false)
 		setItems([])
 	}
-	if(!data){
+	if (searching) {
 		<div className={`${style.container} ${scrollDirection !== 'down' ? style.containerNormal : style.containerSmall}`}>
 			<span>PROCURANDO...</span>
 		</div>
