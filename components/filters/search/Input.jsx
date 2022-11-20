@@ -1,13 +1,13 @@
 import style from './Search.module.css'
 import { useForm } from 'react-hook-form';
 import { BsSearch } from 'react-icons/bs';
-import { useSearch } from '../../../lib/useSearch';
+import { SearchProducts } from '../../../lib/SearchProducts';
 
 export default function Input({ setItems, scrollDirection }) {
 	const { register, handleSubmit } = useForm()
 	const handleSearch = async (data) => {
 		if (data.search.length !== 0) {
-			const search = await useSearch({ search: data.search })
+			const search = await SearchProducts({ search: data.search })
 			return setItems(search)
 		}
 	}
