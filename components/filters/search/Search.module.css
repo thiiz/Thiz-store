@@ -1,13 +1,26 @@
 .searchContainer {
-	position: relative;
-	width: 100%;
+	position: absolute;
+	transition: 250ms ease-in-out;
+}
+
+.content {
+	position: absolute;
+}
+
+.contentNormal {
+	transform: translateY(1.3rem);
+}
+
+.contentSmall {
+	transform: translateY(.36rem);
 }
 
 .search {
-	height: 2.813rem;
-	width: 100%;
+	position: relative;
+	width: 13rem;
+	height: 100%;
 	border: none;
-	background-color: #ecf0f1;
+	background-color: transparent;
 	outline: none;
 	text-indent: .125em;
 	font-size: 1.1rem;
@@ -15,13 +28,37 @@
 
 .label {
 	display: flex;
+	height: 2.813rem;
 	align-items: center;
-	border: 2px solid #5e5e5e;
+	border: 2px solid #151515;
+	transition: 250ms ease;
 }
 
 .icon {
 	padding: 0 .625rem;
 	font-size: 2.925rem;
 	height: 2.813rem;
-	background-color: #ecf0f1;
+	background-color: transparent;
+	transition: 1s ease;
+}
+
+.btn {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	font-size: 1.655rem;
+	padding: 0.438rem;
+	border-radius: 50%;
+	transition: ease 400ms, background-color 400ms;
+	position: relative;
+	color: inherit;
+}
+
+.btn:hover {
+	background-color: #0000002d;
+}
+
+.btn:active svg {
+	scale: .9;
 }

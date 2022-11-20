@@ -124,7 +124,6 @@ export function ProductFiltred({ data }) {
 		<div className={style.container}>
 			<div className={style.sortPrice} id='filterProducts'>
 				<h3 className={style.titleProducts}>PRODUTOS</h3>
-				<Search searching={searching} setSearching={setSearching} />
 				<div>
 					<span>ORDENAR POR:</span>
 					<Select

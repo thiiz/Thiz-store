@@ -1,14 +1,24 @@
 import style from './Search.module.css'
-import { BsSearch } from "react-icons/bs";
-import { useForm } from "react-hook-form";
+import SearchModal from './SearchModal';
+import { useState } from 'react';
+import Input from './Input';
+import { GrSearch } from 'react-icons/gr';
+import { useScrollDirection } from '../../../lib/useScrollDirection';
 
-export default function Search({ searching, setSearching }) {
+export default function Search() {
+	const [items, setItems] = useState([])
+	const [search, setSearch] = useState(false)
+	const scrollDirection = useScrollDirection()
+
 	return (
-		<form className={style.searchContainer}>
-			<label className={style.label}>
-				<BsSearch className={style.icon} />
-				<input onChange={s => setSearching(s.target.value)} value={searching} className={style.search} type='text' />
-			</label>
-		</form>
+		<div className={style.container}>
+			<button className={style.btn} onClick={() => setSearch(search => !search)}><GrSearch /></button>
+			{search &&
+				<div className={`${style.content} ${scrollDirection !== 'down' ? style.contentNormal : style.contentSmall}`}>
+					<Input scrollDirection={scrollDirection} setItems={setItems} />
+					<SearchModal scrollDirection={scrollDirection} data={items} setItems={setItems} setSearch={setSearch} />
+				</div>
+			}
+		</div>
 	)
 }

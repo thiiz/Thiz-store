@@ -1,0 +1,48 @@
+.container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	font-family: 'Varela Round', 'Arial', sans-serif;
+	align-items: center;
+}
+
+.containerImg {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: .4rem;
+	transition: 550ms ease-in-out;
+}
+
+.productImg {
+	object-fit: none;
+}
+
+.containerImg img {
+	cursor: pointer;
+	height: 4.6rem !important;
+	min-width: 4.5rem;
+	transition: 250ms ease-in-out all;
+}
+
+.containerImg:hover,
+.containerImg:hover img {
+	transition-delay: 300ms;
+	scale: 1.1;
+	height: 100%;
+	min-width: 10.5rem;
+}
+
+
+.title {
+	-webkit-line-clamp: 3;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	cursor: pointer;
+}
+
+.price {
+	font-family: 'Roboto', 'Arial', sans-serif;
+}

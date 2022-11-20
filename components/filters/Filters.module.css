@@ -20,7 +20,7 @@
 	display: flex;
 	width: 80%;
 	justify-content: space-between;
-	align-items: center;
+	align-items: flex-end;
 	margin-bottom: 1.25rem;
 }
 
@@ -57,17 +57,6 @@
 
 .gridOptionActive {
 	border: 1px solid #000000;
-}
-
-@media (min-width: 1072px) {
-	.sortPrice {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
-		justify-items: center;
-		width: 100%;
-		grid-gap: 5vw;
-		align-items: flex-end;
-	}
 }
 
 @media (max-width: 590px) {

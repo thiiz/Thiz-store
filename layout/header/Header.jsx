@@ -14,9 +14,9 @@ import { useRouter } from 'next/router'
 import HeaderLinks from './HeaderLinks'
 import ButtonsMobile from './ButtonsMobile'
 import ButtonsDesktop from './ButtonsDesktop'
-import { useBackgroundVariant } from '../../lib/useBackgroundVariant'
 import { useContextModalLogin } from '../../contexts/ModalLoginContext'
 import HeaderLogo from './HeaderLogo'
+import Search from '../../components/filters/search/Search'
 
 function Header() {
 	const { auth } = useAuth()
@@ -54,17 +54,17 @@ function Header() {
 			<motion.header className={style.header} animate={!small ? scrollDirection === "down" ? "small" : "normal" : isOpenMobile ? "normal" : "small"} variants={!small ? desktopVariant : mobileVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
 				<div className={style.taggleMenuMobile}>
 					<HeaderLogo />
-					{small ?
+					{small &&
 						<>
 							<ButtonsMobile isOpenMobile={isOpenMobile} setIsOpenMobile={setIsOpenMobile} />
 							<div className={style.menuHamburguer}><Hamburger toggled={isOpenMobile} toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)} distance="lg" size={34} easing="ease-in" style="bottom: 2px;" /></div>
-						</>
-						: ''}
+						</>}
 				</div>
 				<motion.nav className={style.menuBtn} animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant}>
 					<HeaderLinks />
 				</motion.nav>
 				<motion.div className={!small ? style.containerBtn : style.containerBtnMobile} animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant} transition={{ ease: "easeOut", duration: 0.4 }}>
+					<Search />
 					{!small &&
 						<ButtonsDesktop />
 					}

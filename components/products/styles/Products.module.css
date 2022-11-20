@@ -23,7 +23,6 @@
 	transition: ease-in-out 200ms;
 	user-select: none;
 	border-radius: 8px;
-
 }
 
 .containerTwo {
@@ -184,7 +183,7 @@
 
 @media (max-width: 590px) {
 	.container {
-		gap: 10vw 0;
+		gap: 3vh 2vw;
 		padding-bottom: 4.375em;
 	}
 }
@@ -195,20 +194,20 @@
 	}
 
 	.iconContainer {
-		height: 1.8em;
-		width: 1.8em;
+		height: 1.6em;
+		width: 1.6em;
 	}
 
 	.buy {
-		height: 2.4em;
+		height: 2.1em;
 	}
 
 	.unavailable {
-		height: 2.4em;
+		height: 2.1em;
 	}
 
 	.icon {
-		font-size: 1.15em;
+		font-size: 1.1em;
 	}
 }
 
