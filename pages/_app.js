@@ -90,9 +90,7 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
                 />
                 <MenuLogin />
                 <CartMenu />
-                <Transition>
                   <Component {...pageProps} />
-                </Transition >
               </CartProvider>
             </LoginMenuProvider>
           </NotifyProvider>

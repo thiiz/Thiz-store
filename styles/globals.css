@@ -29,14 +29,12 @@ body {
   z-index: 10;
   top: 0;
   position: relative;
+  overflow: hidden;
+
 }
 
 .marginFooter {
   margin-bottom: 14.063rem;
-}
-
-.main {
-  overflow: hidden;
 }
 
 .background::after {
