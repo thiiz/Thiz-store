@@ -10,7 +10,7 @@ import { ImBlocked } from 'react-icons/im'
 import { useCart } from '../../contexts/CartContext';
 
 
-function productPage({ product }) {
+function ProductDetails({ product }) {
 	const { add } = useCart()
 	return (
 		<>
@@ -75,4 +75,4 @@ export async function getStaticPaths() {
 		fallback: 'blocking',
 	}
 }
-export default productPage
+export default ProductDetails
