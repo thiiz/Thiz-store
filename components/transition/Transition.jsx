@@ -3,20 +3,19 @@ import { useRouter } from 'next/router'
 
 const Transition = ({ children }) => {
   const { asPath } = useRouter();
-  const variants = {
-    hidden: { opacity: 0, x: -200, y: 0 },
-    enter: { opacity: 1, x: 0, y: 0 },
-    exit: { opacity: 0, x: 0, y: -100 },
+  const config = {
+    type: "spring",
+    damping: 20,
+    stiffness: 100
   };
   return (
       <AnimatePresence initial={false} mode='wait'>
         <motion.main
-          variants={variants} // Pass the variant object into Framer Motion 
-          initial="hidden"
           key={asPath} // Set the initial state to variants.hidden
-          animate="enter" // Animated state to variants.enter
-          exit="exit" // Exit state (used later) to variants.exit
-          transition={{ type: 'linear' }}
+          transition={config}
+          initial={{ scale: .8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ x: 0, opacity: 0 }}
           className="main" // Set the transition to linear
         >
           {children}
