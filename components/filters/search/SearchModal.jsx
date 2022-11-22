@@ -8,11 +8,12 @@ export default function SearchModal({ data, searching, setItems, setSearch, scro
 		setSearch(false)
 		setItems([])
 	}
+	
 	if (searching) {
 		return (
 			<div className={`${style.container} ${scrollDirection !== 'down' ? style.containerNormal : style.containerSmall}`}>
 				<div className={style.header}>
-					<span>PROCURANDO...</span>
+					<span>Procurando produtos...</span>
 					<button onClick={() => handleClose()} className={style.close}><VscChromeClose /></button>
 				</div>
 			</div>

@@ -108,79 +108,6 @@
 	font-weight: 600;
 }
 
-.buy {
-	width: 100%;
-	height: 2.8rem;
-	cursor: pointer;
-	margin-top: 0.625rem;
-	background-color: #0e0e0e;
-	text-transform: uppercase;
-	font-size: 1.063rem;
-	color: #fff;
-	border-radius: .9rem;
-	border: none;
-	letter-spacing: .05rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	position: relative;
-	font-family: 'Varela Round', sans-serif;
-}
-
-.iconContainer {
-	background: #f1f1f1;
-	position: absolute;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 2.2em;
-	width: 2.2em;
-	border-radius: 0.7em;
-	right: 0.3em;
-	transition: all 0.3s;
-}
-
-.buy:hover .iconContainer {
-	width: calc(100% - 0.6em);
-}
-
-.icon {
-	font-size: 1.3em;
-	transition: transform 0.3s;
-	color: #000;
-}
-
-.buy:hover .icon {
-	transform: translateX(0.1em);
-}
-
-.btn:active .iconContainer {
-	transform: scale(0.95);
-}
-
-.unavailable {
-	width: 100%;
-	height: 2.8rem;
-	cursor: default;
-	margin-top: 0.625rem;
-	background-color: #0e0e0e;
-	text-transform: uppercase;
-	font-size: 1.063rem;
-	color: #fff;
-	padding: 0.35em;
-	border-radius: 0.9rem;
-	border: none;
-	letter-spacing: 0.05rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	position: relative;
-	background-color: #535353c0;
-
-}
-
 @media (max-width: 590px) {
 	.container {
 		gap: 3vh 2vw;
@@ -193,22 +120,6 @@
 		font-size: 80%;
 	}
 
-	.iconContainer {
-		height: 1.6em;
-		width: 1.6em;
-	}
-
-	.buy {
-		height: 2.1em;
-	}
-
-	.unavailable {
-		height: 2.1em;
-	}
-
-	.icon {
-		font-size: 1.1em;
-	}
 }
 
 @media (min-width: 1332px) and (max-width: 1533px) {

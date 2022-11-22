@@ -1,0 +1,7 @@
+.container {
+	font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+.iconStar {
+	transition: 200ms ease-in-out all;
+}

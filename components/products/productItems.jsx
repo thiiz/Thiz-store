@@ -1,21 +1,16 @@
 import { useRouter } from 'next/router';
 import { Image } from 'react-datocms'
 import style from './styles/Products.module.css'
-import { useCart } from '../../contexts/CartContext'
-import { BsFillBagFill } from 'react-icons/bs'
-import { ImBlocked } from 'react-icons/im'
 import { useState, memo, useMemo } from 'react';
-import { useEffect } from 'react';
 
 
-function ProductsItems({ stock, grid }) {
+function ProductsItems({ product, grid }) {
 	const router = useRouter()
 	const handleViewProduct = () => {
-		router.push(`/product/${stock?.slug}`)
+		router.push(`/product/${product?.slug}`)
 	}
-	const { add } = useCart()
-	const price = stock?.price.toFixed(2).toString().replace(".", ",")
-	const calc = (Math.round(stock?.price / 6 * 100)) / 100.0;
+	const price = product?.price.toFixed(2).toString().replace(".", ",")
+	const calc = (Math.round(product?.price / 6 * 100)) / 100.0;
 	const parcel = calc.toString().replace(".", ",");
 	const [newGrid, setNewGrid] = useState({ productContainer: style.productContainerDefault, imageContainer: style.imageContainerDefault })
 
@@ -29,23 +24,11 @@ function ProductsItems({ stock, grid }) {
 	return (
 		<div className={`${style.productContainer} ${newGrid.productContainer}`}>
 			<div onClick={handleViewProduct} className={`${style.imageContainer} ${newGrid.imageContainer}`} >
-				<Image className={style.productImg} data={stock?.image.responsiveImage} alt={`imagem do produto: ${stock?.image.alt}`} layout="responsive" />
+				<Image className={style.productImg} data={product?.image.responsiveImage} alt={`imagem do produto: ${product?.image.alt}`} layout="responsive" />
 			</div>
-			<p onClick={handleViewProduct} className={style.title}>{stock.title}</p>
+			<p onClick={handleViewProduct} className={style.title}>{product?.title}</p>
 			<p className={style.price}><strong>R$ {price}</strong></p>
 			<p className={style.parcel}>OU 6X <strong>R$ {parcel}</strong></p>
-			{stock?.instock !== 0 && <button onClick={() => { add(stock) }} className={`${style.btn} ${style.buy}`} type='button'> comprar
-				<div className={style.iconContainer}>
-					<BsFillBagFill className={style.icon} />
-				</div>
-			</button>
-			}
-			{stock?.instock === 0 && <button onClick={() => { add(stock) }} className={`${style.btn} ${style.unavailable}`} type='button' disabled>indisponível
-				<div className={style.iconContainer}>
-					<ImBlocked className={style.icon} />
-				</div>
-			</button>
-			}
 		</div>
 	)
 }

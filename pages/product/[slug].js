@@ -1,23 +1,46 @@
+import style from './slug.module.css'
 import { Image } from 'react-datocms'
 import { gql } from '@apollo/client';
 import client from '../../lib/apolloclient';
 import { VIEW_PRODUCTS_QUERY } from '../../lib/viewProductQuery'
 import Head from 'next/head';
+import StarReview from '../../components/star-review/StarReview';
+import { BsFillBagFill } from 'react-icons/bs'
+import { ImBlocked } from 'react-icons/im'
+import { useCart } from '../../contexts/CartContext';
 
 
 function productPage({ product }) {
+	const { add } = useCart()
 	return (
 		<>
 			<Head>
-				<title>{product.title} - Mãe Terra</title>
+				<title>{`${product.title.toUpperCase()} - Mãe Terra`}</title>
 			</Head>
-			<div>
+			<div className={style.container}>
 				<picture>
 					<Image data={product.image.responsiveImage} alt={product.title} />
 				</picture>
-				<h1>{product.title}.</h1>
-				<p>{product.price}</p>
-				<span>Disponíveis: {product.instock}</span>
+				<div className={style.productsDetails}>
+					<div className={style.containerStars}>
+					<StarReview />
+					</div>
+					<h1 className={style.title}>{product.title}.</h1>
+					<p className={style.price}>R${product.price.toFixed(2).toString().replace(".", ",")}</p>
+					<span>Disponíveis: {product.instock}</span>
+					{product.instock !== 0 && <button onClick={() => { add(product) }} className={`${style.btn} ${style.buy}`} type='button'>comprar
+						<div className={style.iconContainer}>
+							<BsFillBagFill className={style.icon} />
+						</div>
+					</button>
+					}
+					{product.instock === 0 && <button className={`${style.btn} ${style.unavailable}`} type='button' disabled>indisponível
+						<div className={style.iconContainer}>
+							<ImBlocked className={style.icon} />
+						</div>
+					</button>
+					}
+				</div>
 			</div>
 		</>
 	)
@@ -35,7 +58,6 @@ export async function getStaticProps({ params }) {
 
 	return {
 		props: { product },
-		revalidate: 15,
 	}
 }
 

@@ -9,9 +9,9 @@ function ProductView({ products, grid }) {
 	return (
 		<>
 			<section className={`${style.container} ${desktop ? grid === 2 ? style.containerTwo : grid === 3 ? style.containerThree : style.containerDefault : ''}`} >
-				{products?.map((stock) => {
+				{products?.map((product) => {
 					return (
-						<ProductsItems key={stock.id} stock={stock} grid={grid} />
+						<ProductsItems key={product.id} product={product} grid={grid} />
 					);
 				})}
 			</section>
