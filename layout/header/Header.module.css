@@ -12,6 +12,17 @@
 	-webkit-box-shadow: 0 8px 6px -6px black;
 	-moz-box-shadow: 0 8px 6px -6px black;
 	box-shadow: 0 8px 6px -6px black;
+	transition: 250ms ease;
+}
+
+.headerNormal {
+	font-size: 100%;
+	height: 5rem;
+}
+
+.headerSmall {
+	font-size: 85%;
+	height: 3.125rem;
 }
 
 .logo {
@@ -37,7 +48,7 @@
 
 .btnInfo {
 	display: flex;
-	font-size: 1.625rem;
+	font-size: 1.625em;
 	padding: 0.438rem;
 	border-radius: 50%;
 	transition: background-color 400ms;
@@ -53,6 +64,7 @@
 	background-color: #000;
 	border-radius: 50%;
 	position: absolute;
+	transition: 250ms ease;
 }
 
 .countCartitemsNormal {
@@ -65,9 +77,9 @@
 }
 
 .countCartitemsSmall {
-	width: 0.938rem;
-	height: 0.938rem;
-	font-size: 0.688rem;
+	width: 0.958rem;
+    height: 0.958rem;
+    font-size: 0.656rem;
 	bottom: 1.25rem;
 	left: 1.438rem;
 	user-select: none;
@@ -81,13 +93,14 @@
 	flex-direction: column;
 	align-items: center;
 	border-radius: 10%;
+	font-size: 2.169em;
 }
 
 .userContainer {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-left: .938rem;
+	margin-left: .538rem;
 	position: relative;
 }
 
@@ -102,22 +115,22 @@
 	position: relative;
 }
 
-.btnLoginNormal {
-	padding: .5rem 1.375rem;
-	font-size: 1rem;
-}
-
-.btnLoginSmall {
-	padding: 0.438rem 1.063rem;
-	font-size: 0.875rem;
-}
-
 .btnLogin:active {
 	background-color: #0000006e;
 }
 
 .scrollTop {
 	top: 0;
+}
+@media (min-width: 1024px) {
+	.headerNormal{
+		padding: 0 12rem;
+
+	}
+	.headerSmall{
+	padding: 0 10.7rem;
+		
+	}
 }
 
 @media (max-width: 590px) {
@@ -161,11 +174,11 @@
 		bottom: 0;
 	}
 
-	.taggleMenuMobile {
+	/* .taggleMenuMobile {
 		display: grid;
 		grid-template-columns: 4fr 1fr 0.3fr;
 		align-items: center;
-	}
+	} */
 
 	.NavMenuList {
 		position: relative;

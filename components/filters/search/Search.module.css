@@ -1,18 +1,18 @@
 .searchContainer {
 	position: absolute;
-	transition: 250ms ease-in-out;
 }
 
 .content {
 	position: absolute;
+	transition: 250ms ease;
 }
 
 .contentNormal {
-	transform: translateY(1.3rem);
+	transform: translateY(1.25rem) translateX(-5rem);
 }
 
 .contentSmall {
-	transform: translateY(.36rem);
+	transform: translateY(.429rem) translateX(-3rem);
 }
 
 .search {
@@ -40,25 +40,4 @@
 	height: 2.813rem;
 	background-color: transparent;
 	transition: 1s ease;
-}
-
-.btn {
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-	display: flex;
-	font-size: 1.655rem;
-	padding: 0.438rem;
-	border-radius: 50%;
-	transition: ease 400ms, background-color 400ms;
-	position: relative;
-	color: inherit;
-}
-
-.btn:hover {
-	background-color: #0000002d;
-}
-
-.btn:active svg {
-	scale: .9;
 }

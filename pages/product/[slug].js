@@ -17,7 +17,7 @@ function ProductDetails({ product }) {
 			<Head>
 				<title>{`${product.title.toUpperCase()} - Mãe Terra`}</title>
 			</Head>
-			<div className={style.container}>
+			<main className={style.container}>
 				<picture>
 					<Image data={product.image.responsiveImage} alt={product.title} />
 				</picture>
@@ -41,7 +41,7 @@ function ProductDetails({ product }) {
 					</button>
 					}
 				</div>
-			</div>
+			</main>
 		</>
 	)
 }

@@ -15,7 +15,7 @@
 	text-decoration: none;
 	padding: .5rem 0;
 	cursor: pointer;
-	font-size: 1.513rem;
+	font-size: 1.513em;
 }
 
 .NavMenuList li::before {

@@ -1,11 +1,7 @@
 import style from './Header.module.css'
 import { useState, useEffect } from 'react'
-import CartMenu from '../../components/cart/CartMenu'
-import { motion } from "framer-motion"
 import { useMenuCart } from '../../contexts/OpenCartMenuContext'
 import { useScrollDirection } from '../../lib/useScrollDirection'
-import { useDesktopSize } from '../../lib/useAnimate'
-import { useMobileSize } from '../../lib/useAnimate'
 import { useIsSmall } from '../../lib/MediaQuery'
 import { Fade as Hamburger } from 'hamburger-react'
 import { useAuth } from '../../contexts/AuthContext'
@@ -16,7 +12,6 @@ import ButtonsMobile from './ButtonsMobile'
 import ButtonsDesktop from './ButtonsDesktop'
 import { useContextModalLogin } from '../../contexts/ModalLoginContext'
 import HeaderLogo from './HeaderLogo'
-import Search from '../../components/filters/search/Search'
 
 function Header() {
 	const { auth } = useAuth()
@@ -26,8 +21,7 @@ function Header() {
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
 	const { openCart } = useMenuCart()
 	const scrollDirection = useScrollDirection()
-	const desktopVariant = useDesktopSize()
-	const mobileVariant = useMobileSize()
+
 	const small = useIsSmall()
 
 	useEffect(() => {
@@ -51,25 +45,22 @@ function Header() {
 
 	return (
 		<>
-			<motion.header className={style.header} animate={!small ? scrollDirection === "down" ? "small" : "normal" : isOpenMobile ? "normal" : "small"} variants={!small ? desktopVariant : mobileVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
-				<div className={style.taggleMenuMobile}>
-					<HeaderLogo />
-					{small &&
-						<>
-							<ButtonsMobile isOpenMobile={isOpenMobile} setIsOpenMobile={setIsOpenMobile} />
-							<div className={style.menuHamburguer}><Hamburger toggled={isOpenMobile} toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)} distance="lg" size={34} easing="ease-in" style="bottom: 2px;" /></div>
-						</>}
-				</div>
-				<motion.nav className={style.menuBtn} animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant}>
+			<header className={`${style.header} ${scrollDirection !== 'down' ? style.headerNormal : style.headerSmall}`} >
+				<HeaderLogo scrollDirection={scrollDirection} />
+				{small &&
+					<>
+						<ButtonsMobile isOpenMobile={isOpenMobile} setIsOpenMobile={setIsOpenMobile} />
+						<div className={style.menuHamburguer}><Hamburger toggled={isOpenMobile} toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)} distance="lg" size={34} easing="ease-in" style="bottom: 2px;" /></div>
+					</>}
+				<nav className={style.menuBtn}>
 					<HeaderLinks />
-				</motion.nav>
-				<motion.div className={!small ? style.containerBtn : style.containerBtnMobile} animate={isOpenMobile ? "open_Menu" : "closed_Menu"} variants={mobileVariant} transition={{ ease: "easeOut", duration: 0.4 }}>
-					<Search />
+				</nav>
+				<div className={!small ? style.containerBtn : style.containerBtnMobile}>
 					{!small &&
 						<ButtonsDesktop />
 					}
-				</motion.div>
-			</motion.header>
+				</div>
+			</header>
 		</>
 	)
 }

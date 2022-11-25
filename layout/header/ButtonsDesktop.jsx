@@ -1,23 +1,21 @@
 import style from './Header.module.css'
-import { FaShoppingCart, FaUserCircle } from 'react-icons/fa'
+import { FaUserCircle } from 'react-icons/fa'
 import { MdHeadsetMic } from 'react-icons/md'
-import { motion } from 'framer-motion'
 import LoginModal from './LoginModal'
 import { useContextModalLogin } from '../../contexts/ModalLoginContext'
 import { useEffect, useRef } from 'react'
-import { useDesktopSize } from '../../lib/useAnimate'
 import { useIsSmall } from '../../lib/MediaQuery'
 import { useScrollDirection } from '../../lib/useScrollDirection'
 import { useLoginMenu } from '../../contexts/LoginMenuContext'
 import { useAuth } from '../../contexts/AuthContext'
 import ButtonCart from './ButtonCart'
+import Search from '../../components/filters/search/Search'
 
 export default function ButtonsDesktop() {
 	const { isLoginModal, setIsLoginModal } = useContextModalLogin()
 	const { setToggleLoginMenu } = useLoginMenu()
 	const { auth } = useAuth()
 	const refLogin = useRef();
-	const desktopVariant = useDesktopSize()
 	const small = useIsSmall()
 	const scrollDirection = useScrollDirection()
 	useEffect(() => {
@@ -32,11 +30,9 @@ export default function ButtonsDesktop() {
 			) {
 				return;
 			}
-			// if we are outside
 			setIsLoginModal(false);
 		};
-		// anytime user clics anywhere on the dom, that click event will bubble up into our body element
-		// without { capture: true } it might not work
+
 		document.addEventListener("click", handleClickOutside, { capture: true });
 		return () => {
 			document.removeEventListener("click", handleClickOutside, { capture: true });
@@ -45,20 +41,21 @@ export default function ButtonsDesktop() {
 	console.log
 	return (
 		<section className={style.btnInfoContainer}>
-			<motion.button animate={!small ? scrollDirection === "down" ? "small_Menu" : "normal_Menu" : ''} variants={desktopVariant} className={`${style.btn} ${style.btnInfo}`} type='button'>
+			<Search />
+			<button className={`${style.btn} ${style.btnInfo}`} type='button'>
 				<MdHeadsetMic />
-			</motion.button>
+			</button>
 			<ButtonCart />
 			<div ref={refLogin} className={style.userContainer}>
 				{Object.keys(auth).length === 0 ?
-					<motion.button onClick={() => setToggleLoginMenu(toggleLoginMenu => !toggleLoginMenu)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
+					<button onClick={() => setToggleLoginMenu(toggleLoginMenu => !toggleLoginMenu)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${scrollDirection !== 'down' ? style.btnLoginNormal : style.btnLoginSmall}`} type='button'>
 						<FaUserCircle />
-					</motion.button>
+					</button>
 					:
-					<motion.button onClick={() => setIsLoginModal(isLoginModal => !isLoginModal)} animate={!small ? scrollDirection === "down" ? "small_User" : "normal_User" : ""} variants={desktopVariant} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
+					<button onClick={() => setIsLoginModal(isLoginModal => !isLoginModal)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${scrollDirection !== 'down' ? style.btnLoginNormal : style.btnLoginSmall}`} type='button'>
 						<FaUserCircle />
 						{scrollDirection !== "down" && <p className={style.loginText}>{auth.user.name}</p>}
-					</motion.button>}
+					</button>}
 				{isLoginModal &&
 					<div className={style.containerLoginModal}>
 						<LoginModal isLoginModal={isLoginModal} scrollDirection={scrollDirection} />

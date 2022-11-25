@@ -4,11 +4,10 @@
 	-moz-box-shadow: 0 0 8px #000000de;
 	box-shadow: 0 0 8px #000000de;
 	background-color: #f5f5f5;
-	transition: 160ms ease-in-out;
+	transition: 120ms ease-in-out;
 	padding-top: 2.4rem;
 	font-family: 'Varela Round', 'Arial', sans-serif;
-	min-width: 18.658rem;
-	max-width: 20.658rem;
+	width: 16.158rem;
 }
 
 .containerNormal {
