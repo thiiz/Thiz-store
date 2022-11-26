@@ -65,6 +65,8 @@
 	border-radius: 50%;
 	position: absolute;
 	transition: 250ms ease;
+	user-select: none;
+
 }
 
 .countCartitemsNormal {
@@ -73,7 +75,6 @@
 	font-size: 0.75rem;
 	bottom: 1.438rem;
 	left: 1.563rem;
-	user-select: none;
 }
 
 .countCartitemsSmall {
@@ -82,7 +83,6 @@
     font-size: 0.656rem;
 	bottom: 1.25rem;
 	left: 1.438rem;
-	user-select: none;
 }
 
 .btnInfo:hover {

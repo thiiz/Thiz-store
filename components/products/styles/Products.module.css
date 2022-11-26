@@ -23,6 +23,7 @@
 	transition: ease-in-out 200ms;
 	user-select: none;
 	border-radius: 8px;
+
 }
 
 .containerTwo {
@@ -69,6 +70,7 @@
 .imageContainer {
 	cursor: pointer;
 	position: relative;
+	transition: 250ms ease-in-out;
 }
 
 .title {

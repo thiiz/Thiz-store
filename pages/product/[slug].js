@@ -2,7 +2,7 @@ import style from './slug.module.css'
 import { Image } from 'react-datocms'
 import { gql } from '@apollo/client';
 import client from '../../lib/apolloclient';
-import { VIEW_PRODUCTS_QUERY } from '../../lib/viewProductQuery'
+import { VIEW_PRODUCTS_QUERY } from '../../lib/Queries'
 import Head from 'next/head';
 import StarReview from '../../components/star-review/StarReview';
 import { BsFillBagFill } from 'react-icons/bs'
@@ -23,7 +23,7 @@ function ProductDetails({ product }) {
 				</picture>
 				<div className={style.productsDetails}>
 					<div className={style.containerStars}>
-					<StarReview />
+						<StarReview />
 					</div>
 					<h1 className={style.title}>{product.title}.</h1>
 					<p className={style.price}>R${product.price.toFixed(2).toString().replace(".", ",")}</p>

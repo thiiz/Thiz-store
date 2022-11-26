@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { Image } from 'react-datocms'
 import style from './styles/Products.module.css'
-import { useState, memo, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 
 
 function ProductsItems({ product, grid }) {
@@ -33,4 +33,4 @@ function ProductsItems({ product, grid }) {
 	)
 }
 
-export default memo(ProductsItems);
+export default ProductsItems

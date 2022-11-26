@@ -1,7 +1,6 @@
 import ProductsItems from './productItems';
 import style from './styles/Products.module.css'
 import { useIsLarge } from '../../lib/MediaQuery';
-import { memo } from 'react';
 
 
 function ProductView({ products, grid }) {
@@ -19,4 +18,4 @@ function ProductView({ products, grid }) {
 
 	)
 }
-export default memo(ProductView);
+export default ProductView
