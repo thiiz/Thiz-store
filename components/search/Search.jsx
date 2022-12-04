@@ -1,10 +1,10 @@
 import style from './Search.module.css'
-import styleBtn from '../../../layout/header/Header.module.css'
+import styleBtn from '../../layout/header/Header.module.css'
 import SearchModal from './SearchModal';
 import { useState } from 'react';
 import Input from './Input';
 import { GrSearch } from 'react-icons/gr';
-import { useScrollDirection } from '../../../lib/useScrollDirection';
+import { useScrollDirection } from '../../lib/useScrollDirection';
 
 export default function Search() {
 	const [items, setItems] = useState([])

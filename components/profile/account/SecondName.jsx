@@ -42,7 +42,7 @@ export default function SecondName() {
 	return (
 		<form onSubmit={handleSubmit(handleUpdate)}>
 			<div className={style.form}>
-				<label htmlFor='secondName' className={style.label}>segundo nome</label>
+				<span className={style.label}>segundo nome</span>
 				<label className={style.inputContainer}>
 					<input {...register("secondName")} className={`${style.input} ${style.nameInput}`} type="text" onChange={handleChange} defaultValue={auth.user.secondName} name='secondName' placeholder='Segundo nome' disabled={!editSecondName && true} />
 					{editSecondName ?

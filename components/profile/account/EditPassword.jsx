@@ -42,21 +42,21 @@ export default function EditPassword() {
 	return (
 		<form onSubmit={handleSubmit(handleUpdate)}>
 			<div className={style.form}>
-				<label htmlFor='password' className={style.label}>Senha</label>
+				<span className={style.label}>Senha</span>
 				<input {...register("password")} className={style.input} onChange={handleChange} type={showPass ? "text" : "password"} name='password' placeholder='Senha' />
 				<div className={style.showPass} >
 					<ShowPass showPass={showPass} setShowPass={setShowPass} />
 				</div>
 			</div>
 			<div className={style.form}>
-				<label htmlFor='newPassword' className={style.label}>Nova senha</label>
+				<span className={style.label}>Nova senha</span>
 				<input {...register("newPassword")} onChange={handleChange} className={style.input} type={showNewPass ? "text" : "password"} name='newPassword' placeholder='Nova senha' />
 				<div className={style.showPass} >
 					<ShowPass showPass={showNewPass} setShowPass={setShowNewPass} />
 				</div>
 			</div>
 			<div className={style.form}>
-				<label htmlFor='cf_newPassword' className={style.label}>Confirmar nova senha</label>
+				<span className={style.label}>Confirmar nova senha</span>
 				<input {...register("cf_newPassword")} onChange={handleChange} className={style.input} type="password" name='cf_newPassword' placeholder='Confirmar nova senha' />
 			</div>
 			<div className={style.containerBtn}>

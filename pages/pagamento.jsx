@@ -34,6 +34,8 @@ export default function Pagamento() {
 						<title>Mãe Terra - Pagamento</title>
 					</Head>
 					<div className={style.container}>
+
+						<Items />
 						<div className={style.checkout}>
 							<h1 className={style.title}>FINALIZAR COMPRA</h1>
 							<Inputs />
@@ -41,7 +43,6 @@ export default function Pagamento() {
 								<Paypal />
 							</>
 						</div>
-						<Items />
 					</div>
 				</div>
 			}

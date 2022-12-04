@@ -4,19 +4,17 @@ import { MdHeadsetMic } from 'react-icons/md'
 import LoginModal from './LoginModal'
 import { useContextModalLogin } from '../../contexts/ModalLoginContext'
 import { useEffect, useRef } from 'react'
-import { useIsSmall } from '../../lib/MediaQuery'
 import { useScrollDirection } from '../../lib/useScrollDirection'
 import { useLoginMenu } from '../../contexts/LoginMenuContext'
 import { useAuth } from '../../contexts/AuthContext'
 import ButtonCart from './ButtonCart'
-import Search from '../../components/filters/search/Search'
+import Search from '../../components/search/Search'
 
 export default function ButtonsDesktop() {
 	const { isLoginModal, setIsLoginModal } = useContextModalLogin()
 	const { setToggleLoginMenu } = useLoginMenu()
 	const { auth } = useAuth()
 	const refLogin = useRef();
-	const small = useIsSmall()
 	const scrollDirection = useScrollDirection()
 	useEffect(() => {
 		function handleClickOutside(event) {

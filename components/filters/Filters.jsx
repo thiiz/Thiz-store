@@ -1,5 +1,4 @@
 import style from './Filters.module.css'
-import { BsSearch } from 'react-icons/bs'
 import { useState, useId, useMemo } from 'react'
 import ProductView from '../products/productView'
 import ProductNotFound from '../product-not-found/productNotFound'
@@ -7,7 +6,6 @@ import { useEffect } from 'react'
 import Select from 'react-select';
 import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import { useIsLarge } from '../../lib/MediaQuery'
-import Search from './search/Search'
 
 export function ProductFiltred({ data }) {
 	const desktop = useIsLarge()

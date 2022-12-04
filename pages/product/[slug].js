@@ -19,7 +19,7 @@ function ProductDetails({ product }) {
 			</Head>
 			<main className={style.container}>
 				<picture>
-					<Image data={product.image.responsiveImage} alt={product.title} />
+					<Image className={product.instock === 0 && style.imgUnavailable} data={product.image.responsiveImage} alt={product.title} />
 				</picture>
 				<div className={style.productsDetails}>
 					<div className={style.containerStars}>
@@ -28,17 +28,18 @@ function ProductDetails({ product }) {
 					<h1 className={style.title}>{product.title}.</h1>
 					<p className={style.price}>R${product.price.toFixed(2).toString().replace(".", ",")}</p>
 					<span>Disponíveis: {product.instock}</span>
-					{product.instock !== 0 && <button onClick={() => { add(product) }} className={`${style.btn} ${style.buy}`} type='button'>comprar
-						<div className={style.iconContainer}>
-							<BsFillBagFill className={style.icon} />
-						</div>
-					</button>
-					}
-					{product.instock === 0 && <button className={`${style.btn} ${style.unavailable}`} type='button' disabled>indisponível
-						<div className={style.iconContainer}>
-							<ImBlocked className={style.icon} />
-						</div>
-					</button>
+					{
+						product.instock !== 0 ? <button onClick={() => { add(product) }} className={`${style.btn} ${style.buy}`} type='button'>comprar
+							<div className={style.iconContainer}>
+								<BsFillBagFill className={style.icon} />
+							</div>
+						</button>
+							:
+							<button className={`${style.btn} ${style.unavailable}`} type='button' disabled>indisponível
+								<div className={style.iconContainer}>
+									<ImBlocked className={style.icon} />
+								</div>
+							</button>
 					}
 				</div>
 			</main>

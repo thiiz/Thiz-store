@@ -8,11 +8,16 @@
 
 .content {
 	box-shadow: 0 0 8px #000000de;
+	height: 84%;
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+	align-items: center;
+	justify-content: center;
 }
 
 .products {
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
 	align-items: center;
 }
 
@@ -24,14 +29,17 @@
 .containerImg {
 	position: relative;
 }
+.containerImg img{
+	max-height: 80px !important;
+
+}
 
 .productCount {
-	content: '';
-	width: 1.25rem;
-	height: 1.25rem;
+	width: 1.2rem;
+	height: 1.2rem;
 	font-size: .7em;
-	top: -.30rem;
-	right: 0;
+	top: -.3116rem;
+	right: -.6rem;
 	color: #fff;
 	background-color: #151515;
 	position: absolute;
@@ -42,5 +50,5 @@
 }
 
 .productImg {
-	object-fit: none;
+	object-fit: none;	
 }

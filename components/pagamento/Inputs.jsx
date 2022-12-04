@@ -1,10 +1,9 @@
-import style from '../../styles/Checkout.module.css'
+import style from './Input.module.css'
 import { BsGeoAltFill, BsPhoneFill } from "react-icons/bs";
 import { FaSearchLocation } from "react-icons/fa";
 import { MdOutlineLocationCity } from "react-icons/md";
 import { RiRoadMapFill } from "react-icons/ri";
 import { useAuth } from '../../contexts/AuthContext';
-import { useLoginMenu } from '../../contexts/LoginMenuContext';
 import { useNotify } from '../../contexts/NotifyContext';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';

@@ -111,12 +111,13 @@ export default function Register({ setLogin }) {
 						<input {...register('terms', {
 							required: " "
 						})} onFocus={() => !btn ? setBtn(true) : ''} className={errorTerms ? style.termsError : ''} type="checkbox" id={style.terms} name="terms" value="ok" required />
-						<span className={`${style.labelTerms} ${style.labelTermsError}`}>Ao se cadastrar você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</span>
+						<label className={`${style.labelTerms} ${style.labelTermsError}`}>Ao se cadastrar você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</label>
 					</div>
 					{btn ?
 						<button type='submit' className={`${style.btn} ${style.btnEnable}`} disabled={false}>criar conta</button>
-
-						: <button type='button' className={`${style.btn} ${style.btnDisable}`} disabled={true}>criar conta</button>}
+						:
+						<button type='button' className={`${style.btn} ${style.btnDisable}`} disabled={true}>criar conta</button>
+					}
 				</form>
 			</div>
 		</>

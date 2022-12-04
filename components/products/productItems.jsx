@@ -24,7 +24,7 @@ function ProductsItems({ product, grid }) {
 	return (
 		<div className={`${style.productContainer} ${newGrid.productContainer}`}>
 			<div onClick={handleViewProduct} className={`${style.imageContainer} ${newGrid.imageContainer}`} >
-				<Image className={style.productImg} data={product?.image.responsiveImage} alt={`imagem do produto: ${product?.image.alt}`} layout="responsive" />
+				<Image className={`${style.productImg} ${product?.instock === 0 && style.imgUnavailable}`} data={product?.image.responsiveImage} alt={`imagem do produto: ${product?.image.alt}`} layout="responsive" />
 			</div>
 			<p onClick={handleViewProduct} className={style.title}>{product?.title}</p>
 			<p className={style.price}><strong>R$ {price}</strong></p>

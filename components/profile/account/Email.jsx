@@ -50,7 +50,7 @@ export default function Email() {
 	return (
 		<form onSubmit={handleSubmit(handleUpdate)}>
 			<div className={style.form}>
-				<label htmlFor='email' className={style.label}>email</label>
+				<span className={style.label}>email</span>
 				<label className={style.inputContainer}>
 					<input {...register("email")} className={style.input} type="text" onChange={handleChange} defaultValue={auth.user.email} name='email' placeholder='Endereço email' disabled={!editEmail && true} />
 					{editEmail ?

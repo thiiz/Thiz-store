@@ -54,6 +54,7 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 			<div className={style.formContainer}>
 				<div className={style.newUser}>Novo usuário? <button onClick={() => setLogin(false)} className={style.register}><strong>Cadastre-se aqui.</strong></button></div>
 				<form className={style.form} method="post" onSubmit={handleSubmit(handler)}>
+
 					<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 						<MdEmail className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
 						<input {...register('email', {
@@ -67,9 +68,16 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 						})} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type={showPass ? "text" : "password"} name="password" value={password} placeholder='Senha' autoComplete="false" required />
 						<ShowPass showPass={showPass} setShowPass={setShowPass} />
 					</label>
-					<div className={style.containerRecover}>
-						<button type='button' className={style.recoverPassword}>Esqueceu a senha?</button>
+					<div className={style.containerCheckBoxAndRecover}>
+						<label className={style.containerRemember}>
+							<input type="checkbox" />
+							<span className={style.labelRemeber}>Mantenha-me conectado</span>
+						</label>
+						<div className={style.containerRecover}>
+							<button type='button' className={style.recoverPassword}>Esqueceu a senha?</button>
+						</div>
 					</div>
+					<span style={{ alignSelf: "center" }} className={style.labelTerms}>Ao fazer login você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</span>
 					{btn ?
 						<button type='submit' className={`${style.btn} ${style.btnEnable}`} disabled={false}>iniciar sessão</button>
 						: <button type='button' className={`${style.btn} ${style.btnDisable}`} disabled={true}>iniciar sessão</button>}

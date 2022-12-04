@@ -1,7 +1,7 @@
 import style from './Search.module.css'
 import { useForm } from 'react-hook-form';
 import { BsSearch } from 'react-icons/bs';
-import { SearchProducts } from '../../../lib/SearchProducts';
+import { SearchProducts } from '../../lib/SearchProducts';
 
 export default function Input({ setSearching, setItems, scrollDirection }) {
 	const { register, handleSubmit } = useForm()
