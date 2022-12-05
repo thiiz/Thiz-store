@@ -14,8 +14,8 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 	const { query, push } = useRouter()
 	const { setAuth } = useAuth()
 	const [showPass, setShowPass] = useState(false)
-	const { notifyRegistred, notifyLoginPromise, notifyLoginSuccess, notifyLoginError, dismiss } = useNotify()
-	const { register, handleSubmit } = useForm()
+	const { notifyLoginPromise, notifyLoginSuccess, notifyLoginError, dismiss } = useNotify()
+	const { register, handleSubmit, setValue } = useForm()
 
 	const initialState = { email: '', password: '' }
 	const [userData, setUserData] = useState(initialState)
@@ -31,7 +31,7 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 	async function handler() {
 		notifyLoginPromise()
 		const res = await postData('auth/login', userData)
-		if (res.err === "This user does not exist." || res.err === "Incorrect password.") return notifyLoginError({ msg: "Endereço de email ou senha incorretos." }, setBtn(false))
+		if (res.err) return notifyLoginError({ msg: "Endereço de email ou senha incorretos." }, setValue("password", 'aaaaaaaa'), setBtn(false))
 		setCookie(null, 'refreshtoken', res.refresh_token, {
 			maxAge: 86400 * 7, // 7 days
 			path: '/api/auth/accessToken',
@@ -41,7 +41,6 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 		if (query.redirect) {
 			push(`/${query.redirect}`)
 		}
-		console.log('token login')
 		getData('auth/accessToken').then(res => {
 			setAuth({ token: res.access_token, user: res.user })
 		})
@@ -58,13 +57,13 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 					<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 						<MdEmail className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
 						<input {...register('email', {
-							required: " "
+							required: true
 						})} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="email" name="email" value={email} placeholder='Email' autoComplete="false" required />
 					</label>
 					<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 						<RiLockFill className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
 						<input {...register('password', {
-							required: " "
+							required: true
 						})} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type={showPass ? "text" : "password"} name="password" value={password} placeholder='Senha' autoComplete="false" required />
 						<ShowPass showPass={showPass} setShowPass={setShowPass} />
 					</label>

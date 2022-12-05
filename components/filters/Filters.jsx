@@ -1,11 +1,11 @@
 import style from './Filters.module.css'
 import { useState, useId, useMemo } from 'react'
 import ProductView from '../products/productView'
-import ProductNotFound from '../product-not-found/productNotFound'
 import { useEffect } from 'react'
 import Select from 'react-select';
 import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import { useIsLarge } from '../../lib/MediaQuery'
+import Grid from './grid/Grid';
 
 export function ProductFiltred({ data }) {
 	const desktop = useIsLarge()
@@ -14,25 +14,13 @@ export function ProductFiltred({ data }) {
 		{ value: 'price_ASC', label: 'MAIOR VALOR' },
 		{ value: 'price_DESC', label: 'MENOR VALOR' }
 	]
-	const [notfound, setNotfound] = useState(false)
 	const [selectedOption, setSelectedOption] = useState(undefined)
-	const [filtred, setFiltred] = useState([])
 	const [grid, setGrid] = useState(Math.floor(parseCookies().GRID || 4))
-	const [lastGrid, setLastGrid] = useState(undefined)
+	const [filtred, setFiltred] = useState([])
 	const item = data.map(product => product)
 	useMemo(() => {
 		setFiltred(item);
 	}, [data])
-
-	const [searching, setSearching] = useState('')
-	const filtring = () => {
-		const formatSearch = searching.toLowerCase()
-		const filterSearch = (item?.filter((product) =>
-			product.title?.toLowerCase().includes(formatSearch)
-			|| product.color?.toLowerCase().includes(formatSearch)
-		))
-		return filterSearch
-	}
 
 	const HandelChangeSortBy = (option) => {
 		setSelectedOption(option);
@@ -51,44 +39,9 @@ export function ProductFiltred({ data }) {
 	}, [])
 
 	useEffect(() => {
-		if (lastGrid) {
-			setGrid(lastGrid)
-			setLastGrid(undefined)
-			return
-		}
-		if (!desktop) {
-			setLastGrid(grid)
-			setGrid(4)
-		}
-	}, [desktop])
-	useEffect(() => {
-		if (parseCookies().AcceptedCookies === "all") {
-			if (grid === 4) {
-				destroyCookie(null, 'GRID', { path: '/' })
-				return
-			}
-			setCookie(null, 'GRID', grid, {
-				maxAge: 86400,
-				path: '/',
-			})
-		}
-	}, [grid])
-
-	useEffect(() => {
-		setFiltred(filtring())
-		if (searching !== '') {
-			if (filtred.length === 0) {
-				setNotfound(true)
-			} else {
-				setNotfound(false)
-			}
-		}
-	}, [searching])
-
-	useEffect(() => {
 
 		if (selectedOption?.value === options[0].value) {
-			setFiltred(filtring())
+			setFiltred(item)
 			if (parseCookies().AcceptedCookies === "all") {
 				destroyCookie(null, 'SORT_BY', {
 					path: '/'
@@ -97,7 +50,7 @@ export function ProductFiltred({ data }) {
 			}
 		}
 		if (selectedOption?.value === options[1].value) {
-			setFiltred(filtring().sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
+			setFiltred(item.sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
 			if (parseCookies().AcceptedCookies === "all") {
 				setCookie(null, 'SORT_BY', "price_ASC", {
 					maxAge: 86400,
@@ -107,7 +60,7 @@ export function ProductFiltred({ data }) {
 			}
 		}
 		if (selectedOption?.value === options[2].value) {
-			setFiltred(filtring().sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
+			setFiltred(item.sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
 			if (parseCookies().AcceptedCookies === "all") {
 				setCookie(null, 'SORT_BY', "price_DESC", {
 					maxAge: 86400,
@@ -135,26 +88,8 @@ export function ProductFiltred({ data }) {
 				</div>
 			</div>
 			<div className={style.filterOptions}>
-				{desktop &&
-					<div className={style.gridContainer}>
-						<button onClick={() => setGrid(2)} className={style.gridButtonOption}>
-							<span className={`${style.gridOption} ${grid === 2 ? style.gridOptionActive : ''}`}></span>
-							<span className={`${style.gridOption} ${grid === 2 ? style.gridOptionActive : ''}`}></span>
-						</button>
-						<button onClick={() => setGrid(3)} className={style.gridButtonOption}>
-							<span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span>
-							<span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span>
-							<span className={`${style.gridOption} ${grid === 3 ? style.gridOptionActive : ''}`}></span>
-						</button>
-						<button onClick={() => setGrid(4)} className={style.gridButtonOption}>
-							<span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span>
-							<span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span>
-							<span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span>
-							<span className={`${style.gridOption} ${grid === 4 ? style.gridOptionActive : ''}`}></span>
-						</button>
-					</div>}
+				<Grid desktop={desktop} grid={grid} setGrid={setGrid} />
 			</div>
-			{notfound ? <ProductNotFound search={searching} /> : ''}
 			<ProductView onChange={''} products={filtred} grid={grid} />
 		</div>
 	)
