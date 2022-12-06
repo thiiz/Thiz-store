@@ -107,12 +107,12 @@ export default function Register({ setLogin }) {
 						})} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="password" name="cf_password" placeholder='Confirmar senha' autoComplete="false" required />
 					</label>
 					{errorTerms && <p className={style.error}>{error}</p>}
-					<div id={style.politicaTermos}>
+					<label id={style.politicaTermos}>
 						<input {...register('terms', {
 							required: " "
 						})} onFocus={() => !btn ? setBtn(true) : ''} className={errorTerms ? style.termsError : ''} type="checkbox" id={style.terms} name="terms" value="ok" required />
-						<label className={`${style.labelTerms} ${style.labelTermsError}`}>Ao se cadastrar você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</label>
-					</div>
+						<span className={`${style.labelTerms} ${style.labelTermsError}`}>Ao se cadastrar você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</span>
+					</label>
 					{btn ?
 						<button type='submit' className={`${style.btn} ${style.btnEnable}`} disabled={false}>criar conta</button>
 						:

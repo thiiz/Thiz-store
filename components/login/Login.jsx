@@ -10,10 +10,11 @@ import { useAuth } from '../../contexts/AuthContext'
 import { useRouter } from 'next/router'
 import ShowPass from '../showpass/ShowPass'
 
-export default function Login({ login, setLogin, setToggleLoginMenu }) {
+export default function Login({ setLogin, setToggleLoginMenu }) {
 	const { query, push } = useRouter()
 	const { setAuth } = useAuth()
 	const [showPass, setShowPass] = useState(false)
+	const [rememberUser, setRememberUser] = useState(true)
 	const { notifyLoginPromise, notifyLoginSuccess, notifyLoginError, dismiss } = useNotify()
 	const { register, handleSubmit, setValue } = useForm()
 
@@ -32,11 +33,13 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 		notifyLoginPromise()
 		const res = await postData('auth/login', userData)
 		if (res.err) return notifyLoginError({ msg: "Endereço de email ou senha incorretos." }, setValue("password", 'aaaaaaaa'), setBtn(false))
-		setCookie(null, 'refreshtoken', res.refresh_token, {
-			maxAge: 86400 * 7, // 7 days
-			path: '/api/auth/accessToken',
-		})
-		localStorage.setItem('firstLogin', true)
+		if (rememberUser) {
+			setCookie(null, 'refreshtoken', res.refresh_token, {
+				maxAge: 86400 * 7, // 7 days
+				path: '/api/auth/accessToken',
+			})
+			localStorage.setItem('firstLogin', true)
+		}
 		dismiss({ id: "registred" })
 		if (query.redirect) {
 			push(`/${query.redirect}`)
@@ -69,7 +72,7 @@ export default function Login({ login, setLogin, setToggleLoginMenu }) {
 					</label>
 					<div className={style.containerCheckBoxAndRecover}>
 						<label className={style.containerRemember}>
-							<input type="checkbox" />
+							<input type="checkbox" id={style.terms} checked={rememberUser} onChange={() => setRememberUser(rememberUser => !rememberUser)} />
 							<span className={style.labelRemeber}>Mantenha-me conectado</span>
 						</label>
 						<div className={style.containerRecover}>

@@ -35,7 +35,7 @@ function MenuLogin() {
 							}
 							{
 								login
-									? <Login login={login} setLogin={setLogin} setToggleLoginMenu={setToggleLoginMenu} />
+									? <Login setLogin={setLogin} setToggleLoginMenu={setToggleLoginMenu} />
 									: <Register setLogin={setLogin} />
 							}
 						</div >
