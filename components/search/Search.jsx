@@ -9,6 +9,7 @@ import { useScrollDirection } from '../../lib/useScrollDirection';
 export default function Search() {
 	const [items, setItems] = useState([])
 	const [search, setSearch] = useState(false)
+	const [find, setFind] = useState(null)
 	const [searching, setSearching] = useState(false)
 	const scrollDirection = useScrollDirection()
 
@@ -17,8 +18,8 @@ export default function Search() {
 			<button className={`${styleBtn.btn} ${styleBtn.btnInfo}`} onClick={() => setSearch(search => !search)}><GrSearch /></button>
 			{search &&
 				<div className={`${style.content} ${scrollDirection !== 'down' ? style.contentNormal : style.contentSmall}`}>
-					<Input scrollDirection={scrollDirection} setItems={setItems} setSearching={setSearching} />
-					<SearchModal scrollDirection={scrollDirection} data={items} searching={searching} setItems={setItems} setSearch={setSearch} />
+					<Input setFind={setFind} setItems={setItems} setSearching={setSearching} />
+					<SearchModal find={find} scrollDirection={scrollDirection} data={items} searching={searching} setItems={setItems} setSearch={setSearch} />
 				</div>
 			}
 		</div>

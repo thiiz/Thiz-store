@@ -1,0 +1,30 @@
+.searchContainer {
+	position: absolute;
+}
+
+.search {
+	position: relative;
+	width: 13rem;
+	height: 100%;
+	border: none;
+	background-color: transparent;
+	outline: none;
+	text-indent: .125em;
+	font-size: 1.1rem;
+}
+
+.label {
+	display: flex;
+	height: 2.813rem;
+	align-items: center;
+	border: 2px solid #151515;
+	transition: 250ms ease;
+}
+
+.icon {
+	padding: 0 .625rem;
+	font-size: 2.925rem;
+	height: 2.813rem;
+	background-color: transparent;
+	transition: 1s ease;
+}

@@ -1,14 +1,15 @@
+import Link from 'next/link';
 import { VscChromeClose } from 'react-icons/vsc';
 import Items from './Items';
 import style from './SearchModal.module.css'
 
-export default function SearchModal({ data, searching, setItems, setSearch, scrollDirection }) {
+export default function SearchModal({ data, searching, setItems, setSearch, scrollDirection, find }) {
 	const quantity = data?.data?.map(product => product)
 	const handleClose = () => {
 		setSearch(false)
 		setItems([])
 	}
-	
+	console.log("find", find)
 	if (searching) {
 		return (
 			<div className={`${style.container} ${scrollDirection !== 'down' ? style.containerNormal : style.containerSmall}`}>
@@ -41,7 +42,7 @@ export default function SearchModal({ data, searching, setItems, setSearch, scro
 				})}
 				{quantity?.length > 5 &&
 					<div className={style.center}>
-						<a className={style.viewMore}>Ver todos os {quantity.length} produtos.</a>
+						<Link href={`/busca/?term=${find}`}><a className={style.viewMore}>Ver todos os {quantity.length} produtos.</a></Link>
 					</div>
 				}
 			</div >

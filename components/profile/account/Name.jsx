@@ -41,7 +41,7 @@ export default function Name() {
 	return (
 		<form onSubmit={handleSubmit(handleUpdate)}>
 			<div className={style.form}>
-				<span htmlFor='name' className={style.label}>primeiro nome</span>
+				<span htmlFor='name' className={style.label}>nome</span>
 				<label className={style.inputContainer}>
 					<input {...register("name")} className={`${style.input} ${style.nameInput}`} type="text" onChange={handleChange} defaultValue={auth.user.name} name='name' placeholder='Primeiro nome' disabled={!editName && true} />
 					{editName ?
