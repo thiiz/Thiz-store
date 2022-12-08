@@ -1,0 +1,86 @@
+.item {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 .4rem;
+    border-bottom: 1px solid #ccc
+}
+
+.infoProduct {
+    min-width: 400px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: .7rem;
+}
+
+.productTitle {
+    max-width: 75%;
+    font-size: 17px;
+    text-transform: capitalize;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.titleAndDelete {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: .975rem;
+}
+
+.containerPriceAndActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.containerImg img {
+    cursor: pointer;
+    min-height: 63% !important;
+}
+
+.actions_Button {
+    padding: .373rem;
+    cursor: pointer;
+    color: #333;
+    font-size: 1.37rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    transition: ease 200ms;
+}
+
+.actions_Button:hover {
+    background-color: #e4e4e4;
+}
+
+.actions_Button svg {
+    transition: ease 200ms;
+}
+
+.actions_Button:active svg {
+    padding: 2px;
+}
+.priceContainer{
+    display: flex;
+    column-gap: .2rem;
+    align-items: center;
+}
+
+.oldPrice {
+    text-decoration: line-through;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: .98rem;
+    color: #747571;
+}

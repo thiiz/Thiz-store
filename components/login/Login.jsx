@@ -16,7 +16,7 @@ export default function Login({ setLogin, setToggleLoginMenu }) {
 	const [showPass, setShowPass] = useState(false)
 	const [rememberUser, setRememberUser] = useState(true)
 	const { notifyLoginPromise, notifyLoginSuccess, notifyLoginError, dismiss } = useNotify()
-	const { register, handleSubmit, setValue } = useForm()
+	const { register, handleSubmit } = useForm()
 
 	const initialState = { email: '', password: '' }
 	const [userData, setUserData] = useState(initialState)
@@ -32,7 +32,7 @@ export default function Login({ setLogin, setToggleLoginMenu }) {
 	async function handler() {
 		notifyLoginPromise()
 		const res = await postData('auth/login', userData)
-		if (res.err) return notifyLoginError({ msg: "Endereço de email ou senha incorretos." }, setValue("password", 'aaaaaaaa'), setBtn(false))
+		if (res.err) return notifyLoginError({ msg: "Endereço de email ou senha incorretos." }, setBtn(false))
 		if (rememberUser) {
 			setCookie(null, 'refreshtoken', res.refresh_token, {
 				maxAge: 86400 * 7, // 7 days
@@ -56,7 +56,6 @@ export default function Login({ setLogin, setToggleLoginMenu }) {
 			<div className={style.formContainer}>
 				<div className={style.newUser}>Novo usuário? <button onClick={() => setLogin(false)} className={style.register}><strong>Cadastre-se aqui.</strong></button></div>
 				<form className={style.form} method="post" onSubmit={handleSubmit(handler)}>
-
 					<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 						<MdEmail className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
 						<input {...register('email', {
@@ -79,7 +78,7 @@ export default function Login({ setLogin, setToggleLoginMenu }) {
 							<button type='button' className={style.recoverPassword}>Esqueceu a senha?</button>
 						</div>
 					</div>
-					<span style={{ alignSelf: "center" }} className={style.labelTerms}>Ao fazer login você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</span>
+					<span className={style.labelTerms}>Ao fazer login você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</span>
 					{btn ?
 						<button type='submit' className={`${style.btn} ${style.btnEnable}`} disabled={false}>iniciar sessão</button>
 						: <button type='button' className={`${style.btn} ${style.btnDisable}`} disabled={true}>iniciar sessão</button>}

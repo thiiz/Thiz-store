@@ -19,7 +19,7 @@ const email = async (req, res) => {
 		const { email, password } = req.body
 		const user = await Users.findOne({ _id: result.id })
 		const emailExist = await Users.findOne({ email })
-		if (emailExist) return res.status(400).json({ err: 'Este endereço de email já está sendo utilizado.' })
+		if (emailExist) return res.status(400).json({ err: 'Este endereço de email está indisponível.' })
 
 		const isMatch = await compare(password, user.password)
 		if (!isMatch) return res.status(400).json({ err: 'Senha incorreta.' })

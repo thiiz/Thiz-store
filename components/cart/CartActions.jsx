@@ -1,13 +1,12 @@
 import { BiMinus, BiPlus } from 'react-icons/bi'
 import { GoX } from 'react-icons/go'
-import style from './styles/Cart.module.css'
+import style from './styles/CartActions.module.css'
 import { useCart } from '../../contexts/CartContext'
 import Modal from './modal/Modal'
 import { useState } from 'react'
 
 export function CartActions({ item }) {
 	const { add, removeQty } = useCart()
-	const [removeModal, setRemoveModal] = useState(false)
 	const handlePlus = () => {
 		add(item)
 	}
@@ -18,10 +17,8 @@ export function CartActions({ item }) {
 	}
 	return (
 		<div className={style.actionContainer}>
-			<button onClick={() => setRemoveModal(!removeModal)} className={style.actions_Button}><GoX /></button>
-			{removeModal && <Modal item={item} setRemoveModal={setRemoveModal} />}
-			<span className={style.quantity}>{item.qty}</span>
 			<button disabled={item.qty <= 1} onClick={handleMinus} className={style.actions_Button}><BiMinus /></button>
+			<span className={style.quantity}>{item.qty}</span>
 			<button disabled={item.qty >= 10 && true} onClick={handlePlus} className={style.actions_Button}><BiPlus /></button>
 		</div>
 	)
