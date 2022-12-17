@@ -8,10 +8,8 @@ const colors = {
 
 };
 
-
-
-export default function StarReview() {
-	const [currentValue, setCurrentValue] = useState(4);
+export default function StarReview({ rating }) {
+	const [currentValue, setCurrentValue] = useState(rating);
 	const [hoverValue, setHoverValue] = useState(undefined);
 	const [reviewQty, setReviewQty] = useState(372);
 	const stars = Array(5).fill(0)
@@ -28,7 +26,6 @@ export default function StarReview() {
 	const handleMouseLeave = () => {
 		setHoverValue(undefined)
 	}
-
 
 	return (
 		<div className={style.container} style={styles.container}>

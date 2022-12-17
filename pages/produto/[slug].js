@@ -19,11 +19,11 @@ export default function ProductDetails({ product }) {
 			</Head>
 			<main className={style.container}>
 				<picture>
-					<Image className={product.instock === 0 && style.imgUnavailable} data={product.image.responsiveImage} alt={product.title} />
+					<Image className={product.instock === 0 ? style.imgUnavailable : ''} data={product.image.responsiveImage} alt={product.title} />
 				</picture>
 				<div className={style.productsDetails}>
 					<div className={style.containerStars}>
-						<StarReview />
+						<StarReview rating={product.rating} />
 					</div>
 					<h1 className={style.title}>{product.title}.</h1>
 					<p className={style.price}>R${product.price.toFixed(2).toString().replace(".", ",")}</p>

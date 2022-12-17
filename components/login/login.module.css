@@ -7,8 +7,8 @@
 	justify-content: center;
 	justify-items: center;
 	user-select: none;
-	width: 31.25rem;
-	height: 37.5rem;
+	width: 32.25rem;
+	height: 34.5rem;
 	font-family: 'Varela Round', 'Arial', sans-serif;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .containerRegister {
-	grid-template-rows: 1fr 3fr;
+	grid-template-rows: 1fr 3.5fr;
 }
 
 .formContainer {
@@ -37,11 +37,17 @@
 	align-items: center;
 	transition: ease 250ms;
 	user-select: none;
-	box-shadow: rgba(0, 0, 0, 0) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .closeLogin {
 	right: 8px;
+	position: absolute;
+	top: 4px;
+	right: 5px;
+	font-size: 1.54rem;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
 }
 
 .returnLogin {
@@ -80,13 +86,13 @@
 	border: none;
 	cursor: pointer;
 	margin-bottom: 5px;
-	color: #575757;
+	color: #000;
 	transition: 300ms;
 	font-size: .9em;
 }
 
 .register:hover {
-	color: #000;
+ text-decoration: underline;
 }
 
 .loginTitle {
@@ -297,16 +303,6 @@
 	position: fixed;
 	top: 0;
 	z-index: 16;
-}
-
-.closeLogin {
-	position: absolute;
-	top: 7px;
-	right: 10px;
-	font-size: 1.7rem;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
 }
 
 .nameInput {

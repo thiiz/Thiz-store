@@ -17,30 +17,19 @@
 .containerProduct {
     margin-top: 5rem;
 }
+
 .btContainer {
     background-color: #fff;
     border-top: 1px solid #000;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    width: 100%;
-    height: 35vh;
+    width: 101%;
+    height: 25vh;
     position: absolute;
     bottom: 0;
     display: grid;
     grid-template-rows: 1fr 1fr 2fr;
     align-items: center;
-}
-
-.summaryContainer {
-    margin: 15px 40px 0px 40px;
-}
-
-.summaryList {
-    font-size: 1.33rem;
-    font-weight: 600;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    height: 2.5rem;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
 .totalContainer {
@@ -57,22 +46,25 @@
     flex-direction: column;
 }
 
+.totalPrice {
+    font-size: 24px;
+    font-weight: 500;
+    color: #737373;
+}
+
 .spot {
     display: flex;
     font-size: 22px;
     gap: 7px;
+    align-items: center;
+    justify-content: center;
 }
 
-.totalPrice {
-    font-size: 24px;
-    font-weight: bold;
+.price {
+    font-weight: 600;
+
 }
 
-.or {
-    display: flex;
-    align-items: flex-end;
-    font-size: 16px;
-}
 
 .checkout {
     display: flex;
@@ -84,10 +76,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70%;
+    width: 75%;
     height: 70px;
     cursor: pointer;
-    background-color: #006eff;
+    background-color: #111;
     color: #f1f1f1;
     font-size: 19px;
     border-radius: 5px;

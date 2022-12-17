@@ -1,7 +1,7 @@
 import style from '../styles/Find.module.css'
 import Head from "next/head";
 import { SearchProducts } from '../lib/SearchProducts';
-import Products from '../components/busca/Products';
+import { ProductFiltred } from '../components/filters/Filters';
 export default function busca({ item }) {
 
 	return (
@@ -9,19 +9,14 @@ export default function busca({ item }) {
 			<Head>
 				<title>{`Busca - Mãe Terra`}</title>
 			</Head>
-			<main className={style.container}>
-				{item?.map((item) => {
-					return (
-						<Products key={item.id} item={item} />
-					)
-
-				})}
+			<main className="page">
+				<ProductFiltred data={item} />
 			</main>
 		</>
 	)
 }
 export async function getServerSideProps(context) {
-	const term = context.query?.term.toString();
+	const term = context.query?.term?.toString();
 	const data = await SearchProducts({ search: term })
 
 	return {

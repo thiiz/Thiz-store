@@ -13,6 +13,7 @@ export default function Search() {
 	const [searching, setSearching] = useState(false)
 	const scrollDirection = useScrollDirection()
 
+	console.log(items)
 	return (
 		<div className={style.container}>
 			<button className={`${styleBtn.btn} ${styleBtn.btnInfo}`} onClick={() => setSearch(search => !search)}><GrSearch /></button>

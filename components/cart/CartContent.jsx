@@ -25,15 +25,12 @@ export default function CartContent() {
 			</div>
 			<div className={style.btContainer}>
 				<div className={style.summaryContainer}>
-					<div className={style.summaryList}>
-						<span>Valor dos produtos</span> <span>R$ {subTotalPrice?.toFixed(2).toString().replace(".", ",")}</span>
-					</div>
+					
 				</div>
 				<div className={style.totalContainer}>
 					<span className={style.totalPrice}>Total da compra</span>
 					<div className={style.pagament}>
-						<span className={style.spot}>á vista <strong>R$ {price.toFixed(1).toString().replace(".", ",")}0</strong><span className={style.or}>ou</span></span>
-						<span className={style.creditCart}>6x de <strong>R$ {calc.toFixed(2).toString().replace(".", ",")}</strong></span>
+						<span className={style.spot}><strong className={style.price}>R$ {price.toFixed(1).toString().replace(".", ",")}0</strong></span>
 					</div>
 				</div>
 				<div onClick={() => setOpenCart(false)} className={style.checkout}>

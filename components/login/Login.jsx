@@ -16,7 +16,7 @@ export default function Login({ setLogin, setToggleLoginMenu }) {
 	const [showPass, setShowPass] = useState(false)
 	const [rememberUser, setRememberUser] = useState(true)
 	const { notifyLoginPromise, notifyLoginSuccess, notifyLoginError, dismiss } = useNotify()
-	const { register, handleSubmit } = useForm()
+	const { register, handleSubmit, setValue } = useForm()
 
 	const initialState = { email: '', password: '' }
 	const [userData, setUserData] = useState(initialState)
@@ -32,7 +32,7 @@ export default function Login({ setLogin, setToggleLoginMenu }) {
 	async function handler() {
 		notifyLoginPromise()
 		const res = await postData('auth/login', userData)
-		if (res.err) return notifyLoginError({ msg: "Endereço de email ou senha incorretos." }, setBtn(false))
+		if (res.err) return loginErr()
 		if (rememberUser) {
 			setCookie(null, 'refreshtoken', res.refresh_token, {
 				maxAge: 86400 * 7, // 7 days
@@ -47,15 +47,21 @@ export default function Login({ setLogin, setToggleLoginMenu }) {
 		getData('auth/accessToken').then(res => {
 			setAuth({ token: res.access_token, user: res.user })
 		})
-		if (res.msg === "Login Success!") return notifyLoginSuccess({ msg: "Logado com sucesso!" }), setToggleLoginMenu(false)
+		if (res.msg) return notifyLoginSuccess({ msg: "Logado com sucesso!" }), setToggleLoginMenu(false)
+	}
+
+	const loginErr = () => {
+		setBtn(false)
+		notifyLoginError({ msg: "Endereço de email ou senha incorretos." })
+		setUserData({ ...userData, ["password"]: "" })
 	}
 
 	return (
 		<>
 			<div className={style.loginTitle}>Iniciar sessão</div>
 			<div className={style.formContainer}>
-				<div className={style.newUser}>Novo usuário? <button onClick={() => setLogin(false)} className={style.register}><strong>Cadastre-se aqui.</strong></button></div>
-				<form className={style.form} method="post" onSubmit={handleSubmit(handler)}>
+				<div className={style.newUser}>Novo usuário? <button onClick={() => setLogin("register")} className={style.register}><strong>Cadastre-se aqui.</strong></button></div>
+				<form className={style.form} method="post" onSubmit={handleSubmit(handler)} >
 					<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 						<MdEmail className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
 						<input {...register('email', {

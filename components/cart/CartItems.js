@@ -33,8 +33,8 @@ export default function CartItems({ item }) {
 	}
 	const fixPrice = item.price * item.qty
 	const fixOldPrice = item.oldPrice * item.qty
-	const price = `R$${fixPrice.toFixed(2).toString().replace(".", ",")}`;
-	const oldPrice = `R$${fixOldPrice.toFixed(2).toString().replace(".", ",")}`;
+	const price = `R$ ${fixPrice.toFixed(2).toString().replace(".", ",")}`;
+	const oldPrice = `R$ ${fixOldPrice.toFixed(2).toString().replace(".", ",")}`;
 	return (
 		<>
 			<div className={style.item}>

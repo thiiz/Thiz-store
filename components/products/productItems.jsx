@@ -29,12 +29,14 @@ function ProductsItems({ product, grid }) {
 			<p onClick={handleViewProduct} className={style.title}>{product?.title}</p>
 			<div className={style.containerPrice}>
 				<div className={style.div}></div>
-				{product?.oldPrice !== 0 &&
-					<p className={style.oldPrice}><strong>R$ {product?.oldPrice.toFixed(2).toString().replace(".", ",")}</strong></p>
-				}
 				<p className={style.price}><strong>R$ {price}</strong></p>
+				{product?.oldPrice !== 0 ?
+					<p className={style.oldPrice}><strong>R$ {product?.oldPrice.toFixed(2).toString().replace(".", ",")}</strong></p>
+					:
+					<p className={style.parcel}>ou 6X <strong>R$ {parcel}</strong></p>
+
+				}
 			</div>
-			<p className={style.parcel}>ou 6X <strong>R$ {parcel}</strong></p>
 		</div>
 	)
 }

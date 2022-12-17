@@ -9,7 +9,6 @@ export default function SearchModal({ data, searching, setItems, setSearch, scro
 		setSearch(false)
 		setItems([])
 	}
-	console.log("find", find)
 	if (searching) {
 		return (
 			<div className={`${style.container} ${scrollDirection !== 'down' ? style.containerNormal : style.containerSmall}`}>

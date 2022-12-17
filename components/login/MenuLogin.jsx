@@ -13,7 +13,7 @@ import { useAuth } from '../../contexts/AuthContext'
 function MenuLogin() {
 	const { pathname, push } = useRouter()
 	const { toggleLoginMenu, setToggleLoginMenu } = useLoginMenu()
-	const [login, setLogin] = useState(true)
+	const [login, setLogin] = useState("login")
 	const backgroundVariant = useBackgroundVariant()
 	const { auth } = useAuth()
 
@@ -28,13 +28,13 @@ function MenuLogin() {
 				<motion.div animate={toggleLoginMenu ? "open" : "closed"} variants={loginVariant} className={style.container} transition={{ ease: "easeOut", duration: 0.25 }}>
 					<motion.div className={style.background} animate={toggleLoginMenu ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
 						{pathname !== "/pagamento" && <div onClick={() => setToggleLoginMenu(false)} className={style.focusOut}></div>}
-						<div className={`${style.containerMenu} ${login ? style.containerLogin : style.containerRegister}`}>
+						<div className={`${style.containerMenu} ${login === "login" ? style.containerLogin : style.containerRegister}`}>
 							{pathname === "/pagamento" ? <button onClick={() => push('/') && setToggleLoginMenu(false)} className={`${style.returnLogin} ${style.topBtn}`}><MdKeyboardBackspace /></button>
 								:
 								<button onClick={() => setToggleLoginMenu(false)} className={`${style.closeLogin} ${style.topBtn}`}><GrClose /></button>
 							}
 							{
-								login
+								login === "login"
 									? <Login setLogin={setLogin} setToggleLoginMenu={setToggleLoginMenu} />
 									: <Register setLogin={setLogin} />
 							}
