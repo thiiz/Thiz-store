@@ -89,7 +89,7 @@
 }
 
 .cart {
-    z-index: 15;
+    z-index: -1;
     position: fixed;
     right: 0;
     opacity: 0;

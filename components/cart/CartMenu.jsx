@@ -23,6 +23,7 @@ function CartMenu() {
 			variants={CartVariant}
 			className={style.cart}
 			transition={{ ease: "easeOut", duration: 0.3 }}
+			style={openCart ? { zIndex: 15 } : ''}
 		>
 			<div className={style.container}>
 				<HeaderCart />
