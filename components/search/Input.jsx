@@ -5,9 +5,10 @@ import { SearchProducts } from '../../lib/SearchProducts';
 
 export default function Input({ setSearching, setItems, setFind }) {
 	const { register, handleSubmit } = useForm()
+
 	const handleSearch = async (data) => {
 		setSearching(true)
-		setFind(data.search)
+		setFind(data.search.replace(/ /g, '+'))
 		if (data.search.length !== 0) {
 			const search = await SearchProducts({ search: data.search })
 			setItems(search)
@@ -15,10 +16,10 @@ export default function Input({ setSearching, setItems, setFind }) {
 		}
 	}
 	return (
-		<form className={style.searchContainer} onFocus={() => setItems([])} onSubmit={handleSubmit(handleSearch)}>
+		<form className={style.searchContainer} onSubmit={handleSubmit(handleSearch)}>
 			<label className={style.label}>
 				<BsSearch className={style.icon} />
-				<input {...register('search', { required: true })} className={style.search} type='text' autoFocus={true} />
+				<input {...register('search', { required: true, pattern: { value: /[_A-Za-z][_0-9A-Za-z]*/ } })} className={style.search} type='text' autoFocus={true} />
 			</label>
 		</form>
 	)

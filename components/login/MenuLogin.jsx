@@ -25,7 +25,7 @@ function MenuLogin() {
 	return (
 		<>
 			{Object.keys(auth).length === 0 &&
-				<motion.div animate={toggleLoginMenu ? "open" : "closed"} variants={loginVariant} className={style.container} transition={{ ease: "easeOut", duration: 0.25 }}>
+				<motion.div animate={toggleLoginMenu ? "open" : "closed"} variants={loginVariant} style={toggleLoginMenu ? { zIndex: 16 } : ''} className={style.container} transition={{ ease: "easeOut", duration: 0.25 }}>
 					<motion.div className={style.background} animate={toggleLoginMenu ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
 						{pathname !== "/pagamento" && <div onClick={() => setToggleLoginMenu(false)} className={style.focusOut}></div>}
 						<div className={`${style.containerMenu} ${login === "login" ? style.containerLogin : style.containerRegister}`}>

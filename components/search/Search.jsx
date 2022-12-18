@@ -1,6 +1,6 @@
 import style from './Search.module.css'
 import styleBtn from '../../layout/header/Header.module.css'
-import SearchModal from './SearchModal';
+import SearchModal from './search-modal/SearchModal';
 import { useState } from 'react';
 import Input from './Input';
 import { GrSearch } from 'react-icons/gr';
@@ -12,8 +12,7 @@ export default function Search() {
 	const [find, setFind] = useState(null)
 	const [searching, setSearching] = useState(false)
 	const scrollDirection = useScrollDirection()
-
-	console.log(items)
+	
 	return (
 		<div className={style.container}>
 			<button className={`${styleBtn.btn} ${styleBtn.btnInfo}`} onClick={() => setSearch(search => !search)}><GrSearch /></button>
