@@ -7,7 +7,6 @@ import { useMenuCart } from '../../contexts/OpenCartMenuContext';
 export default function CartContent() {
 	const { setOpenCart } = useMenuCart()
 	const { cart, subTotalPrice } = useCart()
-	const price = subTotalPrice * 0.95
 	const calc = (Math.round(subTotalPrice / 6 * 100)) / 100.0;
 
 	return (
@@ -30,7 +29,7 @@ export default function CartContent() {
 				<div className={style.totalContainer}>
 					<span className={style.totalPrice}>Total da compra</span>
 					<div className={style.pagament}>
-						<span className={style.spot}><strong className={style.price}>R$ {price.toFixed(1).toString().replace(".", ",")}0</strong></span>
+						<span className={style.spot}><strong className={style.price}>R$ {subTotalPrice.toFixed(1).toString().replace(".", ",")}0</strong></span>
 					</div>
 				</div>
 				<div onClick={() => setOpenCart(false)} className={style.checkout}>

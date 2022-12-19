@@ -22,8 +22,8 @@ function CartMenu() {
 			animate={openCart ? "open" : "closed"}
 			variants={CartVariant}
 			className={style.cart}
-			transition={{ ease: "easeOut", duration: 0.3 }}
-			style={openCart ? { zIndex: 15 } : ''}
+			transition={{ ease: "easeOut", duration: 0.45 }}
+			style={openCart ? {zIndex: 15} : ''}
 		>
 			<div className={style.container}>
 				<HeaderCart />

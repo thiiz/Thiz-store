@@ -16,7 +16,7 @@ export default function Login({ setLogin, setToggleLoginMenu }) {
 	const [showPass, setShowPass] = useState(false)
 	const [rememberUser, setRememberUser] = useState(true)
 	const { notifyLoginPromise, notifyLoginSuccess, notifyLoginError, dismiss } = useNotify()
-	const { register, handleSubmit, setValue } = useForm()
+	const { register, handleSubmit } = useForm()
 
 	const initialState = { email: '', password: '' }
 	const [userData, setUserData] = useState(initialState)
@@ -66,14 +66,16 @@ export default function Login({ setLogin, setToggleLoginMenu }) {
 						<MdEmail className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
 						<input {...register('email', {
 							required: true
-						})} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type="email" name="email" value={email} placeholder='Email' autoComplete="false" required />
+						})} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={`${style.input} ${email !== '' ? style.validInput : ''}`} type="email" name="email" value={email} autoComplete="false" required />
+						<span className={style.placeHolder}>Email</span>
 					</label>
 					<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 						<RiLockFill className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
 						<input {...register('password', {
 							required: true
-						})} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={style.input} type={showPass ? "text" : "password"} name="password" value={password} placeholder='Senha' autoComplete="false" required />
+						})} onFocus={() => !btn ? setBtn(true) : ''} onChange={handleChangeInput} className={`${style.input} ${password !== '' ? style.validInput : ''}`} type={showPass ? "text" : "password"} name="password" value={password} autoComplete="false" required />
 						<ShowPass showPass={showPass} setShowPass={setShowPass} />
+						<span className={style.placeHolder}>Senha</span>
 					</label>
 					<div className={style.containerCheckBoxAndRecover}>
 						<label className={style.containerRemember}>

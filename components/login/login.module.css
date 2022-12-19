@@ -92,7 +92,7 @@
 }
 
 .register:hover {
- text-decoration: underline;
+	text-decoration: underline;
 }
 
 .loginTitle {
@@ -111,7 +111,7 @@
 }
 
 .input {
-	height: 45px;
+	height: 47px;
 	width: 100%;
 	border: none;
 	background-color: #ecf0f1;
@@ -173,6 +173,24 @@
 .labelRemeber {
 	font-size: .885rem;
 	margin-left: .15rem;
+}
+
+.placeHolder {
+	position: absolute;
+	left: 2.78rem;
+	pointer-events: none;
+	color: #757575;
+	transition: 500ms ease;
+	font-size: .87rem;
+	font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+.input:focus~.placeHolder,
+.validInput~.placeHolder {
+	transform: translateY(-14.5px) translateX(-4px);
+	font-size: .69rem;
+	color: #909090;
+
 }
 
 .containerRemember {

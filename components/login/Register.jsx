@@ -11,9 +11,9 @@ import { useNotify } from '../../contexts/NotifyContext'
 
 
 export default function Register({ setLogin }) {
-	const initialState = { name: '', email: '', password: '', cf_password: '' }
+	const initialState = { name: '', secondName: '', email: '', password: '', cf_password: '' }
 	const [userData, setUserData] = useState(initialState)
-	const { name, email, password, cf_password } = userData
+	const { name, secondName, email, password, cf_password } = userData
 	const [showPass, setShowPass] = useState(false)
 	const { notifyRegistred } = useNotify()
 	const { register, handleSubmit } = useForm()
@@ -78,13 +78,15 @@ export default function Register({ setLogin }) {
 							<ImUser className={`${style.icon} ${style.iconUser} ${!errorName ? style.iconNormal : style.iconError}`} />
 							<input {...register('name', {
 								required: " "
-							})} onChange={handleChangeInput} className={style.input} type="text" name="name" placeholder='Nome' autoComplete="false" required />
+							})} onChange={handleChangeInput} className={`${style.input} ${name !== '' ? style.validInput : ''}`} type="text" name="name" autoComplete="false" required />
+							<span className={style.placeHolder}>Nome</span>
 						</label>
 						<label className={`${style.label} ${!errorSecondName ? style.labelNormal : style.labelError}`}>
 							<ImUserPlus className={`${style.icon} ${style.iconUser} ${!errorSecondName ? style.iconNormal : style.iconError}`} />
 							<input {...register('secondName', {
 								required: " "
-							})} onChange={handleChangeInput} className={style.input} type="text" name="secondName" placeholder='Sobrenome' autoComplete="false" required />
+							})} onChange={handleChangeInput} className={`${style.input} ${secondName !== '' ? style.validInput : ''}`} type="text" name="secondName" autoComplete="false" required />
+							<span className={style.placeHolder}>Sobrenome</span>
 						</label>
 					</div>
 
@@ -93,22 +95,25 @@ export default function Register({ setLogin }) {
 						<MdEmail className={`${style.icon} ${errorEmail || errorAll === "Este endereço de email está indisponível." ? style.iconError : style.iconNormal}`} />
 						<input {...register('email', {
 							required: " "
-						})} onChange={handleChangeInput} className={style.input} type="email" name="email" placeholder='Email' autoComplete="false" required />
+						})} onChange={handleChangeInput} className={`${style.input} ${email !== '' ? style.validInput : ''}`} type="email" name="email" autoComplete="false" required />
+						<span className={style.placeHolder}>Email</span>
 					</label>
 					{errorPassword && <p className={style.error}>{error}</p>}
 					<label className={`${style.label} ${!errorPassword ? style.labelNormal : style.labelError}`}>
 						<RiLockFill className={`${style.icon} ${!errorPassword ? style.iconNormal : style.iconError}`} />
 						<input {...register('password', {
 							required: " "
-						})} onChange={handleChangeInput} className={style.input} type={showPass ? "text" : "password"} name="password" placeholder='Senha' autoComplete="false" required />
+						})} onChange={handleChangeInput} className={`${style.input} ${password !== '' ? style.validInput : ''}`} type={showPass ? "text" : "password"} name="password" autoComplete="false" required />
 						<ShowPass showPass={showPass} setShowPass={setShowPass} />
+						<span className={style.placeHolder}>Senha</span>
 					</label>
 					{errorCf && <p className={style.error}>{error}</p>}
 					<label className={`${style.label} ${!errorCf ? style.labelNormal : style.labelError}`}>
 						<RiLockFill className={`${style.icon} ${!errorCf ? style.iconNormal : style.iconError}`} />
 						<input {...register('cf_password', {
 							required: " "
-						})} onChange={handleChangeInput} className={style.input} type="password" name="cf_password" placeholder='Confirmar senha' autoComplete="false" required />
+						})} onChange={handleChangeInput} className={`${style.input} ${cf_password !== '' ? style.validInput : ''}`} type="password" name="cf_password" autoComplete="false" required />
+						<span className={style.placeHolder}>Confirmar senha</span>
 					</label>
 					{errorTerms && <p className={style.error}>{error}</p>}
 					<label id={style.politicaTermos}>
