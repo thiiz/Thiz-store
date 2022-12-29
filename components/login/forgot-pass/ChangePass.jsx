@@ -6,7 +6,7 @@ import { patchData } from '../../../utils/fetchData'
 import ShowPass from '../../showpass/ShowPass'
 import style from '../index.module.css'
 import validPassword from './validPassword'
-export default function changePass({ setSwitchModal, setLoading, recoverData }) {
+export default function ChangePass({ setSwitchModal, setLoading, recoverData }) {
 	const { register, handleSubmit } = useForm()
 	const { notifyPromise, notifyPromiseSuccess, notifyPromiseError } = useNotify()
 	const [erro, setErro] = useState(false)
