@@ -12,13 +12,13 @@ export default function Search() {
 	const [find, setFind] = useState(null)
 	const [searching, setSearching] = useState(false)
 	const scrollDirection = useScrollDirection()
-	
+
 	return (
 		<div className={style.container}>
 			<button className={`${styleBtn.btn} ${styleBtn.btnInfo}`} onClick={() => setSearch(search => !search)}><GrSearch /></button>
 			{search &&
 				<div className={`${style.content} ${scrollDirection !== 'down' ? style.contentNormal : style.contentSmall}`}>
-					<Input setFind={setFind} setItems={setItems} setSearching={setSearching} />
+					<Input find={find} setFind={setFind} setItems={setItems} setSearching={setSearching} />
 					<SearchModal find={find} scrollDirection={scrollDirection} data={items} searching={searching} setItems={setItems} setSearch={setSearch} />
 				</div>
 			}

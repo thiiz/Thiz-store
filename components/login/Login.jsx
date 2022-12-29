@@ -1,21 +1,20 @@
+import style from './index.module.css'
 import { MdEmail } from 'react-icons/md'
 import { RiLockFill } from 'react-icons/ri'
-import style from './login.module.css'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { getData, postData } from '../../utils/fetchData'
 import { setCookie } from 'nookies'
 import { useNotify } from '../../contexts/NotifyContext';
 import { useAuth } from '../../contexts/AuthContext'
-import { useRouter } from 'next/router'
 import ShowPass from '../showpass/ShowPass'
 
-export default function Login({ setLogin, setToggleLoginMenu }) {
-	const { query, push } = useRouter()
+export default function Login({ setSwitchModal, setToggleLoginModal }) {
+
 	const { setAuth } = useAuth()
 	const [showPass, setShowPass] = useState(false)
 	const [rememberUser, setRememberUser] = useState(true)
-	const { notifyLoginPromise, notifyLoginSuccess, notifyLoginError, dismiss } = useNotify()
+	const { notifyPromise, notifyPromiseSuccess, notifyPromiseError } = useNotify()
 	const { register, handleSubmit } = useForm()
 
 	const initialState = { email: '', password: '' }
@@ -27,10 +26,11 @@ export default function Login({ setLogin, setToggleLoginMenu }) {
 	const handleChangeInput = e => {
 		const { name, value } = e.target
 		setUserData({ ...userData, [name]: value })
+		return
 	}
 
 	async function handler() {
-		notifyLoginPromise()
+		notifyPromise()
 		const res = await postData('auth/login', userData)
 		if (res.err) return loginErr()
 		if (rememberUser) {
@@ -40,19 +40,16 @@ export default function Login({ setLogin, setToggleLoginMenu }) {
 			})
 			localStorage.setItem('firstLogin', true)
 		}
-		dismiss({ id: "registred" })
-		if (query.redirect) {
-			push(`/${query.redirect}`)
-		}
 		getData('auth/accessToken').then(res => {
 			setAuth({ token: res.access_token, user: res.user })
 		})
-		if (res.msg) return notifyLoginSuccess({ msg: "Logado com sucesso!" }), setToggleLoginMenu(false)
+
+		if (res.msg) return notifyPromiseSuccess({ msg: res.msg }), setToggleLoginModal(false)
 	}
 
 	const loginErr = () => {
 		setBtn(false)
-		notifyLoginError({ msg: "Endereço de email ou senha incorretos." })
+		notifyPromiseError({ msg: "Endereço de email ou senha incorretos." })
 		setUserData({ ...userData, ["password"]: "" })
 	}
 
@@ -60,8 +57,8 @@ export default function Login({ setLogin, setToggleLoginMenu }) {
 		<>
 			<div className={style.loginTitle}>Iniciar sessão</div>
 			<div className={style.formContainer}>
-				<div className={style.newUser}>Novo usuário? <button onClick={() => setLogin("register")} className={style.register}><strong>Cadastre-se aqui.</strong></button></div>
-				<form className={style.form} method="post" onSubmit={handleSubmit(handler)} >
+				<div className={style.newUser}>Novo usuário? <button onClick={() => setSwitchModal("register")} className={style.register}><strong>Cadastre-se aqui.</strong></button></div>
+				<form className={style.form} onSubmit={handleSubmit(handler)} >
 					<label className={`${style.label} ${btn ? style.labelNormal : style.labelError}`}>
 						<MdEmail className={`${style.icon} ${btn ? style.iconNormal : style.iconError}`} />
 						<input {...register('email', {
@@ -83,7 +80,7 @@ export default function Login({ setLogin, setToggleLoginMenu }) {
 							<span className={style.labelRemeber}>Mantenha-me conectado</span>
 						</label>
 						<div className={style.containerRecover}>
-							<button type='button' className={style.recoverPassword}>Esqueceu a senha?</button>
+							<button onClick={() => setSwitchModal("ForgotPass")} type='button' className={style.recoverPassword}>Esqueceu a senha?</button>
 						</div>
 					</div>
 					<span className={style.labelTerms}>Ao fazer login você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</span>

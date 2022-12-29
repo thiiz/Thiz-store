@@ -21,7 +21,7 @@ export default function NotifyProvider({ children }) {
 		draggable: true,
 		onClick: () => false,
 		toastId: "success"
-	});
+	}, dismissAll());
 
 	const notifyInfo = ({ msg }) => toast.info(<NotifyInfo msg={msg} />, {
 		position: "top-center",
@@ -29,7 +29,7 @@ export default function NotifyProvider({ children }) {
 		pauseOnHover: true,
 		draggable: false,
 		onClick: () => false,
-	});
+	}, dismissAll());
 
 	const notifyError = ({ msg }) => toast.error(<NotifyError msg={msg} />, {
 		position: "top-center",
@@ -37,7 +37,7 @@ export default function NotifyProvider({ children }) {
 		pauseOnHover: true,
 		draggable: false,
 		onClick: () => false,
-	});
+	}, dismissAll());
 	const notifyRegistred = () => toast.success(<NotifyRegistred />, {
 		position: "top-center",
 		autoClose: false,
@@ -46,16 +46,16 @@ export default function NotifyProvider({ children }) {
 		draggable: true,
 		onClick: () => false,
 		toastId: "registred"
-	});
-	const notifyLoginPromise = () => toast.loading(<NotifyLoading />, {
+	}, dismissAll());
+	const notifyPromise = () => toast.loading(<NotifyLoading />, {
 		position: "top-center",
 		hideProgressBar: false,
 		pauseOnHover: false,
 		draggable: true,
 		onClick: () => false,
-		toastId: "login"
-	});
-	const notifyLoginSuccess = ({ msg }) => toast.update("login", {
+		toastId: "promise"
+	}, dismissAll());
+	const notifyPromiseSuccess = ({ msg }) => toast.update("promise", {
 		render: msg,
 		type: "success",
 		isLoading: false,
@@ -67,9 +67,21 @@ export default function NotifyProvider({ children }) {
 		pauseOnHover: false,
 		draggable: true,
 	});
-	const notifyLoginError = ({ msg }) => toast.update("login", {
+	const notifyPromiseError = ({ msg }) => toast.update("promise", {
 		render: msg,
 		type: "error",
+		isLoading: false,
+		position: "top-center",
+		closeOnClick: true,
+		autoClose: false,
+		hideProgressBar: true,
+		closeButton: true,
+		pauseOnHover: false,
+		draggable: true,
+	});
+	const notifyPromiseInfo = ({ msg }) => toast.update("promise", {
+		render: msg,
+		type: "info",
 		isLoading: false,
 		position: "top-center",
 		closeOnClick: true,
@@ -102,12 +114,13 @@ export default function NotifyProvider({ children }) {
 		notifyInfo,
 		notifyError,
 		notifyRegistred,
-		notifyLoginPromise,
-		notifyLoginSuccess,
-		notifyLoginError,
+		notifyPromise,
+		notifyPromiseSuccess,
+		notifyPromiseError,
+		notifyPromiseInfo,
 		notifyCart,
 		notifyInfoCart,
-		dismiss
+		dismiss,
 	}
 
 	return (
@@ -124,23 +137,25 @@ export function useNotify() {
 		notifyInfo,
 		notifyError,
 		notifyRegistred,
-		notifyLoginPromise,
-		notifyLoginSuccess,
-		notifyLoginError,
+		notifyPromise,
+		notifyPromiseSuccess,
+		notifyPromiseError,
+		notifyPromiseInfo,
 		notifyCart,
 		notifyInfoCart,
-		dismiss
+		dismiss,
 	} = context
 	return {
 		notifySuccess,
 		notifyInfo,
 		notifyError,
 		notifyRegistred,
-		notifyLoginPromise,
-		notifyLoginSuccess,
-		notifyLoginError,
+		notifyPromise,
+		notifyPromiseSuccess,
+		notifyPromiseError,
+		notifyPromiseInfo,
 		notifyCart,
 		notifyInfoCart,
-		dismiss
+		dismiss,
 	}
 }

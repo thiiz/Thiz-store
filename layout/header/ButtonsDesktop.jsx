@@ -2,23 +2,21 @@ import style from './Header.module.css'
 import { FaUserCircle } from 'react-icons/fa'
 import { MdHeadsetMic } from 'react-icons/md'
 import LoginModal from './LoginModal'
-import { useContextModalLogin } from '../../contexts/ModalLoginContext'
 import { useEffect, useRef } from 'react'
 import { useScrollDirection } from '../../lib/useScrollDirection'
-import { useLoginMenu } from '../../contexts/LoginMenuContext'
+import { useToggleLoginModal } from '../../contexts/LoginModalContext'
 import { useAuth } from '../../contexts/AuthContext'
 import ButtonCart from './ButtonCart'
 import Search from '../../components/search/Search'
 
-export default function ButtonsDesktop() {
-	const { isLoginModal, setIsLoginModal } = useContextModalLogin()
-	const { setToggleLoginMenu } = useLoginMenu()
+export default function ButtonsDesktop({ toggleUserModal, setToggleUserModal }) {
+	const { setToggleLoginModal } = useToggleLoginModal()
 	const { auth } = useAuth()
 	const refLogin = useRef();
 	const scrollDirection = useScrollDirection()
 	useEffect(() => {
 		function handleClickOutside(event) {
-			if (!isLoginModal) {
+			if (!toggleUserModal) {
 				return;
 			}
 			if (
@@ -28,14 +26,14 @@ export default function ButtonsDesktop() {
 			) {
 				return;
 			}
-			setIsLoginModal(false);
+			setToggleUserModal(false);
 		};
 
 		document.addEventListener("click", handleClickOutside, { capture: true });
 		return () => {
 			document.removeEventListener("click", handleClickOutside, { capture: true });
 		};
-	}, [isLoginModal])
+	}, [toggleUserModal])
 	return (
 		<section className={style.btnInfoContainer}>
 			<Search />
@@ -45,17 +43,17 @@ export default function ButtonsDesktop() {
 			<ButtonCart />
 			<div ref={refLogin} className={style.userContainer}>
 				{Object.keys(auth).length === 0 ?
-					<button onClick={() => setToggleLoginMenu(toggleLoginMenu => !toggleLoginMenu)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${scrollDirection !== 'down' ? style.btnLoginNormal : style.btnLoginSmall}`} type='button'>
+					<button onClick={() => setToggleLoginModal(prev => !prev)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${scrollDirection !== 'down' ? style.btnLoginNormal : style.btnLoginSmall}`} type='button'>
 						<FaUserCircle />
 					</button>
 					:
-					<button onClick={() => setIsLoginModal(isLoginModal => !isLoginModal)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${scrollDirection !== 'down' ? style.btnLoginNormal : style.btnLoginSmall}`} type='button'>
+					<button onClick={() => setToggleUserModal(prev => !prev)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${scrollDirection !== 'down' ? style.btnLoginNormal : style.btnLoginSmall}`} type='button'>
 						<FaUserCircle />
 						{scrollDirection !== "down" && <p className={style.loginText}>{auth.user.name}</p>}
 					</button>}
-				{isLoginModal &&
+				{toggleUserModal &&
 					<div className={style.containerLoginModal}>
-						<LoginModal isLoginModal={isLoginModal} scrollDirection={scrollDirection} />
+						<LoginModal toggleUserModal={toggleUserModal} scrollDirection={scrollDirection} />
 					</div>
 				}
 			</div>

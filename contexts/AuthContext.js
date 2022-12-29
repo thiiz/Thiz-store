@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { createContext, useContext, useEffect } from 'react'
 import { getData } from '../utils/fetchData'
@@ -8,6 +9,7 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
 	const [auth, setAuth] = useState({})
+	const { query, push } = useRouter()
 	useEffect(() => {
 		const firstLogin = localStorage.getItem("firstLogin");
 		if (firstLogin) {
@@ -17,6 +19,12 @@ export const AuthProvider = ({ children }) => {
 			})
 		}
 	}, [])
+
+	useEffect(() => {
+		if (query.redirect) {
+			push(`/${query.redirect}`)
+		}
+	}, [auth])
 
 	const state = {
 		auth,

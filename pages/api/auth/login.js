@@ -27,7 +27,7 @@ const login = async (req, res) => {
 		const refresh_token = createRefreshToken({ id: user._id })
 
 		res.json({
-			msg: "Login Success!",
+			msg: "Logado com sucesso!",
 			refresh_token,
 			access_token,
 			user: {

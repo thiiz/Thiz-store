@@ -39,7 +39,7 @@ export default function Footer() {
 				<div className={style.copyright}>
 					<span>2022 &copy; Todos os direitos reservados</span>
 					<span>MãeTerra - CNPJ: 33.727.589/0001-27 / Imbituba - SC.</span>
-					<span>Powered by <a target="_blank" href="https://www.twitter.com/1ziht">thiz</a></span>
+					<span>Desenvolvido por <a target="_blank" href="https://www.twitter.com/1ziht">thiz</a></span>
 				</div>
 			</footer>
 		</>

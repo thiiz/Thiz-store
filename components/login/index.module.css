@@ -13,12 +13,24 @@
 }
 
 .containerLogin {
-	grid-template-rows: 1fr 2.3fr;
+	grid-template-rows: 1fr 2.4fr;
 
 }
 
 .containerRegister {
-	grid-template-rows: 1fr 3.5fr;
+	grid-template-rows: 1fr 3.72fr;
+}
+
+.containerForgotPass {
+	grid-template-rows: 2fr 3.5fr;
+}
+
+.containerVerifyRecoverCode {
+	grid-template-rows: 2fr auto 3fr;
+}
+
+.changePass {
+	grid-template-rows: 3fr auto 3fr;
 }
 
 .formContainer {
@@ -116,9 +128,10 @@
 	border: none;
 	background-color: #ecf0f1;
 	outline-color: #006eff;
-	text-indent: 10px;
+	text-indent: .64rem;
 	padding-right: 24px;
 	font-size: .9rem;
+	padding-top: .33rem;
 }
 
 .label {
@@ -187,8 +200,8 @@
 
 .input:focus~.placeHolder,
 .validInput~.placeHolder {
-	transform: translateY(-14.5px) translateX(-4px);
-	font-size: .69rem;
+	transform: translateY(-13.3px) translateX(-3px);
+	font-size: .73rem;
 	color: #909090;
 
 }

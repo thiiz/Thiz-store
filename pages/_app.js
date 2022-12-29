@@ -2,15 +2,15 @@ import '../styles/globals.css'
 import Header from '../layout/header/Header'
 import Footer from '../layout/footer/Footer'
 import NextNProgress from "nextjs-progressbar";
-import LoginMenuProvider from '../contexts/LoginMenuContext';
+import LoginModalProvider from '../contexts/LoginModalContext';
 import CartProvider from '../contexts/CartContext'
 import OpenCartMenuProvider from '../contexts/OpenCartMenuContext'
 import NotifyProvider from '../contexts/NotifyContext';
 import { ToastContainer, Flip } from 'react-toastify';
 import { AuthProvider } from '../contexts/AuthContext'
 import Head from 'next/head';
-import ModalLoginContextProvider from '../contexts/ModalLoginContext';
-import MenuLogin from '../components/login/MenuLogin';
+import UserModalContextProvider from '../contexts/UserModalContext';
+import ModalLogin from '../components/login/index';
 import CartMenu from '../components/cart/CartMenu';
 import CookiesConsentPopup from '../components/cookies-consent/CookiesConsentPopup';
 
@@ -23,11 +23,11 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
       <AuthProvider>
         <OpenCartMenuProvider>
           <NotifyProvider>
-            <LoginMenuProvider>
+            <LoginModalProvider>
               <CartProvider>
-                <ModalLoginContextProvider>
+                <UserModalContextProvider>
                   <Header />
-                </ModalLoginContextProvider>
+                </UserModalContextProvider>
                 <NextNProgress
                   color="#0099ff"
                   startPosition={0.2}
@@ -37,13 +37,13 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
                 />
                 <ToastContainer
                   position
+                  pauseOnFocusLoss={false}
                   autoClose={3500}
                   hideProgressBar={false}
                   newestOnTop={false}
                   onClick
                   closeOnClick={true}
                   rtl={false}
-                  pauseOnFocusLoss
                   draggable
                   pauseOnHover
                   progress={undefined}
@@ -52,11 +52,11 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
                   limit={3}
                   closeButton
                 />
-                <MenuLogin />
+                <ModalLogin />
                 <CartMenu />
                 <Component {...pageProps} />
               </CartProvider>
-            </LoginMenuProvider>
+            </LoginModalProvider>
           </NotifyProvider>
         </OpenCartMenuProvider>
         <CookiesConsentPopup />

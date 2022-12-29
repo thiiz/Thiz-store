@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { VscChromeClose } from 'react-icons/vsc'
 export default function HeaderSearchModal({ handleClose, quantity }) {
-	const [info, setInfo] = useState('')
+	const [info, setInfo] = useState('O que você está procurando?')
 	const [qty, setQty] = useState('')
 
 	useEffect(() => {

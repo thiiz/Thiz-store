@@ -2,7 +2,7 @@ import { useAuth } from "../contexts/AuthContext"
 import { useNotify } from "../contexts/NotifyContext"
 import { useEffect } from "react"
 import { useRouter } from 'next/router'
-import { useLoginMenu } from '../contexts/LoginMenuContext'
+import { useToggleLoginModal } from '../contexts/LoginModalContext'
 import Head from "next/head"
 import Profile from "../components/profile/Profile"
 
@@ -10,14 +10,14 @@ import Profile from "../components/profile/Profile"
 export default function Perfil() {
 	const router = useRouter()
 	const { notifyError } = useNotify()
-	const { setToggleLoginMenu } = useLoginMenu()
+	const { setToggleLoginModal } = useToggleLoginModal()
 	const { auth } = useAuth()
 	useEffect(() => {
-		const firstLogin = localStorage.getItem("firstLogin");
-		if (!firstLogin) {
+		console.log(auth)
+		if (!auth.token) {
 			notifyError({ msg: "Você precisa fazer login para acessar essa página." })
 			router.push({ pathname: '/', query: 'redirect=perfil' })
-			setToggleLoginMenu(true)
+			setToggleLoginModal(true)
 		}
 	}, [])
 	return (

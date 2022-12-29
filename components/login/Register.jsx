@@ -1,8 +1,8 @@
+import style from './index.module.css'
 import { MdEmail } from 'react-icons/md'
 import { RiLockFill } from 'react-icons/ri'
 import { ImUser, ImUserPlus } from 'react-icons/im'
 import { useForm } from 'react-hook-form'
-import style from './login.module.css'
 import valid from './valid'
 import { postData } from '../../utils/fetchData'
 import { useState } from 'react'
@@ -10,7 +10,7 @@ import ShowPass from '../showpass/ShowPass'
 import { useNotify } from '../../contexts/NotifyContext'
 
 
-export default function Register({ setLogin }) {
+export default function Register({ setSwitchModal }) {
 	const initialState = { name: '', secondName: '', email: '', password: '', cf_password: '' }
 	const [userData, setUserData] = useState(initialState)
 	const { name, secondName, email, password, cf_password } = userData
@@ -58,14 +58,14 @@ export default function Register({ setLogin }) {
 		if (res.err === "This email already exists.") return setErrorAll("Este endereço de email está indisponível.")
 		if (res.err) return setErrorAll("Falha ao se cadastrar, por favor tente mais tarde")
 		notifyRegistred()
-		return setLogin("login")
+		return setSwitchModal("login")
 	}
 
 	return (
 		<>
 			<div className={style.loginTitle}>Criar conta</div>
 			<div className={style.formContainer}>
-				<div className={style.newUser}>Já tem uma conta? <button onClick={() => setLogin("login")} className={style.register}><strong>Fazer login.</strong></button></div>
+				<div className={style.newUser}>Já tem uma conta? <button onClick={() => setSwitchModal("login")} className={style.register}><strong>Fazer login.</strong></button></div>
 				{errorAll === "Por favor preencha todos os campos" || errorAll === "Falha ao se cadastrar, por favor tente mais tarde" ?
 					<p className={style.error}>{errorAll}</p> : ''}
 				<form className={style.form} onSubmit={handleSubmit(handler)} onClick={() => resetForm()}
@@ -115,11 +115,10 @@ export default function Register({ setLogin }) {
 						})} onChange={handleChangeInput} className={`${style.input} ${cf_password !== '' ? style.validInput : ''}`} type="password" name="cf_password" autoComplete="false" required />
 						<span className={style.placeHolder}>Confirmar senha</span>
 					</label>
-					{errorTerms && <p className={style.error}>{error}</p>}
+					{errorTerms && <p className={style.error}>Você deve aceitar nossa política de privacidade e os termos de uso para continuar.</p>}
 					<label id={style.politicaTermos}>
 						<input {...register('terms', {
-							required: " "
-						})} className={errorTerms ? style.termsError : ''} type="checkbox" id={style.terms} name="terms" value="ok" required />
+						})} className={errorTerms ? style.termsError : ''} type="checkbox" id={style.terms} name="terms" value="ok" />
 						<span className={`${style.labelTerms} ${style.labelTermsError}`}>Ao se cadastrar você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</span>
 					</label>
 					{btn ?

@@ -37,7 +37,6 @@ export default function CookiesConsentPopup() {
 	return (
 		<>
 			{isAcceptedCookies && Object.keys(auth).length === 0 &&
-				<div className={style.containerCookies}>
 					<div className={style.container}>
 						<button onClick={() => handleClose()} type='buttton' className={style.btnClose}><GrClose /></button>
 						<div className={style.content}>
@@ -50,7 +49,6 @@ export default function CookiesConsentPopup() {
 								<button onClick={() => handleAccept()} className={`${style.btn} ${style.btnAccept}`}><FaCookieBite className={style.cookieIcon} />Aceitar Todos</button>
 							</div>
 						</div>
-					</div>
 				</div>}
 		</>
 	)

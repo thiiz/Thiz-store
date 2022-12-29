@@ -1,10 +1,18 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { createContext, useState } from "react";
 
 const OpenCartMenuContext = createContext()
 
 export default function CartMenuProvider({ children }) {
 	const [openCart, setOpenCart] = useState(false)
+
+	useEffect(() => {
+		if (openCart) {
+			document.body.style.overflowY = 'hidden'
+		} else {
+			document.body.style.overflowY = 'auto'
+		}
+	}, [openCart]);
 
 	const state = {
 		openCart,

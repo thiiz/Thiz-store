@@ -6,13 +6,13 @@ import { useRouter } from 'next/router'
 import { useAuth } from '../../contexts/AuthContext'
 import { useNotify } from '../../contexts/NotifyContext'
 import { useState } from 'react'
-export default function ({ isLoginModal, scrollDirection }) {
+export default function ({ toggleUserModal, scrollDirection }) {
 	const router = useRouter()
 	const { notifySuccess } = useNotify()
 	const { setAuth } = useAuth()
 	const dropdownVariant = {
 		open: { opacity: 1, height: "4.738rem", padding: ".5rem 1rem .5rem 1rem" },
-		closed: { opacity: 0, height: 0 },
+		closed: { opacity: 0, height: 0, padding: 0 },
 	}
 	const handleLogout = () => {
 		if (router.pathname === "/perfil" || router.pathname === "/pagamento") {
@@ -25,7 +25,7 @@ export default function ({ isLoginModal, scrollDirection }) {
 	}
 
 	return (
-		<motion.div className={`${style.container} ${scrollDirection !== "down" ? style.containerNormal : style.containerSmall}`} animate={isLoginModal ? "open" : "closed"} variants={dropdownVariant}>
+		<motion.div className={`${style.container} ${scrollDirection !== "down" ? style.containerNormal : style.containerSmall}`} animate={toggleUserModal ? "open" : "closed"} variants={dropdownVariant}>
 			<ul className={style.ul}>
 				<li className={style.li}> <Link href="/perfil"><a className={style.myProfile}>Meu perfil</a></Link></li>
 				<div className={style.division}></div>

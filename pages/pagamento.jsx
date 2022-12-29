@@ -1,7 +1,7 @@
 import style from '../styles/Checkout.module.css'
 import { useEffect, useState } from "react"
 import { useNotify } from "../contexts/NotifyContext"
-import { useLoginMenu } from "../contexts/LoginMenuContext"
+import { useToggleLoginModal } from "../contexts/LoginModalContext"
 import Paypal from '../components/pagamento/Paypal'
 import { getData } from '../utils/fetchData'
 import { useAuth } from '../contexts/AuthContext'
@@ -12,7 +12,7 @@ import Items from '../components/pagamento/Items'
 export default function Pagamento() {
 	const { auth } = useAuth()
 	const { notifyError } = useNotify()
-	const { setToggleLoginMenu } = useLoginMenu()
+	const { setToggleLoginModal } = useToggleLoginModal()
 
 	useEffect(() => {
 		const firstLogin = localStorage.getItem("firstLogin");
@@ -22,7 +22,7 @@ export default function Pagamento() {
 			})
 		} else {
 			notifyError({ msg: "Você precisa fazer login para acessar essa página." })
-			setToggleLoginMenu(true)
+			setToggleLoginModal(true)
 		}
 	}, [])
 
