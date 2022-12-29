@@ -27,7 +27,7 @@ const password = async (req, res) => {
 
 		const passwordHash = await hash(password, 12)
 		await Users.findOneAndUpdate({ _id: user.id }, { password: passwordHash })
-		await RecoverAccount.deleteOne({ recoverUser })
+		await RecoverAccount.deleteOne({ "_id": recoverUser._id })
 
 		res.json({ msg: "Senha atualizada com sucesso!" })
 
