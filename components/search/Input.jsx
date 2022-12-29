@@ -17,7 +17,7 @@ export default function Input({ setSearching, setItems, find, setFind }) {
 	}
 
 	return (
-		<form className={style.searchContainer} onSubmit={handleSubmit(handleSearch)} autocomplete="off">
+		<form className={style.searchContainer} onSubmit={handleSubmit(handleSearch)} autoComplete="off">
 			<label className={style.label}>
 				<BsSearch className={style.icon} />
 				<input {...register('search', { required: true, pattern: { value: /[_A-Za-z][_0-9A-Za-z]*/ } })} className={style.search} type='text' autoFocus={true} />
