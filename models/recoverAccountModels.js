@@ -12,7 +12,7 @@ const recoverAccount = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        expires: '1h',
+        expires: '2h',
         default: Date.now
     }
 }, {
