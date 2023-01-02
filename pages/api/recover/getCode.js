@@ -19,8 +19,8 @@ const getCode = async (req, res) => {
 		const data = await RecoverAccount.findOne({ email })
 
 		const isMatch = code === data?.code
-		
-		if (!isMatch) return res.status(400).json({ err: 'O código inválido ou expirou.' })
+
+		if (!isMatch) return res.status(400).json({ err: 'Código inválido ou expirou.' })
 		if (!data) return res.status(400).json({ err: 'Endereço de email não encontrado.' })
 
 		res.json({

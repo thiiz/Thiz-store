@@ -6,13 +6,11 @@ import { patchData } from '../../../utils/fetchData'
 import ShowPass from '../../showpass/ShowPass'
 import style from '../index.module.css'
 import validPassword from './validPassword'
-export default function ChangePass({ setSwitchModal, setLoading, recoverData }) {
-	const { register, handleSubmit } = useForm()
-	const { notifyPromise, notifyPromiseSuccess, notifyPromiseError } = useNotify()
-	const [erro, setErro] = useState(false)
+export default function ChangePass({ setSwitchModal, recoverData }) {
+	const { register, handleSubmit, setError, clearErrors, formState } = useForm()
+	const { errors, isSubmitting } = formState
+	const { notifySuccess } = useNotify()
 	const [showPass, setShowPass] = useState(false)
-	const [errorPassword, setErrorPassword] = useState(false)
-	const [errorCf, setErrorCf] = useState(false)
 	const initialState = { password: '', cf_password: '' }
 	const [data, setData] = useState(initialState)
 	const { password, cf_password } = data
@@ -23,40 +21,51 @@ export default function ChangePass({ setSwitchModal, setLoading, recoverData }) 
 	}
 
 	const handler = async () => {
-		setErro(true)
-		notifyPromise()
 		const err = validPassword(password, cf_password)
-		if (err) return notifyPromiseError({ msg: err }), setLoading(false)
-		const res = await patchData('recover/password', { email: recoverData.email, code: recoverData.code, password })
-		if (res.err) return notifyPromiseError({ msg: res.err }), setLoading(false)
+		if (err) {
+			if (err.password) return setError('password', { type: 'custom', message: err.password })
+			if (err.cf_password) return setError('cf_password', { type: 'custom', message: err.cf_password })
+		}
 
-		return notifyPromiseSuccess({ msg: res.msg }), setSwitchModal("login"), setLoading(false)
+		const res = await patchData('recover/password', { email: recoverData.email, code: recoverData.code, password })
+		if (res.err) {
+			return setError('password', { type: 'custom', message: res.err })
+		}
+
+		setSwitchModal("login")
+		return notifySuccess({ msg: res.msg })
 	}
 	return (
 		<>
 			<div className={style.loginTitle}>Alterar senha</div>
 			<div className={style.formContainer}>
 				<div className={style.newUser}>Lembrou a senha? <button onClick={() => setSwitchModal("login")} className={style.register}><strong>Faça login.</strong></button></div>
-				<form className={style.form} onSubmit={handleSubmit(handler)} onFocus={() => erro && setErro(false)}>
-					<label className={`${style.label} ${!errorPassword ? style.labelNormal : style.labelError}`}>
-						<RiLockFill className={`${style.icon} ${!errorPassword ? style.iconNormal : style.iconError}`} />
+				<form className={style.form} onSubmit={handleSubmit(handler)} >
+					{errors.password && <p className={style.error}>{errors.password.message}</p>}
+					<label className={`${style.label} ${!errors.password ? style.labelNormal : style.labelError}`} onFocus={() => clearErrors("password")}>
+						<RiLockFill className={`${style.icon} ${!errors.password ? style.iconNormal : style.iconError}`} />
 						<input {...register('password', {
-							required: " "
-						})} onChange={handleChangeInput} className={`${style.input} ${password !== '' ? style.validInput : ''}`} type={showPass ? "text" : "password"} name="password" autoComplete="false" required />
+							required: true
+						})} onChange={handleChangeInput} className={`${style.input} ${password !== '' ? style.validInput : ''}`} type={showPass ? "text" : "password"} name="password" autoComplete="off" />
 						<ShowPass showPass={showPass} setShowPass={setShowPass} />
 						<span className={style.placeHolder}>Nova senha</span>
 					</label>
-					<label className={`${style.label} ${!errorCf ? style.labelNormal : style.labelError}`}>
-						<RiLockFill className={`${style.icon} ${!errorCf ? style.iconNormal : style.iconError}`} />
+					{errors.cf_password && <p className={style.error}>{errors.cf_password.message}</p>}
+					<label className={`${style.label} ${!errors.cf_password ? style.labelNormal : style.labelError}`} onFocus={() => clearErrors("cf_password")}>
+						<RiLockFill className={`${style.icon} ${!errors.cf_password ? style.iconNormal : style.iconError}`} />
 						<input {...register('cf_password', {
-							required: " "
-						})} onChange={handleChangeInput} className={`${style.input} ${cf_password !== '' ? style.validInput : ''}`} type="password" name="cf_password" autoComplete="false" required />
+							required: true
+						})} onChange={handleChangeInput} className={`${style.input} ${cf_password !== '' ? style.validInput : ''}`} type="password" name="cf_password" autoComplete="off" />
 						<span className={style.placeHolder}>Confirmar nova senha</span>
 					</label>
-					{!erro ?
-						<button type='submit' className={`${style.btn} ${style.btnEnable}`} disabled={false}>enviar</button>
+					{!errors.password && !errors.cf_password ?
+						<button type='submit' className={`${style.btn} ${isSubmitting ? style.btnLoading : ''}`} disabled={isSubmitting}>
+							<span className={style.btnText}>enviar</span>
+						</button>
 						:
-						<button type='button' className={`${style.btn} ${style.btnDisable}`} disabled={true}>enviar</button>
+						<button type='button' className={`${style.btn} ${style.btnError}`} disabled={true}>
+							<span>enviar</span>
+						</button>
 					}
 				</form>
 			</div>

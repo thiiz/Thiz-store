@@ -9,56 +9,41 @@ import { useState } from 'react'
 import ShowPass from '../showpass/ShowPass'
 import { useNotify } from '../../contexts/NotifyContext'
 
-
 export default function Register({ setSwitchModal }) {
 	const initialState = { name: '', secondName: '', email: '', password: '', cf_password: '' }
 	const [userData, setUserData] = useState(initialState)
 	const { name, secondName, email, password, cf_password } = userData
 	const [showPass, setShowPass] = useState(false)
-	const { notifyRegistred } = useNotify()
-	const { register, handleSubmit } = useForm()
-	const [error, setError] = useState("")
-	const [errorAll, setErrorAll] = useState("")
-	const [errorName, setErrorName] = useState(false)
-	const [errorSecondName, setErrorSecondName] = useState(false)
-	const [errorEmail, setErrorEmail] = useState(false)
-	const [errorPassword, setErrorPassword] = useState(false)
-	const [errorCf, setErrorCf] = useState(false)
-	const [errorTerms, setErrorTerms] = useState(false)
-
-	const [btn, setBtn] = useState(true)
+	const { register, formState, handleSubmit, clearErrors, setError } = useForm()
+	const { errors, isSubmitting, isDirty, dirtyFields } = formState
+	const { notifySuccess, notifyError } = useNotify()
 
 	const handleChangeInput = e => {
 		const { name, value } = e.target
 		setUserData({ ...userData, [name]: value })
 	}
 
-	const resetForm = () => {
-		if (errorAll) return setErrorAll("")
-		if (errorName) return setErrorName(false)
-		if (errorSecondName) return setErrorSecondName(false)
-		if (errorEmail) return setErrorEmail(false)
-		if (errorPassword) return setErrorPassword(false)
-		if (errorCf) return setErrorCf(false)
-		if (errorTerms) return setErrorTerms(false)
-	}
-
 	async function handler(data) {
-		setBtn(false)
 		const errMsg = valid(data.name, data.secondName, data.email, data.password, data.cf_password, data.terms)
-		if (errMsg) { setError(errMsg) }
-		if (errMsg === "all") return setErrorAll("Por favor preencha todos os campos")
-		if (errMsg === "O seu primeiro nome é muito curto.") { return setErrorName(true) }
-		if (errMsg === "O seu segundo nome é muito curto.") { return setErrorSecondName(true) }
-		if (errMsg === "Endereço de email inválido.") { return setErrorEmail(true) }
-		if (errMsg === "A senha deve ter no minímo 6 caracteres.") { return setErrorPassword(true) }
-		if (errMsg === "As senhas devem ser iguais.") { return setErrorCf(true) }
-		if (data.terms !== "ok") { return setErrorTerms(true) }
+		if (errMsg) {
+			if (errMsg === "all") return notifyError({ msg: "Por favor preencha todos os campos" })
+			if (errMsg === "O seu primeiro nome é muito curto.") return setError('name', { type: 'custom', message: errMsg })
+			if (errMsg === "O seu segundo nome é muito curto.") return setError('secondName', { type: 'custom', message: errMsg })
+			if (errMsg === "Endereço de email inválido.") return setError('email', { type: 'custom', message: errMsg })
+			if (errMsg === "A senha deve ter no minímo 6 caracteres.") return setError('password', { type: 'custom', message: errMsg })
+			if (errMsg === "As senhas devem ser iguais.") return setError('cf_password', { type: 'custom', message: errMsg })
+		}
+		if (data.terms !== "ok")
+			return setError('terms', { type: 'custom', message: "Você deve aceitar nossa política de privacidade e os termos de uso para continuar" })
+
 		const res = await postData('auth/register', userData)
-		if (res.err === "This email already exists.") return setErrorAll("Este endereço de email está indisponível.")
-		if (res.err) return setErrorAll("Falha ao se cadastrar, por favor tente mais tarde")
-		notifyRegistred()
-		return setSwitchModal("login")
+
+		if (res.err) {
+			if (res.err === 'Endereço de email indisponível.') return setError('email', { type: 'custom', message: res.err })
+			if (res.err) return notifyError({ msg: "Falha ao se cadastrar, por favor tente mais tarde" })
+		}
+		setSwitchModal("login")
+		return notifySuccess({ msg: res.msg })
 	}
 
 	return (
@@ -66,65 +51,75 @@ export default function Register({ setSwitchModal }) {
 			<div className={style.loginTitle}>Criar conta</div>
 			<div className={style.formContainer}>
 				<div className={style.newUser}>Já tem uma conta? <button onClick={() => setSwitchModal("login")} className={style.register}><strong>Fazer login.</strong></button></div>
-				{errorAll === "Por favor preencha todos os campos" || errorAll === "Falha ao se cadastrar, por favor tente mais tarde" ?
-					<p className={style.error}>{errorAll}</p> : ''}
-				<form className={style.form} onSubmit={handleSubmit(handler)} onClick={() => resetForm()}
-					onFocus={() => !btn && setBtn(true)}
-				>
-					{errorName && <p className={style.error}>{error}</p>}
-					{errorSecondName && <p className={style.error}>{error}</p>}
+				<form className={style.form} onSubmit={handleSubmit(handler)}>
+					{errors.name && <p className={style.error}>{errors.name.message}</p> || errors.secondName && <p className={style.error}>{errors.secondName.message}</p>}
 					<div className={style.nameInput}>
-						<label className={`${style.label} ${!errorName ? style.labelNormal : style.labelError}`}>
-							<ImUser className={`${style.icon} ${style.iconUser} ${!errorName ? style.iconNormal : style.iconError}`} />
+						<label className={`${style.label} ${!errors.name ? style.labelNormal : style.labelError}`} onFocus={() => clearErrors("name")}>
+							<ImUser className={`${style.icon} ${style.iconUser} ${!errors.name ? style.iconNormal : style.iconError}`} />
 							<input {...register('name', {
-								required: " "
-							})} onChange={handleChangeInput} className={`${style.input} ${name !== '' ? style.validInput : ''}`} type="text" name="name" autoComplete="false" required />
+								required: ''
+							})} onChange={handleChangeInput} className={`${style.input} ${name !== '' ? style.validInput : ''}`} type="text" name="name" autoComplete="false" />
 							<span className={style.placeHolder}>Nome</span>
 						</label>
-						<label className={`${style.label} ${!errorSecondName ? style.labelNormal : style.labelError}`}>
-							<ImUserPlus className={`${style.icon} ${style.iconUser} ${!errorSecondName ? style.iconNormal : style.iconError}`} />
+						<label className={`${style.label} ${!errors.secondName ? style.labelNormal : style.labelError}`} onFocus={() => clearErrors("secondName")}>
+							<ImUserPlus className={`${style.icon} ${style.iconUser} ${!errors.secondName ? style.iconNormal : style.iconError}`} />
 							<input {...register('secondName', {
-								required: " "
-							})} onChange={handleChangeInput} className={`${style.input} ${secondName !== '' ? style.validInput : ''}`} type="text" name="secondName" autoComplete="false" required />
+								required: ''
+							})} onChange={handleChangeInput} className={`${style.input} ${secondName !== '' ? style.validInput : ''}`} type="text" name="secondName" autoComplete="false" />
 							<span className={style.placeHolder}>Sobrenome</span>
 						</label>
 					</div>
 
-					{errorEmail && <p className={style.error}>{error}</p> || errorAll === "Este endereço de email está indisponível." && <p className={style.error}>{errorAll}</p>}
-					<label className={`${style.label} ${errorEmail || errorAll === "Este endereço de email está indisponível." ? style.labelError : style.labelNormal}`}>
-						<MdEmail className={`${style.icon} ${errorEmail || errorAll === "Este endereço de email está indisponível." ? style.iconError : style.iconNormal}`} />
+					{errors.email && <p className={style.error}>{errors.email.message}</p>}
+					<label className={`${style.label} ${!errors.email ? style.labelNormal : style.labelError}`} onFocus={() => clearErrors("email")}>
+						<MdEmail className={`${style.icon} ${!errors.email ? style.iconNormal : style.iconError}`} />
 						<input {...register('email', {
-							required: " "
-						})} onChange={handleChangeInput} className={`${style.input} ${email !== '' ? style.validInput : ''}`} type="email" name="email" autoComplete="false" required />
+							required: ''
+						})} onChange={handleChangeInput} className={`${style.input} ${email !== '' ? style.validInput : ''}`} type="email" name="email" autoComplete="false" />
 						<span className={style.placeHolder}>Email</span>
 					</label>
-					{errorPassword && <p className={style.error}>{error}</p>}
-					<label className={`${style.label} ${!errorPassword ? style.labelNormal : style.labelError}`}>
-						<RiLockFill className={`${style.icon} ${!errorPassword ? style.iconNormal : style.iconError}`} />
+
+					{errors.password && <p className={style.error}>{errors.password.message}</p>}
+					<label className={`${style.label} ${!errors.password ? style.labelNormal : style.labelError}`} onFocus={() => clearErrors("password")}>
+						<RiLockFill className={`${style.icon} ${!errors.password ? style.iconNormal : style.iconError}`} />
 						<input {...register('password', {
-							required: " "
-						})} onChange={handleChangeInput} className={`${style.input} ${password !== '' ? style.validInput : ''}`} type={showPass ? "text" : "password"} name="password" autoComplete="false" required />
+							required: ''
+						})} onChange={handleChangeInput}
+							className={`${style.input} ${password !== '' ? style.validInput : ''}`}
+							type={showPass ? "text" : "password"}
+							name="password"
+							autoComplete="off" />
 						<ShowPass showPass={showPass} setShowPass={setShowPass} />
 						<span className={style.placeHolder}>Senha</span>
 					</label>
-					{errorCf && <p className={style.error}>{error}</p>}
-					<label className={`${style.label} ${!errorCf ? style.labelNormal : style.labelError}`}>
-						<RiLockFill className={`${style.icon} ${!errorCf ? style.iconNormal : style.iconError}`} />
+
+					{errors.cf_password && <p className={style.error}>{errors.cf_password.message}</p>}
+					<label className={`${style.label} ${!errors.cf_password ? style.labelNormal : style.labelError}`} onFocus={() => clearErrors("cf_password")}>
+						<RiLockFill className={`${style.icon} ${!errors.cf_password ? style.iconNormal : style.iconError}`} />
 						<input {...register('cf_password', {
-							required: " "
-						})} onChange={handleChangeInput} className={`${style.input} ${cf_password !== '' ? style.validInput : ''}`} type="password" name="cf_password" autoComplete="false" required />
+							required: ''
+						})} onChange={handleChangeInput} className={`${style.input} ${cf_password !== '' ? style.validInput : ''}`} type="password" name="cf_password" autoComplete="false" />
 						<span className={style.placeHolder}>Confirmar senha</span>
 					</label>
-					{errorTerms && <p className={style.error}>Você deve aceitar nossa política de privacidade e os termos de uso para continuar.</p>}
-					<label id={style.politicaTermos}>
-						<input {...register('terms', {
-						})} className={errorTerms ? style.termsError : ''} type="checkbox" id={style.terms} name="terms" value="ok" />
-						<span className={`${style.labelTerms} ${style.labelTermsError}`}>Ao se cadastrar você concorda com a nossa <a className={style.link} href="#">Política de Privacidade</a> e os <a className={style.link} href="#">Termos de uso</a>.</span>
+
+					{errors.terms && <p className={style.error}>{errors.terms.message}</p>}
+					<label id={style.politicaTermos} onFocus={() => clearErrors("terms")}>
+						<input {...register('terms')} className={!errors.terms ? '' : style.termsError} type="checkbox" id={style.terms} name="terms" value="ok" />
+						<div className={`${style.labelTerms} ${style.labelTermsError}`}>
+							<span>Ao se cadastrar você concorda com a nossa </span>
+							<a className={style.link} href="#">Política de Privacidade</a>
+							<span> e os </span>
+							<a className={style.link} href="#">Termos de uso</a>
+							<span>.</span>
+						</div>
 					</label>
-					{btn ?
-						<button type='submit' className={`${style.btn} ${style.btnEnable}`} disabled={false}>criar conta</button>
+
+					{!errors.name && !errors.secondName && !errors.email && !errors.password && !errors.cf_password && !errors.terms ?
+						<button type='submit' className={`${style.btn} ${isSubmitting ? style.btnLoading : ''}`} disabled={isSubmitting}>
+							<span className={style.btnText}>criar conta</span>
+						</button>
 						:
-						<button type='button' className={`${style.btn} ${style.btnDisable}`} disabled={true}>criar conta</button>
+						<button type='button' className={`${style.btn} ${style.btnError}`} disabled={true}>criar conta</button>
 					}
 				</form>
 			</div>

@@ -5,7 +5,7 @@ import { destroyCookie } from 'nookies'
 import { useRouter } from 'next/router'
 import { useAuth } from '../../contexts/AuthContext'
 import { useNotify } from '../../contexts/NotifyContext'
-import { useState } from 'react'
+
 export default function ({ toggleUserModal, scrollDirection }) {
 	const router = useRouter()
 	const { notifySuccess } = useNotify()
@@ -25,7 +25,11 @@ export default function ({ toggleUserModal, scrollDirection }) {
 	}
 
 	return (
-		<motion.div className={`${style.container} ${scrollDirection !== "down" ? style.containerNormal : style.containerSmall}`} animate={toggleUserModal ? "open" : "closed"} variants={dropdownVariant}>
+		<motion.div
+			className={`${style.container} ${scrollDirection !== "down" ? style.containerNormal : style.containerSmall}`}
+			animate={toggleUserModal ? "open" : "closed"}
+			variants={dropdownVariant}
+		>
 			<ul className={style.ul}>
 				<li className={style.li}> <Link href="/perfil"><a className={style.myProfile}>Meu perfil</a></Link></li>
 				<div className={style.division}></div>

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { createContext } from "react";
-import { Flip, toast } from 'react-toastify'
-import { NotifyCart, NotifyLoading, NotifyRegistred, NotifyError, NotifyInfo, NotifySuccess, NotifyInfoCart } from "../components/notify/Notify";
+import { toast } from 'react-toastify'
+import { NotifyCart, NotifyLoading, NotifyError, NotifyInfo, NotifySuccess, NotifyInfoCart } from "../components/notify/Notify";
 import { useMenuCart } from "..//contexts/OpenCartMenuContext";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -26,6 +26,7 @@ export default function NotifyProvider({ children }) {
 	const notifyInfo = ({ msg }) => toast.info(<NotifyInfo msg={msg} />, {
 		position: "top-center",
 		autoClose: 3500,
+		hideProgressBar: true,
 		pauseOnHover: true,
 		draggable: false,
 		onClick: () => false,
@@ -34,61 +35,46 @@ export default function NotifyProvider({ children }) {
 	const notifyError = ({ msg }) => toast.error(<NotifyError msg={msg} />, {
 		position: "top-center",
 		autoClose: 3500,
+		hideProgressBar: true,
 		pauseOnHover: true,
 		draggable: false,
 		onClick: () => false,
-	}, dismissAll());
-	const notifyRegistred = () => toast.success(<NotifyRegistred />, {
-		position: "top-center",
-		autoClose: false,
-		hideProgressBar: true,
-		pauseOnHover: false,
-		draggable: true,
-		onClick: () => false,
-		toastId: "registred"
 	}, dismissAll());
 	const notifyPromise = () => toast.loading(<NotifyLoading />, {
 		position: "top-center",
 		hideProgressBar: false,
 		pauseOnHover: false,
-		draggable: true,
 		onClick: () => false,
 		toastId: "promise"
 	}, dismissAll());
 	const notifyPromiseSuccess = ({ msg }) => toast.update("promise", {
 		render: msg,
 		type: "success",
+		hideProgressBar: true,
 		isLoading: false,
-		position: "top-center",
 		closeOnClick: true,
 		autoClose: 3500,
-		hideProgressBar: true,
 		closeButton: true,
-		pauseOnHover: false,
 		draggable: true,
 	});
 	const notifyPromiseError = ({ msg }) => toast.update("promise", {
 		render: msg,
 		type: "error",
-		isLoading: false,
-		position: "top-center",
-		closeOnClick: true,
-		autoClose: false,
 		hideProgressBar: true,
+		isLoading: false,
+		closeOnClick: true,
+		autoClose: 6500,
 		closeButton: true,
-		pauseOnHover: false,
 		draggable: true,
 	});
 	const notifyPromiseInfo = ({ msg }) => toast.update("promise", {
 		render: msg,
 		type: "info",
-		isLoading: false,
-		position: "top-center",
-		closeOnClick: true,
-		autoClose: false,
 		hideProgressBar: true,
+		isLoading: false,
+		closeOnClick: true,
+		autoClose: 3500,
 		closeButton: true,
-		pauseOnHover: false,
 		draggable: true,
 	});
 	const notifyCart = ({ msg }) => toast.success(<NotifyCart msg={msg} />, {
@@ -113,7 +99,6 @@ export default function NotifyProvider({ children }) {
 		notifySuccess,
 		notifyInfo,
 		notifyError,
-		notifyRegistred,
 		notifyPromise,
 		notifyPromiseSuccess,
 		notifyPromiseError,
@@ -136,7 +121,6 @@ export function useNotify() {
 		notifySuccess,
 		notifyInfo,
 		notifyError,
-		notifyRegistred,
 		notifyPromise,
 		notifyPromiseSuccess,
 		notifyPromiseError,
@@ -149,7 +133,6 @@ export function useNotify() {
 		notifySuccess,
 		notifyInfo,
 		notifyError,
-		notifyRegistred,
 		notifyPromise,
 		notifyPromiseSuccess,
 		notifyPromiseError,

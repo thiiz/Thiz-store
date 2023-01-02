@@ -1,37 +1,55 @@
-import style from './InputCode.module.css'
+import style from '../index.module.css'
+import styleInput from './InputCode.module.css'
 import VerificationInput from "react-verification-input";
 import { useRef } from 'react';
 import { postData } from '../../../utils/fetchData';
-import { useNotify } from '../../../contexts/NotifyContext';
 import { useState } from 'react';
+import { useNotify } from '../../../contexts/NotifyContext';
+import { MdKeyboardBackspace } from 'react-icons/md';
 
-const InputCode = ({ setSwitchModal, setLoading, recoverData, setRecoverData }) => {
-	const { notifyPromise, notifyPromiseSuccess, notifyPromiseError } = useNotify()
-	const [error, setError] = useState(false)
+const InputCode = ({ setSwitchModal, recoverData, setRecoverData }) => {
+	const [err, setErr] = useState(false)
 	const inputRef = useRef()
+	const { notifyPromise, notifyPromiseSuccess, notifyPromiseError } = useNotify()
 
 	const handle = async (e) => {
+		inputRef.current.disabled = true
 		notifyPromise()
+
 		const data = { email: recoverData.email, code: e }
 		setRecoverData(data)
-		inputRef.current.blur()
+
 		const res = await postData('recover/getCode', data)
-		if (res.err) return notifyPromiseError({ msg: res.err }), setError(true)
-		setLoading(false)
-		return notifyPromiseSuccess({ msg: res.msg }), setSwitchModal("changePass")
+
+		if (res.err) {
+			inputRef.current.disabled = false
+			setErr(true)
+			notifyPromiseError({ msg: res.err })
+			return
+		}
+		setSwitchModal("changePass")
+		return notifyPromiseSuccess({ msg: res.msg })
 	}
 	return (
-		<VerificationInput
-			autoFocus
-			onFocus={() => error && setError(false)}
-			validChars="0-9"
-			inputProps={{ type: "tel" }}
-			classNames={{
-				character: !error ? style.character : style.characterError,
-			}}
-			onChange={e => e.length === 6 && handle(e)}
-			ref={inputRef}
-		/>
+		<>
+			<div className={style.loginTitle}><span>ESQUECEU A SUA SENHA?</span></div>
+			<button style={{ transform: `translate(0, -7px)` }} onClick={() => setSwitchModal("ForgotPass")} className={`${style.returnLogin} ${style.topBtn} `}><MdKeyboardBackspace /></button>
+			<div style={{ textAlign: "center", width: "19rem", margin: "auto auto .625rem auto" }}>
+				<span style={{ fontSize: ".9rem", fontFamily: "Roboto, Arial, sans-serif", color: "#8d8d8d" }}>Digite o código de 6 dígitos que enviamos por e-mail para continuar.</span>
+			</div>
+			<VerificationInput
+				autoFocus
+				onFocus={() => err && setErr(false)}
+				validChars="0-9"
+				inputProps={{ type: "tel" }}
+				classNames={{
+					character: err ? styleInput.characterError : styleInput.character,
+				}}
+				onChange={(e) => e.length === 6 && handle(e)}
+				ref={inputRef}
+
+			/>
+		</>
 	);
 };
 

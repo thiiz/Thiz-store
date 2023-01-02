@@ -32,14 +32,6 @@ export function NotifyLoading() {
 	)
 }
 
-export function NotifyRegistred() {
-	return (
-		<div className={style.notify_cart_container}>
-			<h5 className={style.msg}>Cadastrado com sucesso!</h5>
-		</div>
-	)
-}
-
 export function NotifyCart({ msg }) {
 	return (
 		<div className={style.notify_cart_container}>

@@ -18,14 +18,17 @@ const password = async (req, res) => {
 		const { email, code, password } = req.body
 
 		const recoverUser = await RecoverAccount.findOne({ email })
+		
 		const verifyCode = recoverUser?.code === code
 		if (!verifyCode) return res.status(400).json({ err: 'O código é inválido ou expirou.' })
 
 		const user = await Users.findOne({ email })
+
 		const isEqual = await compare(password, user.password)
 		if (isEqual) return res.status(400).json({ err: 'Você já está utilizando essa senha.' })
 
 		const passwordHash = await hash(password, 12)
+
 		await Users.findOneAndUpdate({ _id: user.id }, { password: passwordHash })
 		await RecoverAccount.findOneAndDelete({ _id: recoverUser._id })
 

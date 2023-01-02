@@ -37,7 +37,7 @@ const sendCode = async (req, res) => {
 		await SendEmailCode(email, { code: code, name: user.name })
 		await newRecover.save()
 		res.json({
-			msg: "Success!",
+			msg: "Email enviado com sucesso.",
 		});
 
 	} catch (err) {

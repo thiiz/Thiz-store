@@ -26,7 +26,7 @@
 }
 
 .containerVerifyRecoverCode {
-	grid-template-rows: 2fr auto 3fr;
+	grid-template-rows: 15fr auto 5fr 15fr;
 }
 
 .changePass {
@@ -237,25 +237,69 @@
 	align-self: center;
 }
 
-.btnEnable {
+.btnError {
+	border: 1px solid #ff0000;
+}
+
+.btn:enabled {
 	background-color: #006eff;
 	border: 1px solid #006eff;
 	cursor: pointer;
 }
 
-.btnDisable {
+.btn:disabled {
 	background-color: #6363636b;
-	border: 1px solid #ff0000;
 	cursor: default;
 }
 
-.btnEnable:hover {
+.btn:enabled:hover {
 	background-color: transparent;
 	color: #006eff;
 }
 
-.btnEnable:active {
+.btn:enabled:active {
 	scale: .95;
+}
+
+.btnLoading {
+	position: relative;
+	border: none;
+}
+
+.btnLoading .btnText {
+	color: #ffffff;
+	transition: all 0.2s;
+}
+
+.btnLoading .btnText {
+	visibility: hidden;
+	opacity: 0;
+}
+
+.btnLoading::after {
+	content: "";
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	border: 4px solid transparent;
+	border-top-color: #ffffff;
+	border-radius: 50%;
+	animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+	from {
+		transform: rotate(0turn);
+	}
+
+	to {
+		transform: rotate(1turn);
+	}
 }
 
 #politicaTermos {
