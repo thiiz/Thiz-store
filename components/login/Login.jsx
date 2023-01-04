@@ -46,8 +46,9 @@ export default function Login({ setSwitchModal, setToggleLoginModal }) {
 			return
 		}
 		if (rememberUser) {
+			const oneDay = 86400
 			setCookie(null, 'refreshtoken', res.refresh_token, {
-				maxAge: 86400 * 7, // 7 days
+				maxAge: oneDay * 7, // 7 days
 				path: '/api/auth/accessToken',
 			})
 			localStorage.setItem('firstLogin', true)

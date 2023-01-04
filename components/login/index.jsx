@@ -4,7 +4,7 @@ import { MdKeyboardBackspace } from 'react-icons/md'
 import Login from './Login'
 import Register from './Register'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useToggleLoginModal } from '../../contexts/LoginModalContext'
 import { useBackgroundVariant } from '../../lib/useBackgroundVariant'
@@ -14,12 +14,17 @@ import InputCode from './forgot-pass/InputCode'
 import ChangePass from './forgot-pass/ChangePass'
 
 export default function ModalLogin() {
-	const { pathname, push } = useRouter()
+	const { pathname, query, push } = useRouter()
 	const { toggleLoginModal, setToggleLoginModal } = useToggleLoginModal()
 	const [switchModal, setSwitchModal] = useState("login")
 	const [recoverData, setRecoverData] = useState({ email: '', code: '' })
 	const backgroundVariant = useBackgroundVariant()
 	const { auth } = useAuth()
+	
+	useEffect(() => {
+		if (query.redirect)
+			return window.history.replaceState(null, '', '/')
+	}, [query]);
 
 	const loginVariant = {
 		open: { opacity: 1, x: 0 },
@@ -57,7 +62,13 @@ export default function ModalLogin() {
 						{pathname !== "/pagamento" && <div onClick={() => setToggleLoginModal(false)} className={style.focusOut}></div>}
 
 						<div className={`${style.containerMenu} ${styleContainer()}`}>
-							{pathname === "/pagamento" ? <button onClick={() => push('/') && setToggleLoginModal(false)} className={`${style.returnLogin} ${style.topBtn} `}><MdKeyboardBackspace /></button>
+							{pathname === "/pagamento" ?
+								<button
+									onClick={() => push('/') && setToggleLoginModal(false)}
+									className={`${style.returnLogin} ${style.topBtn} `}
+								>
+									<MdKeyboardBackspace />
+								</button>
 								:
 								<button onClick={() => setToggleLoginModal(false)} className={`${style.closeLogin} ${style.topBtn} `}><GrClose /></button>
 							}

@@ -32,7 +32,8 @@ export const AuthProvider = ({ children }) => {
 	const state = {
 		auth,
 		setAuth,
-		isLoading
+		isLoading,
+		setIsLoading
 	}
 
 	return (
@@ -47,11 +48,13 @@ export function useAuth() {
 	const {
 		auth,
 		setAuth,
-		isLoading
+		isLoading,
+		setIsLoading
 	} = context
 	return {
 		auth,
 		setAuth,
-		isLoading
+		isLoading,
+		setIsLoading
 	}
 }

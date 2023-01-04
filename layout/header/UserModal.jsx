@@ -18,6 +18,7 @@ export default function UserModal({ scrollDirection }) {
 		closed: { zIndex: -1, opacity: 0, height: 0, padding: 0 },
 	}
 	const handleLogout = () => {
+		setToggleUserModal(false)
 		if (pathname === "/perfil" || pathname === "/pagamento") {
 			push('/')
 		}

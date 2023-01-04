@@ -8,14 +8,14 @@ import Profile from "../components/profile/Profile"
 
 
 export default function Perfil() {
-	const router = useRouter()
+	const { pathname, push } = useRouter()
 	const { notifyError } = useNotify()
-	const { setToggleLoginModal } = useToggleLoginModal()
+	const { toggleLoginModal, setToggleLoginModal } = useToggleLoginModal()
 	const { auth } = useAuth()
 	useEffect(() => {
 		if (!auth.token) {
 			notifyError({ msg: "Você precisa fazer login para acessar essa página." })
-			router.push({ pathname: '/', query: 'redirect=perfil' })
+			push({ pathname: '/', query: 'redirect=perfil' })
 			setToggleLoginModal(true)
 		}
 	}, [])

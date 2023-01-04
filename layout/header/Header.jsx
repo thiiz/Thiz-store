@@ -6,21 +6,15 @@ import { Fade as Hamburger } from 'hamburger-react'
 import HeaderLinks from './HeaderLinks'
 import ButtonsMobile from './ButtonsMobile'
 import ButtonsDesktop from './ButtonsDesktop'
-import { useContextUserModal } from '../../contexts/UserModalContext'
 import HeaderLogo from './HeaderLogo'
 import { useRouter } from 'next/router'
 import { useAuth } from '../../contexts/AuthContext'
 
 function Header() {
-	const { toggleUserModal, setToggleUserModal } = useContextUserModal()
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
-	const { auth } = useAuth()
-	const { pathname } = useRouter()
 	const scrollDirection = useScrollDirection()
 	const small = useIsSmall()
-	useEffect(() => {
-		if (pathname === "/perfil" || auth) return setToggleUserModal(false)
-	}, [pathname, auth])
+
 	return (
 		<>
 			<header className={`${style.header} ${scrollDirection !== 'down' ? style.headerNormal : style.headerSmall}`} >

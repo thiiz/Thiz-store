@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 import { createContext, useState } from "react";
 
@@ -6,6 +7,7 @@ const LoginModalContext = createContext()
 
 export default function LoginMenuProvider({ children }) {
 	const [toggleLoginModal, setToggleLoginModal] = useState(false)
+	const router = useRouter()
 
 	useEffect(() => {
 		if (toggleLoginModal) {
@@ -14,12 +16,6 @@ export default function LoginMenuProvider({ children }) {
 			document.body.style.overflowY = 'auto'
 		}
 	}, [toggleLoginModal]);
-
-	// useEffect(() => {
-	// 	if (router.query.redirect) {
-	// 		window.history.replaceState(null, '', '/')
-	// 	}
-	// }, [toggleLoginModal])
 
 	const store = {
 		toggleLoginModal,
