@@ -19,9 +19,9 @@ export const AuthProvider = ({ children }) => {
 					return localStorage.removeItem("firstLogin")
 				}
 				setAuth({ token: res.access_token, user: res.user })
+				setIsLoading(false)
 			})
 		}
-		setIsLoading(false)
 	}, [])
 
 	useEffect(() => {
