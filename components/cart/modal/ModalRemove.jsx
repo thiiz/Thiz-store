@@ -1,7 +1,8 @@
-import style from './Modal.module.css'
+import style from './ModalRemove.module.css'
 import { useCart } from '../../../contexts/CartContext'
 import { GrClose } from 'react-icons/gr'
-export default function Modal({ item, setRemoveModal }) {
+
+export default function ModalRemove({ item, setRemoveModal }) {
 	const { remove } = useCart()
 	return (
 		<div className={style.container}>

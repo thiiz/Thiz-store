@@ -16,17 +16,15 @@ const InputCode = ({ setSwitchModal, recoverData, setRecoverData }) => {
 		inputRef.current.disabled = true
 		notifyPromise()
 
-		const data = { email: recoverData.email, code: e }
-		setRecoverData(data)
+		const res = await postData('recover/getCode', { email: recoverData.email, code: e })
 
-		const res = await postData('recover/getCode', data)
-
+		inputRef.current.disabled = false
 		if (res.err) {
-			inputRef.current.disabled = false
 			setErr(true)
 			notifyPromiseError({ msg: res.err })
 			return
 		}
+		setRecoverData(prev => ({ ...prev, ["code"]: e }));
 		setSwitchModal("changePass")
 		return notifyPromiseSuccess({ msg: res.msg })
 	}

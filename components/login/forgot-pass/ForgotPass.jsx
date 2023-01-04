@@ -21,7 +21,7 @@ export default function ForgotPass({ setSwitchModal, setRecoverData }) {
 
 		if (res.err) return setError('email', { type: 'custom', message: res.err })
 
-		setRecoverData({ email: data.email, code: '' })
+		setRecoverData(prev => ({ ...prev, ["email"]: data.email }));
 		if (res.info) {
 			setSwitchModal("verifyRecoverCode")
 			notifyInfo({ msg: res.info })

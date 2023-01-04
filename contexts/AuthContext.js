@@ -6,14 +6,16 @@ import { getData } from '../utils/fetchData'
 
 export const AuthContext = createContext()
 
-
 export const AuthProvider = ({ children }) => {
 	const [auth, setAuth] = useState({})
+	const [isLoading, setIsLoading] = useState(false)
 	const { query, push } = useRouter()
 	useEffect(() => {
 		const firstLogin = localStorage.getItem("firstLogin");
 		if (firstLogin) {
+			setIsLoading(true)
 			getData('auth/accessToken').then(res => {
+				setIsLoading(false)
 				if (res.err) return localStorage.removeItem("firstLogin")
 				setAuth({ token: res.access_token, user: res.user })
 			})
@@ -28,7 +30,8 @@ export const AuthProvider = ({ children }) => {
 
 	const state = {
 		auth,
-		setAuth
+		setAuth,
+		isLoading
 	}
 
 	return (
@@ -42,10 +45,12 @@ export function useAuth() {
 	const context = useContext(AuthContext)
 	const {
 		auth,
-		setAuth
+		setAuth,
+		isLoading
 	} = context
 	return {
 		auth,
-		setAuth
+		setAuth,
+		isLoading
 	}
 }

@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { createContext, useState } from "react";
 import { useNotify } from './NotifyContext'
 
-
 const CartContext = createContext()
 
 export default function CartProvider({ children }) {
@@ -34,9 +33,10 @@ export default function CartProvider({ children }) {
 	function add(item) {
 		const newCart = [...cart];
 		const check = newCart.find((product) => product.id === item.id)
+		const maxProductsQty = 10
 
 		if (check) {
-			if (10 > check.qty && item.instock > check.qty) {
+			if (maxProductsQty > check.qty && item.instock > check.qty) {
 				check.qty += 1;
 				notifyInfoCart({ msg: `Quantidade do produto alterada para ${check.qty}` })
 			} else {
@@ -69,6 +69,7 @@ export default function CartProvider({ children }) {
 	function removeQty(item) {
 		const newCart = [...cart];
 		const check = newCart.find((product) => product.id === item.id)
+
 		if (check.qty > 1) {
 			check.qty -= 1;
 			setCart(newCart)
@@ -78,7 +79,7 @@ export default function CartProvider({ children }) {
 	function clearCart() {
 		if (cart.length > 0) {
 			setCart([])
-			return notifyInfoCart({ msg: "O carrinho foi limpo!" })
+			return notifyInfoCart({ msg: "O carrinho está limpo!" })
 		}
 		return notifyError({ msg: "O carrinho já está vazio." })
 	}

@@ -15,7 +15,7 @@ export default function Register({ setSwitchModal }) {
 	const { name, secondName, email, password, cf_password } = userData
 	const [showPass, setShowPass] = useState(false)
 	const { register, formState, handleSubmit, clearErrors, setError } = useForm()
-	const { errors, isSubmitting, isDirty, dirtyFields } = formState
+	const { errors, isSubmitting, } = formState
 	const { notifySuccess, notifyError } = useNotify()
 
 	const handleChangeInput = e => {

@@ -1,7 +1,7 @@
 import style from './Header.module.css'
 import { FaUserCircle } from 'react-icons/fa'
 import { MdHeadsetMic } from 'react-icons/md'
-import LoginModal from './LoginModal'
+import UserModal from './UserModal'
 import { useEffect, useRef } from 'react'
 import { useScrollDirection } from '../../lib/useScrollDirection'
 import { useToggleLoginModal } from '../../contexts/LoginModalContext'
@@ -11,7 +11,7 @@ import Search from '../../components/search/Search'
 
 export default function ButtonsDesktop({ toggleUserModal, setToggleUserModal }) {
 	const { setToggleLoginModal } = useToggleLoginModal()
-	const { auth } = useAuth()
+	const { auth, isLoading } = useAuth()
 	const refLogin = useRef();
 	const scrollDirection = useScrollDirection()
 	useEffect(() => {
@@ -42,18 +42,30 @@ export default function ButtonsDesktop({ toggleUserModal, setToggleUserModal }) 
 			</button>
 			<ButtonCart />
 			<div ref={refLogin} className={style.userContainer}>
-				{Object.keys(auth).length === 0 ?
-					<button onClick={() => setToggleLoginModal(prev => !prev)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${scrollDirection !== 'down' ? style.btnLoginNormal : style.btnLoginSmall}`} type='button'>
+				{auth.user && auth.token ?
+					<button
+						onClick={() => !isLoading && setToggleUserModal(prev => !prev)}
+						className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${scrollDirection !== 'down' ? style.btnLoginNormal : style.btnLoginSmall}`}
+						type='button'>
 						<FaUserCircle />
+						{scrollDirection !== "down" &&
+							<p className={style.loginText}>{auth.user.name}</p>
+						}
 					</button>
 					:
-					<button onClick={() => setToggleUserModal(prev => !prev)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${scrollDirection !== 'down' ? style.btnLoginNormal : style.btnLoginSmall}`} type='button'>
+					<button
+						onClick={() => !isLoading && setToggleLoginModal(prev => !prev)}
+						className={`${style.btn} ${style.btnInfo} ${style.btnLogin} ${scrollDirection !== 'down' ? style.btnLoginNormal : style.btnLoginSmall}`}
+						type='button'>
 						<FaUserCircle />
-						{scrollDirection !== "down" && <p className={style.loginText}>{auth.user.name}</p>}
+						{scrollDirection !== "down" && isLoading &&
+							< p className={style.loginText}>---</p>
+						}
 					</button>}
+
 				{toggleUserModal &&
 					<div className={style.containerLoginModal}>
-						<LoginModal toggleUserModal={toggleUserModal} scrollDirection={scrollDirection} />
+						<UserModal toggleUserModal={toggleUserModal} scrollDirection={scrollDirection} />
 					</div>
 				}
 			</div>

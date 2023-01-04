@@ -1,7 +1,7 @@
 import { FaShoppingCart, FaUserCircle } from 'react-icons/fa'
 import { MdHeadsetMic } from 'react-icons/md'
 import style from './Header.module.css'
-import LoginModal from './LoginModal'
+import LoginModal from './UserModal'
 import { useEffect, useRef } from 'react'
 import { useScrollDirection } from '../../lib/useScrollDirection'
 import { useToggleLoginModal } from '../../contexts/LoginModalContext'
@@ -10,9 +10,9 @@ import { useIsSmall } from '../../lib/MediaQuery'
 import { useCart } from '../../contexts/CartContext'
 import { useMenuCart } from '../../contexts/OpenCartMenuContext'
 
-export default function ButtonsMobile({ isOpenMobile, setIsOpenMobile, toggleUserModal, setToggleUserModal  }) {
+export default function ButtonsMobile({ isOpenMobile, setIsOpenMobile, toggleUserModal, setToggleUserModal }) {
 	const { setToggleLoginModal } = useToggleLoginModal()
-	const { auth } = useAuth()
+	const { auth, isLoading } = useAuth()
 	const { setOpenCart } = useMenuCart()
 	const { cart } = useCart()
 	const refLogin = useRef();
@@ -54,14 +54,15 @@ export default function ButtonsMobile({ isOpenMobile, setIsOpenMobile, toggleUse
 					<div className={`${style.countCartItems} ${style.countCartitemsNormal}`}><span>{Object.keys(cart).length}</span></div>
 				</button>
 				<div ref={refLogin} className={style.userContainer}>
-					{Object.keys(auth).length === 0 ?
-						<button onClick={() => setToggleLoginModal(prev => !prev)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
-							<FaUserCircle className={style.avatar} />
-						</button>
-						:
+					{auth.user && auth.token ?
 						<button onClick={() => setToggleUserModal(prev => !prev)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
 							<FaUserCircle />
 							{isOpenMobile ? <p className={style.loginText}>{auth.user.name}</p> : ''}
+						</button>
+						:
+						<button onClick={() => setToggleLoginModal(prev => !prev)} className={`${style.btn} ${style.btnInfo} ${style.btnLogin}`} type='button'>
+							<FaUserCircle className={style.avatar} />
+							{isOpenMobile && isLoading ? <p className={style.loginText}>{auth.user.name}</p> : ''}
 						</button>}
 					{toggleUserModal &&
 						<div className={style.containerLoginModal}>

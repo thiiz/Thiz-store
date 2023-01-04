@@ -4,7 +4,7 @@ import { CartActions } from './CartActions'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { BsTrash } from 'react-icons/bs'
-import Modal from './modal/Modal'
+import ModalRemove from './modal/ModalRemove'
 
 const shimmer = (w, h) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -27,7 +27,7 @@ const toBase64 = (str) =>
 
 export default function CartItems({ item }) {
 	const { push } = useRouter()
-	const [removeModal, setRemoveModal] = useState(false)
+	const [remove, setRemove] = useState(false)
 	const handleViewProduct = () => {
 		push(`/produto/${item?.slug}`)
 	}
@@ -44,8 +44,8 @@ export default function CartItems({ item }) {
 				<div className={style.infoProduct}>
 					<div className={style.titleAndDelete}>
 						<p className={style.productTitle}>{item?.title}</p>
-						<button onClick={() => setRemoveModal(!removeModal)} className={style.actions_Button}><BsTrash /></button>
-						{removeModal && <Modal item={item} setRemoveModal={setRemoveModal} />}
+						<button onClick={() => setRemove(!remove)} className={style.actions_Button}><BsTrash /></button>
+						{remove && <ModalRemove item={item} setRemoveModal={setRemove} />}
 					</div>
 					<div className={style.containerPriceAndActions}>
 						<div className={style.priceContainer}>

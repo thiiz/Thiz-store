@@ -1,4 +1,4 @@
-import style from './LoginModal.module.css'
+import style from './UserModal.module.css'
 import { motion } from "framer-motion"
 import Link from 'next/link'
 import { destroyCookie } from 'nookies'
@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { useAuth } from '../../contexts/AuthContext'
 import { useNotify } from '../../contexts/NotifyContext'
 
-export default function ({ toggleUserModal, scrollDirection }) {
+export default function ProfileModal({ toggleUserModal, scrollDirection }) {
 	const router = useRouter()
 	const { notifySuccess } = useNotify()
 	const { setAuth } = useAuth()

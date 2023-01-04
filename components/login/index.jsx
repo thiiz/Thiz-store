@@ -25,13 +25,12 @@ export default function ModalLogin() {
 		open: { opacity: 1, x: 0 },
 		closed: { opacity: 0, x: "-400%" },
 	}
-	const container = () => {
+	const styleContainer = () => {
 		if (switchModal === "login") return style.containerLogin
 		if (switchModal === "register") return style.containerRegister
 		if (switchModal === "ForgotPass") return style.containerForgotPass
 		if (switchModal === "verifyRecoverCode") return style.containerVerifyRecoverCode
 		if (switchModal === "changePass") return style.changePass
-
 		return ''
 	}
 
@@ -39,9 +38,10 @@ export default function ModalLogin() {
 	const Content = () => {
 		if (switchModal === "login") return <Login setSwitchModal={setSwitchModal} setToggleLoginModal={setToggleLoginModal} />
 		if (switchModal === "register") return <Register setSwitchModal={setSwitchModal} />
-		if (switchModal === "ForgotPass") return <ForgotPass setSwitchModal={setSwitchModal} setRecoverData={setRecoverData} />
+		if (switchModal === "ForgotPass") return <ForgotPass setSwitchModal={setSwitchModal} recoverData={recoverData} setRecoverData={setRecoverData} />
 		if (switchModal === "verifyRecoverCode") return <InputCode setSwitchModal={setSwitchModal} recoverData={recoverData} setRecoverData={setRecoverData} />
 		if (switchModal === "changePass") return <ChangePass setSwitchModal={setSwitchModal} recoverData={recoverData} />
+		return ''
 	}
 
 	return (
@@ -56,7 +56,7 @@ export default function ModalLogin() {
 
 						{pathname !== "/pagamento" && <div onClick={() => setToggleLoginModal(false)} className={style.focusOut}></div>}
 
-						<div className={`${style.containerMenu} ${container()}`}>
+						<div className={`${style.containerMenu} ${styleContainer()}`}>
 
 							{pathname === "/pagamento" ? <button onClick={() => push('/') && setToggleLoginModal(false)} className={`${style.returnLogin} ${style.topBtn} `}><MdKeyboardBackspace /></button>
 								:

@@ -1,9 +1,6 @@
 import { BiMinus, BiPlus } from 'react-icons/bi'
-import { GoX } from 'react-icons/go'
 import style from './styles/CartActions.module.css'
 import { useCart } from '../../contexts/CartContext'
-import Modal from './modal/Modal'
-import { useState } from 'react'
 
 export function CartActions({ item }) {
 	const { add, removeQty } = useCart()
