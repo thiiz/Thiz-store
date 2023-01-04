@@ -8,18 +8,20 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
 	const [auth, setAuth] = useState({})
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
 	const { query, push } = useRouter()
 	useEffect(() => {
 		const firstLogin = localStorage.getItem("firstLogin");
 		if (firstLogin) {
-			setIsLoading(true)
 			getData('auth/accessToken').then(res => {
-				setIsLoading(false)
-				if (res.err) return localStorage.removeItem("firstLogin")
+				if (res.err) {
+					setIsLoading(false)
+					return localStorage.removeItem("firstLogin")
+				}
 				setAuth({ token: res.access_token, user: res.user })
 			})
 		}
+		setIsLoading(false)
 	}, [])
 
 	useEffect(() => {
