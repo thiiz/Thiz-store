@@ -12,16 +12,15 @@ export const AuthProvider = ({ children }) => {
 	const { query, push } = useRouter()
 	useEffect(() => {
 		const firstLogin = localStorage.getItem("firstLogin");
-		if (firstLogin) {
-			getData('auth/accessToken').then(res => {
-				if (res.err) {
-					setIsLoading(false)
-					return localStorage.removeItem("firstLogin")
-				}
-				setAuth({ token: res.access_token, user: res.user })
-				setIsLoading(false)
-			})
+		if (!firstLogin) {
+			setIsLoading(false)
+			return
 		}
+		getData('auth/accessToken').then(res => {
+			setIsLoading(false)
+			if (res.err) return localStorage.removeItem("firstLogin")
+			setAuth({ token: res.access_token, user: res.user })
+		})
 	}, [])
 
 	useEffect(() => {
