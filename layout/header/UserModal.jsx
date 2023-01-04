@@ -5,18 +5,21 @@ import { destroyCookie } from 'nookies'
 import { useRouter } from 'next/router'
 import { useAuth } from '../../contexts/AuthContext'
 import { useNotify } from '../../contexts/NotifyContext'
+import { useContextUserModal } from '../../contexts/UserModalContext'
 
-export default function ProfileModal({ toggleUserModal, scrollDirection }) {
-	const router = useRouter()
-	const { notifySuccess } = useNotify()
+export default function UserModal({ scrollDirection }) {
+	const { pathname, push } = useRouter()
+	const { toggleUserModal, setToggleUserModal } = useContextUserModal()
 	const { setAuth } = useAuth()
+	const { notifySuccess } = useNotify()
+
 	const dropdownVariant = {
-		open: { opacity: 1, height: "4.738rem", padding: ".5rem 1rem .5rem 1rem" },
-		closed: { opacity: 0, height: 0, padding: 0 },
+		open: { zIndex: "16", opacity: 1, height: "4.738rem", padding: ".5rem 1rem .5rem 1rem" },
+		closed: { zIndex: -1, opacity: 0, height: 0, padding: 0 },
 	}
 	const handleLogout = () => {
-		if (router.pathname === "/perfil" || router.pathname === "/pagamento") {
-			router.push('/')
+		if (pathname === "/perfil" || pathname === "/pagamento") {
+			push('/')
 		}
 		setAuth({})
 		destroyCookie(undefined, 'refreshtoken', { path: 'api/auth/accessToken' })
@@ -27,14 +30,24 @@ export default function ProfileModal({ toggleUserModal, scrollDirection }) {
 	return (
 		<motion.div
 			className={`${style.container} ${scrollDirection !== "down" ? style.containerNormal : style.containerSmall}`}
-			animate={toggleUserModal ? "open" : "closed"}
+			initial={"closed"}
+			animate={"open"}
+			exit={"closed"}
 			variants={dropdownVariant}
 		>
-			<ul className={style.ul}>
-				<li className={style.li}> <Link href="/perfil"><a className={style.myProfile}>Meu perfil</a></Link></li>
+			{toggleUserModal ? <ul className={style.ul}>
+				<li className={style.li} onClick={() => setToggleUserModal(false)}>
+					<Link href="/perfil">
+						<a className={style.myProfile}>Meu perfil</a>
+					</Link>
+				</li>
+
 				<div className={style.division}></div>
-				<li className={style.li}><button className={`${style.btn} ${style.btnLogout}`} onClick={handleLogout}>Sair</button></li>
-			</ul>
+
+				<li className={style.li}>
+					<button className={`${style.btn} ${style.btnLogout}`} onClick={handleLogout}>Sair</button>
+				</li>
+			</ul> : ''}
 		</motion.div >
 	)
 }

@@ -13,7 +13,6 @@ export default function Perfil() {
 	const { setToggleLoginModal } = useToggleLoginModal()
 	const { auth } = useAuth()
 	useEffect(() => {
-		console.log(auth)
 		if (!auth.token) {
 			notifyError({ msg: "Você precisa fazer login para acessar essa página." })
 			router.push({ pathname: '/', query: 'redirect=perfil' })

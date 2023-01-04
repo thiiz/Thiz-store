@@ -57,7 +57,6 @@ export default function ModalLogin() {
 						{pathname !== "/pagamento" && <div onClick={() => setToggleLoginModal(false)} className={style.focusOut}></div>}
 
 						<div className={`${style.containerMenu} ${styleContainer()}`}>
-
 							{pathname === "/pagamento" ? <button onClick={() => push('/') && setToggleLoginModal(false)} className={`${style.returnLogin} ${style.topBtn} `}><MdKeyboardBackspace /></button>
 								:
 								<button onClick={() => setToggleLoginModal(false)} className={`${style.closeLogin} ${style.topBtn} `}><GrClose /></button>
