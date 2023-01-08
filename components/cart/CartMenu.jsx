@@ -13,8 +13,8 @@ function CartMenu() {
 	const { openCart, setOpenCart } = useMenuCart()
 	const backgroundVariant = useBackgroundVariant()
 	const CartVariant = {
-		open: { opacity: 1, x: 0 },
-		closed: { opacity: 1, x: "400%" },
+		open: { opacity: 1, x: 0, transition: { ease: "easeOut", duration: .45 } },
+		closed: { opacity: 1, x: "400%", transition: { duration: 0 } },
 	}
 
 	return (
@@ -22,7 +22,6 @@ function CartMenu() {
 			animate={openCart ? "open" : "closed"}
 			variants={CartVariant}
 			className={style.cart}
-			transition={{ ease: "easeOut", duration: .45 }}
 			style={openCart ? { zIndex: 15 } : ''}
 		>
 			<div className={style.container}>
