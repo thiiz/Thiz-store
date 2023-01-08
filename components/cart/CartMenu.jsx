@@ -22,16 +22,17 @@ function CartMenu() {
 			animate={openCart ? "open" : "closed"}
 			variants={CartVariant}
 			className={style.cart}
-			transition={{ ease: "easeOut", duration: 0.45 }}
-			style={openCart ? {zIndex: 15} : ''}
+			transition={{ ease: "easeOut", duration: .45 }}
+			style={openCart ? { zIndex: 15 } : ''}
 		>
 			<div className={style.container}>
 				<HeaderCart />
 				{cart?.length !== 0 ?
 					<CartContent /> : <CartEmpty />}
 			</div>
-			<motion.div onClick={() => setOpenCart(false)} className="backdrop" animate={openCart ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.1 }}></motion.div>
-
+			<motion.div
+				onClick={() => setOpenCart(false)} className="backdrop" animate={openCart ? "visible" : "hidden"} variants={backgroundVariant}>
+			</motion.div>
 		</motion.nav>
 
 

@@ -20,7 +20,7 @@ export default function ModalLogin() {
 	const [recoverData, setRecoverData] = useState({ email: '', code: '' })
 	const backgroundVariant = useBackgroundVariant()
 	const { auth } = useAuth()
-	
+
 	useEffect(() => {
 		if (query.redirect)
 			return window.history.replaceState(null, '', '/')
@@ -29,6 +29,10 @@ export default function ModalLogin() {
 	const loginVariant = {
 		open: { opacity: 1, x: 0 },
 		closed: { opacity: 0, x: "-400%" },
+	}
+	const loginHeightVariant = {
+		open: { height: "34.2rem", transition: { ease: "easeInOut", duration: .2, delay: .1 } },
+		closed: { height: 0, transition: { duration: 0 } },
 	}
 	const styleContainer = () => {
 		if (switchModal === "login") return style.containerLogin
@@ -41,11 +45,34 @@ export default function ModalLogin() {
 
 
 	const Content = () => {
-		if (switchModal === "login") return <Login setSwitchModal={setSwitchModal} setToggleLoginModal={setToggleLoginModal} />
-		if (switchModal === "register") return <Register setSwitchModal={setSwitchModal} />
-		if (switchModal === "ForgotPass") return <ForgotPass setSwitchModal={setSwitchModal} recoverData={recoverData} setRecoverData={setRecoverData} />
+		if (switchModal === "login") return (
+			<>
+				<div className={style.loginTitle}><span>Iniciar sessão</span></div>
+				<Login setSwitchModal={setSwitchModal} setToggleLoginModal={setToggleLoginModal} />
+			</>
+		)
+		if (switchModal === "register") return (
+			<>
+				<div className={style.loginTitle}>Criar conta</div>
+				<Register setSwitchModal={setSwitchModal} />
+			</>
+		)
+		if (switchModal === "ForgotPass") return (
+			<>
+				<button style={{ transform: `translate(0, -7px)` }} onClick={() => setSwitchModal("login")} className={`${style.returnLogin} ${style.topBtn} `}>
+					<MdKeyboardBackspace />
+				</button>
+				<ForgotPass setSwitchModal={setSwitchModal} recoverData={recoverData} setRecoverData={setRecoverData} />
+			</>
+		)
 		if (switchModal === "verifyRecoverCode") return <InputCode setSwitchModal={setSwitchModal} recoverData={recoverData} setRecoverData={setRecoverData} />
-		if (switchModal === "changePass") return <ChangePass setSwitchModal={setSwitchModal} recoverData={recoverData} />
+		if (switchModal === "changePass") return (
+			<>
+				<button style={{ transform: `translate(0, -7px)` }} onClick={() => setSwitchModal("verifyRecoverCode")} className={`${style.returnLogin} ${style.topBtn} `}><MdKeyboardBackspace /></button>
+				<div className={style.loginTitle}>Alterar senha</div>
+				<ChangePass setSwitchModal={setSwitchModal} recoverData={recoverData} />
+			</>
+		)
 		return ''
 	}
 
@@ -55,25 +82,33 @@ export default function ModalLogin() {
 				<motion.div
 					animate={toggleLoginModal ? "open" : "closed"}
 					variants={loginVariant} style={toggleLoginModal ? { zIndex: 16 } : ''}
-					className={style.container}
-					transition={{ ease: "easeOut", duration: 0.25 }}>
-					<motion.div className={style.background} animate={toggleLoginModal ? "visible" : "hidden"} variants={backgroundVariant} transition={{ ease: "easeOut", duration: 0.3 }}>
+					transition={{ duration: 0 }}
+					className={style.container}>
+					<motion.div
+						className="backdrop"
+						animate={toggleLoginModal ? "visible" : "hidden"}
+						variants={backgroundVariant}
+						transition={{ delay: 2, ease: "backInOut" }}
+						onClick={() => pathname !== "/pagamento" && setToggleLoginModal(false)}
+					>
+					</motion.div >
+					<motion.div
+						className={`${style.containerMenu} ${styleContainer()}`}
+						animate={toggleLoginModal ? "open" : "closed"}
+						variants={loginHeightVariant}
 
-						{pathname !== "/pagamento" && <div onClick={() => setToggleLoginModal(false)} className={style.focusOut}></div>}
-
-						<div className={`${style.containerMenu} ${styleContainer()}`}>
-							{pathname === "/pagamento" ?
-								<button
-									onClick={() => push('/') && setToggleLoginModal(false)}
-									className={`${style.returnLogin} ${style.topBtn} `}
-								>
-									<MdKeyboardBackspace />
-								</button>
-								:
-								<button onClick={() => setToggleLoginModal(false)} className={`${style.closeLogin} ${style.topBtn} `}><GrClose /></button>
-							}
-							<Content />
-						</div >
+					>
+						{pathname === "/pagamento" ?
+							<button
+								onClick={() => push('/') && setToggleLoginModal(false)}
+								className={`${style.returnLogin} ${style.topBtn} `}
+							>
+								<MdKeyboardBackspace />
+							</button>
+							:
+							<button onClick={() => setToggleLoginModal(false)} className={`${style.closeLogin} ${style.topBtn} `}><GrClose /></button>
+						}
+						<Content />
 					</motion.div>
 				</motion.div >}
 		</>

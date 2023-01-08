@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 import { createContext, useState } from "react";
 
@@ -7,7 +6,6 @@ const LoginModalContext = createContext()
 
 export default function LoginMenuProvider({ children }) {
 	const [toggleLoginModal, setToggleLoginModal] = useState(false)
-	const router = useRouter()
 
 	useEffect(() => {
 		if (toggleLoginModal) {

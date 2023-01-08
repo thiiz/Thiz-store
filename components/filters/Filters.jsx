@@ -1,5 +1,5 @@
 import style from './Filters.module.css'
-import { useState, useId, useMemo } from 'react'
+import { useState, useId, useCallback } from 'react'
 import ProductView from '../products/productView'
 import { useEffect } from 'react'
 import Select from 'react-select';
@@ -18,7 +18,7 @@ export function ProductFiltred({ data }) {
 	const [grid, setGrid] = useState(Math.floor(parseCookies().GRID || 4))
 	const [filtred, setFiltred] = useState([])
 	const item = data.map(product => product)
-	useMemo(() => {
+	useCallback(() => {
 		setFiltred(item);
 	}, [data])
 

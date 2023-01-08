@@ -65,6 +65,7 @@ body {
   right: 0;
   z-index: -1;
   position: absolute;
+  transition: background-color 250ms ease;
 }
 
 @media (max-width: 590px) {

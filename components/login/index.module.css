@@ -1,24 +1,34 @@
+.container {
+	position: fixed;
+	top: 0;
+	height: 100vh;
+	width: 100vw;
+	opacity: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: -1;
+}
+
 .containerMenu {
 	background-color: #ececec;
 	border-radius: 30px 0 30px;
+	overflow: hidden;
 	position: relative;
 	display: grid;
-	align-items: flex-start;
 	justify-content: center;
 	justify-items: center;
-	user-select: none;
-	width: 32.25rem;
-	height: 34.5rem;
+	padding: 0 4.6rem;
 	font-family: 'Varela Round', 'Arial', sans-serif;
 }
 
-.containerLogin {
-	grid-template-rows: 1fr 2.4fr;
 
+.containerLogin {
+	grid-template-rows: 1fr 2.5fr;
 }
 
 .containerRegister {
-	grid-template-rows: 1fr 3.72fr;
+	grid-template-rows: 0.5fr 2.1fr;
 }
 
 .containerForgotPass {
@@ -30,7 +40,7 @@
 }
 
 .changePass {
-	grid-template-rows: 3fr auto 3fr;
+	grid-template-rows: 1.2fr 2fr;
 }
 
 .formContainer {
@@ -80,33 +90,6 @@
 	background-color: #57575760;
 }
 
-
-
-.newUser {
-	top: 8px;
-	right: 42px;
-	background-color: transparent;
-	border: none;
-	transition: ease-in-out 200ms;
-	padding: .375rem .375rem 0 .375rem;
-	text-align: center;
-	margin-bottom: 4px;
-	font-size: 1rem;
-}
-
-.register {
-	border: none;
-	cursor: pointer;
-	margin-bottom: 5px;
-	color: #000;
-	transition: 300ms;
-	font-size: .9em;
-}
-
-.register:hover {
-	text-decoration: underline;
-}
-
 .loginTitle {
 	margin: auto auto .625rem auto;
 	font-size: 2.625rem;
@@ -117,63 +100,93 @@
 .form {
 	display: flex;
 	flex-direction: column;
-	gap: .438rem 0;
+	gap: .538rem 0;
 	width: 22.5rem;
 	align-items: center;
+	font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+.inputGroup {
+	display: flex;
+	align-items: center;
+	margin-bottom: .1rem;
+	width: 100%;
+	position: relative;
+	border: 1px solid #DADCE0;
+	border-radius: .5rem;
 }
 
 .input {
-	height: 47px;
+	font-size: 1rem;
 	width: 100%;
+	height: 48px;
 	border: none;
-	background-color: #ecf0f1;
-	outline-color: #006eff;
-	text-indent: .64rem;
-	padding-right: 24px;
+	outline: none;
+	padding: 1rem 1.75rem 1rem 1rem;
+	background: none;
+	border-top-right-radius: .5rem;
+	border-bottom-right-radius: .5rem;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+	transition: background-color 50000s ease-in-out 0s, color 5000s ease-in-out 0s;
+}
+
+/*Input focus move up label*/
+.input:focus+.placeHolder {
+	top: -.58rem;
+	left: 3rem;
 	font-size: .9rem;
-	padding-top: .33rem;
+	color: #006eff;
+	font-weight: 500;
 }
 
-.label {
-	display: flex;
-	align-items: center;
-	border-radius: 3px;
-	position: relative;
-	width: 100%;
+/*Input focus sticky top label*/
+.input:not(:placeholder-shown).input:not(:focus)+.topPlaceholder {
+	top: -.58rem;
+	left: 1.9rem;
+	font-size: .882rem;
+	font-weight: 500;
 }
 
-.labelNormal {
-	border: 1px solid rgba(0, 110, 255, 0.247);
-
+/*Input focus*/
+.inputNormal:focus {
+	outline: 2px solid #006eff;
 }
 
-.labelError {
-	border: 1px solid #ff0000;
+.inputError:focus {
+	outline: 2px solid #ff0000;
+}
+
+.placeHolder {
+	pointer-events: none;
+	position: absolute;
+	left: 2.5rem;
+	top: .9rem;
+	padding: 0 .35rem;
+	background-color: #ececec;
+	color: #5f6368;
+	font-size: .98rem;
+	transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+	transform-origin: bottom left;
 }
 
 .icon {
-	padding: 0 .525rem;
+	padding: 0 .455rem;
 	font-size: 2.45rem;
-	background-color: #ecf0f1;
+	color: #006eff;
+	border-right: 1px solid #DADCE0;
 }
 
 .iconUser {
-	font-size: 2.65rem;
-}
-
-.iconNormal {
-	color: #006eff;
-}
-
-.iconError {
-	color: #ff0000;
+	font-size: 2.7rem;
 }
 
 .iconUserNormal {
 	color: #006eff;
-	border-bottom: 1px solid rgba(0, 110, 255, 0.247);
-	border-left: 1px solid rgba(0, 110, 255, 0.247);
-	border-top: 1px solid rgba(0, 110, 255, 0.247);
 }
 
 .containerCheckBoxAndRecover {
@@ -186,24 +199,6 @@
 .labelRemeber {
 	font-size: .885rem;
 	margin-left: .15rem;
-}
-
-.placeHolder {
-	position: absolute;
-	left: 2.78rem;
-	pointer-events: none;
-	color: #757575;
-	transition: 500ms ease;
-	font-size: .87rem;
-	font-family: "Roboto", Arial, Helvetica, sans-serif;
-}
-
-.input:focus~.placeHolder,
-.validInput~.placeHolder {
-	transform: translateY(-13.3px) translateX(-3px);
-	font-size: .73rem;
-	color: #909090;
-
 }
 
 .containerRemember {
@@ -302,6 +297,61 @@
 	}
 }
 
+.switchContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	position: relative;
+	margin-top: 1rem;
+}
+
+.or {
+	margin-bottom: 1rem;
+	color: #3f3f3f;
+
+}
+
+.or::before {
+	content: '';
+	height: .05rem;
+	width: 31%;
+	background-color: #a3a3a3;
+	top: .6rem;
+	left: -1rem;
+	position: absolute;
+
+
+}
+
+.or::after {
+	content: '';
+	height: .05rem;
+	width: 31%;
+	background-color: #a3a3a3;
+	top: .6rem;
+	right: -1rem;
+	position: absolute;
+
+}
+
+.switchBtn {
+	cursor: pointer;
+	border: 0;
+	border-radius: 4px;
+	font-weight: 600;
+	margin: 0 10px;
+	padding: .3rem 2rem;
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+
+.switchBtn {
+	color: #006eff;
+	background-color: #ffffff;
+	border: 1px solid #006eff;
+}
+
 #politicaTermos {
 	display: flex;
 	align-items: center;
@@ -309,10 +359,10 @@
 	justify-content: center;
 }
 
-.labelTerms {
+.containerTerms {
 	text-align: center;
-	font-size: .813rem;
-	width: 85%;
+	font-size: .823rem;
+	width: 80%;
 	margin: .8rem 0;
 }
 
@@ -320,58 +370,21 @@
 	color: #006eff;
 }
 
-#terms {
-	height: 25px;
-	width: 16px;
+#remember {
+	height: .92rem;
+	width: .92rem;
 }
 
-.termsError {
-	outline: 2px solid red;
-	outline-offset: 1px;
+#terms {
+	height: 1rem;
+	width: 1rem;
 }
 
 .error {
-	width: 100%;
 	border-radius: 8px;
 	text-align: center;
-	color: red;
-	font-size: .938rem;
-}
-
-.success {
-	width: 100%;
-	height: 28px;
-	background-color: #00c400;
-	border-radius: 6px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: #fff;
-	font-size: .906rem;
-}
-
-.background {
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: relative;
-}
-
-.focusOut {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-}
-
-.container {
-	position: fixed;
-	top: 0;
-	height: 100vh;
-	width: 100vw;
-	opacity: 0;
-	z-index: -1;
+	color: #ff0000;
+	font-size: .888rem;
 }
 
 .nameInput {

@@ -1,23 +1,26 @@
 import { validateEmail } from '../../utils/validateEmail'
-const valid = (name, secondName, email, password, cf_password, terms) => {
-
-	if (!name || !secondName || !email || !password || !cf_password)
-		return 'all'
+const valid = (name, secondName, email, password, cf_password) => {
 
 	if (name.length < 3)
-		return 'O seu primeiro nome é muito curto.'
+		return { err: "name", msg: 'Muito curto' }
+
+	if (name.length > 32)
+		return { err: "name", msg: 'Muito longo' }
 
 	if (secondName.length < 3)
-		return 'O seu segundo nome é muito curto.'
+		return { err: "secondName", msg: 'Muito curto' }
+
+	if (secondName.length > 32)
+		return { err: "secondName", msg: 'Muito longo' }
 
 	if (!validateEmail(email))
-		return 'Endereço de email inválido.'
+		return { err: "email", msg: 'Endereço de email inválido' }
 
 	if (password.length < 6)
-		return 'A senha deve ter no minímo 6 caracteres.'
+		return { err: "password", msg: 'A senha deve ter no minímo 6 caracteres' }
 
-	if (password !== cf_password)
-		return 'As senhas devem ser iguais.'
+	if (cf_password !== password)
+		return { err: "cf_password", msg: 'As senhas devem ser iguais' }
 }
 
 export default valid

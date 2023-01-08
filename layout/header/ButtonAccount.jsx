@@ -46,7 +46,7 @@ export default function ButtonAccount() {
 					type='button'>
 					<FaUserCircle />
 					{scrollDirection !== "down" && isLoading &&
-						< p className={style.loginText}>---</p>
+						<div className={style.loader}></div>
 					}
 				</button>}
 			<AnimatePresence>

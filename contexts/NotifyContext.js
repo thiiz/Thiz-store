@@ -14,7 +14,7 @@ export default function NotifyProvider({ children }) {
 
 	const notifySuccess = ({ msg }) => toast.success(<NotifySuccess msg={msg} />, {
 		position: "top-center",
-		autoClose: 5000,
+		autoClose: 3500,
 		hideProgressBar: true,
 		closeButton: true,
 		pauseOnHover: false,
@@ -34,7 +34,7 @@ export default function NotifyProvider({ children }) {
 
 	const notifyError = ({ msg }) => toast.error(<NotifyError msg={msg} />, {
 		position: "top-center",
-		autoClose: 3500,
+		autoClose: 4500,
 		hideProgressBar: true,
 		pauseOnHover: true,
 		draggable: false,

@@ -1,9 +1,11 @@
 .showPassContainer {
 	border: none;
 	position: absolute;
-	top: 11.6px;
-	right: 0;
+	transform: translateY(9%);
+	right: .3rem;
+	color: #006eff;
 	font-size: 1.375rem;
 	cursor: pointer;
 	background-color: transparent;
+	z-index: 2;
 }

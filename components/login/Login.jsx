@@ -2,7 +2,7 @@ import style from './index.module.css'
 import { MdEmail } from 'react-icons/md'
 import { RiLockFill } from 'react-icons/ri'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import { getData, postData } from '../../utils/fetchData'
 import { setCookie } from 'nookies'
 import { useAuth } from '../../contexts/AuthContext'
@@ -10,39 +10,39 @@ import ShowPass from '../showpass/ShowPass'
 import { useNotify } from '../../contexts/NotifyContext'
 import { validateEmail } from '../../utils/validateEmail'
 
-export default function Login({ setSwitchModal, setToggleLoginModal }) {
-
+function Login({ setSwitchModal, setToggleLoginModal }) {
 	const { setAuth } = useAuth()
 	const [showPass, setShowPass] = useState(false)
 	const [rememberUser, setRememberUser] = useState(true)
 	const { notifyPromise, notifyPromiseSuccess, notifyPromiseError } = useNotify()
 
-	const { register, handleSubmit, setError, clearErrors, formState } = useForm()
+	const { register, handleSubmit, watch, setValue, setFocus, setError, clearErrors, resetField, formState } = useForm({
+		mode: 'onSubmit',
+		shouldFocusError: true,
+		defaultValues: { email: '', password: '' },
+	})
 	const { errors, isSubmitting } = formState
-	const initialState = { email: '', password: '' }
-	const [userData, setUserData] = useState(initialState)
-	const { email, password } = userData
 
 	const handleChangeInput = e => {
 		const { name, value } = e.target
-		setUserData({ ...userData, [name]: value })
-		return
+		setValue(name, value)
+		if (errors.email || errors.password) clearErrors()
 	}
 
-	async function handler() {
-		notifyPromise()
-		if (!validateEmail(email)) {
-			setError('email', { type: 'custom' })
-			setUserData({ ...userData, ["email"]: "" })
-			notifyPromiseError({ msg: "Endereço de email inválido." })
+	const onSubmit = async (data) => {
+		if (!validateEmail(data.email)) {
+			resetField('password')
+			setError('email', { type: 'custom', message: "Endereço de email inválido" })
+			setFocus('email')
 			return
 		}
-		const res = await postData('auth/login', userData)
+		notifyPromise()
+		const res = await postData('auth/login', data)
 		if (res.err) {
+			resetField('password')
 			setError('email', { type: 'custom' })
 			setError('password', { type: 'custom' })
-			setUserData({ ...userData, ["password"]: "" })
-			notifyPromiseError({ msg: "Endereço de email ou senha incorretos." })
+			notifyPromiseError({ msg: "Endereço de email ou senha incorretos" })
 			return
 		}
 		if (rememberUser) {
@@ -64,73 +64,84 @@ export default function Login({ setSwitchModal, setToggleLoginModal }) {
 	}
 
 	return (
-		<>
-			<div className={style.loginTitle}><span>Iniciar sessão</span></div>
-			<div className={style.formContainer}>
-				<div className={style.newUser}>
-					<span>Novo usuário? </span>
-					<button onClick={() => setSwitchModal("register")} className={style.register}>
-						<span>
-							<strong>Cadastre-se aqui.</strong>
-						</span>
-					</button>
+		<div className={style.formContainer}>
+			<form
+				className={style.form}
+				onSubmit={handleSubmit(onSubmit)}
+			>
+				<label
+					className={style.inputGroup}
+					style={errors.email ? { borderColor: "#ff0000" } : {}}
+				>
+					<MdEmail className={style.icon} style={errors.email ? { color: "#ff0000" } : {}} />
+					<input
+						{...register('email', { required: true })}
+						onChange={handleChangeInput}
+						className={`${style.input} ${errors.email ? style.inputError : style.inputNormal}`}
+						type="text"
+						name="email"
+						autoComplete='email'
+						autoFocus
+						disabled={isSubmitting}
+					/>
+					<label className={`${style.placeHolder}  ${watch('email') !== '' ? style.topPlaceholder : ''}`} style={errors.email ? { color: "#ff0000" } : {}}>
+						{errors.email?.message || "Email"}
+					</label>
+				</label>
+
+				<label
+					className={style.inputGroup}
+					style={errors.password ? { borderColor: "#ff0000" } : {}}
+				>
+					<RiLockFill className={style.icon} style={errors.password ? { color: "#ff0000" } : {}} />
+					<input {...register('password', { required: true })}
+						onChange={handleChangeInput}
+						className={`${style.input} ${errors.password ? style.inputError : style.inputNormal}`}
+						type={showPass ? "text" : "password"}
+						name="password"
+						autoComplete='current-password'
+						disabled={isSubmitting}
+					/>
+					<label className={`${style.placeHolder}  ${watch('password') !== '' ? style.topPlaceholder : ''}`} style={errors.password ? { color: "#ff0000" } : {}}>
+						{errors.password?.message || "Senha"}
+					</label>
+					<ShowPass showPass={showPass} setShowPass={setShowPass} />
+				</label>
+
+				<div className={style.containerCheckBoxAndRecover}>
+					<label className={style.containerRemember}>
+						<input type="checkbox" id={style.remember} checked={rememberUser} onChange={() => setRememberUser(rememberUser => !rememberUser)} />
+						<span className={style.labelRemeber}>Mantenha-me conectado</span>
+					</label>
+					<div className={style.containerRecover}>
+						<button onClick={() => setSwitchModal("ForgotPass")} type='button' className={style.recoverPassword}>Esqueceu a senha?</button>
+					</div>
 				</div>
-				<form className={style.form} onSubmit={handleSubmit(handler)} onFocus={() => clearErrors()}>
 
-					<label className={`${style.label} ${!errors.email ? style.labelNormal : style.labelError}`}>
-						<MdEmail className={`${style.icon} ${!errors.email ? style.iconNormal : style.iconError}`} />
-						<input
-							{...register('email', { required: true })}
-							onChange={handleChangeInput}
-							className={`${style.input} ${email !== '' ? style.validInput : ''}`}
-							type="email"
-							name="email"
-							value={email}
-							autoComplete="false" />
-						<span className={style.placeHolder}>Email</span>
-					</label>
+				<div className={style.containerTerms}>
+					<span>Ao fazer login você concorda com a nossa </span>
+					<a className={style.link} href="#">Política de Privacidade</a>
+					<span> e os </span>
+					<a className={style.link} href="#">Termos de uso</a>
+					<span>.</span>
+				</div>
 
-					<label className={`${style.label} ${!errors.password ? style.labelNormal : style.labelError}`}>
-						<RiLockFill className={`${style.icon} ${!errors.password ? style.iconNormal : style.iconError}`} />
-						<input {...register('password', { required: true })}
-							onChange={handleChangeInput}
-							className={`${style.input} ${password !== '' ? style.validInput : ''}`}
-							type={showPass ? "text" : "password"}
-							name="password"
-							value={password}
-							autoComplete="false" />
-						<ShowPass showPass={showPass} setShowPass={setShowPass} />
-						<span className={style.placeHolder}>Senha</span>
-					</label>
-
-					<div className={style.containerCheckBoxAndRecover}>
-						<label className={style.containerRemember}>
-							<input type="checkbox" id={style.terms} checked={rememberUser} onChange={() => setRememberUser(rememberUser => !rememberUser)} />
-							<span className={style.labelRemeber}>Mantenha-me conectado</span>
-						</label>
-						<div className={style.containerRecover}>
-							<button onClick={() => setSwitchModal("ForgotPass")} type='button' className={style.recoverPassword}>Esqueceu a senha?</button>
-						</div>
-					</div>
-
-					<div className={style.labelTerms}>
-						<span>Ao fazer login você concorda com a nossa </span>
-						<a className={style.link} href="#">Política de Privacidade</a>
-						<span> e os </span>
-						<a className={style.link} href="#">Termos de uso</a>
-						<span>.</span>
-					</div>
-					{!errors.email && !errors.password ?
-						<button type='submit' className={`${style.btn} ${isSubmitting ? style.btnLoading : ''}`} disabled={isSubmitting}>
-							<span className={style.btnText}>iniciar sessão</span>
-						</button>
-						:
-						<button type='button' className={`${style.btn} ${style.btnError}`} disabled={true}>
-							<span>iniciar sessão</span>
-						</button>
-					}
-				</form>
+				{!errors.email && !errors.password ?
+					<button type='submit' className={`${style.btn} ${isSubmitting ? style.btnLoading : ''}`} disabled={isSubmitting}>
+						<span className={style.btnText}>iniciar sessão</span>
+					</button>
+					:
+					<button type='button' className={`${style.btn} ${style.btnError}`} disabled={true}>
+						<span className={style.btnText}>iniciar sessão</span>
+					</button>
+				}
+			</form>
+			<div className={style.switchContainer}>
+				<span className={style.or}>Não tem uma conta?</span>
+				<button onClick={() => setSwitchModal("register")} type='button' className={style.switchBtn}>Criar uma conta</button>
 			</div>
-		</>
+		</div >
 	)
 }
+
+export default Login

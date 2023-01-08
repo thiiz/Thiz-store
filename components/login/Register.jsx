@@ -1,6 +1,7 @@
 import style from './index.module.css'
 import { MdEmail } from 'react-icons/md'
 import { RiLockFill } from 'react-icons/ri'
+import { IoShield } from 'react-icons/io5'
 import { ImUser, ImUserPlus } from 'react-icons/im'
 import { useForm } from 'react-hook-form'
 import valid from './valid'
@@ -10,33 +11,36 @@ import ShowPass from '../showpass/ShowPass'
 import { useNotify } from '../../contexts/NotifyContext'
 
 export default function Register({ setSwitchModal }) {
-	const initialState = { name: '', secondName: '', email: '', password: '', cf_password: '' }
-	const [userData, setUserData] = useState(initialState)
-	const { name, secondName, email, password, cf_password } = userData
 	const [showPass, setShowPass] = useState(false)
-	const { register, formState, handleSubmit, clearErrors, setError } = useForm()
+	const { register, watch, formState, handleSubmit, clearErrors, setError, setValue, setFocus } = useForm({
+		mode: 'onSubmit',
+		shouldFocusError: true,
+		defaultValues: { name: '', secondName: '', email: '', password: '', cf_password: '' }
+	})
 	const { errors, isSubmitting, } = formState
 	const { notifySuccess, notifyError } = useNotify()
 
 	const handleChangeInput = e => {
 		const { name, value } = e.target
-		setUserData({ ...userData, [name]: value })
+		setValue(name, value)
+
+		if (errors.name || errors.secondName || errors.email || errors.password || errors.cf_password)
+			clearErrors(name)
 	}
 
-	async function handler(data) {
-		const errMsg = valid(data.name, data.secondName, data.email, data.password, data.cf_password, data.terms)
-		if (errMsg) {
-			if (errMsg === "all") return notifyError({ msg: "Por favor preencha todos os campos" })
-			if (errMsg === "O seu primeiro nome é muito curto.") return setError('name', { type: 'custom', message: errMsg })
-			if (errMsg === "O seu segundo nome é muito curto.") return setError('secondName', { type: 'custom', message: errMsg })
-			if (errMsg === "Endereço de email inválido.") return setError('email', { type: 'custom', message: errMsg })
-			if (errMsg === "A senha deve ter no minímo 6 caracteres.") return setError('password', { type: 'custom', message: errMsg })
-			if (errMsg === "As senhas devem ser iguais.") return setError('cf_password', { type: 'custom', message: errMsg })
+	const onSubmit = async (data) => {
+		const check = valid(data.name, data.secondName, data.email, data.password, data.cf_password)
+		if (check) {
+			if (check.err === "name") return setError('name', { type: 'custom', message: check.msg })
+			if (check.err === "secondName") return setError('secondName', { type: 'custom', message: check.msg })
+			if (check.err === "email") return setError('email', { type: 'custom', message: check.msg })
+			if (check.err === "password") return setError('password', { type: 'custom', message: check.msg })
+			if (check.err === "cf_password") return setError('cf_password', { type: 'custom', message: check.msg })
 		}
 		if (data.terms !== "ok")
 			return setError('terms', { type: 'custom', message: "Você deve aceitar nossa política de privacidade e os termos de uso para continuar" })
 
-		const res = await postData('auth/register', userData)
+		const res = await postData('auth/register', data)
 
 		if (res.err) {
 			if (res.err === 'Endereço de email indisponível.') return setError('email', { type: 'custom', message: res.err })
@@ -47,65 +51,121 @@ export default function Register({ setSwitchModal }) {
 	}
 
 	return (
-		<>
-			<div className={style.loginTitle}>Criar conta</div>
-			<div className={style.formContainer}>
-				<div className={style.newUser}>Já tem uma conta? <button onClick={() => setSwitchModal("login")} className={style.register}><strong>Fazer login.</strong></button></div>
-				<form className={style.form} onSubmit={handleSubmit(handler)}>
-					{errors.name && <p className={style.error}>{errors.name.message}</p> || errors.secondName && <p className={style.error}>{errors.secondName.message}</p>}
-					<div className={style.nameInput}>
-						<label className={`${style.label} ${!errors.name ? style.labelNormal : style.labelError}`} onFocus={() => clearErrors("name")}>
-							<ImUser className={`${style.icon} ${style.iconUser} ${!errors.name ? style.iconNormal : style.iconError}`} />
-							<input {...register('name', {
-								required: ''
-							})} onChange={handleChangeInput} className={`${style.input} ${name !== '' ? style.validInput : ''}`} type="text" name="name" autoComplete="false" />
-							<span className={style.placeHolder}>Nome</span>
+		<div className={style.formContainer}>
+			<form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+				<div className={style.nameInput}>
+					<label
+						className={style.inputGroup}
+						style={errors.name ? { borderColor: "#ff0000" } : {}}
+					>
+						<ImUser className={`${style.icon} ${style.iconUser}`} style={errors.name ? { color: "#ff0000" } : {}} />
+						<input {...register('name', { required: 'Digite seu nome' })}
+							onChange={handleChangeInput}
+							className={`${style.input} ${errors.name ? style.inputError : style.inputNormal}`}
+							type="text"
+							name="name"
+							autoComplete="given-name"
+							autoFocus
+							disabled={isSubmitting}
+						/>
+						<label className={`${style.placeHolder} ${watch('name') !== '' ? style.topPlaceholder : ''}`} style={errors.name ? { color: "#ff0000" } : {}}>
+							{errors.name?.message || 'Nome'}
 						</label>
-						<label className={`${style.label} ${!errors.secondName ? style.labelNormal : style.labelError}`} onFocus={() => clearErrors("secondName")}>
-							<ImUserPlus className={`${style.icon} ${style.iconUser} ${!errors.secondName ? style.iconNormal : style.iconError}`} />
-							<input {...register('secondName', {
-								required: ''
-							})} onChange={handleChangeInput} className={`${style.input} ${secondName !== '' ? style.validInput : ''}`} type="text" name="secondName" autoComplete="false" />
-							<span className={style.placeHolder}>Sobrenome</span>
+					</label>
+
+					<label
+						className={style.inputGroup}
+						style={errors.secondName ? { borderColor: "#ff0000" } : {}}
+					>
+						<ImUserPlus className={`${style.icon} ${style.iconUser}`} style={errors.secondName ? { color: "#ff0000" } : {}} />
+						<input {...register('secondName', { required: 'Seu sobrenome' })}
+							onChange={handleChangeInput}
+							className={`${style.input} ${errors.secondName ? style.inputError : style.inputNormal}`}
+							type="text"
+							name="secondName"
+							autoComplete="family-name"
+							disabled={isSubmitting}
+						/>
+						<label className={`${style.placeHolder} ${watch('secondName') !== '' ? style.topPlaceholder : ''}`} style={errors.secondName ? { color: "#ff0000" } : {}}>
+							{errors.secondName?.message || 'Sobrenome'}
 						</label>
-					</div>
-
-					{errors.email && <p className={style.error}>{errors.email.message}</p>}
-					<label className={`${style.label} ${!errors.email ? style.labelNormal : style.labelError}`} onFocus={() => clearErrors("email")}>
-						<MdEmail className={`${style.icon} ${!errors.email ? style.iconNormal : style.iconError}`} />
-						<input {...register('email', {
-							required: ''
-						})} onChange={handleChangeInput} className={`${style.input} ${email !== '' ? style.validInput : ''}`} type="email" name="email" autoComplete="false" />
-						<span className={style.placeHolder}>Email</span>
 					</label>
+				</div>
 
-					{errors.password && <p className={style.error}>{errors.password.message}</p>}
-					<label className={`${style.label} ${!errors.password ? style.labelNormal : style.labelError}`} onFocus={() => clearErrors("password")}>
-						<RiLockFill className={`${style.icon} ${!errors.password ? style.iconNormal : style.iconError}`} />
-						<input {...register('password', {
-							required: ''
-						})} onChange={handleChangeInput}
-							className={`${style.input} ${password !== '' ? style.validInput : ''}`}
-							type={showPass ? "text" : "password"}
-							name="password"
-							autoComplete="off" />
-						<ShowPass showPass={showPass} setShowPass={setShowPass} />
-						<span className={style.placeHolder}>Senha</span>
+				<label
+					className={style.inputGroup}
+					style={errors.email ? { borderColor: "#ff0000" } : {}}
+				>
+					<MdEmail className={style.icon} style={errors.email ? { color: "#ff0000" } : {}} />
+					<input {...register('email', { required: 'Insira um enderço de email valido' })}
+						onChange={handleChangeInput}
+						className={`${style.input} ${errors.email ? style.inputError : style.inputNormal}`}
+						type="email"
+						name="email"
+						autoComplete="email"
+						disabled={isSubmitting}
+					/>
+					<label
+						className={`${style.placeHolder} ${watch('email') !== '' ? style.topPlaceholder : ''}`}
+						style={errors.email ? { color: "#ff0000" } : {}}
+					>
+						{errors.email?.message || 'Email'}
 					</label>
+				</label>
 
-					{errors.cf_password && <p className={style.error}>{errors.cf_password.message}</p>}
-					<label className={`${style.label} ${!errors.cf_password ? style.labelNormal : style.labelError}`} onFocus={() => clearErrors("cf_password")}>
-						<RiLockFill className={`${style.icon} ${!errors.cf_password ? style.iconNormal : style.iconError}`} />
-						<input {...register('cf_password', {
-							required: ''
-						})} onChange={handleChangeInput} className={`${style.input} ${cf_password !== '' ? style.validInput : ''}`} type="password" name="cf_password" autoComplete="false" />
-						<span className={style.placeHolder}>Confirmar senha</span>
+				<label className={style.inputGroup}
+					style={errors.password ? { borderColor: "#ff0000" } : {}}					>
+					<RiLockFill className={style.icon} style={errors.password ? { color: "#ff0000" } : {}} />
+					<input {...register('password', { required: 'Crie uma senha' })}
+						onChange={handleChangeInput}
+						className={`${style.input} ${errors.password ? style.inputError : style.inputNormal}`}
+						type={showPass ? "text" : "password"}
+						name="password"
+						autoComplete="new-password"
+						disabled={isSubmitting}
+					/>
+					<label
+						className={`${style.placeHolder} ${watch('password') !== '' ? style.topPlaceholder : ''}`}
+						style={errors.password ? { color: "#ff0000" } : {}}
+					>
+						{errors.password?.message || 'Senha'}
 					</label>
+					<ShowPass showPass={showPass} setShowPass={setShowPass} />
+				</label>
 
-					{errors.terms && <p className={style.error}>{errors.terms.message}</p>}
-					<label id={style.politicaTermos} onFocus={() => clearErrors("terms")}>
-						<input {...register('terms')} className={!errors.terms ? '' : style.termsError} type="checkbox" id={style.terms} name="terms" value="ok" />
-						<div className={`${style.labelTerms} ${style.labelTermsError}`}>
+				<label
+					className={style.inputGroup}
+					style={errors.cf_password ? { borderColor: "#ff0000" } : {}}
+				>
+					<IoShield className={style.icon} style={errors.cf_password ? { color: "#ff0000" } : {}} />
+					<input {...register('cf_password', { required: 'Digite novamente sua senha' })}
+						onChange={handleChangeInput}
+						className={`${style.input} ${errors.cf_password ? style.inputError : style.inputNormal}`}
+						type="password"
+						name="cf_password"
+						autoComplete="off"
+						disabled={isSubmitting}
+					/>
+					<label
+						className={`${style.placeHolder} ${watch('cf_password') !== '' ? style.topPlaceholder : ''}`}
+						style={errors.cf_password ? { color: "#ff0000" } : {}}
+						onClick={() => setFocus('cf_password')}
+					>
+						{errors.cf_password?.message || 'Confirmar senha'}
+					</label>
+				</label>
+				<div>
+					{errors.terms && <p style={{ padding: "0 26px" }} className={style.error}>{errors.terms.message}</p>}
+					<label id={style.politicaTermos}>
+						<input {...register('terms')}
+							style={errors.terms ? { outline: "2px solid red", outlineOffset: "1px" } : {}}
+							onChange={() => clearErrors("terms")}
+							type="checkbox" id={style.terms}
+							name="terms"
+							value="ok"
+							disabled={isSubmitting}
+						/>
+						<div className={style.containerTerms}>
 							<span>Ao se cadastrar você concorda com a nossa </span>
 							<a className={style.link} href="#">Política de Privacidade</a>
 							<span> e os </span>
@@ -113,16 +173,21 @@ export default function Register({ setSwitchModal }) {
 							<span>.</span>
 						</div>
 					</label>
-
-					{!errors.name && !errors.secondName && !errors.email && !errors.password && !errors.cf_password && !errors.terms ?
-						<button type='submit' className={`${style.btn} ${isSubmitting ? style.btnLoading : ''}`} disabled={isSubmitting}>
-							<span className={style.btnText}>criar conta</span>
-						</button>
-						:
-						<button type='button' className={`${style.btn} ${style.btnError}`} disabled={true}>criar conta</button>
-					}
-				</form>
-			</div>
-		</>
+				</div>
+				{!errors.name && !errors.secondName && !errors.email && !errors.password && !errors.cf_password && !errors.terms ?
+					<button type='submit' className={`${style.btn} ${isSubmitting ? style.btnLoading : ''}`} disabled={isSubmitting}>
+						<span className={style.btnText}>criar conta</span>
+					</button>
+					:
+					<button type='button' className={`${style.btn} ${style.btnError}`} disabled={true}>
+						<span className={style.btnText}>criar conta</span>
+					</button>
+				}
+			</form>
+				<div className={style.switchContainer}>
+					<span className={style.or}>ou</span>
+					<button onClick={() => setSwitchModal("login")} type='button' className={style.switchBtn}>Fazer login</button>
+				</div>
+		</div >
 	)
 }

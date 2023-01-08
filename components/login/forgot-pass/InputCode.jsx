@@ -12,7 +12,7 @@ const InputCode = ({ setSwitchModal, recoverData, setRecoverData }) => {
 	const inputRef = useRef()
 	const { notifyPromise, notifyPromiseSuccess, notifyPromiseError } = useNotify()
 
-	const handle = async (e) => {
+	const onSubmit = async (e) => {
 		inputRef.current.disabled = true
 		notifyPromise()
 
@@ -43,9 +43,8 @@ const InputCode = ({ setSwitchModal, recoverData, setRecoverData }) => {
 				classNames={{
 					character: err ? styleInput.characterError : styleInput.character,
 				}}
-				onChange={(e) => e.length === 6 && handle(e)}
+				onChange={(e) => e.length === 6 && onSubmit(e)}
 				ref={inputRef}
-
 			/>
 		</>
 	);

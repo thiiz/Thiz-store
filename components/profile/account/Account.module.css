@@ -102,9 +102,6 @@
 	overflow: hidden;
 	padding-left: 1rem;
 	padding-right: 1rem;
-	position: relative;
-	text-align: left;
-	text-decoration: none;
 	transition: box-shadow .15s, transform .15s;
 	user-select: none;
 	-webkit-user-select: none;
