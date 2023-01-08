@@ -36,12 +36,6 @@
 	margin-bottom: 1.25rem;
 }
 
-.btn {
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-}
-
 .btnShop {
 	background-color: transparent;
 	border: 2px solid #000;
@@ -59,6 +53,8 @@
 	transition: all 0.3s ease-in-out;
 	user-select: none;
 	font-size: 0.813rem;
+	border: none;
+	cursor: pointer;
    }
    
    .btnShop::before {
@@ -72,6 +68,32 @@
 	transform: translateY(-50%);
 	transform-origin: center;
 	transition: background 0.3s linear, width 0.3s linear;
+   }
+
+   .btnShop:hover {
+	color: white;
+	background: black;
+   }
+   
+   .btnShop:hover::before {
+	width: 0.9375rem;
+	background: white;
+   }
+   
+   .btnShop:hover .btnText {
+	color: white;
+	padding-left: 1.5rem;
+   }
+   
+   .btnShop:hover .topKey {
+	left: -2px;
+	width: 0px;
+   }
+   
+   .btnShop:hover .bottomKey1,
+   .btnShop:hover .bottomKey2 {
+	right: 0;
+	width: 0;
    }
    
    .btnText {
@@ -115,32 +137,7 @@
 	background: #e8e8e8;
 	transition: width 0.5s ease-out, right 0.3s ease-out;
    }
-   
-   .btnShop:hover {
-	color: white;
-	background: black;
-   }
-   
-   .btnShop:hover::before {
-	width: 0.9375rem;
-	background: white;
-   }
-   
-   .btnShop:hover .btnText {
-	color: white;
-	padding-left: 1.5rem;
-   }
-   
-   .btnShop:hover .topKey {
-	left: -2px;
-	width: 0px;
-   }
-   
-   .btnShop:hover .bottomKey1,
-   .btnShop:hover .bottomKey2 {
-	right: 0;
-	width: 0;
-   }
+
 
 @media (max-width: 590px) {
 	.bgContainer {
