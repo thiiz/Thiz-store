@@ -1,18 +1,20 @@
 import { useContext, useEffect } from "react";
 import { createContext, useState } from "react";
+import { useAuth } from "./AuthContext";
 
 
 const LoginModalContext = createContext()
 
 export default function LoginMenuProvider({ children }) {
 	const [toggleLoginModal, setToggleLoginModal] = useState(false)
+	const { auth } = useAuth()
 
 	useEffect(() => {
-		if (toggleLoginModal) {
+		if (toggleLoginModal && !auth) {
 			document.body.style.overflowY = 'hidden'
-		} else {
-			document.body.style.overflowY = 'auto'
+			return
 		}
+		document.body.style.overflowY = 'auto'
 	}, [toggleLoginModal]);
 
 	const store = {
