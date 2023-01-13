@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import nookies from 'nookies'
 
-export default function busca() {
+export default function Busca() {
 	const { query } = useRouter()
 	const [data, setData] = useState(null)
 	useEffect(() => {
