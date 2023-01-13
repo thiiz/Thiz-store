@@ -8,21 +8,25 @@ import { useAuth } from '../contexts/AuthContext'
 import Head from "next/head"
 import Inputs from '../components/pagamento/Inputs'
 import Items from '../components/pagamento/Items'
+import { useRouter } from 'next/router'
 
 export default function Pagamento() {
 	const { auth } = useAuth()
 	const { notifyError } = useNotify()
 	const { setToggleLoginModal } = useToggleLoginModal()
+	const { push } = useRouter()
 
 	useEffect(() => {
 		const firstLogin = localStorage.getItem("firstLogin");
 		if (firstLogin) {
 			getData('auth/accessToken').then(res => {
-				if (res.err) return localStorage.removeItem("firstLogin")
-				notifyError({ msg: res.err })
+				if (res.err) {
+					localStorage.removeItem("firstLogin"), notifyError({ msg: res.err })
+				}
 			})
 			return
 		}
+		push({ pathname: '/', query: 'redirect=pagamento' })
 		notifyError({ msg: "Você precisa fazer login para acessar essa página." })
 		setToggleLoginModal(true)
 	}, [])

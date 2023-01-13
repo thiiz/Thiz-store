@@ -13,17 +13,17 @@ const Container = styled(motion.div)`
     font-size: 1rem;
 
 	${props => {
-		switch (props.scrollDirection) {
-			case "down":
-				return css`
+        switch (props.scrollDirection) {
+            case "down":
+                return css`
 					top: 2.5em;
 				`;
-			default:
-				return css`
+            default:
+                return css`
 					top: 4.8em;
 				`
-		}
-	}}
+        }
+    }}
 `;
 
 const Ul = styled.ul`
@@ -37,6 +37,7 @@ const Ul = styled.ul`
 
 const Li = styled.li`
     list-style-type: none;
+    cursor: pointer;
     transition: 250ms ease-in-out;
 
 	&:hover {
@@ -63,7 +64,6 @@ const BtnLogout = styled.button`
     width: 100%;
 	background-color: transparent;
     border: none;
-    cursor: pointer;
 `;
 
 const Division = styled.div`

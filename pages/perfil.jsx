@@ -1,23 +1,29 @@
-import { useAuth } from "../contexts/AuthContext"
 import { useNotify } from "../contexts/NotifyContext"
 import { useEffect } from "react"
 import { useRouter } from 'next/router'
 import { useToggleLoginModal } from '../contexts/LoginModalContext'
 import Head from "next/head"
 import Profile from "../components/profile/Profile"
+import { getData } from "../utils/fetchData"
 
 
 export default function Perfil() {
-	const { pathname, push } = useRouter()
+	const { push } = useRouter()
 	const { notifyError } = useNotify()
-	const { toggleLoginModal, setToggleLoginModal } = useToggleLoginModal()
-	const { auth } = useAuth()
+	const { setToggleLoginModal } = useToggleLoginModal()
 	useEffect(() => {
-		if (!auth.token) {
-			notifyError({ msg: "Você precisa fazer login para acessar essa página." })
-			push({ pathname: '/', query: 'redirect=perfil' })
-			setToggleLoginModal(true)
+		const firstLogin = localStorage.getItem("firstLogin");
+		if (firstLogin) {
+			getData('auth/accessToken').then(res => {
+				if (res.err) {
+					localStorage.removeItem("firstLogin"), notifyError({ msg: res.err })
+				}
+			})
+			return
 		}
+		push({ pathname: '/', query: 'redirect=perfil' })
+		notifyError({ msg: "Você precisa fazer login para acessar essa página." })
+		setToggleLoginModal(true)
 	}, [])
 	return (
 		<>

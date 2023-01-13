@@ -19,15 +19,13 @@ export default function ButtonsMobile() {
 			<ContactButton />
 			<CartButton />
 			<ButtonAccount />
-			<div>
-				<Hamburger
-					toggled={isOpenMobile}
-					toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)}
-					distance="lg" size={34}
-					easing="ease-in"
-					style="bottom: 2px;"
-				/>
-			</div>
+			<Hamburger
+				toggled={isOpenMobile}
+				toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)}
+				distance="lg" size={34}
+				easing="ease-in"
+				style="bottom: 2px;"
+			/>
 		</Container>
 	)
 }
