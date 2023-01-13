@@ -22,7 +22,7 @@ export default function Perfil() {
 	return (
 		<>
 			<Head>
-				<title>Mãe Terra - Perfil</title>
+				<title>Perfil - THIZ</title>
 			</Head>
 			<Profile />
 		</>

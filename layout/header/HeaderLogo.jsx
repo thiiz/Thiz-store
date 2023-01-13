@@ -1,15 +1,14 @@
-import style from './HeaderLogo.module.css'
-import { useIsSmall } from '../../lib/MediaQuery'
-import { useScrollDirection } from '../../lib/useScrollDirection'
+import { ContainerLogo } from './styleHeaderLogo.js'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useScrollDirection } from '../../lib/useScrollDirection.js'
 
-function HeaderLogo({ scrollDirection }) {
-	const small = useIsSmall()
+function HeaderLogo() {
+	const scrollDirection = useScrollDirection()
 	return (
-		<div className={`${style.containerLogo} ${scrollDirection !== 'down' ? style.containerLogoNormal : style.containerLogoSmall}`}>
-			<Link href="/"><a><Image className={style.logo} src='/logo-maeTerra2.png' alt='logo-natureza' height='77px' width='77px'></Image></a></Link>
-		</div>
+		<ContainerLogo scrollDirection={scrollDirection}>
+			<Link href="/"><a><Image src='/logo-thiz.png' alt='logo-natureza' width={192} height={82}></Image></a></Link>
+		</ContainerLogo>
 
 	)
 }

@@ -1,24 +1,26 @@
 import Head from "next/head";
 import { SearchProducts } from '../lib/SearchProducts';
 import { ProductFiltred } from '../components/filters/Filters';
-export default function busca({ item }) {
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useState } from "react";
+import nookies from 'nookies'
 
+export default function busca() {
+	const { query } = useRouter()
+	const [data, setData] = useState(null)
+	useEffect(() => {
+		SearchProducts({ search: query.term }).then((response) => setData(response))
+	}, [query.term]);
 	return (
 		<>
 			<Head>
-				<title>{`Busca - Mãe Terra`}</title>
+				<title>{query.term} - Busca</title>
 			</Head>
 			<main className="page">
-				<ProductFiltred data={item} />
+				{data && <ProductFiltred data={data?.data} />}
 			</main>
 			<div className="marginFooter"></div>
 		</>
 	)
-}
-export async function getServerSideProps(context) {
-	const term = context.query?.term?.toString().replace(/"+"/g, " ");
-	const data = await SearchProducts({ search: term })
-	return {
-		props: { item: data.data },
-	}
 }

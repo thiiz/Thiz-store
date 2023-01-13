@@ -6,12 +6,15 @@ import { useRouter } from 'next/router'
 import { useAuth } from '../../contexts/AuthContext'
 import { useNotify } from '../../contexts/NotifyContext'
 import { useContextUserModal } from '../../contexts/UserModalContext'
+import { useScrollDirection } from '../../lib/useScrollDirection'
 
-export default function UserModal({ scrollDirection }) {
+export default function UserModal() {
 	const { pathname, push } = useRouter()
 	const { toggleUserModal, setToggleUserModal } = useContextUserModal()
 	const { setAuth } = useAuth()
 	const { notifySuccess } = useNotify()
+	const scrollDirection = useScrollDirection()
+
 
 	const dropdownVariant = {
 		open: { zIndex: "16", opacity: 1, height: "4.738rem", padding: ".5rem 1rem .5rem 1rem" },

@@ -1,21 +1,28 @@
-import style from './SearchModal.module.css'
+import { Header, ResultTitle, Close } from './styleHeaderSearchModal'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { VscChromeClose } from 'react-icons/vsc'
-export default function HeaderSearchModal({ handleClose, quantity }) {
-	const [info, setInfo] = useState('O que você está procurando?')
+
+export default function HeaderSearchModal({ handleClose, quantity, searching, find }) {
+	const [info, setInfo] = useState('')
 	const [qty, setQty] = useState('')
 
 	useEffect(() => {
 		if (quantity) {
 			setQty(` (${quantity?.length})`)
-			setInfo('Resultados')
+			setInfo(`Resultados para "${find}"`)
 		}
 	}, [quantity])
+	useEffect(() => {
+		if (searching) {
+			setQty('')
+			setInfo('Procurando produtos...')
+		}
+	}, [searching])
 	return (
-		<div className={style.header}>
-			<span className={style.resultTitle}>{info}{qty}</span>
-			<button onClick={() => handleClose()} className={style.close}><VscChromeClose /></button>
-		</div>
+		<Header>
+			<ResultTitle>{info}{qty}</ResultTitle>
+			<Close onClick={() => handleClose()}><VscChromeClose /></Close>
+		</Header>
 	)
 }

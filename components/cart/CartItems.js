@@ -5,25 +5,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { BsTrash } from 'react-icons/bs'
 import ModalRemove from './modal/ModalRemove'
-
-const shimmer = (w, h) => `
-<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <linearGradient id="g">
-      <stop stop-color="#fff" offset="20%" />
-      <stop stop-color="#ddd" offset="50%" />
-      <stop stop-color="#fff" offset="70%" />
-    </linearGradient>
-  </defs>
-  <rect width="${w}" height="${h}" fill="#cecece" />
-  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
-  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
-</svg>`
-
-const toBase64 = (str) =>
-	typeof window === 'undefined'
-		? Buffer.from(str).toString('base64')
-		: window.btoa(str)
+import { shimmer, toBase64 } from '../../utils/loadImage'
 
 export default function CartItems({ item }) {
 	const { push } = useRouter()

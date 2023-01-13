@@ -1,7 +1,6 @@
 import style from './Filters.module.css'
-import { useState, useId, useCallback } from 'react'
+import { useState, useId, useEffect, useMemo } from 'react'
 import ProductView from '../products/productView'
-import { useEffect } from 'react'
 import Select from 'react-select';
 import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import { useIsLarge } from '../../lib/MediaQuery'
@@ -17,8 +16,8 @@ export function ProductFiltred({ data }) {
 	const [selectedOption, setSelectedOption] = useState(undefined)
 	const [grid, setGrid] = useState(Math.floor(parseCookies().GRID || 4))
 	const [filtred, setFiltred] = useState([])
-	const item = data.map(product => product)
-	useCallback(() => {
+	const item = data?.map(product => product)
+	useMemo(() => {
 		setFiltred(item);
 	}, [data])
 
@@ -50,7 +49,7 @@ export function ProductFiltred({ data }) {
 			}
 		}
 		if (selectedOption?.value === options[1].value) {
-			setFiltred(item.sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
+			setFiltred(item?.sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
 			if (parseCookies().AcceptedCookies === "all") {
 				setCookie(null, 'SORT_BY', "price_ASC", {
 					maxAge: 86400,
@@ -60,7 +59,7 @@ export function ProductFiltred({ data }) {
 			}
 		}
 		if (selectedOption?.value === options[2].value) {
-			setFiltred(item.sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
+			setFiltred(item?.sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
 			if (parseCookies().AcceptedCookies === "all") {
 				setCookie(null, 'SORT_BY', "price_DESC", {
 					maxAge: 86400,

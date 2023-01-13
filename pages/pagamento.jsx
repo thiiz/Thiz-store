@@ -31,7 +31,7 @@ export default function Pagamento() {
 			{Object.keys(auth).length === 0 ? '' :
 				<div className="page">
 					<Head>
-						<title>Mãe Terra - Pagamento</title>
+						<title>THIZ - Pagamento</title>
 					</Head>
 					<div className={style.container}>
 

@@ -1,38 +1,75 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
+const BannerContainer = styled.div`
   position: relative;
-  margin-top: 5.1rem;
   width: 100vw;
-  height: 26.25rem;
+  height: 50rem;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  background: linear-gradient(135deg, #d3f3fa 0%, #fafafc 50%, #b7b3e7 100%);
+  column-gap: 9.7rem;
+  background-color: #fdfdfd;
+
+  @media(min-width: 1280px) {
+    margin-top: 5rem;
+  }
 `;
 
-const MainTitle = styled.div`
-  font-family: 'Oswald', sans-serif;
-  font-weight: 200;
-  font-size: 6.55rem;
-  line-height: 5.25rem;
-  color: #000;
+const TitleContainer = styled.div`
+    margin-left: .2rem;
+  `;
+
+const MainTitle = styled.h1`
+  font-weight: 600;
+  font-size: 8.85rem;
+  line-height: 7.65rem;
+  color: #191919;
+  display:flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+
+  span:last-child{
+    color: #fff;
+    background-color: #191919;
+  }
 `;
 
-const MainTitleSpan = styled.span`
-  font-family: 'Oswald', sans-serif;
-  color: #0099ff;
-`;
-
-const MainSubTitle = styled.div`
+const MainSubTitle = styled.h2`
   font-weight: 400;
   font-size: 1.65rem;
-  font-family: 'Oswald', sans-serif;
   color: #000;
-  margin-bottom: 1.25rem;
+  margin-bottom: 5.45rem;
+  text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
 `;
 
+const ImageContainer = styled.div`
+  pointer-events: none;
+  position: relative;
+  width: 50rem;
+  height: 50rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+`
 
-export { Container, MainSubTitle, MainTitle, MainTitleSpan }
+const RightBar = styled.div`
+  background-color: #191919;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 8.5%;
+`
+const BottomBar = styled.div`
+  height: 3.825rem;
+  width: 100%;
+  background-color: #191919;
+  position: absolute;
+  bottom: -1rem;
+  z-index: 1;
+`
+
+export { BannerContainer, TitleContainer, MainSubTitle, MainTitle, ImageContainer, RightBar, BottomBar }

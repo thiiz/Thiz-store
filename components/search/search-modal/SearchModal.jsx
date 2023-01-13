@@ -1,36 +1,30 @@
+import { Container, ContainerViewMore, ViewMore } from './styleSearchModal'
 import Link from 'next/link';
-import { VscChromeClose } from 'react-icons/vsc';
 import Items from '../Items';
-import style from './SearchModal.module.css'
 import HeaderSearchModal from './HeaderSearchModal';
 
-export default function SearchModal({ data, searching, setItems, setSearch, scrollDirection, find }) {
+export default function SearchModal({ data, searching, setItems, setIsOpen, scrollDirection, find }) {
 	const quantity = data?.data?.map(product => product)
 	const handleClose = () => {
-		setSearch(false)
+		setIsOpen(false)
 		setItems([])
 	}
-	if (searching) {
-		return (
-			<div className={`${style.container} ${scrollDirection !== 'down' ? style.containerNormal : style.containerSmall}`}>
-				<div className={style.header}>
-					<span className={style.resultTitle}>Procurando produtos...</span>
-					<button onClick={() => handleClose()} className={style.close}><VscChromeClose /></button>
-				</div>
-			</div>
-		)
-	}
 	return (
-		<div className={`${style.container} ${scrollDirection !== 'down' ? style.containerNormal : style.containerSmall}`}>
-
-			<HeaderSearchModal quantity={quantity} handleClose={handleClose} />
+		<Container
+			initial={{ paddingTop: "0", paddingBottom: "0" }}
+			animate={{ paddingTop: "2.6rem", paddingBottom: "3.3rem" }}
+			transition={{ delay: .2, duration: .2 }}
+			scrolldirection={scrollDirection}
+		>
+			<HeaderSearchModal searching={searching} find={find} quantity={quantity} handleClose={handleClose} />
 
 			{
 				data.length !== 0 &&
 				<>
-					{quantity?.length === 0 && <div className={style.center}>
-						<div className={style.notFound}>Produto não encontrado.</div>
-					</div>
+					{quantity?.length === 0 &&
+						<ContainerViewMore>
+							<div className='notFound'>Produto não encontrado.</div>
+						</ContainerViewMore>
 					}
 					{data.data?.map((item, index) => {
 						if (index < 5) {
@@ -40,13 +34,13 @@ export default function SearchModal({ data, searching, setItems, setSearch, scro
 						}
 					})}
 					{quantity?.length > 2 &&
-						<div className={style.center}>
-							<Link href={`/busca/?term=${find}`}><a className={style.viewMore}>Ver todos resultados.</a></Link>
-						</div>
+						<ContainerViewMore>
+							<Link href={`/busca/?term=${find}`}><ViewMore>Ver todos resultados.</ViewMore></Link>
+						</ContainerViewMore>
 					}
 				</>
 			}
-		</div >
+		</Container >
 	)
 
 
