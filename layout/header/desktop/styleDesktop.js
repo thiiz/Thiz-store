@@ -30,7 +30,7 @@ const Container = styled.div`
 				`
 			default: {
 				return css`
-				 padding: 0 12rem;`
+				 padding: 0 11rem;`
 			}
 		}
 	}}
@@ -51,10 +51,10 @@ const Container = styled.div`
 }
 `
 
-const Buttons = styled.div`
+const ContainerButtons = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
 `;
 
-export { Container, Buttons }
+export { Container, ContainerButtons }

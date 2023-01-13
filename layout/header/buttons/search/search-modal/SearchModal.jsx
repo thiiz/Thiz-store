@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Items from '../Items';
 import HeaderSearchModal from './HeaderSearchModal';
 
-export default function SearchModal({ data, searching, setItems, setIsOpen, scrollDirection, find }) {
+export default function SearchModal({ data, searching, setItems, setIsOpen, scroll_direction, find }) {
 	const quantity = data?.data?.map(product => product)
 	const handleClose = () => {
 		setIsOpen(false)
@@ -14,7 +14,7 @@ export default function SearchModal({ data, searching, setItems, setIsOpen, scro
 			initial={{ paddingTop: "0", paddingBottom: "0" }}
 			animate={{ paddingTop: "2.6rem", paddingBottom: "3.3rem" }}
 			transition={{ delay: .2, duration: .2 }}
-			scrolldirection={scrollDirection}
+			scrolldirection={scroll_direction}
 		>
 			<HeaderSearchModal searching={searching} find={find} quantity={quantity} handleClose={handleClose} />
 

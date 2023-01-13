@@ -70,11 +70,15 @@ const GlobalStyle = createGlobalStyle`
     transition: background-color 250ms ease;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 935px) {
+    html {
+      font-size: 80%
+    }
+  @media (max-width: 785px) {
     html {
       font-size: 70%
     }
-
+  }
     .marginFooter {
       margin-bottom: 29.063rem;
     }

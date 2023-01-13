@@ -1,29 +1,25 @@
-import style from '../Header.module.css'
-import { MdHeadsetMic } from 'react-icons/md'
-import ButtonCart from '../buttons/ButtonCart'
-import Search from '../../../components/search/Search'
-import ButtonAccount from '../buttons/ButtonAccount'
-import { Container, Buttons } from './styleDesktop'
-import HeaderLogo from '../HeaderLogo'
-import HeaderLinks from '../HeaderLinks'
+import { Container, ContainerButtons } from './styleDesktop'
 import { useScrollDirection } from '../../../lib/useScrollDirection'
+import HeaderLogo from '../HeaderLogo'
+import HeaderLinks from '../links/HeaderLinks'
+import Search from '../buttons/search/Search'
+import CartButton from '../buttons/cart/CartButton'
+import AccountButton from '../buttons/account/AccountButton'
+import ContactButton from '../buttons/ContactButton'
 
 
 export default function Desktop() {
 	const scrollDirection = useScrollDirection()
 	return (
 		<Container scrollDirection={scrollDirection}>
-			<HeaderLogo />
+			<HeaderLogo scrollDirection={scrollDirection} />
 			<HeaderLinks />
-			<Buttons>
-				<Search />
-				<button className={`${style.btn} ${style.btnInfo}`} type='button'>
-					<MdHeadsetMic />
-				</button>
-				<ButtonCart />
-				<ButtonAccount />
-
-			</Buttons>
+			<ContainerButtons>
+				<Search scrollDirection={scrollDirection} />
+				<ContactButton scrollDirection={scrollDirection} />
+				<CartButton scrollDirection={scrollDirection} />
+				<AccountButton scrollDirection={scrollDirection} />
+			</ContainerButtons>
 		</Container >
 	)
 }

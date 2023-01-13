@@ -1,19 +1,16 @@
-import style from './UserModal.module.css'
-import { motion } from "framer-motion"
+import { BtnLogout, Container, Division, Li, MyProfile, Ul } from './styleUserModal'
 import Link from 'next/link'
 import { destroyCookie } from 'nookies'
 import { useRouter } from 'next/router'
 import { useAuth } from '../../contexts/AuthContext'
 import { useNotify } from '../../contexts/NotifyContext'
 import { useContextUserModal } from '../../contexts/UserModalContext'
-import { useScrollDirection } from '../../lib/useScrollDirection'
 
-export default function UserModal() {
+export default function UserModal({ scrollDirection }) {
 	const { pathname, push } = useRouter()
 	const { toggleUserModal, setToggleUserModal } = useContextUserModal()
 	const { setAuth } = useAuth()
 	const { notifySuccess } = useNotify()
-	const scrollDirection = useScrollDirection()
 
 
 	const dropdownVariant = {
@@ -32,26 +29,24 @@ export default function UserModal() {
 	}
 
 	return (
-		<motion.div
-			className={`${style.container} ${scrollDirection !== "down" ? style.containerNormal : style.containerSmall}`}
+		<Container
 			initial={"closed"}
 			animate={"open"}
 			exit={"closed"}
 			variants={dropdownVariant}
+			scrollDirection={scrollDirection}
 		>
-			{toggleUserModal ? <ul className={style.ul}>
-				<li className={style.li} onClick={() => setToggleUserModal(false)}>
+			{toggleUserModal ? <Ul>
+				<Li onClick={() => setToggleUserModal(false)}>
 					<Link href="/perfil">
-						<a className={style.myProfile}>Meu perfil</a>
+						<MyProfile>Meu perfil</MyProfile>
 					</Link>
-				</li>
-
-				<div className={style.division}></div>
-
-				<li className={style.li}>
-					<button className={`${style.btn} ${style.btnLogout}`} onClick={handleLogout}>Sair</button>
-				</li>
-			</ul> : ''}
-		</motion.div >
+				</Li>
+				<Division />
+				<Li>
+					<BtnLogout onClick={handleLogout}>Sair</BtnLogout>
+				</Li>
+			</Ul> : ''}
+		</Container>
 	)
 }

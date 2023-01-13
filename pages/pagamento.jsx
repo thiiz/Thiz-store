@@ -19,11 +19,12 @@ export default function Pagamento() {
 		if (firstLogin) {
 			getData('auth/accessToken').then(res => {
 				if (res.err) return localStorage.removeItem("firstLogin")
+				notifyError({ msg: res.err })
 			})
-		} else {
-			notifyError({ msg: "Você precisa fazer login para acessar essa página." })
-			setToggleLoginModal(true)
+			return
 		}
+		notifyError({ msg: "Você precisa fazer login para acessar essa página." })
+		setToggleLoginModal(true)
 	}, [])
 
 	return (
@@ -31,10 +32,9 @@ export default function Pagamento() {
 			{Object.keys(auth).length === 0 ? '' :
 				<div className="page">
 					<Head>
-						<title>THIZ - Pagamento</title>
+						<title>Pagamento - THIZ</title>
 					</Head>
 					<div className={style.container}>
-
 						<Items />
 						<div className={style.checkout}>
 							<h1 className={style.title}>FINALIZAR COMPRA</h1>

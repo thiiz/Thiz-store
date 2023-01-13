@@ -1,31 +1,33 @@
-import { FaShoppingCart } from 'react-icons/fa'
-import { MdHeadsetMic } from 'react-icons/md'
-import style from '../Header.module.css'
-import { useCart } from '../../../contexts/CartContext'
-import { useMenuCart } from '../../../contexts/OpenCartMenuContext'
-import { useContextUserModal } from '../../../contexts/UserModalContext'
 import { Fade as Hamburger } from 'hamburger-react'
-import ButtonAccount from '../buttons/ButtonAccount'
 import { Container } from './styleMobileButtons'
 import { useState } from 'react'
+import HeaderLogo from '../HeaderLogo'
+import HeaderLinks from '../links/HeaderLinks'
+import ContactButton from '../buttons/ContactButton'
+import CartButton from '../buttons/cart/CartButton'
+import ButtonAccount from '../buttons/account/AccountButton'
+import Search from '../buttons/search/Search'
 
 export default function ButtonsMobile() {
 	const [isOpenMobile, setIsOpenMobile] = useState(false)
 
-	const { setOpenCart } = useMenuCart()
-	const { cart } = useCart()
-
 	return (
 		<Container>
-			<button className={`${style.btn} ${style.btnInfo}`} type='button'>
-				<MdHeadsetMic />
-			</button>
-			<button onClick={() => setOpenCart(prev => !prev)} className={`${style.btn} ${style.btnInfo}`} type='button'>
-				<FaShoppingCart />
-				<div className={`${style.countCartItems} ${style.countCartitemsNormal}`}><span>{Object.keys(cart).length}</span></div>
-			</button>
+			<HeaderLogo />
+			<HeaderLinks />
+			<Search />
+			<ContactButton />
+			<CartButton />
 			<ButtonAccount />
-			<div className={style.menuHamburguer}><Hamburger toggled={isOpenMobile} toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)} distance="lg" size={34} easing="ease-in" style="bottom: 2px;" /></div>
+			<div>
+				<Hamburger
+					toggled={isOpenMobile}
+					toggle={() => setIsOpenMobile(isOpenMobile => !isOpenMobile)}
+					distance="lg" size={34}
+					easing="ease-in"
+					style="bottom: 2px;"
+				/>
+			</div>
 		</Container>
 	)
 }

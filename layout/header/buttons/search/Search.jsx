@@ -1,23 +1,22 @@
 import SearchModal from './search-modal/SearchModal';
 import { useEffect, useRef, useState } from 'react';
 import { GrSearch } from 'react-icons/gr';
-import { useScrollDirection } from '../../lib/useScrollDirection';
 import { Container, Button, Form, SearchInput, Content } from './styleSearch'
 import { useForm } from 'react-hook-form';
-import { SearchProducts } from '../../lib/SearchProducts';
+import { SearchProducts } from '../../../../lib/SearchProducts';
 import { setCookie } from 'nookies';
 
 
-export default function Search() {
+export default function Search({ scrollDirection }) {
 	const [items, setItems] = useState([])
 	const [isOpen, setIsOpen] = useState(false)
 	const [find, setFind] = useState(null)
 	const [searching, setSearching] = useState(false)
-	const scrollDirection = useScrollDirection()
 	const { register, handleSubmit } = useForm()
 	const searchRef = useRef();
 
 	const onSubmit = async (data) => {
+		setItems([])
 		setSearching(true)
 		setFind(data.search.replace(/ /g, '+'))
 		if (data.search.length !== 0) {
