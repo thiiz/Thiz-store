@@ -33,7 +33,7 @@ export default function ModalLogin() {
 	}
 	const loginHeightVariant = {
 		open: { height: "34.2rem", transition: { ease: "easeInOut", duration: .2, delay: .1 } },
-		closed: { height: 0, transition: { duration: 0 } },
+		closed: { height: 0, transition: { ease: "easeInOut", duration: .2, delay: .1 } },
 	}
 	const styleContainer = () => {
 		if (switchModal === "login") return style.containerLogin
@@ -113,7 +113,8 @@ export default function ModalLogin() {
 						}
 						<Content />
 					</motion.div>
-				</motion.div >}
+				</motion.div >
+			}
 		</>
 	)
 }

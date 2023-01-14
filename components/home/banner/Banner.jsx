@@ -18,8 +18,8 @@ export default function Banner() {
 				</TitleContainer>
 				<ImageContainer>
 					<Image src='/thiz_this_is_girl_with_background_transparent.png' alt='girl looking left with background transparent'
-						width={1280}
-						height={1980}
+						width={1224}
+						height={1224}
 						blurDataURL={rgbDataURL(255, 255, 255)}
 						placeholder="blur"
 					/>

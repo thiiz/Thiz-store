@@ -4,6 +4,7 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	margin-bottom: 25rem;
 	&{
 			font-family: "Poppins", Arial, Helvetica, sans-serif;
 		}

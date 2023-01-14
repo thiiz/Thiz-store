@@ -69,13 +69,15 @@ const GlobalStyle = createGlobalStyle`
     position: absolute;
     transition: background-color 250ms ease;
   }
+  @media (max-width: 590px) {
+    .marginFooter {
+      margin-bottom: 29.813rem;
+    }
+  }
 
   @media (max-width: 935px) {
     html {
       font-size: 80%
-    }
-    .marginFooter {
-      margin-bottom: 38.563rem;
     }
   }
   @media (max-width: 785px) {
