@@ -36,17 +36,19 @@ export default function UserModal({ scrollDirection }) {
 			variants={dropdownVariant}
 			scrollDirection={scrollDirection}
 		>
-			{toggleUserModal ? <Ul>
-				<Li onClick={() => setToggleUserModal(false)}>
-					<Link href="/perfil">
-						<MyProfile>Meu perfil</MyProfile>
-					</Link>
-				</Li>
-				<Division />
-				<Li>
-					<BtnLogout onClick={handleLogout}>Sair</BtnLogout>
-				</Li>
-			</Ul> : ''}
+			{toggleUserModal ?
+				<Ul>
+					<Li onClick={() => setToggleUserModal(false)}>
+						<MyProfile href="/perfil">Meu perfil</MyProfile>
+					</Li>
+					<Division />
+					<Li>
+						<BtnLogout onClick={handleLogout}>Sair</BtnLogout>
+					</Li>
+				</Ul>
+				:
+				''
+			}
 		</Container>
 	)
 }

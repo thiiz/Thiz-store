@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
 const NavMenuList = styled.ul`
@@ -24,7 +25,7 @@ const NavMenuListItem = styled.li`
   }
 `;
 
-const NavMenuListItemLink = styled.a`
+const NavMenuListItemLink = styled(Link)`
   font-family: 'Josefin Sans', sans-serif;
   text-transform: capitalize;
   text-decoration: none;

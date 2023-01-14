@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  compiler: {
+    styledComponents: true,
+  },
   images: {
     domains: ['www.datocms-assets.com', 'lh3.googleusercontent.com']
   },

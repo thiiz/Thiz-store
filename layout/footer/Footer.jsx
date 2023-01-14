@@ -1,47 +1,42 @@
-import style from './Footer.module.css'
 import { RiWhatsappFill } from 'react-icons/ri'
 import { MdCall, MdEmail } from 'react-icons/md'
 import { FaInstagram } from 'react-icons/fa'
 import { CgFacebook } from 'react-icons/cg'
-import { motion } from "framer-motion"
-import { useEffect, useState } from 'react'
-import CookiesConsentPopup from '../../components/cookies-consent/CookiesConsentPopup'
-import { parseCookies } from 'nookies'
 import Link from 'next/link'
-import { useAuth } from '../../contexts/AuthContext'
+import { ContainerFooter, Middle, FooterOption, Title, IconSpan, SocialMedia, Copyright, CopyrightSpan, CopyrightLink } from './styleFooter'
 
 export default function Footer() {
 	return (
 		<>
-			<footer className={style.footer}>
-				<div className={style.middle}>
-					<div className={style.footerOption}>
-						<h4>Atendimento</h4>
-						<a href='#'><span><MdCall /></span>(48) 3332-4327</a>
-						<a href='#'><span><RiWhatsappFill /></span>(48) 3332-4327</a>
-						<a href='#'><span><MdEmail /></span>contato@maeterra.com.br</a>
-					</div>
-					<div className={style.footerOption}>
-						<h4>Informações</h4>
-						<Link href='#'><a>Sobre a MãeTerra</a></Link>
-						<Link href='#'><a>Termos e condições</a></Link>
-						<Link href='#'><a>Política de privacidade</a></Link>
-					</div>
-					<div className={`${style.social} ${style.footerOption}`}>
-						<h4>Social</h4>
-						<div className={style.socialMedia}>
+			<ContainerFooter>
+				<Middle>
+					<FooterOption>
+						<Title>Atendimento</Title>
+						<a href='#'><IconSpan><MdCall /></IconSpan>(48) 3332-4327</a>
+						<a href='#'><IconSpan><RiWhatsappFill /></IconSpan>(48) 3332-4327</a>
+						<a href='#'><IconSpan><MdEmail /></IconSpan>contato@maeterra.com.br</a>
+					</FooterOption>
+					<FooterOption>
+						<Title>Informações</Title>
+						<Link href='#'>Sobre a MãeTerra</Link>
+						<Link href='#'>Termos e condições</Link>
+						<Link href='#'>Política de privacidade</Link>
+					</FooterOption>
+					<FooterOption className='social'>
+						<Title>Social</Title>
+						<SocialMedia>
 							<a href='#'><CgFacebook /></a>
 							<a href='#'><FaInstagram /></a>
 							<a href='#'><RiWhatsappFill /></a>
-						</div>
-					</div>
-				</div>
-				<div className={style.copyright}>
-					<span>2022 &copy; Todos os direitos reservados</span>
-					<span>MãeTerra - CNPJ: 33.727.589/0001-27 / Imbituba - SC.</span>
-					<span>Desenvolvido por <a target="_blank" href="https://www.twitter.com/1ziht">thiz</a></span>
-				</div>
-			</footer>
+						</SocialMedia>
+					</FooterOption>
+				</Middle>
+				<Copyright>
+					<CopyrightSpan>2022 &copy; Todos os direitos reservados</CopyrightSpan>
+					<CopyrightSpan>MãeTerra - CNPJ: 33.727.589/0001-27 / Imbituba - SC.</CopyrightSpan>
+					<CopyrightSpan>Desenvolvido por <CopyrightLink target="_blank" href="https://www.twitter.com/1ziht">thiz</CopyrightLink></CopyrightSpan>
+				</Copyright>
+			</ContainerFooter>
 		</>
 	)
 }

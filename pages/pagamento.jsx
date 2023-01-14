@@ -30,26 +30,24 @@ export default function Pagamento() {
 		notifyError({ msg: "Você precisa fazer login para acessar essa página." })
 		setToggleLoginModal(true)
 	}, [])
-
+	if (!auth.user) return null;
 	return (
 		<>
-			{Object.keys(auth).length === 0 ? '' :
-				<div className="page">
-					<Head>
-						<title>Pagamento - THIZ</title>
-					</Head>
-					<div className={style.container}>
-						<Items />
-						<div className={style.checkout}>
-							<h1 className={style.title}>FINALIZAR COMPRA</h1>
-							<Inputs />
-							<>
-								<Paypal />
-							</>
-						</div>
+			<div className="page">
+				<Head>
+					<title>Pagamento - THIZ</title>
+				</Head>
+				<div className={style.container}>
+					<Items />
+					<div className={style.checkout}>
+						<h1 className={style.title}>FINALIZAR COMPRA</h1>
+						<Inputs />
+						<>
+							<Paypal />
+						</>
 					</div>
 				</div>
-			}
+			</div>
 			<div className="marginFooter"></div>
 		</>
 

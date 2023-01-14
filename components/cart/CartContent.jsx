@@ -24,7 +24,7 @@ export default function CartContent() {
 			</div>
 			<div className={style.btContainer}>
 				<div className={style.summaryContainer}>
-					
+
 				</div>
 				<div className={style.totalContainer}>
 					<span className={style.totalPrice}>Total da compra</span>
@@ -33,7 +33,7 @@ export default function CartContent() {
 					</div>
 				</div>
 				<div onClick={() => setOpenCart(false)} className={style.checkout}>
-					<Link href="/pagamento"><a className={style.checkoutLink}>continuar</a></Link>
+					<Link href="/pagamento" className={style.checkoutLink}>continuar</Link>
 				</div>
 			</div>
 

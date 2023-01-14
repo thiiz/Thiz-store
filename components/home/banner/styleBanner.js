@@ -11,7 +11,7 @@ const BannerContainer = styled.div`
   background-color: #fdfdfd;
 
   @media(min-width: 1280px) {
-    margin-top: 5rem;
+    margin-top: 5.05rem;
   }
 `;
 
@@ -49,6 +49,7 @@ const ImageContainer = styled.div`
   position: relative;
   width: 50rem;
   height: 50rem;
+  min-width: 43rem;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -62,6 +63,7 @@ const RightBar = styled.div`
   right: 0;
   height: 100%;
   width: 8.5%;
+  z-index: 1;
 `
 const BottomBar = styled.div`
   height: 3.825rem;

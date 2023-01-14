@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NavMenuList, NavMenuListItem, NavMenuListItemLink } from './styleHeaderLinks'
 
@@ -9,16 +8,16 @@ function HeaderLinks() {
 	return (
 		<NavMenuList>
 			<NavMenuListItem>
-				<Link href={link.home}><NavMenuListItemLink active={pathname === link.home ? "active" : ""}>início</NavMenuListItemLink></Link>
+				<NavMenuListItemLink href={link.home} active={pathname === link.home ? "active" : ""}>início</NavMenuListItemLink>
 			</NavMenuListItem>
 			<NavMenuListItem>
-				<Link href={link.products}><NavMenuListItemLink active={pathname === link.products ? "active" : ""}>produtos</NavMenuListItemLink></Link>
+				<NavMenuListItemLink href={link.products} active={pathname === link.products ? "active" : ""}>produtos</NavMenuListItemLink>
 			</NavMenuListItem>
 			<NavMenuListItem>
-				<Link href={link.about}><NavMenuListItemLink active={pathname === link.about ? "active" : ""}>sobre</NavMenuListItemLink></Link>
+				<NavMenuListItemLink href={link.about} active={pathname === link.about ? "active" : ""}>sobre</NavMenuListItemLink>
 			</NavMenuListItem>
 			<NavMenuListItem>
-				<Link href={link.contact}><NavMenuListItemLink active={pathname === link.contact ? "active" : ""}>contato</NavMenuListItemLink></Link>
+				<NavMenuListItemLink href={link.contact} active={pathname === link.contact ? "active" : ""}>contato</NavMenuListItemLink>
 			</NavMenuListItem>
 		</NavMenuList >
 	)

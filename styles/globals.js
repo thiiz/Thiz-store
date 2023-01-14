@@ -36,7 +36,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .marginFooter {
-    margin-bottom: 14.063rem;
+    margin-bottom: 14.563rem;
   }
 
   .background::after {
@@ -74,14 +74,14 @@ const GlobalStyle = createGlobalStyle`
     html {
       font-size: 80%
     }
-  @media (max-width: 785px) {
-    html {
-      font-size: 70%
-    }
-  }
     .marginFooter {
-      margin-bottom: 29.063rem;
+      margin-bottom: 38.563rem;
     }
   }
-`
+  @media (max-width: 785px) {
+      html {
+        font-size: 70%
+      }
+    }
+  `
 export default GlobalStyle

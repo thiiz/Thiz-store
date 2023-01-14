@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { motion } from "framer-motion"
+import Link from 'next/link';
 
 const Container = styled(motion.div)`
     background-color: #f5f5f5;
@@ -49,7 +50,7 @@ const Li = styled.li`
     }
 `;
 
-const MyProfile = styled.a`
+const MyProfile = styled(Link)`
     color: #151515;
     font-family: 'Varela Round', sans-serif;
     text-decoration: none;
