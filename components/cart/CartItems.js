@@ -21,7 +21,7 @@ export default function CartItems({ item }) {
 		<>
 			<div className={style.item}>
 				<div className={style.containerImg}>
-					<Image className={style.productImg} onClick={handleViewProduct} src={item?.image.url} width="105px" height="120px" alt={item?.title} blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(105, 120))}`} placeholder="blur" />
+					<Image className={style.productImg} onClick={handleViewProduct} src={item?.image.url} fill sizes='100%' blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(105, 120))}`} placeholder="blur" />
 				</div>
 				<div className={style.infoProduct}>
 					<div className={style.titleAndDelete}>

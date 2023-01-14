@@ -1,22 +1,23 @@
 .item {
     display: flex;
-    justify-content: space-around;
-    padding: 0 .4rem;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
     border-bottom: 1px solid #ccc
 }
 
 .infoProduct {
-    min-width: 400px;
-    max-width: 400px;
+    min-width: 370px;
+    max-width: 370px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-right: .7rem;
+    justify-content: space-between;
 }
 
 .productTitle {
     max-width: 75%;
-    font-size: 17px;
+    font-size: 1.3rem;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    font-weight: 400;
     text-transform: capitalize;
     white-space: nowrap;
     overflow: hidden;
@@ -32,26 +33,29 @@
 .price {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
-    font-size: .975rem;
+    font-size: 1.2rem;
 }
 
 .containerPriceAndActions {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1rem;
 }
 
-.containerImg img {
+.containerImg {
     cursor: pointer;
-    min-height: 63% !important;
+    position: relative;
+    width: 7.1rem;
+    height: 6rem;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .actions_Button {
     padding: .373rem;
     cursor: pointer;
     color: #333;
-    font-size: 1.22rem;
+    font-size: 1.32rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,16 +75,16 @@
 .actions_Button:active svg {
     padding: 2px;
 }
-.priceContainer{
+
+.priceContainer {
     display: flex;
-    column-gap: .2rem;
-    align-items: center;
+    flex-direction: column;
 }
 
 .oldPrice {
     text-decoration: line-through;
     font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: .98rem;
-    color: #747571;
+    font-weight: 400;
+    font-size: .97rem;
+    color: #757171c2;
 }
