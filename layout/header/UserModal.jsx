@@ -5,12 +5,39 @@ import { useRouter } from 'next/router'
 import { useAuth } from '../../contexts/AuthContext'
 import { useNotify } from '../../contexts/NotifyContext'
 import { useContextUserModal } from '../../contexts/UserModalContext'
+import { useEffect, useRef } from 'react'
 
-export default function UserModal({ scrollDirection }) {
+export default function UserModal({ scrolldirection }) {
 	const { pathname, push } = useRouter()
 	const { toggleUserModal, setToggleUserModal } = useContextUserModal()
 	const { setAuth } = useAuth()
 	const { notifySuccess } = useNotify()
+	const accountRef = useRef();
+
+
+	useEffect(() => {
+		function handleClickOutside(event) {
+			if (event.type === 'mousedown') {
+				if (accountRef.current && !accountRef.current.contains(event.target)) {
+					setToggleUserModal(false);
+				}
+			} else if (event.type === 'keydown') {
+				if (event.key === "Escape") {
+					setToggleUserModal(false);
+				}
+			}
+
+		}
+		if (toggleUserModal) {
+			document.addEventListener("mousedown", handleClickOutside);
+			document.addEventListener("keydown", handleClickOutside);
+		}
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+			document.removeEventListener("keydown", handleClickOutside);
+		};
+	}, [toggleUserModal]);
+
 
 
 	const dropdownVariant = {
@@ -34,21 +61,19 @@ export default function UserModal({ scrollDirection }) {
 			animate={"open"}
 			exit={"closed"}
 			variants={dropdownVariant}
-			scrollDirection={scrollDirection}
+			ref={accountRef}
+			scrolldirection={scrolldirection}
 		>
-			{toggleUserModal ?
-				<Ul>
-					<Li onClick={() => setToggleUserModal(false)}>
-						<MyProfile href="/perfil">Meu perfil</MyProfile>
-					</Li>
-					<Division />
-					<Li>
-						<BtnLogout onClick={handleLogout}>Sair</BtnLogout>
-					</Li>
-				</Ul>
-				:
-				''
-			}
+
+			<Ul>
+				<Li onClick={() => setToggleUserModal(false)}>
+					<MyProfile href="/perfil">Meu perfil</MyProfile>
+				</Li>
+				<Division />
+				<Li>
+					<BtnLogout onClick={handleLogout}>Sair</BtnLogout>
+				</Li>
+			</Ul>
 		</Container>
 	)
 }

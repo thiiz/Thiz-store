@@ -7,7 +7,7 @@ import { SearchProducts } from '../../../../lib/SearchProducts';
 import { setCookie } from 'nookies';
 
 
-export default function Search({ scrollDirection }) {
+export default function Search({ scrolldirection }) {
 	const [items, setItems] = useState([])
 	const [isOpen, setIsOpen] = useState(false)
 	const [find, setFind] = useState(null)
@@ -18,7 +18,7 @@ export default function Search({ scrollDirection }) {
 	const onSubmit = async (data) => {
 		setItems([])
 		setSearching(true)
-		setFind(data.search.replace(/ /g, '+'))
+		setFind(data.search)
 		if (data.search.length !== 0) {
 			const items = await SearchProducts({ search: data.search })
 			setItems(items)
@@ -26,19 +26,22 @@ export default function Search({ scrollDirection }) {
 		}
 	}
 	useEffect(() => {
-		function handleClickOutside(event) {
+		const handleClickOutside = (event) => {
 			if (searchRef.current && !searchRef.current.contains(event.target)) {
 				setIsOpen(false);
 			}
 		}
-		document.addEventListener("mousedown", handleClickOutside);
+
+		if (isOpen) {
+			document.addEventListener("mousedown", handleClickOutside);
+		}
 		return () => {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
-	}, [searchRef]);
+	}, [isOpen]);
 
 	return (
-		<Container ref={searchRef}>
+		<Container ref={searchRef} onKeyDown={(e) => e.key === "Escape" && setIsOpen(false)}>
 			<Form
 				isOpen={isOpen}
 				onClick={() => {
@@ -47,7 +50,7 @@ export default function Search({ scrollDirection }) {
 				onSubmit={handleSubmit(onSubmit)}
 				autoComplete="off"
 			>
-				<Button scrollDirection={scrollDirection} type="submit" isOpen={isOpen}>
+				<Button scrolldirection={scrolldirection} type="submit" isOpen={isOpen}>
 					<GrSearch />
 				</Button>
 
@@ -60,8 +63,8 @@ export default function Search({ scrollDirection }) {
 					/>}
 			</Form>
 			{isOpen &&
-				<Content scrollDirection={scrollDirection}>
-					<SearchModal find={find} scrollDirection={scrollDirection} data={items} searching={searching} setItems={setItems} setIsOpen={setIsOpen} />
+				<Content scrolldirection={scrolldirection}>
+					<SearchModal find={find} data={items} searching={searching} setItems={setItems} setIsOpen={setIsOpen} />
 				</Content>}
 		</Container>
 	)

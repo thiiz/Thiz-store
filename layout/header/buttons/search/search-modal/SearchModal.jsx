@@ -1,10 +1,15 @@
-import { Container, ContainerViewMore, ViewMore } from './styleSearchModal'
-import Link from 'next/link';
+import { Container, ContainerItems, ContainerViewMore, ViewMore } from './styleSearchModal'
 import Items from '../Items';
 import HeaderSearchModal from './HeaderSearchModal';
+import { useRouter } from 'next/router';
 
-export default function SearchModal({ data, searching, setItems, setIsOpen, scroll_direction, find }) {
+export default function SearchModal({ data, searching, setItems, setIsOpen, find }) {
 	const quantity = data?.data?.map(product => product)
+	const { push } = useRouter()
+
+	const viewAllResults = () => {
+		push(`/busca/?term=${find}`)
+	}
 	const handleClose = () => {
 		setIsOpen(false)
 		setItems([])
@@ -12,9 +17,8 @@ export default function SearchModal({ data, searching, setItems, setIsOpen, scro
 	return (
 		<Container
 			initial={{ paddingTop: "0", paddingBottom: "0" }}
-			animate={{ paddingTop: "2.6rem", paddingBottom: "3.3rem" }}
+			animate={{ paddingTop: "2.3rem", paddingBottom: "3.3rem" }}
 			transition={{ delay: .2, duration: .2 }}
-			scrolldirection={scroll_direction}
 		>
 			<HeaderSearchModal searching={searching} find={find} quantity={quantity} handleClose={handleClose} />
 
@@ -26,16 +30,18 @@ export default function SearchModal({ data, searching, setItems, setIsOpen, scro
 							<div className='notFound'>Produto não encontrado.</div>
 						</ContainerViewMore>
 					}
-					{data.data?.map((item, index) => {
-						if (index < 5) {
-							return (
-								<Items key={item.id} item={item} />
-							)
-						}
-					})}
-					{quantity?.length > 2 &&
+					<ContainerItems>
+						{data.data?.map((item, index) => {
+							if (index < 5) {
+								return (
+									<Items key={item.id} item={item} />
+								)
+							}
+						})}
+					</ContainerItems>
+					{quantity?.length > 5 &&
 						<ContainerViewMore>
-							<Link href={`/busca/?term=${find}`}><ViewMore>Ver todos resultados.</ViewMore></Link>
+							<ViewMore onClick={viewAllResults}>Ver todos resultados.</ViewMore>
 						</ContainerViewMore>
 					}
 				</>

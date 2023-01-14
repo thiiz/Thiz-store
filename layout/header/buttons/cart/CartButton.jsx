@@ -5,13 +5,13 @@ import { useMenuCart } from '../../../../contexts/OpenCartMenuContext';
 import { memo } from 'react';
 import { getCartQty } from '../../../../utils/getCartQty';
 
-function ButtonCart({ scrollDirection }) {
+function ButtonCart({ scrolldirection }) {
 	const { setOpenCart } = useMenuCart()
 	const qtyItemInCart = getCartQty()
 	return (
 		<Btn onClick={() => setOpenCart(openCart => !openCart)} type='button'>
 			<FaShoppingCart />
-			<CountCartItems scrollDirection={scrollDirection}>{qtyItemInCart}</CountCartItems>
+			<CountCartItems scrolldirection={scrolldirection}>{qtyItemInCart}</CountCartItems>
 		</Btn>
 	)
 }

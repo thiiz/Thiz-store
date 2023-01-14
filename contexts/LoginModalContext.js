@@ -10,7 +10,7 @@ export default function LoginMenuProvider({ children }) {
 	const { auth } = useAuth()
 
 	useEffect(() => {
-		if (toggleLoginModal && !auth) {
+		if (toggleLoginModal) {
 			document.body.style.overflowY = 'hidden'
 			return
 		}

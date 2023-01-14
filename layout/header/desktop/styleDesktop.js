@@ -6,7 +6,7 @@ const Container = styled.div`
 	align-items: center;
 	transition: 250ms ease;
 	${(props) => {
-		switch (props.scrollDirection) {
+		switch (props.scrolldirection) {
 			case "down":
 				return css`
 					font-size: 75%;
@@ -23,7 +23,7 @@ const Container = styled.div`
 	}}
 	@media(min-width: 1280px) {
 		${(props) => {
-		switch (props.scrollDirection) {
+		switch (props.scrolldirection) {
 			case 'down':
 				return css`
 					padding: 0 10rem;
@@ -37,7 +37,7 @@ const Container = styled.div`
 }
 	@media(min-width: 500px) and (max-width: 1279px) {
 		${(props) => {
-		switch (props.scrollDirection) {
+		switch (props.scrolldirection) {
 			case 'small':
 				return css`
 					padding: 0 .5rem;

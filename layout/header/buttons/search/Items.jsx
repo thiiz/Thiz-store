@@ -1,6 +1,7 @@
-import { Container, ContainerImg, Price, ProductImg, Title } from './styleItem'
+import { Container, ContainerImg, Price, Title } from './styleItem'
+import Image from "next/image";
 import { useRouter } from "next/router";
-import { toBase64, shimmer } from '../../../../utils/loadImage'
+import { rgbDataURL } from '../../../../utils/blurImage'
 
 
 export default function Items({ item }) {
@@ -11,12 +12,12 @@ export default function Items({ item }) {
 	return (
 		<Container>
 			<ContainerImg onClick={handleViewProduct}>
-				<ProductImg
+				<Image
 					src={item?.image.url}
 					alt={item?.title}
-					width={128}
-					height={120}
-					blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(105, 120))}`}
+					fill
+					sizes='100%'
+					blurDataURL={rgbDataURL(255, 255, 255)}
 					placeholder="blur"
 				/>
 			</ContainerImg>

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { BannerContainer, TitleContainer, MainSubTitle, MainTitle, ImageContainer, RightBar, BottomBar } from './styleBanner'
-import { shimmer, toBase64 } from '../../../utils/loadImage';
+import { rgbDataURL } from '../../../utils/blurImage';
 
 export default function Banner() {
 
@@ -20,8 +20,8 @@ export default function Banner() {
 					<Image src='/thiz_this_is_girl_with_background_transparent.png' alt='girl looking left with background transparent'
 						width={1280}
 						height={1980}
-						blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(800, 800))}`}
-						placeholder={"blur"}
+						blurDataURL={rgbDataURL(255, 255, 255)}
+						placeholder="blur"
 					/>
 				</ImageContainer>
 				<RightBar />

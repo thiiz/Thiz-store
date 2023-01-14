@@ -5,7 +5,7 @@ export default function Contato() {
 	return (
 		<>
 			<Head>
-				<title>Contato - THIZ</title>
+				<title>Contato | Thiz</title>
 			</Head>
 			<div className='page'>
 				<>Pagina Contato</>

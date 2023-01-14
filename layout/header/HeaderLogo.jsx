@@ -1,11 +1,10 @@
 import { ContainerLogo } from './styleHeaderLogo.js'
-import Link from 'next/link'
 import Image from 'next/image'
 
-function HeaderLogo({ scrollDirection }) {
+function HeaderLogo({ scrolldirection }) {
 	return (
-		<ContainerLogo scrollDirection={scrollDirection}>
-			<Link href="/"><Image src='/logo-thiz.png' alt='logo-natureza' fill sizes="100%"></Image></Link>
+		<ContainerLogo scrolldirection={scrolldirection} href="/">
+			<Image src='/logo-thiz.png' alt='logo-natureza' fill sizes="100%" />
 		</ContainerLogo>
 
 	)

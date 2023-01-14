@@ -1,39 +1,25 @@
 import { Button, Container, Loader, UserName } from './styleAccountButton'
 import { useContextUserModal } from '../../../../contexts/UserModalContext'
 import { AnimatePresence } from 'framer-motion'
-import { useEffect, useRef } from 'react'
 import { FaUserCircle } from 'react-icons/fa'
 import UserModal from '../../UserModal'
 import { useToggleLoginModal } from '../../../../contexts/LoginModalContext'
 import { useAuth } from '../../../../contexts/AuthContext'
 
-export default function AccountButton({ scrollDirection }) {
+export default function AccountButton({ scrolldirection }) {
 	const { setToggleLoginModal } = useToggleLoginModal()
 	const { toggleUserModal, setToggleUserModal } = useContextUserModal()
 	const { auth, isLoading } = useAuth()
-	const accountRef = useRef();
-
-	useEffect(() => {
-		function handleClickOutside(event) {
-			if (accountRef.current && !accountRef.current.contains(event.target)) {
-				setToggleUserModal(false);
-			}
-		}
-		document.addEventListener("mousedown", handleClickOutside);
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
-		};
-	}, [accountRef]);
 
 	return (
-		<Container ref={accountRef}>
+		<Container>
 			{auth.user && auth.token ?
 				<Button
 					onClick={() => setToggleUserModal(prev => !prev)}
 					type='button'
 				>
 					<FaUserCircle />
-					{scrollDirection !== "down" &&
+					{scrolldirection !== "down" &&
 						<UserName>{auth.user.name}</UserName>
 					}
 				</Button>
@@ -43,13 +29,13 @@ export default function AccountButton({ scrollDirection }) {
 					type='button'
 				>
 					<FaUserCircle />
-					{scrollDirection !== "down" && isLoading &&
-						<Loader></Loader>
+					{scrolldirection !== "down" && isLoading &&
+						<Loader />
 					}
 				</Button>}
 			<AnimatePresence>
 				{toggleUserModal &&
-					<UserModal scrollDirection={scrollDirection} />
+					<UserModal scrolldirection={scrolldirection} />
 				}
 			</AnimatePresence>
 		</Container>

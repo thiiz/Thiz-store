@@ -59,7 +59,7 @@ const Button = styled.button`
 		border-radius: 50%;
 		transition: background-color 250ms ease;
 		${props => {
-		switch (props.scrollDirection) {
+		switch (props.scrolldirection) {
 			case "down":
 				return css`
 					margin-right: 0;	
@@ -75,9 +75,9 @@ const Button = styled.button`
 const Content = styled.div`
 	position: absolute;
 	transition: 250ms ease;
-	left: -15rem;
+	left: -10rem;
 	${props => {
-		switch (props.scrollDirection) {
+		switch (props.scrolldirection) {
 			case "down":
 				return css`
 					top: 2.25rem;

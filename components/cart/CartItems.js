@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { BsTrash } from 'react-icons/bs'
 import ModalRemove from './modal/ModalRemove'
-import { shimmer, toBase64 } from '../../utils/loadImage'
+import { rgbDataURL } from '../../utils/blurImage'
 
 export default function CartItems({ item }) {
 	const { push } = useRouter()
@@ -21,12 +21,23 @@ export default function CartItems({ item }) {
 		<>
 			<div className={style.item}>
 				<div className={style.containerImg}>
-					<Image className={style.productImg} onClick={handleViewProduct} src={item?.image.url} fill sizes='100%' blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(105, 120))}`} placeholder="blur" />
+					<Image
+						className={style.productImg}
+						onClick={handleViewProduct}
+						src={item?.image.url}
+						alt={item?.title}
+						fill
+						sizes='100%'
+						blurDataURL={rgbDataURL(255, 255, 255)}
+						placeholder="blur"
+					/>
 				</div>
 				<div className={style.infoProduct}>
 					<div className={style.titleAndDelete}>
 						<p className={style.productTitle}>{item?.title}</p>
-						<button onClick={() => setRemove(!remove)} className={style.actions_Button}><BsTrash /></button>
+						<button onClick={() => setRemove(!remove)} className={style.actions_Button}>
+							<BsTrash />
+						</button>
 						{remove && <ModalRemove item={item} setRemoveModal={setRemove} />}
 					</div>
 					<div className={style.containerPriceAndActions}>

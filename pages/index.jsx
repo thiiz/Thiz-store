@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Página Inicial - THIZ</title>
+        <title>Página Inicial | Thiz</title>
       </Head>
       <div className="page">
         <Banner />

@@ -1,11 +1,11 @@
+import Link from 'next/link';
 import styled, { css } from 'styled-components';
 
-const ContainerLogo = styled.div`
- position: relative;
-  
+const ContainerLogo = styled(Link)`
+  position: relative;
   transition: 50ms ease;
   ${(props) => {
-    switch (props.scrollDirection) {
+    switch (props.scrolldirection) {
       case "down":
         return css`
           width: 5.5em;

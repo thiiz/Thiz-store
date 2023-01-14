@@ -12,9 +12,10 @@ const Container = styled(motion.div)`
     -moz-box-shadow: 0 0 8px #000000de;
     box-shadow: 0 0 8px #000000de;
     font-size: 1rem;
+    overflow: hidden;
 
 	${props => {
-        switch (props.scrollDirection) {
+        switch (props.scrolldirection) {
             case "down":
                 return css`
 					top: 2.5em;

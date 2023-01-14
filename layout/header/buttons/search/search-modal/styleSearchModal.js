@@ -6,12 +6,21 @@ const Container = styled(motion.div)`
 	-webkit-box-shadow: 0 0 8px #000000de;
 	-moz-box-shadow: 0 0 8px #000000de;
 	box-shadow: 0 0 8px #000000de;
-	background-color: #fff;
+	background-color: #f1f1f1;
 	transition: 120ms ease-in-out;
 	overflow: hidden;
 	font-family: 'Varela Round', 'Arial', sans-serif;
-	width: 36rem;
+	
 `;
+const ContainerItems = styled.div`
+	background-color: inherit;
+	width: 30rem;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+	z-index: 2;
+	position: relative;
+`
 const ContainerViewMore = styled.div`
 	width: 100%;
 	display: flex;
@@ -31,16 +40,16 @@ const ContainerViewMore = styled.div`
 	}}
 `;
 
-const ViewMore = styled.a`
+const ViewMore = styled.button`
 	cursor: pointer;
 	font-size: 1.05rem;
 	text-decoration: none;
 	color: #2b2b2b;
-
+	border: none;
 &:hover {
 	text-decoration: underline;
 	color: #000;
 }
 `
 
-export { Container, ContainerViewMore, ViewMore }
+export { Container, ContainerItems, ContainerViewMore, ViewMore }

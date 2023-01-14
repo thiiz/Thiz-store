@@ -8,7 +8,7 @@ export default function Produtos({ data }) {
 	return (
 		<>
 			<Head>
-				<title>Produtos - THIZ</title>
+				<title>Produtos | THIZ</title>
 			</Head>
 			<div className="page">
 				<ProductFiltred data={data} />

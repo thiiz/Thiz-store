@@ -12,7 +12,7 @@ const CountCartItems = styled.div`
 	user-select: none;
 
 	${props => {
-		switch (props.scrollDirection) {
+		switch (props.scrolldirection) {
 			case 'down':
 				return css`
 					width: 0.958rem;

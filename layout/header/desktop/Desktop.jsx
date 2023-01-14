@@ -9,16 +9,16 @@ import ContactButton from '../buttons/ContactButton'
 
 
 export default function Desktop() {
-	const scrollDirection = useScrollDirection()
+	const scrolldirection = useScrollDirection()
 	return (
-		<Container scrollDirection={scrollDirection}>
-			<HeaderLogo scrollDirection={scrollDirection} />
+		<Container scrolldirection={scrolldirection}>
+			<HeaderLogo scrolldirection={scrolldirection} />
 			<HeaderLinks />
 			<ContainerButtons>
-				<Search scrollDirection={scrollDirection} />
-				<ContactButton scrollDirection={scrollDirection} />
-				<CartButton scrollDirection={scrollDirection} />
-				<AccountButton scrollDirection={scrollDirection} />
+				<Search scrolldirection={scrolldirection} />
+				<ContactButton scrolldirection={scrolldirection} />
+				<CartButton scrolldirection={scrolldirection} />
+				<AccountButton scrolldirection={scrolldirection} />
 			</ContainerButtons>
 		</Container >
 	)

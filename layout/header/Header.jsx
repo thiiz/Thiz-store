@@ -1,7 +1,7 @@
 import { HeaderContainer } from './styleHeader'
 import { useIsSmall } from '../../lib/MediaQuery'
-import ButtonsMobile from './mobile/Mobile'
-import ButtonsDesktop from './desktop/Desktop'
+import Mobile from './mobile/Mobile'
+import Desktop from './desktop/Desktop'
 
 function Header() {
 	const small = useIsSmall()
@@ -10,9 +10,9 @@ function Header() {
 		<>
 			<HeaderContainer>
 				{small ?
-					<ButtonsMobile />
+					<Mobile />
 					:
-					<ButtonsDesktop />
+					<Desktop />
 				}
 			</HeaderContainer>
 		</>

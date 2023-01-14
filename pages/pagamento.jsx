@@ -35,7 +35,7 @@ export default function Pagamento() {
 		<>
 			<div className="page">
 				<Head>
-					<title>Pagamento - THIZ</title>
+					<title>Pagamento | Thiz</title>
 				</Head>
 				<div className={style.container}>
 					<Items />

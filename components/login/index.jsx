@@ -26,6 +26,7 @@ export default function ModalLogin() {
 			return window.history.replaceState(null, '', '/')
 	}, [query]);
 
+
 	const loginVariant = {
 		open: { opacity: 1, x: 0 },
 		closed: { opacity: 0, x: "-400%" },
@@ -83,7 +84,9 @@ export default function ModalLogin() {
 					animate={toggleLoginModal ? "open" : "closed"}
 					variants={loginVariant} style={toggleLoginModal ? { zIndex: 16 } : ''}
 					transition={{ duration: 0 }}
-					className={style.container}>
+					className={style.container}
+					onKeyDown={(e) => e.key === "Escape" && setToggleLoginModal(false)}
+				>
 					<motion.div
 						className="backdrop"
 						animate={toggleLoginModal ? "visible" : "hidden"}

@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Image from "next/image";
 
 const Container = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     font-family: 'Varela Round', 'Arial', sans-serif;
-    align-items: center;
+    width: 10rem;
+    padding: 0 1rem;
 `;
 
 const ContainerImg = styled.div`
@@ -14,15 +14,16 @@ const ContainerImg = styled.div`
     justify-content: center;
     margin-bottom: .4rem;
 	cursor: pointer;
+    position: relative;
+    width: 8.1rem;
+    height: 7rem;
+    border-radius: 10px;
+    overflow: hidden;
 	`;
-
-const ProductImg = styled(Image)`
-    object-fit: none;
-`;
 
 const Title = styled.div`
     font-size: 15.5px;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
@@ -34,6 +35,7 @@ const Title = styled.div`
 const Price = styled.div`
     font-family: 'Roboto', 'Arial', sans-serif;
     font-size: 15px;
+    text-align: end;
 `;
 
-export { Container, ContainerImg, Price, ProductImg, Title }
+export { Container, ContainerImg, Price, Title }

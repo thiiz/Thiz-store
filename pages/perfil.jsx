@@ -31,18 +31,11 @@ function Perfil() {
 	return (
 		<>
 			<Head>
-				<title>Perfil - THIZ</title>
+				<title>{auth?.user?.name.charAt(0).toUpperCase() + auth.user.name.slice(1)} - Perfil | THIZ</title>
 			</Head>
 			<Profile />
 		</>
 	)
-}
-
-Perfil.getInitialProps = async (ctx) => {
-	console.log(ctx)
-	const res = await fetch('https://api.github.com/repos/vercel/next.js')
-	const json = await res.json()
-	return { stars: json.stargazers_count }
 }
 
 export default Perfil

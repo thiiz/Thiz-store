@@ -8,17 +8,18 @@ import nookies from 'nookies'
 
 export default function Busca() {
 	const { query } = useRouter()
-	const [data, setData] = useState(null)
+	const [data, setData] = useState()
+	const [title, setTitle] = useState('Thiz | Procurando produtos...')
 	useEffect(() => {
-		SearchProducts({ search: query.term }).then((response) => setData(response))
-	}, [query.term]);
+		SearchProducts({ search: query?.term }).then((response) => setData(response.data), setTitle(`${query?.term} - Busca | Thiz`))
+	}, [query?.term]);
 	return (
 		<>
 			<Head>
-				<title>{query.term} - Busca</title>
+				<title>{title}</title>
 			</Head>
 			<main className="page">
-				{data && <ProductFiltred data={data?.data} />}
+				{data?.length !== 0 ? <ProductFiltred data={data} /> : <h2>Nenhum produto relacionado com {query.term} foi encontrado.</h2>}
 			</main>
 			<div className="marginFooter"></div>
 		</>

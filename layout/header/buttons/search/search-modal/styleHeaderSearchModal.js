@@ -6,8 +6,8 @@ const Header = styled.div`
 	align-items: center;
 	width: 100%;
 	position: absolute;
-	right: 0;
-	top: 0;
+    top: 0;
+	z-index: 1;
 `
 
 const ResultTitle = styled.span`
