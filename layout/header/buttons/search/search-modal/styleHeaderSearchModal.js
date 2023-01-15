@@ -5,7 +5,7 @@ const Header = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	position: absolute;
+	position: relative;
     top: 0;
 	z-index: 1;
 `

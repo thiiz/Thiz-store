@@ -7,37 +7,38 @@ const Container = styled(motion.div)`
 	-moz-box-shadow: 0 0 8px #000000de;
 	box-shadow: 0 0 8px #000000de;
 	background-color: #f1f1f1;
-	transition: 120ms ease-in-out;
 	overflow: hidden;
 	font-family: 'Varela Round', 'Arial', sans-serif;
-	
+	right: 0rem;
+	min-width: 100%;
+	${props => {
+		switch (props.scrolldirection) {
+			case "down":
+				return css`
+					top: 2.3rem;
+				`;
+			default:
+				return css`
+				top: 3.85rem;
+				`
+		}
+	}}
 `;
+
 const ContainerItems = styled.div`
 	background-color: inherit;
-	width: 30rem;
-    display: flex;
+    display: grid;
     justify-content: flex-start;
-    flex-wrap: wrap;
-	z-index: 2;
-	position: relative;
+    z-index: 2;
+    position: relative;
+    grid-template-columns: auto auto auto;
 `
 const ContainerViewMore = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	padding: .6rem 0;
-	${props => {
-		switch (props.scrolldirection) {
-			case "down":
-				return css`
-					transform: translateY(2.8rem);
-				`;
-			default:
-				return css`
-					transform: translateY(2.87rem);
-				`
-		}
-	}}
+	margin: .6rem 0;
+
 `;
 
 const ViewMore = styled.button`

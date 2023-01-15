@@ -72,21 +72,5 @@ const Button = styled.button`
 	}
 	}
 		`;
-const Content = styled.div`
-	position: absolute;
-	transition: 250ms ease;
-	left: -10rem;
-	${props => {
-		switch (props.scrolldirection) {
-			case "down":
-				return css`
-					top: 2.25rem;
-				`;
-			default:
-				return css`
-				top: 3.85rem;
-				`
-		}
-	}}
-`
-export { Container, Button, Form, SearchInput, Content }
+
+export { Container, Button, Form, SearchInput }

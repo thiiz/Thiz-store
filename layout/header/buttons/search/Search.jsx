@@ -1,7 +1,7 @@
 import SearchModal from './search-modal/SearchModal';
 import { useEffect, useRef, useState } from 'react';
 import { GrSearch } from 'react-icons/gr';
-import { Container, Button, Form, SearchInput, Content } from './styleSearch'
+import { Container, Button, Form, SearchInput } from './styleSearch'
 import { useForm } from 'react-hook-form';
 import { SearchProducts } from '../../../../lib/SearchProducts';
 import { setCookie } from 'nookies';
@@ -63,9 +63,8 @@ export default function Search({ scrolldirection }) {
 					/>}
 			</Form>
 			{isOpen &&
-				<Content scrolldirection={scrolldirection}>
-					<SearchModal find={find} data={items} searching={searching} setItems={setItems} setIsOpen={setIsOpen} />
-				</Content>}
+				<SearchModal scrolldirection={scrolldirection} find={find} data={items} searching={searching} setItems={setItems} setIsOpen={setIsOpen} />
+			}
 		</Container>
 	)
 }

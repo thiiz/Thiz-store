@@ -3,7 +3,7 @@ import Items from '../Items';
 import HeaderSearchModal from './HeaderSearchModal';
 import { useRouter } from 'next/router';
 
-export default function SearchModal({ data, searching, setItems, setIsOpen, find }) {
+export default function SearchModal({ data, searching, setItems, setIsOpen, find, scrolldirection }) {
 	const quantity = data?.data?.map(product => product)
 	const { push } = useRouter()
 
@@ -16,9 +16,10 @@ export default function SearchModal({ data, searching, setItems, setIsOpen, find
 	}
 	return (
 		<Container
-			initial={{ paddingTop: "0", paddingBottom: "0" }}
-			animate={{ paddingTop: "2.3rem", paddingBottom: "3.3rem" }}
-			transition={{ delay: .2, duration: .2 }}
+			initial={{ height: "0" }}
+			animate={{ height: "auto" }}
+			transition={{ delay: .2, duration: .5 }}
+			scrolldirection={scrolldirection}
 		>
 			<HeaderSearchModal searching={searching} find={find} quantity={quantity} handleClose={handleClose} />
 
