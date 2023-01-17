@@ -1,6 +1,6 @@
 import SearchModal from './search-modal/SearchModal';
 import { useEffect, useRef, useState } from 'react';
-import { GrSearch } from 'react-icons/gr';
+import { GoSearch } from 'react-icons/go';
 import { Container, Button, Form, SearchInput } from './styleSearch'
 import { useForm } from 'react-hook-form';
 import { SearchProducts } from '../../../../lib/SearchProducts';
@@ -10,7 +10,7 @@ import { setCookie } from 'nookies';
 export default function Search({ scrolldirection }) {
 	const [items, setItems] = useState([])
 	const [isOpen, setIsOpen] = useState(false)
-	const [find, setFind] = useState(null)
+	const [find, setFind] = useState()
 	const [searching, setSearching] = useState(false)
 	const { register, handleSubmit } = useForm()
 	const searchRef = useRef();
@@ -18,7 +18,7 @@ export default function Search({ scrolldirection }) {
 	const onSubmit = async (data) => {
 		setItems([])
 		setSearching(true)
-		setFind(data.search)
+		setFind(data?.search)
 		if (data.search.length !== 0) {
 			const items = await SearchProducts({ search: data.search })
 			setItems(items)
@@ -51,7 +51,7 @@ export default function Search({ scrolldirection }) {
 				autoComplete="off"
 			>
 				<Button scrolldirection={scrolldirection} type="submit" isOpen={isOpen}>
-					<GrSearch />
+					<GoSearch />
 				</Button>
 
 				{isOpen &&

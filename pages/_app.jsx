@@ -12,6 +12,8 @@ import UserModalContextProvider from '../contexts/UserModalContext';
 import ModalLogin from '../components/login/index';
 import CartMenu from '../components/cart/CartMenu';
 import CookiesConsentPopup from '../components/cookies-consent/CookiesConsentPopup';
+import { ThemeProvider } from 'styled-components';
+import { theme } from '../styles/theme'
 
 function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
   return (
@@ -40,7 +42,6 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
                   autoClose={3500}
                   hideProgressBar={false}
                   newestOnTop={false}
-                  onClick
                   closeOnClick={true}
                   rtl={false}
                   draggable
@@ -53,7 +54,9 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
                 />
                 <ModalLogin />
                 <CartMenu />
-                <Component {...pageProps} />
+                <ThemeProvider theme={theme}>
+                  <Component {...pageProps} />
+                </ThemeProvider>
               </CartProvider>
             </LoginModalProvider>
           </NotifyProvider>

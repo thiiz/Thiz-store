@@ -6,12 +6,14 @@ import { useNotify } from '../../../contexts/NotifyContext'
 import { patchData } from '../../../utils/fetchData'
 import ShowPass from '../../showpass/ShowPass'
 import style from '../index.module.css'
+import { ContainerForm, Title } from '../styles/styleForms'
+import { ReturnButton } from '../styles/styleHeaderBtns'
 import validPassword from './validPassword'
 
 export default function ChangePass({ setSwitchModal, recoverData }) {
 	const { register, watch, handleSubmit, setValue, setError, setFocus, clearErrors, formState } = useForm({
 		mode: 'onSubmit',
-		shouldFocusError: true,
+		shouldFocusError: false,
 		defaultValues: { password: '', cf_password: '' }
 	})
 	const { errors, isSubmitting } = formState
@@ -26,7 +28,6 @@ export default function ChangePass({ setSwitchModal, recoverData }) {
 	}
 
 	useEffect(() => {
-		console.log('errors:', errors)
 		if (errors.password) setFocus('password')
 		if (errors.cf_password) setFocus('cf_password')
 	}, [errors.password]);
@@ -47,8 +48,12 @@ export default function ChangePass({ setSwitchModal, recoverData }) {
 		return notifySuccess({ msg: res.msg })
 	}
 	return (
-		<div className={style.formContainer}>
-			<form className={style.form} onSubmit={handleSubmit(onSubmit)} >
+		<>
+			<ReturnButton onClick={() => setSwitchModal("verifyRecoverCode")}>
+				<MdKeyboardBackspace />
+			</ReturnButton>
+			<Title><span>Alterar senha</span></Title>
+			<ContainerForm onSubmit={handleSubmit(onSubmit)} >
 				<div
 					className={style.inputGroup}
 					style={errors.password ? { borderColor: "#ff0000" } : {}}
@@ -76,7 +81,7 @@ export default function ChangePass({ setSwitchModal, recoverData }) {
 					style={errors.cf_password ? { borderColor: "#ff0000" } : {}}
 				>
 					<RiLockFill onClick={() => setFocus('cf_password')} className={style.icon} style={errors.cf_password ? { color: "#ff0000" } : {}} />
-					<input {...register('cf_password', { required: 'Digite novamente sua senha' })}
+					<input {...register('cf_password', { required: 'Digite novamente sua senha',  })}
 						onChange={handleChangeInput}
 						className={`${style.input} ${errors.cf_password ? style.inputError : style.inputNormal}`}
 						type="password"
@@ -100,7 +105,7 @@ export default function ChangePass({ setSwitchModal, recoverData }) {
 						<span className={style.btnText}>enviar</span>
 					</button>
 				}
-			</form>
-		</div>
+			</ContainerForm>
+		</>
 	)
 }

@@ -1,10 +1,12 @@
 import style from '../index.module.css'
+import { HeaderBtns, CloseButton, ReturnButton } from '../styles/styleHeaderBtns'
 import { useState } from 'react'
 import { MdEmail, MdKeyboardBackspace } from 'react-icons/md'
 import { useForm } from 'react-hook-form'
 import { postData } from '../../../utils/fetchData'
 import { useNotify } from '../../../contexts/NotifyContext'
 import { validateEmail } from '../../../utils/validateEmail'
+import { ContainerForm, Title } from '../styles/styleForms'
 
 export default function ForgotPass({ setSwitchModal, setRecoverData }) {
 	const { notifySuccess, notifyInfo } = useNotify()
@@ -25,7 +27,6 @@ export default function ForgotPass({ setSwitchModal, setRecoverData }) {
 
 	const onSubmit = async (data) => {
 		if (!validateEmail(data.email)) return setError('email', { type: 'custom', message: 'Endereço de email inválido.' })
-		console.log('passou')
 		const res = await postData('recover/sendCode', data)
 
 		if (res.err) return setError('email', { type: 'custom', message: res.err })
@@ -42,8 +43,11 @@ export default function ForgotPass({ setSwitchModal, setRecoverData }) {
 
 	return (
 		<>
-			<div className={style.loginTitle}><span>Encontre sua conta</span></div>
-			<form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+			<ReturnButton onClick={() => setSwitchModal("login")}>
+				<MdKeyboardBackspace />
+			</ReturnButton>
+			<Title><span>Encontre sua conta</span></Title>
+			<ContainerForm onSubmit={handleSubmit(onSubmit)}>
 				<span style={{ textAlign: "center", fontSize: ".9rem", fontFamily: "Roboto, Arial, sans-serif", color: "#8d8d8d" }}>
 					Insira o endereço de e-mail. Você receberá um código para confirmar que é você.
 				</span>
@@ -77,7 +81,7 @@ export default function ForgotPass({ setSwitchModal, setRecoverData }) {
 						<span className={style.btnText}>enviar</span>
 					</button>
 				}
-			</form>
+			</ContainerForm>
 		</>
 	)
 }

@@ -9,36 +9,9 @@ import { useEffect, useRef } from 'react'
 
 export default function UserModal({ scrolldirection }) {
 	const { pathname, push } = useRouter()
-	const { toggleUserModal, setToggleUserModal } = useContextUserModal()
+	const { setToggleUserModal } = useContextUserModal()
 	const { setAuth } = useAuth()
 	const { notifySuccess } = useNotify()
-	const accountRef = useRef();
-
-
-	useEffect(() => {
-		function handleClickOutside(event) {
-			if (event.type === 'mousedown') {
-				if (accountRef.current && !accountRef.current.contains(event.target)) {
-					setToggleUserModal(false);
-				}
-			} else if (event.type === 'keydown') {
-				if (event.key === "Escape") {
-					setToggleUserModal(false);
-				}
-			}
-
-		}
-		if (toggleUserModal) {
-			document.addEventListener("mousedown", handleClickOutside);
-			document.addEventListener("keydown", handleClickOutside);
-		}
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
-			document.removeEventListener("keydown", handleClickOutside);
-		};
-	}, [toggleUserModal]);
-
-
 
 	const dropdownVariant = {
 		open: { zIndex: "16", opacity: 1, height: "4.738rem", padding: ".5rem 1rem .5rem 1rem" },
@@ -61,7 +34,6 @@ export default function UserModal({ scrolldirection }) {
 			animate={"open"}
 			exit={"closed"}
 			variants={dropdownVariant}
-			ref={accountRef}
 			scrolldirection={scrolldirection}
 		>
 

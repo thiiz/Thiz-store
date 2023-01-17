@@ -1,102 +1,3 @@
-.container {
-	position: fixed;
-	top: 0;
-	height: 100vh;
-	width: 100vw;
-	opacity: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: -1;
-}
-
-.containerMenu {
-	background-color: #ececec;
-	border-radius: 30px 0 30px;
-	overflow: hidden;
-	position: relative;
-	display: grid;
-	justify-content: center;
-	justify-items: center;
-	padding: 0 4.6rem;
-	font-family: 'Varela Round', 'Arial', sans-serif;
-}
-
-
-.containerLogin {
-	grid-template-rows: 1fr 2.5fr;
-}
-
-.containerRegister {
-	grid-template-rows: 0.5fr 2.1fr;
-}
-
-.containerForgotPass {
-	grid-template-rows: 2fr 3.5fr;
-}
-
-.containerVerifyRecoverCode {
-	grid-template-rows: 15fr auto 5fr 15fr;
-}
-
-.changePass {
-	grid-template-rows: 1.2fr 2fr;
-}
-
-.formContainer {
-	height: 70%;
-}
-
-.topBtn {
-	position: absolute;
-	top: 10px;
-	border: none;
-	border-radius: 50%;
-	padding: .375rem;
-	font-size: 1.75rem;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	transition: ease 250ms;
-	user-select: none;
-}
-
-.closeLogin {
-	right: 8px;
-	position: absolute;
-	top: 4px;
-	right: 5px;
-	font-size: 1.54rem;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-}
-
-.returnLogin {
-	left: 15px;
-}
-
-.topBtn svg {
-	transition: 400ms ease-in-out;
-	color: #000;
-	border-radius: 10%;
-}
-
-.topBtn:hover svg {
-	padding: .188rem;
-}
-
-.topBtn:hover {
-	background-color: #57575760;
-}
-
-.loginTitle {
-	margin: auto auto .625rem auto;
-	font-size: 2.625rem;
-	font-weight: 600;
-	font-family: 'Oswald', sans-serif;
-}
-
 .form {
 	display: flex;
 	flex-direction: column;
@@ -315,7 +216,7 @@
 .or::before {
 	content: '';
 	height: .05rem;
-	width: 31%;
+	width: 48%;
 	background-color: #a3a3a3;
 	top: .6rem;
 	left: -1rem;
@@ -327,7 +228,7 @@
 .or::after {
 	content: '';
 	height: .05rem;
-	width: 31%;
+	width: 48%;
 	background-color: #a3a3a3;
 	top: .6rem;
 	right: -1rem;

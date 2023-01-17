@@ -141,7 +141,7 @@ export default async function SendEmailCode(email, { code, name }) {
 			<tr>
 				<td align="center" valign="top" style="padding: 36px 24px;">
 				<a href="https://mae-terra.vercel.app" target="_blank" style="display: inline-block;">
-					<img src="https://mae-terra.vercel.app/_next/image?url=%2Flogo-maeTerra2.png&w=96&q=75" alt="Logo" border="0" width="86" style="display: block; width: 86px; max-width: 86px; min-width: 48px;">
+					<img src="https://thiz.vercel.app/_next/image?url=%2Flogo-thiz.png&w=1920&q=75" alt="Logo" border="0" style="display: block; width: 120px; max-width: 120px; min-width: 86px;">
 				</a>
 				</td>
 			</tr>

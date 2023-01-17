@@ -1,10 +1,9 @@
-import { NextPageContext } from "next";
-import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from "next/document";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 import GlobalStyle from '../styles/globals';
 
 export default class MyDocument extends Document {
-	static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+	static async getInitialProps(ctx) {
 		const sheet = new ServerStyleSheet();
 		const originalRenderPage = ctx.renderPage;
 
@@ -39,8 +38,8 @@ export default class MyDocument extends Document {
 				<Head>
 					<meta charSet="utf-8" />
 					<meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-					<meta name="description" content="Loja de Crochê - MãeTerra"></meta>
-					<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;600&family=Poppins:wght@300;600&family=Roboto:wght@100;300;400;500;700&family=Varela+Round&display=swap" rel="stylesheet" />
+					<meta name="description" content="Loja de Roupas - Thiz Store"></meta>
+					<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;600&family=Oswald:wght@500;600&family=Poppins:wght@300;600&family=Roboto:wght@100;300;400;500;700&family=Varela+Round&display=swap" rel="stylesheet" />
 				</Head>
 				<body>
 					<Main />

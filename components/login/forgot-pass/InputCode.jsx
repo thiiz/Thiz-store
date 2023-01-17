@@ -1,4 +1,5 @@
 import style from '../index.module.css'
+import { ReturnButton } from '../styles/styleHeaderBtns';
 import styleInput from './InputCode.module.css'
 import VerificationInput from "react-verification-input";
 import { useRef } from 'react';
@@ -6,6 +7,7 @@ import { postData } from '../../../utils/fetchData';
 import { useState } from 'react';
 import { useNotify } from '../../../contexts/NotifyContext';
 import { MdKeyboardBackspace } from 'react-icons/md';
+import { Title } from '../styles/styleForms';
 
 const InputCode = ({ setSwitchModal, recoverData, setRecoverData }) => {
 	const [err, setErr] = useState(false)
@@ -30,8 +32,10 @@ const InputCode = ({ setSwitchModal, recoverData, setRecoverData }) => {
 	}
 	return (
 		<>
-			<div className={style.loginTitle}><span>ESQUECEU A SUA SENHA?</span></div>
-			<button style={{ transform: `translate(0, -7px)` }} onClick={() => setSwitchModal("ForgotPass")} className={`${style.returnLogin} ${style.topBtn} `}><MdKeyboardBackspace /></button>
+			<Title><span>ESQUECEU A SUA SENHA?</span></Title>
+			<ReturnButton onClick={() => setSwitchModal("forgotPass")}>
+				<MdKeyboardBackspace />
+			</ReturnButton>
 			<div style={{ textAlign: "center", width: "19rem", margin: "auto auto .625rem auto" }}>
 				<span style={{ fontSize: ".9rem", fontFamily: "Roboto, Arial, sans-serif", color: "#8d8d8d" }}>Digite o código de 6 dígitos que enviamos por e-mail para continuar.</span>
 			</div>

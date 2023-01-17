@@ -1,6 +1,6 @@
-import style from './index.module.css'
+import { Container, ContainerModal, } from './styleIndex'
+import { CloseButton } from './styles/styleHeaderBtns'
 import { GrClose } from 'react-icons/gr'
-import { MdKeyboardBackspace } from 'react-icons/md'
 import Login from './Login'
 import Register from './Register'
 import { useRouter } from 'next/router'
@@ -35,56 +35,24 @@ export default function ModalLogin() {
 		open: { height: "34.2rem", transition: { ease: "easeInOut", duration: .2, delay: .1 } },
 		closed: { height: 0, transition: { ease: "easeInOut", duration: .2, delay: .1 } },
 	}
-	const styleContainer = () => {
-		if (switchModal === "login") return style.containerLogin
-		if (switchModal === "register") return style.containerRegister
-		if (switchModal === "ForgotPass") return style.containerForgotPass
-		if (switchModal === "verifyRecoverCode") return style.containerVerifyRecoverCode
-		if (switchModal === "changePass") return style.changePass
-		return ''
-	}
 
 
 	const Content = () => {
-		if (switchModal === "login") return (
-			<>
-				<div className={style.loginTitle}><span>Iniciar sessão</span></div>
-				<Login setSwitchModal={setSwitchModal} setToggleLoginModal={setToggleLoginModal} />
-			</>
-		)
-		if (switchModal === "register") return (
-			<>
-				<div className={style.loginTitle}>Criar conta</div>
-				<Register setSwitchModal={setSwitchModal} />
-			</>
-		)
-		if (switchModal === "ForgotPass") return (
-			<>
-				<button style={{ transform: `translate(0, -7px)` }} onClick={() => setSwitchModal("login")} className={`${style.returnLogin} ${style.topBtn} `}>
-					<MdKeyboardBackspace />
-				</button>
-				<ForgotPass setSwitchModal={setSwitchModal} recoverData={recoverData} setRecoverData={setRecoverData} />
-			</>
-		)
+		if (switchModal === "login") return <Login setSwitchModal={setSwitchModal} setToggleLoginModal={setToggleLoginModal} />
+		if (switchModal === "register") return <Register setSwitchModal={setSwitchModal} />
+		if (switchModal === "forgotPass") return <ForgotPass setSwitchModal={setSwitchModal} recoverData={recoverData} setRecoverData={setRecoverData} />
 		if (switchModal === "verifyRecoverCode") return <InputCode setSwitchModal={setSwitchModal} recoverData={recoverData} setRecoverData={setRecoverData} />
-		if (switchModal === "changePass") return (
-			<>
-				<button style={{ transform: `translate(0, -7px)` }} onClick={() => setSwitchModal("verifyRecoverCode")} className={`${style.returnLogin} ${style.topBtn} `}><MdKeyboardBackspace /></button>
-				<div className={style.loginTitle}>Alterar senha</div>
-				<ChangePass setSwitchModal={setSwitchModal} recoverData={recoverData} />
-			</>
-		)
-		return ''
+		if (switchModal === "changePass") return <ChangePass setSwitchModal={setSwitchModal} recoverData={recoverData} />
 	}
 
 	return (
 		<>
 			{Object.keys(auth).length === 0 &&
-				<motion.div
+				<Container
+					$toggleLoginModal={toggleLoginModal}
 					animate={toggleLoginModal ? "open" : "closed"}
-					variants={loginVariant} style={toggleLoginModal ? { zIndex: 16 } : ''}
+					variants={loginVariant}
 					transition={{ duration: 0 }}
-					className={style.container}
 					onKeyDown={(e) => e.key === "Escape" && setToggleLoginModal(false)}
 				>
 					<motion.div
@@ -95,25 +63,17 @@ export default function ModalLogin() {
 						onClick={() => pathname !== "/pagamento" && setToggleLoginModal(false)}
 					>
 					</motion.div >
-					<motion.div
-						className={`${style.containerMenu} ${styleContainer()}`}
+					<ContainerModal
 						animate={toggleLoginModal ? "open" : "closed"}
 						variants={loginHeightVariant}
-
+						$switchModal={switchModal}
 					>
-						{pathname === "/pagamento" ?
-							<button
-								onClick={() => push('/') && setToggleLoginModal(false)}
-								className={`${style.returnLogin} ${style.topBtn} `}
-							>
-								<MdKeyboardBackspace />
-							</button>
-							:
-							<button onClick={() => setToggleLoginModal(false)} className={`${style.closeLogin} ${style.topBtn} `}><GrClose /></button>
-						}
+						<CloseButton onClick={() => setToggleLoginModal(false)}>
+							<GrClose />
+						</CloseButton>
 						<Content />
-					</motion.div>
-				</motion.div >
+					</ContainerModal>
+				</Container>
 			}
 		</>
 	)
