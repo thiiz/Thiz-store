@@ -33,16 +33,16 @@ export default function SearchModal({ data, searching, setItems, setIsOpen, find
 					}
 					<ContainerItems>
 						{data.data?.map((item, index) => {
-							if (index < 5) {
+							if (index < 6) {
 								return (
 									<Items key={item.id} item={item} />
 								)
 							}
 						})}
 					</ContainerItems>
-					{quantity?.length > 5 &&
+					{quantity?.length > 6 &&
 						<ContainerViewMore>
-							<ViewMore onClick={viewAllResults}>Ver todos resultados.</ViewMore>
+							<ViewMore onClick={viewAllResults}>Ver todos resultados</ViewMore>
 						</ContainerViewMore>
 					}
 				</>

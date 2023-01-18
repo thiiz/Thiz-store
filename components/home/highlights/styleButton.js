@@ -5,7 +5,7 @@ const fancyStyles = css`
   border: 2px solid #000;
   border-radius: 0;
   box-sizing: border-box;
-  color: #fff;
+  color: ${props => props.theme.text.default};
   cursor: pointer;
   display: inline-block;
   font-weight: 700;
@@ -28,7 +28,7 @@ const fancyStyles = css`
     content: " ";
     width: 1.5625rem;
     height: 2px;
-    background: black;
+    background: ${props => props.theme.bg.contrast};
     top: 50%;
     left: 1.5em;
     position: absolute;
@@ -47,7 +47,7 @@ const fancyStyles = css`
     transition: all 0.3s ease-in-out;
     text-transform: uppercase;
     text-decoration: none;
-    color: black;
+    color: ${props => props.theme.text.default};
   }
   
   .top-key {
@@ -81,17 +81,17 @@ const fancyStyles = css`
   }
   
   &:hover {
-    color: white;
-    background: black;
+    color: ${props => props.theme.bg.default};
+    background: ${props => props.theme.bg.contrast};
   }
   
   &:hover::before {
     width: 0.9375rem;
-    background: white;
+    background: ${props => props.theme.text.contrast};
   }
   
   &:hover .text {
-    color: white;
+    color: ${props => props.theme.text.contrast};
     padding-left: 1.5em;
   }
   

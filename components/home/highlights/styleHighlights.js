@@ -9,13 +9,13 @@ const Container = styled.div`
 			font-family: "Poppins", Arial, Helvetica, sans-serif;
 		}
 `
-const BlackContainer = styled.div`
+const PrimaryContainer = styled.div`
 	height: 25rem;
-	background-color: #191919;
+	background-color: ${props => props.theme.grey};
 `
-const WhiteContainer = styled.div`
+const SecondaryContainer = styled.div`
 	height: 25rem;
-	background-color: #fff;
+	background-color: ${props => props.theme.bg.default};
 	text-align: center;
     display: flex;
     align-items: center;
@@ -28,13 +28,14 @@ const TitleContainer = styled.div`
 	`
 const Title = styled.h2`
     font-size: 7.15rem;
- 	color: #fff;
+ 	color: ${props => props.theme.text.contrast};
 	font-weight: 600;
 
 `
 const SubTitle = styled.h3`
 	font-weight: 600;
-	font-size: 1.9rem
+	font-size: 1.9rem;
+	color: ${props => props.theme.text.default};
 `
 const InfoContainer = styled.div`
 	display: flex;
@@ -48,11 +49,17 @@ const TextContainer = styled.div`
 	justify-content: flex-end;
 	width: 100%;
 	margin-bottom: 1rem;
+
+	& .primary{
+		color: ${props => props.theme.text.contrast};
+	}
+	& .secondary{
+		color: ${props => props.theme.text.default};
+	}
 `
 const Text = styled.span`
  	font-size: 1.25rem;
 	font-weight: 300;
- 	color: ${props => props.textColor};
 	padding: 0 5rem;
 	width: 55rem;
 `
@@ -70,4 +77,4 @@ const ImageContainer = styled.div`
   align-items: center;
 `
 
-export { Container, BlackContainer, WhiteContainer, InfoContainer, TitleContainer, Title, SubTitle, TextContainer, Text, ImageContainer }
+export { Container, PrimaryContainer, SecondaryContainer, InfoContainer, TitleContainer, Title, SubTitle, TextContainer, Text, ImageContainer }

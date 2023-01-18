@@ -24,10 +24,11 @@ const Close = styled.button`
 	align-items: center;
 	transition: ease 250ms;
 	user-select: none;
+	color: ${props => props.theme.text.default};
 	background-color:transparent;
 	& svg { transition: 250ms ease-in-out; border-radius: 10%; }
 	&:hover{
-		 background-color: #dfdfdf;
+		 background-color: ${props => props.theme.hover};
 		  } 
 	&:hover svg {
 		 padding: .138rem;

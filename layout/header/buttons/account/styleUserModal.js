@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import Link from 'next/link';
 
 const Container = styled(motion.div)`
-    background-color: #f5f5f5;
+    background-color: ${props => props.theme.bg.header};
     position: absolute;
     right: -3.2rem;
     min-width: 8.875rem;
@@ -18,11 +18,11 @@ const Container = styled(motion.div)`
         switch (props.scrolldirection) {
             case "down":
                 return css`
-					top: 2.5em;
+					top: 2.45em;
 				`;
             default:
                 return css`
-					top: 4.8em;
+					top: 4.05em;
 				`
         }
     }}
@@ -52,7 +52,7 @@ const Li = styled.li`
 `;
 
 const MyProfile = styled(Link)`
-    color: #151515;
+    color: ${props => props.theme.text.default};
     font-family: 'Varela Round', sans-serif;
     text-decoration: none;
 `;
@@ -66,12 +66,13 @@ const BtnLogout = styled.button`
     width: 100%;
 	background-color: transparent;
     border: none;
+    color: ${props => props.theme.text.default};
 `;
 
 const Division = styled.div`
     height: .125rem;
     width: 120%;
-    background-color: #c7c7c7;
+    background-color: ${props => props.theme.division};
 `;
 
 export { BtnLogout, Container, Division, Li, MyProfile, Ul }

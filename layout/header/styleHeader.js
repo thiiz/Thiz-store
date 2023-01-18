@@ -4,7 +4,7 @@ const HeaderContainer = styled.header`
 	top: 0;
 	width: 100%;
 	z-index: 11;
-	background-color: #f5f5f5;
+	background-color: ${props => props.theme.bg.header};
 	-webkit-box-shadow: 0 8px 6px -6px black;
 	-moz-box-shadow: 0 8px 6px -6px black;
 	box-shadow: 0 8px 6px -6px black;

@@ -13,7 +13,7 @@ const Btn = styled.button`
 	color: inherit;
 
 	&:hover {
-	background-color: #0000002d;
+	background-color: ${props => props.theme.hover};
 }
 
 `;

@@ -6,7 +6,7 @@ const Container = styled(motion.div)`
 	-webkit-box-shadow: 0 0 8px #000000de;
 	-moz-box-shadow: 0 0 8px #000000de;
 	box-shadow: 0 0 8px #000000de;
-	background-color: #f1f1f1;
+	background-color: ${props => props.theme.bg.default};
 	overflow: hidden;
 	font-family: 'Varela Round', 'Arial', sans-serif;
 	right: 0rem;
@@ -45,11 +45,11 @@ const ViewMore = styled.button`
 	cursor: pointer;
 	font-size: 1.05rem;
 	text-decoration: none;
-	color: #2b2b2b;
+	color: ${props => props.theme.text.default};
 	border: none;
+	background-color: transparent;
 &:hover {
 	text-decoration: underline;
-	color: #000;
 }
 `
 

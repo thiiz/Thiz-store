@@ -8,10 +8,10 @@ const BannerContainer = styled.div`
   justify-content: center;
   align-items: center;
   column-gap: 9.7rem;
-  background-color: #fdfdfd;
+  background-color: inherit;
 
   @media(min-width: 1280px) {
-    margin-top: 5.05rem;
+    margin-top: 5.03rem;
   }
 `;
 
@@ -23,21 +23,21 @@ const MainTitle = styled.h1`
   font-weight: 600;
   font-size: 8.85rem;
   line-height: 7.65rem;
-  color: #191919;
+  color: ${props => props.theme.text.default};
   display:flex;
   flex-direction: column;
   font-family: 'Poppins', sans-serif;
 
   span:last-child{
-    color: #fff;
-    background-color: #191919;
+    color: ${props => props.theme.text.contrast};
+    background-color: ${props => props.theme.bg.contrast};
   }
 `;
 
 const MainSubTitle = styled.h2`
   font-weight: 400;
   font-size: 1.65rem;
-  color: #000;
+  color: ${props => props.theme.text.default};
   margin-bottom: 5.45rem;
   text-transform: uppercase;
   font-family: 'Poppins', sans-serif;
@@ -58,7 +58,7 @@ const ImageContainer = styled.div`
 `
 
 const RightBar = styled.div`
-  background-color: #191919;
+  background-color: ${props => props.theme.grey};
   position: absolute;
   right: 0;
   height: 100%;
@@ -68,7 +68,7 @@ const RightBar = styled.div`
 const BottomBar = styled.div`
   height: 3.825rem;
   width: 100%;
-  background-color: #191919;
+  background-color: ${props => props.theme.grey};
   position: absolute;
   bottom: -1rem;
   z-index: 1;

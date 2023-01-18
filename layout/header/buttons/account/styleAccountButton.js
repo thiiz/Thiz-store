@@ -16,7 +16,7 @@ const Button = styled.button`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 0.438rem;
+	padding: 0.338rem;
 	position: relative;
 	font-size: 2.169em;
 	border-radius: 10%;
@@ -36,7 +36,8 @@ const UserName = styled.p`
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	position: relative;
+	position: absolute;
+	bottom: -1rem;
 `;
 
 const Loader = styled.div`

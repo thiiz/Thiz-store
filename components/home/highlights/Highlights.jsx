@@ -1,24 +1,24 @@
 import Image from 'next/image'
 import FancyButton from './FancyButton'
-import { Container, BlackContainer, WhiteContainer, TitleContainer, Title, SubTitle, InfoContainer, TextContainer, Text, ImageContainer } from './styleHighlights'
+import { Container, PrimaryContainer, SecondaryContainer, TitleContainer, Title, SubTitle, InfoContainer, TextContainer, Text, ImageContainer } from './styleHighlights'
 import { rgbDataURL } from '../../../utils/blurImage'
 
 export default function Highlights() {
 	return (
 		<Container>
-			<BlackContainer>
+			<PrimaryContainer>
 				<TitleContainer>
 					<Title>PRODUCT</Title>
 				</TitleContainer>
 				<TextContainer>
-					<Text textColor='#fff'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam modi atque voluptas eaque nulla saepe minima illo minus vitae tempora sapiente eos ipsa quia praesentium.</Text>
+					<Text className='primary'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam modi atque voluptas eaque nulla saepe minima illo minus vitae tempora sapiente eos ipsa quia praesentium.</Text>
 				</TextContainer>
-			</BlackContainer>
-			<WhiteContainer>
+			</PrimaryContainer>
+			<SecondaryContainer>
 				<InfoContainer>
 					<SubTitle>PRODUCT TITLE</SubTitle>
 					<TextContainer>
-						<Text textColor='#000'>Ipsum lorem dolor sit amet consectetur adipisicing elit totam modi atque voluptas eaque nulla saepe minima.</Text>
+						<Text className='secondary'>Ipsum lorem dolor sit amet consectetur adipisicing elit totam modi atque voluptas eaque nulla saepe minima.</Text>
 					</TextContainer>
 					<FancyButton text={"ver mais"} />
 				</InfoContainer>
@@ -32,7 +32,7 @@ export default function Highlights() {
 						placeholder="blur"
 					/>
 				</ImageContainer>
-			</WhiteContainer>
+			</SecondaryContainer>
 		</Container >
 	)
 }

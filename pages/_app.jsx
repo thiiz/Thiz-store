@@ -12,8 +12,7 @@ import UserModalContextProvider from '../contexts/UserModalContext';
 import ModalLogin from '../components/login/index';
 import CartMenu from '../components/cart/CartMenu';
 import CookiesConsentPopup from '../components/cookies-consent/CookiesConsentPopup';
-import { ThemeProvider } from 'styled-components';
-import { theme } from '../styles/theme'
+import ThemeContextProvider from '../contexts/ThemeContext';
 
 function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
   return (
@@ -21,49 +20,49 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <AuthProvider>
-        <OpenCartMenuProvider>
-          <NotifyProvider>
-            <LoginModalProvider>
-              <CartProvider>
-                <UserModalContextProvider>
-                  <Header />
-                </UserModalContextProvider>
-                <NextNProgress
-                  color="#0099ff"
-                  startPosition={0.2}
-                  stopDelayMs={200}
-                  height={6}
-                  showOnShallow={true}
-                />
-                <ToastContainer
-                  position
-                  pauseOnFocusLoss={false}
-                  autoClose={3500}
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  closeOnClick={true}
-                  rtl={false}
-                  draggable
-                  pauseOnHover
-                  progress={undefined}
-                  transition={Flip}
-                  theme="colored"
-                  limit={3}
-                  closeButton
-                />
-                <ModalLogin />
-                <CartMenu />
-                <ThemeProvider theme={theme}>
+      <ThemeContextProvider>
+        <AuthProvider>
+          <OpenCartMenuProvider>
+            <NotifyProvider>
+              <LoginModalProvider>
+                <CartProvider>
+                  <UserModalContextProvider>
+                    <Header />
+                  </UserModalContextProvider>
+                  <NextNProgress
+                    color="#0099ff"
+                    startPosition={0.1}
+                    stopDelayMs={150}
+                    height={6}
+                    showOnShallow={true}
+                  />
+                  <ToastContainer
+                    position
+                    pauseOnFocusLoss={false}
+                    autoClose={3500}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick={true}
+                    rtl={false}
+                    draggable
+                    pauseOnHover
+                    progress={undefined}
+                    transition={Flip}
+                    theme
+                    limit={3}
+                    closeButton
+                  />
+                  <ModalLogin />
+                  <CartMenu />
                   <Component {...pageProps} />
-                </ThemeProvider>
-              </CartProvider>
-            </LoginModalProvider>
-          </NotifyProvider>
-        </OpenCartMenuProvider>
-        <CookiesConsentPopup />
-      </AuthProvider>
-      <Footer />
+                </CartProvider>
+              </LoginModalProvider>
+            </NotifyProvider>
+          </OpenCartMenuProvider>
+          <CookiesConsentPopup />
+        </AuthProvider>
+        <Footer />
+      </ThemeContextProvider>
     </>
   )
 }

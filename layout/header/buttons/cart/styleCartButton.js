@@ -4,13 +4,14 @@ const CountCartItems = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #fff;
-	background-color: #000;
+	color: ${props => props.theme.text.contrast};
+	background-color: ${props => props.theme.bg.contrast};
 	border-radius: 50%;
 	position: absolute;
 	transition: 250ms ease;
 	user-select: none;
-
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: 600;
 	${props => {
 		switch (props.scrolldirection) {
 			case 'down':

@@ -24,17 +24,6 @@ const GlobalStyle = createGlobalStyle`
     max-width: 100vw;
   }
 
-  .page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    top: 0;
-    position: relative;
-    overflow: hidden;
-  }
-
   .marginFooter {
     margin-bottom: 14.563rem;
   }

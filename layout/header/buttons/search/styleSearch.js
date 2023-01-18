@@ -16,7 +16,7 @@ const Form = styled.form`
 		switch (props.isOpen) {
 			case true:
 				return css`
-				background-color: #fff;
+				background-color: ${props => props.theme.bg.modal};
 				border-radius: .4rem;`
 			default:
 				return css`
@@ -36,14 +36,14 @@ const SearchInput = styled.input`
 		background-color: transparent;
 		width: 100%;
 		border: none;
-		color: #000;
+		color: ${props => props.theme.text.default};
 
   &:focus,
   &:active {
 			outline: none;
 		}
   &::placeholder {
-			color: #000;
+		color: ${props => props.theme.text.default};
 		}
 		`;
 
@@ -51,6 +51,7 @@ const Button = styled.button`
 		pointer-events: ${props => (props.isOpen ? "auto" : "none")};
 		cursor: ${props => (props.isOpen ? "pointer" : "none")};
 		background-color: transparent;
+		color: inherit;
 		border: none;
 		font-size: 1.725em;
 		padding: 6px;

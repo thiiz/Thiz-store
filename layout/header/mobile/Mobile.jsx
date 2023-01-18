@@ -3,7 +3,7 @@ import { Container } from './styleMobileButtons'
 import { useState } from 'react'
 import HeaderLogo from '../HeaderLogo'
 import HeaderLinks from '../links/HeaderLinks'
-import ContactButton from '../buttons/ContactButton'
+import ThemeButton from '../buttons/ThemeButton'
 import CartButton from '../buttons/cart/CartButton'
 import ButtonAccount from '../buttons/account/AccountButton'
 import Search from '../buttons/search/Search'
@@ -16,7 +16,7 @@ export default function ButtonsMobile() {
 			<HeaderLogo />
 			<HeaderLinks />
 			<Search />
-			<ContactButton />
+			<ThemeButton />
 			<CartButton />
 			<ButtonAccount />
 			<Hamburger

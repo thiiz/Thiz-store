@@ -2,9 +2,9 @@ import { BtnLogout, Container, Division, Li, MyProfile, Ul } from './styleUserMo
 import Link from 'next/link'
 import { destroyCookie } from 'nookies'
 import { useRouter } from 'next/router'
-import { useAuth } from '../../contexts/AuthContext'
-import { useNotify } from '../../contexts/NotifyContext'
-import { useContextUserModal } from '../../contexts/UserModalContext'
+import { useAuth } from '../../../../contexts/AuthContext'
+import { useNotify } from '../../../../contexts/NotifyContext'
+import { useContextUserModal } from '../../../../contexts/UserModalContext'
 import { useEffect, useRef } from 'react'
 
 export default function UserModal({ scrolldirection }) {

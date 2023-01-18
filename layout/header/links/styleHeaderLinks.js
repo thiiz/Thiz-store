@@ -36,9 +36,9 @@ const NavMenuListItemLink = styled(Link)`
   ${(props) => {
     switch (props.active) {
       case 'active':
-        return `color: inherit;`
+        return `color: ${props.theme.text.default};`
       default: {
-        return `color: #4e4e4e;`
+        return `color: ${props.theme.text.disable};`
       }
     }
   }}

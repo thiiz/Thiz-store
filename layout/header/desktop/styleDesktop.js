@@ -55,6 +55,7 @@ const ContainerButtons = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+	color: ${props => props.theme.text.default};
 `;
 
 export { Container, ContainerButtons }
