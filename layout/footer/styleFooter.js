@@ -12,11 +12,13 @@ const FooterOption = styled.div`
 
   a{
 	text-decoration: none;
-	color: #cacaca;
+	color: ${props => props.theme.text.contrast};
 	font-size: 0.863rem;
 	display: flex;
 	align-items: center;
 	line-height: 1.375rem;
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	font-weight: 300;
 	&:hover {
 		text-decoration: underline;
 	}
@@ -37,10 +39,11 @@ const IconSpan = styled.span`
 const SocialMedia = styled.div`
   display: flex;
   justify-content: space-around;
-
-  a{
-	font-size: 1.725rem;
-  background-color: #006eff;
+  
+  & a{
+  font-size: 1.725rem;
+  color: ${props => props.theme.text.default};
+  background-color: ${props => props.theme.bg.default};
   padding: 0.313rem;
   border-radius: 50%;
   margin-top: 0.625rem;
@@ -58,21 +61,20 @@ const Copyright = styled.div`
 `;
 
 const CopyrightSpan = styled.span`
-  color: #a3a3a3;
   font-size: 0.783rem;
 `;
 
 const CopyrightLink = styled.a`
   text-decoration: none;
-  color: #a3a3a3;
+  color: inherit;
 `;
 
 const ContainerFooter = styled.footer`
   width: 100%;
   height: 14.563rem;
   bottom: 0px;
-  background-color: #181818;
-  color: #fff;
+  background-color: ${props => props.theme.bg.variant};
+  color: ${props => props.theme.text.contrast};
   position: fixed;
   font-family: 'Varela Round', 'Arial', sans-serif;
   display: grid;

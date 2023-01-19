@@ -5,6 +5,7 @@ const lightTheme = {
 		contrast: '#151515',
 		layout: '#f5f5f5',
 		modal: '#f7f7f7',
+		footer: '#f5f5f5',
 	},
 	text: {
 		default: '#151515',
@@ -23,6 +24,7 @@ const darkTheme = {
 		contrast: '#fdfdfd',
 		layout: '#222831',
 		modal: '#11111',
+		footer: '#181818',
 	},
 	text: {
 		default: '#DDDDDD',
