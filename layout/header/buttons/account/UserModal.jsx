@@ -1,12 +1,12 @@
-import { BtnLogout, Container, Division, Li, MyProfile, Ul, ThemeUl, ThemeList, Label, ContainerImg } from './styleUserModal'
-import Link from 'next/link'
+import { Buttons, Container, Division, Li, ContainerLink, Ul } from './styleUserModal'
 import { destroyCookie } from 'nookies'
 import { useRouter } from 'next/router'
 import { useAuth } from '../../../../contexts/AuthContext'
 import { useNotify } from '../../../../contexts/NotifyContext'
 import { useContextUserModal } from '../../../../contexts/UserModalContext'
-import { useEffect, useRef } from 'react'
-import Image from 'next/image'
+import { IoIosHelpCircle } from 'react-icons/io'
+import { RiShieldUserFill } from 'react-icons/ri'
+import { IoLogOut } from 'react-icons/io5'
 
 export default function UserModal({ scrolldirection }) {
 	const { pathname, push } = useRouter()
@@ -15,7 +15,7 @@ export default function UserModal({ scrolldirection }) {
 	const { notifySuccess } = useNotify()
 
 	const dropdownVariant = {
-		open: { zIndex: "16", opacity: 1, height: "16.738rem", padding: ".5rem 1rem .5rem 1rem" },
+		open: { zIndex: "16", opacity: 1, height: "8.138rem", padding: ".67rem .95rem .67rem .95rem" },
 		closed: { zIndex: -1, opacity: 0, height: 0, padding: 0 },
 	}
 	const handleLogout = () => {
@@ -39,43 +39,24 @@ export default function UserModal({ scrolldirection }) {
 		>
 
 			<Ul>
-				<ThemeUl>
-					<h5>Aparência</h5>
-					<ThemeList>
-						<Label>
-							<ContainerImg className='containerImg'>
-								<Image src='/lightTheme.png' alt='light theme image' width={120} height={66} />
-							</ContainerImg>
-							<span>Light</span>
-							<input className='checkbox' name='theme' type="radio" />
-						</Label>
-					</ThemeList>
-					<ThemeList>
-						<Label>
-							<ContainerImg className='containerImg'>
-								<Image src='/lightTheme.png' alt='light theme image' width={120} height={66} />
-							</ContainerImg>
-							<span>Light</span>
-							<input className='checkbox' name='theme' type="radio" />
-						</Label>
-					</ThemeList>
-					<ThemeList>
-						<Label>
-							<ContainerImg className='containerImg'>
-								<Image src='/lightTheme.png' alt='light theme image' width={120} height={66} />
-							</ContainerImg>
-							<span>Light</span>
-							<input className='checkbox' name='theme' type="radio" />
-						</Label>
-					</ThemeList>
-				</ThemeUl>
-				<Division />
 				<Li onClick={() => setToggleUserModal(false)}>
-					<MyProfile href="/perfil">Meu perfil</MyProfile>
+					<ContainerLink href="/perfil"><span>Minha conta</span>
+						<RiShieldUserFill />
+					</ContainerLink>
 				</Li>
 				<Division />
 				<Li>
-					<BtnLogout onClick={handleLogout}>Sair</BtnLogout>
+					<Buttons>
+						<span>Ajuda</span>
+						<IoIosHelpCircle />
+					</Buttons>
+				</Li>
+				<Division />
+				<Li>
+					<Buttons onClick={handleLogout}>
+						<span>Sair</span>
+						<IoLogOut />
+					</Buttons>
 				</Li>
 			</Ul>
 		</Container>

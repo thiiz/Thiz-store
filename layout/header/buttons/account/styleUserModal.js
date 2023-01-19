@@ -6,22 +6,25 @@ const Container = styled(motion.div)`
     background-color: ${props => props.theme.bg.layout};
     position: absolute;
     right: -3.2rem;
-    min-width: 19.875rem;
+    min-width: 12.875rem;
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    font-size: 1rem;
+    -webkit-box-shadow: 0 0 8px #000000de;
+    -moz-box-shadow: 0 0 8px #000000de;
+    box-shadow: 0 0 8px #000000de;
+    font-size: 1em;
     overflow: hidden;
-
+    display: grid;
+    justify-items: stretch;
 	${props => {
         switch (props.scrolldirection) {
             case "down":
                 return css`
-					top: 2.45em;
+					top: 3.265em;
 				`;
             default:
                 return css`
-					top: 4.05em;
-				`;
+					top: 4.08em;
+				`
         }
     }}
 `;
@@ -30,69 +33,56 @@ const Ul = styled.ul`
     display: flex;
     flex-direction: column;
     height: 100%;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.1em;
+    font-size: .85rem;
 `;
 
 const Li = styled.li`
     list-style-type: none;
     cursor: pointer;
+    padding: .2rem;
     transition: 250ms ease-in-out;
-
-	&:hover {
-        color: #000;
+    font-family: 'Varela Round', sans-serif;
+    color: ${props => props.theme.text.default};
+	&:hover button,
+    &:hover a {
         text-decoration: underline;
     }
     &:active {
         transform: scale(0.9);
     }
+    & svg {
+        font-size: 1.72em;
+        color: ${props => props.theme.text.default};
+    }
 `;
 
-const MyProfile = styled(Link)`
-    color: ${props => props.theme.text.default};
-    font-family: 'Varela Round', sans-serif;
+const ContainerLink = styled(Link)`
+    color: inherit;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 `;
 
-const BtnLogout = styled.button`
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    align-items: center;
-    font-size: 0.86em;
-    width: 100%;
+const Buttons = styled.button`
+    font-size: 1em;
 	background-color: transparent;
     border: none;
-    color: ${props => props.theme.text.default};
+    font-family: inherit;
+    color: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
 `;
 
 const Division = styled.div`
     height: .125rem;
-    width: 120%;
+    width: 100%;
     background-color: ${props => props.theme.division};
-`;
-const ThemeUl = styled.ul`
-   border-radius: 30px;
-   width: 2rem;   
-   display: flex;
-   justify-content: center;
-`;
-const ThemeList = styled.li`
-    border-radius: 30px;
+    margin: .3rem 0;
 `;
 
-const ContainerImg = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    width: 89.4px;
-    height: 53px;
-    border-radius: 7px;
-    
-    `;
-const Label = styled.label`
-    `;
 
-export { BtnLogout, Container, Division, Li, MyProfile, Ul, ThemeList, ThemeUl, Label, ContainerImg }
+export { Buttons, Container, Division, Li, ContainerLink, Ul }
