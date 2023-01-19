@@ -1,6 +1,6 @@
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useThemeContext } from "../../../contexts/ThemeContext";
-import { Btn } from "./styleButton";
+import { Btn } from "./styleThemeButton";
 
 export default function ThemeButton() {
 	const { toggleTheme, isDarkTheme } = useThemeContext()

@@ -1,8 +1,9 @@
 const lightTheme = {
 	bg: {
 		default: '#fdfdfd',
+		variant: '#191919',
 		contrast: '#151515',
-		header: '#f5f5f5',
+		layout: '#f5f5f5',
 		modal: '#f7f7f7',
 	},
 	text: {
@@ -12,23 +13,24 @@ const lightTheme = {
 	},
 	hover: '#dfdfdf',
 	division: '#c7c7c7',
-	grey: '#191919',
+
 }
 
 const darkTheme = {
 	bg: {
-		default: '#151515',
+		default: '#222831',
+		variant: '#F4ABC4',
 		contrast: '#fdfdfd',
-		header: '#121212',
+		layout: '#222831',
 		modal: '#11111',
 	},
 	text: {
-		default: '#fdfdfd',
-		contrast: '#151515',
+		default: '#DDDDDD',
+		contrast: '#222831',
 		disable: '#999999',
 	},
 	hover: '#3f3f3f',
-	grey: '#787A91',
+	division: '#5a5a5a',
 }
 
 export { lightTheme, darkTheme }

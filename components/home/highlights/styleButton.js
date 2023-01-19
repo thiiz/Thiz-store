@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 const fancyStyles = css`
   background-color: transparent;
-  border: 2px solid #000;
+  border: 2px solid ${props => props.theme.text.default};
   border-radius: 0;
   box-sizing: border-box;
   color: ${props => props.theme.text.default};
@@ -56,7 +56,7 @@ const fancyStyles = css`
     top: -2px;
     left: 0.625rem;
     position: absolute;
-    background: #e8e8e8;
+    background: ${props => props.theme.text.contrast};
     transition: width 0.5s ease-out, left 0.3s ease-out;
   }
   
@@ -66,7 +66,7 @@ const fancyStyles = css`
     right: 1.875rem;
     bottom: -2px;
     position: absolute;
-    background: #e8e8e8;
+    background: ${props => props.theme.text.contrast};
     transition: width 0.5s ease-out, right 0.3s ease-out;
   }
   
@@ -76,7 +76,7 @@ const fancyStyles = css`
     right: 0.625rem;
     bottom: -2px;
     position: absolute;
-    background: #e8e8e8;
+    background: ${props => props.theme.text.contrast};
     transition: width 0.5s ease-out, right 0.3s ease-out;
   }
   

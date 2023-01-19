@@ -3,14 +3,12 @@ import { motion } from "framer-motion"
 import Link from 'next/link';
 
 const Container = styled(motion.div)`
-    background-color: ${props => props.theme.bg.header};
+    background-color: ${props => props.theme.bg.layout};
     position: absolute;
     right: -3.2rem;
-    min-width: 8.875rem;
+    min-width: 19.875rem;
     border-radius: 10px;
-    -webkit-box-shadow: 0 0 8px #000000de;
-    -moz-box-shadow: 0 0 8px #000000de;
-    box-shadow: 0 0 8px #000000de;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     font-size: 1rem;
     overflow: hidden;
 
@@ -23,7 +21,7 @@ const Container = styled(motion.div)`
             default:
                 return css`
 					top: 4.05em;
-				`
+				`;
         }
     }}
 `;
@@ -74,5 +72,27 @@ const Division = styled.div`
     width: 120%;
     background-color: ${props => props.theme.division};
 `;
+const ThemeUl = styled.ul`
+   border-radius: 30px;
+   width: 2rem;   
+   display: flex;
+   justify-content: center;
+`;
+const ThemeList = styled.li`
+    border-radius: 30px;
+`;
 
-export { BtnLogout, Container, Division, Li, MyProfile, Ul }
+const ContainerImg = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 89.4px;
+    height: 53px;
+    border-radius: 7px;
+    
+    `;
+const Label = styled.label`
+    `;
+
+export { BtnLogout, Container, Division, Li, MyProfile, Ul, ThemeList, ThemeUl, Label, ContainerImg }

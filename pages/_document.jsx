@@ -38,7 +38,8 @@ export default class MyDocument extends Document {
 				<Head>
 					<meta charSet="utf-8" />
 					<meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-					<meta name="description" content="Loja de Roupas - Thiz Store"></meta>
+					<meta name="description" content="✓R$15 Off NO PRIMEIRO PEDIDO|Compre a últimos óculos mais vendidos na Thiz Store, aqui você encontra todos os estilos que deseja a preços pequenos.✓Mais de 500 atualizações diarias"/>
+					<meta name="keywords" content="Óculos Femininas &amp; Masculinas, Loja de óculos Online  Thiz Store"/>
 					<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;600&family=Oswald:wght@500;600&family=Poppins:wght@300;600&family=Roboto:wght@100;300;400;500;700&family=Varela+Round&display=swap" rel="stylesheet" />
 				</Head>
 				<body>

@@ -58,7 +58,7 @@ const ImageContainer = styled.div`
 `
 
 const RightBar = styled.div`
-  background-color: ${props => props.theme.grey};
+  background-color: ${props => props.theme.bg.variant};
   position: absolute;
   right: 0;
   height: 100%;
@@ -68,7 +68,7 @@ const RightBar = styled.div`
 const BottomBar = styled.div`
   height: 3.825rem;
   width: 100%;
-  background-color: ${props => props.theme.grey};
+  background-color: ${props => props.theme.bg.variant};
   position: absolute;
   bottom: -1rem;
   z-index: 1;

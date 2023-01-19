@@ -5,8 +5,8 @@ const Btn = styled.button`
 	border: none;
 	cursor: pointer;
 	display: flex;
-	font-size: 1.625em;
-	padding: 0.438rem;
+	font-size: 1.975em;
+	padding: 0.238rem;
 	border-radius: 50%;
 	transition: background-color 400ms;
 	position: relative;
@@ -17,4 +17,5 @@ const Btn = styled.button`
 }
 
 `;
+
 export { Btn }

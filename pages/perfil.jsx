@@ -6,6 +6,7 @@ import Head from "next/head"
 import Profile from "../components/profile/Profile"
 import { getData } from "../utils/fetchData"
 import { useAuth } from "../contexts/AuthContext"
+import { Page } from "../styles/page"
 
 
 function Perfil() {
@@ -33,7 +34,10 @@ function Perfil() {
 			<Head>
 				<title>{auth?.user?.name.charAt(0).toUpperCase() + auth.user.name.slice(1)} - Perfil | THIZ</title>
 			</Head>
-			<Profile />
+			<Page>
+				<Profile />
+			</Page>
+			<div className="marginFooter"></div>
 		</>
 	)
 }

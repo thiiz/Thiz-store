@@ -38,29 +38,26 @@ export function ProductFiltred({ data }) {
 	}, [])
 
 	useEffect(() => {
+		if (parseCookies().AcceptedCookies === "all") {
+			if (selectedOption?.value === options[0].value) {
+				setFiltred(item)
 
-		if (selectedOption?.value === options[0].value) {
-			setFiltred(item)
-			if (parseCookies().AcceptedCookies === "all") {
 				destroyCookie(null, 'SORT_BY', {
 					path: '/'
 				})
 				return
+
 			}
-		}
-		if (selectedOption?.value === options[1].value) {
-			setFiltred(item?.sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
-			if (parseCookies().AcceptedCookies === "all") {
+			if (selectedOption?.value === options[1].value) {
+				setFiltred(item?.sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
 				setCookie(null, 'SORT_BY', "price_ASC", {
 					maxAge: 86400,
 					path: '/',
 				})
 				return
 			}
-		}
-		if (selectedOption?.value === options[2].value) {
-			setFiltred(item?.sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
-			if (parseCookies().AcceptedCookies === "all") {
+			if (selectedOption?.value === options[2].value) {
+				setFiltred(item?.sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
 				setCookie(null, 'SORT_BY', "price_DESC", {
 					maxAge: 86400,
 					path: '/',

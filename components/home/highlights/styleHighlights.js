@@ -11,7 +11,7 @@ const Container = styled.div`
 `
 const PrimaryContainer = styled.div`
 	height: 25rem;
-	background-color: ${props => props.theme.grey};
+	background-color: ${props => props.theme.bg.variant};
 `
 const SecondaryContainer = styled.div`
 	height: 25rem;

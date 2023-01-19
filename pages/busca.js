@@ -3,6 +3,7 @@ import { SearchProducts } from '../lib/SearchProducts';
 import { ProductFiltred } from '../components/filters/Filters';
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { Page } from '../styles/page'
 import { useState } from "react";
 import nookies from 'nookies'
 
@@ -18,9 +19,9 @@ export default function Busca() {
 			<Head>
 				<title>{title}</title>
 			</Head>
-			<main className="page">
+			<Page>
 				{data?.length !== 0 ? <ProductFiltred data={data} /> : <h2>Nenhum produto relacionado com {query.term} foi encontrado.</h2>}
-			</main>
+			</Page>
 			<div className="marginFooter"></div>
 		</>
 	)

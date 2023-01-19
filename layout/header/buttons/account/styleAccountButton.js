@@ -29,7 +29,7 @@ const Button = styled.button`
 
 
 const UserName = styled.p`
-	font-family: 'Varela Round', sans-serif;
+	font-family: 'Poppins', Arial, Helvetica, sans-serif;
 	font-size: 0.989rem;
 	font-weight: bold;
 	text-transform: capitalize;

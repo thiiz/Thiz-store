@@ -13,8 +13,14 @@ import ModalLogin from '../components/login/index';
 import CartMenu from '../components/cart/CartMenu';
 import CookiesConsentPopup from '../components/cookies-consent/CookiesConsentPopup';
 import ThemeContextProvider from '../contexts/ThemeContext';
+import { useEffect, useState } from 'react';
 
 function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, []);
   return (
     <>
       <Head>
@@ -27,7 +33,7 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
               <LoginModalProvider>
                 <CartProvider>
                   <UserModalContextProvider>
-                    <Header />
+                    {isMounted && <Header />}
                   </UserModalContextProvider>
                   <NextNProgress
                     color="#0099ff"
@@ -54,14 +60,14 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
                   />
                   <ModalLogin />
                   <CartMenu />
-                  <Component {...pageProps} />
+                  {isMounted && <Component {...pageProps} />}
                 </CartProvider>
               </LoginModalProvider>
             </NotifyProvider>
           </OpenCartMenuProvider>
           <CookiesConsentPopup />
         </AuthProvider>
-        <Footer />
+        {isMounted && <Footer />}
       </ThemeContextProvider>
     </>
   )

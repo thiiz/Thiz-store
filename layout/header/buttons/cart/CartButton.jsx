@@ -1,8 +1,6 @@
-import { CountCartItems } from './styleCartButton'
-import { Btn } from '../styleButton';
+import { CountCartItems, Btn } from './styleCartButton'
 import { FaShoppingCart } from 'react-icons/fa';
 import { useMenuCart } from '../../../../contexts/OpenCartMenuContext';
-import { memo } from 'react';
 import { getCartQty } from '../../../../utils/getCartQty';
 
 function ButtonCart({ scrolldirection }) {
@@ -15,4 +13,4 @@ function ButtonCart({ scrolldirection }) {
 		</Btn>
 	)
 }
-export default memo(ButtonCart)
+export default ButtonCart
