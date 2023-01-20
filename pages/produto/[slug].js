@@ -1,13 +1,12 @@
 import style from './slug.module.css'
 import { Image } from 'react-datocms'
-import { gql } from '@apollo/client';
-import client from '../../lib/apolloclient';
-import { VIEW_PRODUCTS_QUERY } from '../../lib/Queries'
+import { SLUG_QUERY, VIEW_PRODUCTS_QUERY } from '../../lib/Queries'
 import Head from 'next/head';
 import StarReview from '../../components/star-review/StarReview';
 import { BsFillBagFill } from 'react-icons/bs'
 import { ImBlocked } from 'react-icons/im'
 import { useCart } from '../../contexts/CartContext';
+import { request } from '../../lib/datocmsRequest';
 
 
 export default function ProductDetails({ product }) {
@@ -48,7 +47,12 @@ export default function ProductDetails({ product }) {
 }
 
 export async function getStaticProps({ params }) {
-	const { data } = await client.query({ query: VIEW_PRODUCTS_QUERY })
+	const data = await request({
+		query: VIEW_PRODUCTS_QUERY,
+		variables: {
+			limit: 100
+		}
+	})
 	const slug = params?.slug
 	const product = data?.allProducts.find((p) => p.slug === slug) || null
 	if (!product) {
@@ -63,12 +67,11 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-	const { data } = await client.query({
-		query: gql`query Slug{
-		  allProducts(first: 100) {
-			slug
-		  }
-		  }`
+	const data = await request({
+		query: SLUG_QUERY,
+		variables: {
+			limit: 100
+		}
 	})
 	const slugs = data?.allProducts.map((p) => ({ params: { slug: p.slug } }))
 	return {

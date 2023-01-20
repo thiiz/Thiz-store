@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 const Container = styled.div`
 	position: absolute;
-	background-color: #fff;
+	background-color: ${props => props.theme.bg.default};
+	color: ${props => props.theme.text.default}; 
 	transform: translateY(81px);
 	width: 54%;
 	box-shadow: 0 0 8px #000000de;
@@ -15,7 +16,7 @@ const Container = styled.div`
 
 	&:before{
 	content: '';
-	background-color: #fff;
+	background-color: ${props => props.theme.bg.default};
 	border-left: 1px solid #000;
 	border-top: 1px solid #000;
 	width: 10px;
@@ -31,6 +32,7 @@ const ModalTitle = styled.h5`
 	font-size: .96rem;
 	text-transform: uppercase;
 	font-size: 600;
+	color: inherit;
 `;
 
 const ModalBody = styled.div`
@@ -39,6 +41,7 @@ const ModalBody = styled.div`
 
 const ModalText = styled.span`
 	font-size: 500;
+	color: inherit;
 `
 
 const ModalHeader = styled.div` 
@@ -56,6 +59,7 @@ background-color: transparent;
 
 svg {
 transition: ease 250ms;
+color: inherit;
 }
 
 &:hover svg {
@@ -89,7 +93,7 @@ const Btn = styled.button`
  border: none; font-size: 15px; 
  font-family: 'Roboto', Arial, Helvetica, sans-serif; 
  cursor: pointer;
- color: #fff; 
+ color: inherit;
  padding: .5rem .98rem; 
  border-radius: 3px; 
  transition: ease 250ms;

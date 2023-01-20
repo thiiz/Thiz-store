@@ -6,7 +6,7 @@ const Container = styled(motion.div)`
 	-webkit-box-shadow: 0 0 8px #000000de;
 	-moz-box-shadow: 0 0 8px #000000de;
 	box-shadow: 0 0 8px #000000de;
-	background-color: ${props => props.theme.bg.default};
+	background-color: ${props => props.theme.bg.layout};
 	overflow: hidden;
 	font-family: 'Varela Round', 'Arial', sans-serif;
 	right: 0rem;

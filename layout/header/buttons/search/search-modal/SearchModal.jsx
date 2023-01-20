@@ -24,7 +24,7 @@ export default function SearchModal({ data, searching, setItems, setIsOpen, find
 			<HeaderSearchModal searching={searching} find={find} quantity={quantity} handleClose={handleClose} />
 
 			{
-				data.length !== 0 &&
+				data?.length !== 0 &&
 				<>
 					{quantity?.length === 0 &&
 						<ContainerViewMore>
@@ -32,7 +32,7 @@ export default function SearchModal({ data, searching, setItems, setIsOpen, find
 						</ContainerViewMore>
 					}
 					<ContainerItems>
-						{data.data?.map((item, index) => {
+						{data?.data?.map((item, index) => {
 							if (index < 6) {
 								return (
 									<Items key={item.id} item={item} />

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
-import { Image } from 'react-datocms'
 import style from './styles/Products.module.css'
 import { useState, useMemo } from 'react';
+import Image from 'next/image';
 
 
 function ProductsItems({ product, grid }) {
@@ -9,7 +9,7 @@ function ProductsItems({ product, grid }) {
 	const handleViewProduct = () => {
 		router.push(`/produto/${product?.slug}`)
 	}
-	const price = product?.price.toFixed(2).toString().replace(".", ",")
+	const price = product?.price.toString()
 	const calc = (Math.round(product?.price / 6 * 100)) / 100.0;
 	const parcel = calc.toString().replace(".", ",");
 	const [newGrid, setNewGrid] = useState({ productContainer: style.productContainerDefault, imageContainer: style.imageContainerDefault })
@@ -24,14 +24,14 @@ function ProductsItems({ product, grid }) {
 	return (
 		<div className={`${style.productContainer} ${newGrid.productContainer}`}>
 			<div onClick={handleViewProduct} className={`${style.imageContainer} ${newGrid.imageContainer}`} >
-				<Image className={`${style.productImg} ${product?.instock === 0 && style.imgUnavailable}`} data={product?.image.responsiveImage} alt={`imagem do produto: ${product?.image.alt}`} layout="responsive" />
+				<Image className={`${style.productImg} ${product?.instock === 0 && style.imgUnavailable}`} src={product.image[0]?.url} alt={`imagem do produto: ${product.image[0]?.fileName}`} fill />
 			</div>
-			<p onClick={handleViewProduct} className={style.title}>{product?.title}</p>
+			<p onClick={handleViewProduct} className={style.title}>{product?.name}</p>
 			<div className={style.containerPrice}>
 				<div className={style.div}></div>
 				<p className={style.price}><strong>R$ {price}</strong></p>
 				{product?.oldPrice !== 0 ?
-					<p className={style.oldPrice}><strong>R$ {product?.oldPrice.toFixed(2).toString().replace(".", ",")}</strong></p>
+					<p className={style.oldPrice}><strong>R$</strong></p>
 					:
 					<p className={style.parcel}>ou 6X <strong>R$ {parcel}</strong></p>
 

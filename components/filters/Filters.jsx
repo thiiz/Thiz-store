@@ -10,8 +10,8 @@ export function ProductFiltred({ data }) {
 	const desktop = useIsLarge()
 	const options = [
 		{ value: 'default', label: 'RECOMENDADO' },
-		{ value: 'price_ASC', label: 'MAIOR VALOR' },
-		{ value: 'price_DESC', label: 'MENOR VALOR' }
+		{ value: 'price_DESC', label: 'MAIOR VALOR' },
+		{ value: 'price_ASC', label: 'MENOR VALOR' }
 	]
 	const [selectedOption, setSelectedOption] = useState(undefined)
 	const [grid, setGrid] = useState(Math.floor(parseCookies().GRID || 4))
@@ -21,10 +21,16 @@ export function ProductFiltred({ data }) {
 		setFiltred(item);
 	}, [data])
 
-	const HandelChangeSortBy = (option) => {
+	const handleChangeSortBy = (option) => {
 		setSelectedOption(option);
-	};
 
+		if (parseCookies().AcceptedCookies === "all") {
+			setCookie(null, 'SORT_BY', option.value, {
+				maxAge: 86400,
+				path: '/',
+			})
+		};
+	}
 	useEffect(() => {
 		if (parseCookies().SORT_BY === options[1].value) {
 			setSelectedOption(options[1])
@@ -38,32 +44,20 @@ export function ProductFiltred({ data }) {
 	}, [])
 
 	useEffect(() => {
-		if (parseCookies().AcceptedCookies === "all") {
-			if (selectedOption?.value === options[0].value) {
-				setFiltred(item)
-
-				destroyCookie(null, 'SORT_BY', {
-					path: '/'
-				})
-				return
-
-			}
-			if (selectedOption?.value === options[1].value) {
-				setFiltred(item?.sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
-				setCookie(null, 'SORT_BY', "price_ASC", {
-					maxAge: 86400,
-					path: '/',
-				})
-				return
-			}
-			if (selectedOption?.value === options[2].value) {
-				setFiltred(item?.sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
-				setCookie(null, 'SORT_BY', "price_DESC", {
-					maxAge: 86400,
-					path: '/',
-				})
-				return
-			}
+		if (selectedOption?.value === options[0].value) {
+			setFiltred(item)
+			destroyCookie(null, 'SORT_BY', {
+				path: '/'
+			})
+			return
+		}
+		if (selectedOption?.value === options[1].value) {
+			setFiltred(item?.sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
+			return
+		}
+		if (selectedOption?.value === options[2].value) {
+			setFiltred(item?.sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
+			return
 		}
 	}, [selectedOption])
 
@@ -74,7 +68,7 @@ export function ProductFiltred({ data }) {
 				<div>
 					<span>ORDENAR POR:</span>
 					<Select
-						onChange={(option) => HandelChangeSortBy(option)}
+						onChange={(option) => handleChangeSortBy(option)}
 						value={selectedOption}
 						instanceId={useId}
 						options={options}
@@ -86,7 +80,7 @@ export function ProductFiltred({ data }) {
 			<div className={style.filterOptions}>
 				<Grid desktop={desktop} grid={grid} setGrid={setGrid} />
 			</div>
-			<ProductView onChange={''} products={filtred} grid={grid} />
+			<ProductView products={filtred} grid={grid} />
 		</div>
 	)
 }

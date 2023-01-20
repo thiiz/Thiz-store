@@ -4,8 +4,7 @@ const lightTheme = {
 		variant: '#191919',
 		contrast: '#151515',
 		layout: '#f5f5f5',
-		modal: '#f7f7f7',
-		footer: '#f5f5f5',
+		footer: '#181818',
 	},
 	text: {
 		default: '#151515',
@@ -22,8 +21,7 @@ const darkTheme = {
 		default: '#222831',
 		variant: '#F4ABC4',
 		contrast: '#fdfdfd',
-		layout: '#222831',
-		modal: '#11111',
+		layout: '#1a1f25',
 		footer: '#181818',
 	},
 	text: {
