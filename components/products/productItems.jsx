@@ -9,11 +9,11 @@ function ProductsItems({ product, grid }) {
 	const handleViewProduct = () => {
 		router.push(`/produto/${product?.slug}`)
 	}
-	const price = product?.price.toString()
-	const calc = (Math.round(product?.price / 6 * 100)) / 100.0;
-	const parcel = calc.toString().replace(".", ",");
+	const price = product?.price.toFixed(2).toString().replace('.', ',')
+	const oldprice = product?.oldPrice?.toFixed(2).toString().replace('.', ',')
+	const calcParcel = (Math.round(product?.price / 6 * 100)) / 100.0;
+	const parcel = calcParcel.toString().replace(".", ",");
 	const [newGrid, setNewGrid] = useState({ productContainer: style.productContainerDefault, imageContainer: style.imageContainerDefault })
-
 
 	useMemo(() => {
 		if (grid === 2) return setNewGrid({ productContainer: style.productContainerTwo, imageContainer: style.imageContainerTwo })
@@ -24,17 +24,20 @@ function ProductsItems({ product, grid }) {
 	return (
 		<div className={`${style.productContainer} ${newGrid.productContainer}`}>
 			<div onClick={handleViewProduct} className={`${style.imageContainer} ${newGrid.imageContainer}`} >
-				<Image className={`${style.productImg} ${product?.instock === 0 && style.imgUnavailable}`} src={product.image[0]?.url} alt={`imagem do produto: ${product.image[0]?.fileName}`} fill />
+				<Image className={`${style.productImg} ${product?.inStock === 0 && style.imgUnavailable}`}
+					src={product?.images[0]?.url}
+					alt={product?.images[0]?.fileName}
+					sizes='100%'
+					fill />
 			</div>
 			<p onClick={handleViewProduct} className={style.title}>{product?.name}</p>
 			<div className={style.containerPrice}>
 				<div className={style.div}></div>
 				<p className={style.price}><strong>R$ {price}</strong></p>
-				{product?.oldPrice !== 0 ?
-					<p className={style.oldPrice}><strong>R$</strong></p>
+				{product?.oldPrice ?
+					<p className={style.oldPrice}><strong>R$ {oldprice}</strong></p>
 					:
 					<p className={style.parcel}>ou 6X <strong>R$ {parcel}</strong></p>
-
 				}
 			</div>
 		</div>

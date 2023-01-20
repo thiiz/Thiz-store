@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 
 export default function SearchModal({ data, searching, setItems, setIsOpen, find, scrolldirection }) {
 	const quantity = data?.data?.map(product => product)
+	console.log(quantity)
 	const { push } = useRouter()
 
 	const viewAllResults = () => {

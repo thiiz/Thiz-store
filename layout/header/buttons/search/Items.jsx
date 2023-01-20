@@ -13,15 +13,15 @@ export default function Items({ item }) {
 		<Container>
 			<ContainerImg onClick={handleViewProduct}>
 				<Image
-					src={item?.image.url}
-					alt={item?.title}
+					src={item?.images[0]?.url}
+					alt={item?.images[0]?.fileName}
 					fill
 					sizes='100%'
 					blurDataURL={rgbDataURL(255, 255, 255)}
 					placeholder="blur"
 				/>
 			</ContainerImg>
-			<Title onClick={handleViewProduct}>{item.title}</Title>
+			<Title onClick={handleViewProduct}>{item.name}</Title>
 			<Price>R${item.price.toFixed(2).toString().replace(".", ",")}</Price>
 		</Container>
 	)

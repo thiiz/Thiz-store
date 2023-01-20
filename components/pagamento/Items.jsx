@@ -23,7 +23,6 @@ const toBase64 = (str) =>
 
 export default function Items() {
 	const { cart, subTotalPrice } = useCart()
-	console.log(cart)
 	return (
 		<section className={style.container}>
 			<div className={style.content}>
@@ -32,16 +31,16 @@ export default function Items() {
 						<h3>Seu carrinho.</h3>
 					</div>
 					{cart?.map((item) => {
-						const qty = item.price * item.qty
+						const qty = item?.price * item?.qty
 						const price = `R$${qty.toFixed(2).toString().replace(".", ",")}`
 						return (
-							<div className={style.products} key={item.id} item={item} >
+							<div className={style.products} key={item?.id} item={item} >
 								<div className={style.containerImg}>
-									<Image className={style.productImg} src={item?.image.url} width="105px" height="120px" alt={item?.title} blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(105, 120))}`} placeholder="blur" />
+									<Image className={style.productImg} src={item?.images[0]?.url} width={100} height={120} alt={item?.images[0]?.fileName} blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(105, 120))}`} placeholder="blur" />
 									<div className={style.productCount}>{item?.qty}</div>
 								</div>
 								<div>
-									<span>{item?.title}</span>
+									<span>{item?.name}</span>
 									<span>{price}</span>
 								</div>
 							</div>

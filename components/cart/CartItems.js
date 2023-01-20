@@ -24,8 +24,8 @@ export default function CartItems({ item }) {
 					<Image
 						className={style.productImg}
 						onClick={handleViewProduct}
-						src={item?.image.url}
-						alt={item?.title}
+						src={item?.images[0]?.url}
+						alt={item?.images[0]?.fileName}
 						fill
 						sizes='100%'
 						blurDataURL={rgbDataURL(255, 255, 255)}
@@ -34,7 +34,7 @@ export default function CartItems({ item }) {
 				</div>
 				<div className={style.infoProduct}>
 					<div className={style.titleAndDelete}>
-						<p className={style.productTitle}>{item?.title}</p>
+						<p className={style.productTitle}>{item?.name}</p>
 						<button onClick={() => setRemove(!remove)} className={style.actions_Button}>
 							<BsTrash />
 						</button>
