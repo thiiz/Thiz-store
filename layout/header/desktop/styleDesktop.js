@@ -2,8 +2,9 @@ import styled, { css } from "styled-components";
 
 const Container = styled.div`
 	display: grid;
-	grid-template-columns: 1fr 0fr 1fr;
+	grid-template-columns: 2fr 7fr 2fr;
 	align-items: center;
+	justify-items: center;
 	transition: 250ms ease;
 	${(props) => {
 		switch (props.scrolldirection) {
@@ -21,16 +22,16 @@ const Container = styled.div`
 		}
 
 	}}
-	@media(min-width: 1280px) {
+		@media(min-width: 1280px) {
 		${(props) => {
 		switch (props.scrolldirection) {
 			case 'down':
 				return css`
-					padding: 0 10rem;
+					padding: 0 1.5rem;
 				`
 			default: {
 				return css`
-				 padding: 0 11rem;`
+				 padding: 0 5rem;`
 			}
 		}
 	}}

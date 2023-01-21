@@ -32,9 +32,7 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
             <NotifyProvider>
               <LoginModalProvider>
                 <CartProvider>
-                  <UserModalContextProvider>
-                    {isMounted && <Header />}
-                  </UserModalContextProvider>
+                  {isMounted && <Header />}
                   <NextNProgress
                     color="#0099ff"
                     startPosition={0.1}

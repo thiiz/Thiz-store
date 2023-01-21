@@ -1,6 +1,5 @@
-import { gql } from "@apollo/client";
 import Head from "next/head"
-import { ProductFiltred } from '../components/filters/Filters';
+import Products from "../components/products";
 import { client } from "../lib/graphcms";
 import { PRODUCTS_QUERY } from "../lib/Queries";
 import { Page } from "../styles/page";
@@ -13,7 +12,7 @@ export default function Produtos({ data }) {
 				<title>Produtos | THIZ</title>
 			</Head>
 			<Page>
-				<ProductFiltred data={data} />
+				<Products data={data} />
 			</Page>
 			<div className="marginFooter"></div>
 		</>

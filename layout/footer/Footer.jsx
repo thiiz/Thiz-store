@@ -33,7 +33,6 @@ export default function Footer() {
 				</Middle>
 				<Copyright>
 					<CopyrightSpan>2022 &copy; Todos os direitos reservados</CopyrightSpan>
-					<CopyrightSpan>MãeTerra - CNPJ: 33.727.589/0001-27 / Imbituba - SC.</CopyrightSpan>
 					<CopyrightSpan>Desenvolvido por <CopyrightLink target="_blank" href="https://www.twitter.com/1ziht">thiz</CopyrightLink></CopyrightSpan>
 				</Copyright>
 			</ContainerFooter>

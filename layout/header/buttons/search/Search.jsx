@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 import { Container, Button, Form, SearchInput } from './styleSearch'
 import { useForm } from 'react-hook-form';
-import { SearchProducts } from '../../../../lib/SearchProducts';
+import { searchProducts } from '../../../../lib/searchProducts';
 import { setCookie } from 'nookies';
 
 
@@ -20,7 +20,7 @@ export default function Search({ scrolldirection }) {
 		setSearching(true)
 		setFind(data?.search)
 		if (data.search.length !== 0) {
-			const items = await SearchProducts({ search: data.search })
+			const items = await searchProducts({ search: data.search })
 			setItems(items)
 			return setSearching(searching => !searching)
 		}

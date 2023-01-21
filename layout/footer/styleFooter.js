@@ -61,7 +61,12 @@ const Copyright = styled.div`
 `;
 
 const CopyrightSpan = styled.span`
-  font-size: 0.783rem;
+  &:not(:last-child){
+	font-size: 0.783rem;
+  }
+  &:last-child{
+	font-size: 0.633rem;
+  }
 `;
 
 const CopyrightLink = styled.a`

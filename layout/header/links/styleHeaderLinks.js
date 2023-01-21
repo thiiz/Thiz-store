@@ -38,7 +38,7 @@ const NavMenuListItemLink = styled(Link)`
       case 'active':
         return `color: ${props.theme.text.default};`
       default: {
-        return `color: ${props.theme.text.disable};`
+        return `color: ${props.theme.disable};`
       }
     }
   }}
