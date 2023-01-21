@@ -1,7 +1,6 @@
 import connectDB from '../../../lib/connectDB'
 import Orders from '../../../models/orderModels'
 import auth from '../../../middleware/auth'
-import { SiteClient } from 'datocms-client'
 
 connectDB()
 
@@ -59,12 +58,6 @@ const createOrder = async (req, res) => {
 }
 
 const sold = async (item) => {
-	const client = new SiteClient(process.env.NEXT_PUBLIC_DATO_CMS_FULL_ACCESS_API_TOKEN);
-
-	const productId = item.id;
-	const product = await client.items.update(productId, {
-		instock: item.instock - item.qty,
-	});
-	console.log(product);
+	
 
 }
