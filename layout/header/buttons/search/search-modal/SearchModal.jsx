@@ -4,8 +4,7 @@ import HeaderSearchModal from './HeaderSearchModal';
 import { useRouter } from 'next/router';
 
 export default function SearchModal({ data, searching, setItems, setIsOpen, find, scrolldirection }) {
-	const quantity = data?.data?.map(product => product)
-	console.log(quantity)
+	const quantity = data?.map(product => product)
 	const { push } = useRouter()
 
 	const viewAllResults = () => {
@@ -33,7 +32,7 @@ export default function SearchModal({ data, searching, setItems, setIsOpen, find
 						</ContainerViewMore>
 					}
 					<ContainerItems>
-						{data?.data?.map((item, index) => {
+						{data?.map((item, index) => {
 							if (index < 6) {
 								return (
 									<Items key={item.id} item={item} />

@@ -20,7 +20,7 @@ export default function Search({ scrolldirection }) {
 		setSearching(true)
 		setFind(data?.search)
 		if (data.search.length !== 0) {
-			const products = await searchProducts({ search: data.search })
+			const { products } = await searchProducts({ search: data.search })
 			setItems(products)
 			return setSearching(searching => !searching)
 		}
