@@ -3,7 +3,6 @@ import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { useEffect, useId, useState } from "react";
 import Select from 'react-select';
 
-
 export default function OrderBy({ data, setFilter }) {
 	const options = [
 		{ value: 'default', label: 'RECOMENDADO' },

@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { Page } from '../styles/page'
 import { useState } from "react";
-import nookies from 'nookies'
 import Products from "../components/products";
 
 export default function Busca() {

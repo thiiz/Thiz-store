@@ -4,8 +4,6 @@ import { GoSearch } from 'react-icons/go';
 import { Container, Button, Form, SearchInput } from './styleSearch'
 import { useForm } from 'react-hook-form';
 import { searchProducts } from '../../../../lib/searchProducts';
-import { setCookie } from 'nookies';
-
 
 export default function Search({ scrolldirection }) {
 	const [items, setItems] = useState(undefined)
@@ -63,7 +61,7 @@ export default function Search({ scrolldirection }) {
 					/>}
 			</Form>
 			{isOpen && find &&
-				<SearchModal scrolldirection={scrolldirection} find={find} setFind={setFind} items={items} loading={loading} setLoading={setLoading} setItems={setItems} setIsOpen={setIsOpen} />
+				<SearchModal scrolldirection={scrolldirection} find={find} setFind={setFind} items={items} loading={loading} setItems={setItems} setIsOpen={setIsOpen} />
 			}
 		</Container>
 	)

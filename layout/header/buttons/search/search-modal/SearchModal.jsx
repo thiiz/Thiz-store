@@ -4,12 +4,11 @@ import HeaderSearchModal from './HeaderSearchModal';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
-export default function SearchModal({ items, setItems, loading, setLoading, setIsOpen, find, setFind, scrolldirection }) {
+export default function SearchModal({ items, setItems, loading, setIsOpen, find, setFind, scrolldirection }) {
 	const { push } = useRouter()
 	const [info, setInfo] = useState('')
 
 	useEffect(() => {
-		console.log(loading)
 		if (loading) {
 			setInfo('Procurando produtos...')
 			return
@@ -19,7 +18,6 @@ export default function SearchModal({ items, setItems, loading, setLoading, setI
 			return
 		}
 		if (items && !loading) {
-			console.log("items", items)
 			setInfo(`Resultados para "${find}" (${items?.length})`)
 		}
 	}, [items, loading])
@@ -35,7 +33,7 @@ export default function SearchModal({ items, setItems, loading, setLoading, setI
 			transition={{ delay: .2, duration: .5 }}
 			scrolldirection={scrolldirection}
 		>
-			{find?.length !== 0 && <HeaderSearchModal info={info} loading={loading} setLoading={setLoading} find={find} setFind={setFind} setItems={setItems} setIsOpen={setIsOpen} />}
+			{find?.length !== 0 && <HeaderSearchModal info={info} setFind={setFind} setItems={setItems} setIsOpen={setIsOpen} />}
 
 			{
 				items?.length !== 0 &&
