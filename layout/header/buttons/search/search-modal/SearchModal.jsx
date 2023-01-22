@@ -2,14 +2,31 @@ import { Container, ContainerItems, ContainerViewMore, ViewMore } from './styleS
 import Items from '../Items';
 import HeaderSearchModal from './HeaderSearchModal';
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
-export default function SearchModal({ data, loading, setItems, setIsOpen, find, scrolldirection }) {
-	const quantity = data?.map(product => product)
-	console.log(quantity)
+export default function SearchModal({ items, setItems, loading, setLoading, setIsOpen, find, setFind, scrolldirection }) {
 	const { push } = useRouter()
+	const [info, setInfo] = useState('')
+
+	useEffect(() => {
+		console.log(loading)
+		if (loading) {
+			setInfo('Procurando produtos...')
+			return
+		}
+		if (items?.length === 0) {
+			setInfo(`Produto não encontrado.`)
+			return
+		}
+		if (items && !loading) {
+			console.log("items", items)
+			setInfo(`Resultados para "${find}" (${items?.length})`)
+		}
+	}, [items, loading])
 
 	const viewAllResults = () => {
-		push(`/busca/?term=${find}`)
+		push(`/busca/?term=${find}`, undefined, { shallow: true })
+		setIsOpen(false)
 	}
 	return (
 		<Container
@@ -18,18 +35,13 @@ export default function SearchModal({ data, loading, setItems, setIsOpen, find, 
 			transition={{ delay: .2, duration: .5 }}
 			scrolldirection={scrolldirection}
 		>
+			{find?.length !== 0 && <HeaderSearchModal info={info} loading={loading} setLoading={setLoading} find={find} setFind={setFind} setItems={setItems} setIsOpen={setIsOpen} />}
 
 			{
-				data?.length !== 0 &&
+				items?.length !== 0 &&
 				<>
-					<HeaderSearchModal loading={loading} find={find} quantity={quantity} setItems={setItems} setIsOpen={setIsOpen} />
-					{quantity?.length === 0 &&
-						<ContainerViewMore>
-							<div className='notFound'>Produto não encontrado.</div>
-						</ContainerViewMore>
-					}
 					<ContainerItems>
-						{data?.map((item, index) => {
+						{items?.map((item, index) => {
 							if (index < 6) {
 								return (
 									<Items key={item.id} item={item} />
@@ -37,7 +49,7 @@ export default function SearchModal({ data, loading, setItems, setIsOpen, find, 
 							}
 						})}
 					</ContainerItems>
-					{quantity?.length > 6 &&
+					{items?.length > 2 &&
 						<ContainerViewMore>
 							<ViewMore onClick={viewAllResults}>Ver todos resultados</ViewMore>
 						</ContainerViewMore>

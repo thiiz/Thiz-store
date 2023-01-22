@@ -46,7 +46,6 @@ const ButtonToggle = styled.button`
 const ContainerFilter = styled.div`
 	display: grid; 
 	align-items: center;
-    justify-items: center;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
 	grid-template-areas: 
@@ -63,7 +62,7 @@ const ContainerFilter = styled.div`
 				return css`
 						border-top: 1px solid ${props => props.theme.bg.layout};
 						border-bottom: 1px solid ${props => props.theme.bg.layout};
-						height: 10rem;
+						height: 15rem;
 					`;
 			default: {
 				return css`
@@ -77,11 +76,13 @@ const ContainerFilter = styled.div`
 
 	& #five{
 		grid-area: five;
+		justify-self: center;
 	}
 
 	& #six {
 		grid-area: six;
-	}	
+		justify-self: flex-end;
+	}
 `;
 
 export { Container, ButtonToggle, ContainerFilter }

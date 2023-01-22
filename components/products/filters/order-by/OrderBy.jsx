@@ -36,16 +36,17 @@ export default function OrderBy({ data, setFilter }) {
 	}, [])
 
 	useEffect(() => {
+		const items = data?.map(item => item)
 		if (selectedOption?.value === options[1].value) {
-			setFilter(data?.sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
+			setFilter(items?.sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
 			return
 		}
 		if (selectedOption?.value === options[2].value) {
-			setFilter(data?.sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
+			setFilter(items?.sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
 			return
 		}
 		if (selectedOption?.value === options[0].value) {
-			setFilter(data)
+			setFilter(items)
 			destroyCookie(null, 'SORT_BY', {
 				path: '/'
 			})

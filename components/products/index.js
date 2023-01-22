@@ -4,7 +4,7 @@ import Filters from './filters/Filters'
 import ProductMap from "./ProductMap";
 import { Container, ProductsTitle } from './styles/styleIndex'
 
-export default function Products({ data }) {
+export default function Products({ data, title }) {
 	const [filter, setFilter] = useState([])
 
 	useMemo(() => {
@@ -12,7 +12,7 @@ export default function Products({ data }) {
 	}, [data])
 	return (
 		<Container>
-			<ProductsTitle>PRODUTOS</ProductsTitle>
+			<ProductsTitle>{title}</ProductsTitle>
 			<ProductsGridProvider>
 				<Filters data={data} filter={filter} setFilter={setFilter} />
 				<ProductMap products={filter} />

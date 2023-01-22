@@ -12,7 +12,7 @@ export default function Produtos({ data }) {
 				<title>Produtos | THIZ</title>
 			</Head>
 			<Page>
-				<Products data={data} />
+				<Products data={data} title={"PRODUTOS"} />
 			</Page>
 			<div className="marginFooter"></div>
 		</>

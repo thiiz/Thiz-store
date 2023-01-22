@@ -8,21 +8,21 @@ import { setCookie } from 'nookies';
 
 
 export default function Search({ scrolldirection }) {
-	const [items, setItems] = useState([])
+	const [items, setItems] = useState(undefined)
 	const [isOpen, setIsOpen] = useState(false)
-	const [find, setFind] = useState()
+	const [find, setFind] = useState(undefined)
 	const [loading, setLoading] = useState(false)
 	const { register, handleSubmit } = useForm()
 	const searchRef = useRef();
 
-	const onSubmit = async (data) => {
-		setItems([])
+	const onSubmit = (data) => {
+		setItems(undefined)
 		setLoading(true)
 		setFind(data?.search)
 		if (data.search.length !== 0) {
-			const { products } = await searchProducts({ search: data.search })
-			setItems(products)
-			return setLoading(searching => !searching)
+			searchProducts({ search: data.search }).then((response) =>
+				setItems(response.products) & setLoading(false)).catch((err) => console.log(err))
+			return
 		}
 	}
 	useEffect(() => {
@@ -62,8 +62,8 @@ export default function Search({ scrolldirection }) {
 						{...register('search', { required: true, pattern: { value: /[_A-Za-z][_0-9A-Za-z]*/ } })}
 					/>}
 			</Form>
-			{isOpen &&
-				<SearchModal scrolldirection={scrolldirection} find={find} data={items} loading={loading} setItems={setItems} setIsOpen={setIsOpen} />
+			{isOpen && find &&
+				<SearchModal scrolldirection={scrolldirection} find={find} setFind={setFind} items={items} loading={loading} setLoading={setLoading} setItems={setItems} setIsOpen={setIsOpen} />
 			}
 		</Container>
 	)

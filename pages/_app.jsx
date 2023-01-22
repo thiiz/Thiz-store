@@ -33,13 +33,6 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
               <LoginModalProvider>
                 <CartProvider>
                   {isMounted && <Header />}
-                  <NextNProgress
-                    color="#0099ff"
-                    startPosition={0.1}
-                    stopDelayMs={150}
-                    height={6}
-                    showOnShallow={true}
-                  />
                   <ToastContainer
                     position
                     pauseOnFocusLoss={false}

@@ -10,7 +10,6 @@ const ContainerLogo = styled(Link)`
         return css`
           width: 5.5em;
           height: 2.25em;
-          margin-top: -2px;
           `;
       default:
         return css`

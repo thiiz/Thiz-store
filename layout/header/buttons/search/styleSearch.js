@@ -16,7 +16,7 @@ const Form = styled.form`
 		switch (props.isOpen) {
 			case true:
 				return css`
-				background-color: ${props => props.theme.bg.modal};
+				background-color: ${props => props.theme.bg.default};
 				border-radius: .4rem;`
 			default:
 				return css`
