@@ -6,15 +6,15 @@ import { Container, ProductsTitle } from './styles/styleIndex'
 
 export default function Products({ data }) {
 	const [filter, setFilter] = useState([])
-	const item = data?.map(item => item)
+
 	useMemo(() => {
-		setFilter(item);
+		setFilter(data);
 	}, [data])
 	return (
 		<Container>
 			<ProductsTitle>PRODUTOS</ProductsTitle>
 			<ProductsGridProvider>
-				<Filters data={item} filter={filter} setFilter={setFilter} />
+				<Filters data={data} filter={filter} setFilter={setFilter} />
 				<ProductMap products={filter} />
 			</ProductsGridProvider>
 		</Container>

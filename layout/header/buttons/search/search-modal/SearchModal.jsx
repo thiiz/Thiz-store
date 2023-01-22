@@ -3,16 +3,13 @@ import Items from '../Items';
 import HeaderSearchModal from './HeaderSearchModal';
 import { useRouter } from 'next/router';
 
-export default function SearchModal({ data, searching, setItems, setIsOpen, find, scrolldirection }) {
+export default function SearchModal({ data, loading, setItems, setIsOpen, find, scrolldirection }) {
 	const quantity = data?.map(product => product)
+	console.log(quantity)
 	const { push } = useRouter()
 
 	const viewAllResults = () => {
 		push(`/busca/?term=${find}`)
-	}
-	const handleClose = () => {
-		setIsOpen(false)
-		setItems([])
 	}
 	return (
 		<Container
@@ -21,11 +18,11 @@ export default function SearchModal({ data, searching, setItems, setIsOpen, find
 			transition={{ delay: .2, duration: .5 }}
 			scrolldirection={scrolldirection}
 		>
-			<HeaderSearchModal searching={searching} find={find} quantity={quantity} handleClose={handleClose} />
 
 			{
 				data?.length !== 0 &&
 				<>
+					<HeaderSearchModal loading={loading} find={find} quantity={quantity} setItems={setItems} setIsOpen={setIsOpen} />
 					{quantity?.length === 0 &&
 						<ContainerViewMore>
 							<div className='notFound'>Produto não encontrado.</div>

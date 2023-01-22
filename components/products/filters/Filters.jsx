@@ -13,12 +13,15 @@ export default function Filters({ data, setFilter }) {
 				<RiArrowDownSLine id="icon" />
 			</ButtonToggle>
 			<ContainerFilter isOpen={isOpen}>
-				<div id="six">
-					<OrderBy setFilter={setFilter} data={data} />
-				</div>
+
 				<div id="five">
 					<Grid />
 				</div>
+
+				<div id="six">
+					<OrderBy setFilter={setFilter} data={data} />
+				</div>
+
 			</ContainerFilter>
 		</Container>
 

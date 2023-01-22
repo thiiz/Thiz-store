@@ -11,18 +11,18 @@ export default function Search({ scrolldirection }) {
 	const [items, setItems] = useState([])
 	const [isOpen, setIsOpen] = useState(false)
 	const [find, setFind] = useState()
-	const [searching, setSearching] = useState(false)
+	const [loading, setLoading] = useState(false)
 	const { register, handleSubmit } = useForm()
 	const searchRef = useRef();
 
 	const onSubmit = async (data) => {
 		setItems([])
-		setSearching(true)
+		setLoading(true)
 		setFind(data?.search)
 		if (data.search.length !== 0) {
 			const { products } = await searchProducts({ search: data.search })
 			setItems(products)
-			return setSearching(searching => !searching)
+			return setLoading(searching => !searching)
 		}
 	}
 	useEffect(() => {
@@ -63,7 +63,7 @@ export default function Search({ scrolldirection }) {
 					/>}
 			</Form>
 			{isOpen &&
-				<SearchModal scrolldirection={scrolldirection} find={find} data={items} searching={searching} setItems={setItems} setIsOpen={setIsOpen} />
+				<SearchModal scrolldirection={scrolldirection} find={find} data={items} loading={loading} setItems={setItems} setIsOpen={setIsOpen} />
 			}
 		</Container>
 	)

@@ -47,8 +47,8 @@ const ContainerFilter = styled.div`
 	display: grid; 
 	align-items: center;
     justify-items: center;
-	grid-template-rows: 1fr 1fr;
 	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
 	grid-template-areas: 
 	'one two three'
 	'four five six';
@@ -57,7 +57,6 @@ const ContainerFilter = styled.div`
 	width: 100%;
 	border: transparent;
 	transition: all .45s cubic-bezier(.785,.135,.15,.86);
-  
 	${props => {
 		switch (props.isOpen) {
 			case true:
@@ -65,8 +64,6 @@ const ContainerFilter = styled.div`
 						border-top: 1px solid ${props => props.theme.bg.layout};
 						border-bottom: 1px solid ${props => props.theme.bg.layout};
 						height: 10rem;
-						animation: 25ms fadeIn 1s;
-  						animation-fill-mode: forwards;
 					`;
 			default: {
 				return css`
@@ -77,15 +74,6 @@ const ContainerFilter = styled.div`
 		}
 	}
 	}
-
-@keyframes fadeIn {
-  99% {
-    overflow: hidden;
-  }
-  100% {
-    overflow: visible;
-  }
-}
 
 	& #five{
 		grid-area: five;

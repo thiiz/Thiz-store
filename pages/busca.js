@@ -13,7 +13,7 @@ export default function Busca() {
 	const [data, setData] = useState()
 	const [title, setTitle] = useState('Thiz | Procurando produtos...')
 	useEffect(() => {
-		searchProducts({ search: query?.term }).then((response) => setData(response.data), setTitle(`${query?.term} - Busca | Thiz`))
+		searchProducts({ search: query?.term }).then((response) => setData(response.products), setTitle(`${query?.term} - Busca | Thiz`))
 	}, [query?.term]);
 	return (
 		<>

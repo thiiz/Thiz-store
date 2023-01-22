@@ -1,11 +1,10 @@
 import { ProductContainer, ImageContainer, ProductImage, Name, ContainerPrice, DivBar, Price, OldPrice, Parcel } from './styles/styleProductItems';
 import { useRouter } from 'next/router';
-import { useState, useMemo } from 'react';
-import Image from 'next/image';
 
 
 export default function ProductsItems({ product, grid }) {
 	const router = useRouter()
+
 	const handleViewProduct = () => {
 		router.push(`/produto/${product?.slug}`)
 	}
