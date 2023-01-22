@@ -21,7 +21,7 @@ const Form = styled.form`
 			default:
 				return css`
 					&:hover ${Button} {
-						background-color: #0000002d;
+						background-color: ${props => props.theme.hover};
   					}
 				`;
 		}
