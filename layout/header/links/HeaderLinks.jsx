@@ -2,9 +2,8 @@ import { useRouter } from 'next/router'
 import { NavMenuList, NavMenuListItem, NavMenuListItemLink } from './styleHeaderLinks'
 
 function HeaderLinks() {
-	const { pathname } = useRouter()
-
-	const link = { home: '/', products: '/produtos', about: '/sobre', contact: '/contato' }
+	const { pathname, query, asPath } = useRouter()
+	const link = { home: '/', products: `/produtos${query.sortBy ? `?sortBy=${query.sortBy}` : ''}`, about: '/sobre', contact: '/contato' }
 	return (
 		<NavMenuList>
 			<NavMenuListItem>

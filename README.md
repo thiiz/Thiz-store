@@ -1,34 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<span style="color:blue">🛍</span> E-commerce com Next.js, Styled Components, Framer Motion, React Hook Forms, Apollo/Client e MongoDB
+Este é um e-commerce construído com o framework Next.js versão 13, utilizando as seguintes ferramentas:
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<span style="color:purple">🎨</span> Styled Components para estilização dos componentes
+<span style="color:green">🚀</span> Framer Motion para animações suaves
+<span style="color:black">📝</span> React Hook Forms para gerenciamento de formulários
+<span style="color:orange">🧪</span> Apollo/Client para gerenciamento de queries e mutations com a API GraphQL
+<span style="color:brown">🗄</span> MongoDB como banco de dados
+Funcionalidades:
+<span style="color:red">🔒</span> Login/registro de usuários
+<span style="color:green">🛒</span> Adição de produtos ao carrinho
+<span style="color:blue">🔍</span> Busca e filtros para os produtos
+<span style="color:yellow">💳</span> Página de pagamento
+<span style="color:gray">🏠</span> Página inicial estática
+<span style="color:purple">🛍</span> Página de produtos também estática

@@ -1,13 +1,13 @@
 import { ProductContainer, ImageContainer, ProductImage, Name, ContainerPrice, DivBar, Price, OldPrice, Parcel } from './styles/styleProductItems';
 import { useRouter } from 'next/router';
 
-
 export default function ProductsItems({ product, grid }) {
 	const router = useRouter()
 
 	const handleViewProduct = () => {
 		router.push(`/produto/${product?.slug}`)
 	}
+	
 	const price = product?.price.toFixed(2).toString().replace('.', ',')
 	const oldprice = product?.oldPrice?.toFixed(2).toString().replace('.', ',')
 	const calcParcel = (Math.round(product?.price / 6 * 100)) / 100.0;

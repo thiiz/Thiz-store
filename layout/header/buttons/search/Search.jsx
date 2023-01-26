@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 import { Container, Button, Form, SearchInput } from './styleSearch'
 import { useForm } from 'react-hook-form';
-import { searchProducts } from '../../../../lib/searchProducts';
+import { getPrevSearchProducts } from '../../../../lib/getProducts';
 
 export default function Search({ scrolldirection }) {
 	const [items, setItems] = useState(undefined)
 	const [isOpen, setIsOpen] = useState(false)
-	const [find, setFind] = useState(undefined)
+	const [searchTerm, setSearchTerm] = useState(undefined)
 	const [loading, setLoading] = useState(false)
 	const { register, handleSubmit } = useForm()
 	const searchRef = useRef();
@@ -16,9 +16,9 @@ export default function Search({ scrolldirection }) {
 	const onSubmit = (data) => {
 		setItems(undefined)
 		setLoading(true)
-		setFind(data?.search)
+		setSearchTerm(data?.search)
 		if (data.search.length !== 0) {
-			searchProducts({ search: data.search }).then((response) =>
+			getPrevSearchProducts({ search: data.search }).then((response) =>
 				setItems(response.products) & setLoading(false)).catch((err) => console.log(err))
 			return
 		}
@@ -60,8 +60,8 @@ export default function Search({ scrolldirection }) {
 						{...register('search', { required: true, pattern: { value: /[_A-Za-z][_0-9A-Za-z]*/ } })}
 					/>}
 			</Form>
-			{isOpen && find &&
-				<SearchModal scrolldirection={scrolldirection} find={find} setFind={setFind} items={items} loading={loading} setItems={setItems} setIsOpen={setIsOpen} />
+			{isOpen && searchTerm &&
+				<SearchModal scrolldirection={scrolldirection} searchTerm={searchTerm} setSearchTerm={setSearchTerm} items={items} loading={loading} setItems={setItems} setIsOpen={setIsOpen} />
 			}
 		</Container>
 	)

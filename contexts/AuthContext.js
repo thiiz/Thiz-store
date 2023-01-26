@@ -17,9 +17,9 @@ export const AuthProvider = ({ children }) => {
 			return
 		}
 		getData('auth/accessToken').then(res => {
-			setIsLoading(false)
 			if (res.err) return localStorage.removeItem("firstLogin")
 			setAuth({ token: res.access_token, user: res.user })
+			setIsLoading(false)
 		})
 	}, [])
 

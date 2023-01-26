@@ -1,11 +1,18 @@
 import { ContainerLabel, OrderBySpan } from './styleOrderBy'
-import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { useEffect, useId, useState } from "react";
 import Select from 'react-select';
+import { getAllProducts } from '../../../../lib/getProducts';
+import { useRouter } from 'next/router';
+import { highToLowSort, lowToHighSort } from './filterOrder';
 
-export default function OrderBy({ data, setFilter }) {
+export default function OrderBy({ products, setProducts, initialProducts }) {
+	const { query, push, pathname, isReady } = useRouter()
+	const term = query.term;
+	const sortBy = query.sortBy;
+	const isSearchPage = term?.length >= 0
+	const items = products?.map(product => product)
 	const options = [
-		{ value: 'default', label: 'RECOMENDADO' },
+		{ value: 'inStock_DESC', label: 'RECOMENDADO' },
 		{ value: 'price_DESC', label: 'MAIOR VALOR' },
 		{ value: 'price_ASC', label: 'MENOR VALOR' }
 	]
@@ -13,44 +20,59 @@ export default function OrderBy({ data, setFilter }) {
 
 	const handleChangeSortBy = (option) => {
 		setSelectedOption(option);
+		const sort = option.value
+		const limit = 12
+		if (option.value === options[0].value) {
 
-		if (parseCookies().AcceptedCookies === "all") {
-			setCookie(null, 'SORT_BY', option.value, {
-				maxAge: 86400,
-				path: '/',
+			getAllProducts(sort, limit).then((response) => {
+				const allProducts = response?.products
+				setProducts(allProducts)
+
+			}).catch(err => {
+				console.log(err)
+				return
 			})
-		};
+
+			if (isSearchPage) {
+				push({ query: { term: term } })
+				return
+			}
+			push(`${pathname}`, undefined, { shallow: true })
+			setProducts(initialProducts)
+			return
+		}
+
+		if (isSearchPage) {
+			push({ query: { term: term, sortBy: option.value } }, undefined, { shallow: true })
+			setProducts(items?.sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
+			return
+		}
+
+		push({ query: { sortBy: option.value } })
+		getAllProducts(sort, limit).then((response) => {
+			const allProducts = response?.products
+
+			setProducts(allProducts)
+			return
+
+		}).catch(err => {
+			console.log(err)
+			return
+		})
 	}
 
 	useEffect(() => {
-		if (parseCookies().SORT_BY === options[1].value) {
+		if (!isReady) return
+		if (!sortBy)
+			return setSelectedOption(options[0])
+
+		if (sortBy === options[1].value) {
 			setSelectedOption(options[1])
 			return
 		}
-		if (parseCookies().SORT_BY === options[2].value) {
-			setSelectedOption(options[2])
-			return
-		}
-		setSelectedOption(options[0])
-	}, [])
+		setSelectedOption(options[2])
+	}, [isReady])
 
-	useEffect(() => {
-		const items = data?.map(item => item)
-		if (selectedOption?.value === options[1].value) {
-			setFilter(items?.sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
-			return
-		}
-		if (selectedOption?.value === options[2].value) {
-			setFilter(items?.sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
-			return
-		}
-		if (selectedOption?.value === options[0].value) {
-			setFilter(items)
-			destroyCookie(null, 'SORT_BY', {
-				path: '/'
-			})
-		}
-	}, [selectedOption])
 	return (
 		<ContainerLabel>
 			<OrderBySpan>ORDENAR POR:</OrderBySpan>

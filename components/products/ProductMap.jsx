@@ -11,7 +11,7 @@ export default function ProductMap({ products }) {
 		<Container grid={desktop ? grid : ''} >
 			{products?.map((product) => {
 				return (
-					<ProductsItems key={product.id} product={product} grid={grid} />
+					<ProductsItems key={product.id} product={product} />
 				);
 			})}
 		</Container>

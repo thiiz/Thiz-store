@@ -4,20 +4,21 @@ import Mobile from './mobile/Mobile'
 import Desktop from './desktop/Desktop'
 import UserModalContextProvider from '../../contexts/UserModalContext'
 import NextNProgress from 'nextjs-progressbar'
-import { useThemeContext } from '../../contexts/ThemeContext'
+import { useContext } from 'react'
+import { ThemeContext } from 'styled-components'
 
 function Header() {
 	const small = useIsSmall()
-	const { isDarkTheme } = useThemeContext()
-
+	const { bg } = useContext(ThemeContext)
 	return (
 		<>
 			<NextNProgress
-				color={isDarkTheme ? '#F4ABC4' : '#0099ff'}
+				color={bg.variant}
 				startPosition={0.1}
 				stopDelayMs={150}
 				height={6}
 				showOnShallow={true}
+				options={{ easing: 'ease', speed: 500 }}
 			/>
 			<UserModalContextProvider>
 				<HeaderContainer>

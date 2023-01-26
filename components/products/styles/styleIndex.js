@@ -14,5 +14,8 @@ const ProductsTitle = styled.h1`
 	font-family: 'Oswald', sans-serif;
 	color: inherit;
 `
+const PaginationButton = styled.button`
+	margin-bottom: 5rem;
+`
 
-export { Container, ProductsTitle }
+export { Container, ProductsTitle, PaginationButton }

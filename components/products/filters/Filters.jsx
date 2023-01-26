@@ -2,10 +2,12 @@ import { Container, ButtonToggle, ContainerFilter } from './styleFilters';
 import Grid from './grid/Grid';
 import OrderBy from './order-by/OrderBy'
 import { RiArrowDownSLine } from 'react-icons/ri'
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import { useMemo } from 'react';
 
-export default function Filters({ data, setFilter }) {
+export default function Filters({ products, setProducts, initialProducts }) {
 	const [isOpen, setIsOpen] = useState(false)
+
 	return (
 		<Container>
 			<ButtonToggle onClick={() => setIsOpen(prev => !prev)} isOpen={isOpen} type="button" id="buttonToggle">
@@ -19,7 +21,7 @@ export default function Filters({ data, setFilter }) {
 				</div>
 
 				<div id="six">
-					<OrderBy setFilter={setFilter} data={data} />
+					<OrderBy setProducts={setProducts} products={products} initialProducts={initialProducts} />
 				</div>
 
 			</ContainerFilter>

@@ -4,8 +4,8 @@ import HeaderSearchModal from './HeaderSearchModal';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
-export default function SearchModal({ items, setItems, loading, setIsOpen, find, setFind, scrolldirection }) {
-	const { push } = useRouter()
+export default function SearchModal({ items, setItems, loading, setIsOpen, searchTerm, setSearchTerm, scrolldirection }) {
+	const { push, query } = useRouter()
 	const [info, setInfo] = useState('')
 
 	useEffect(() => {
@@ -18,12 +18,12 @@ export default function SearchModal({ items, setItems, loading, setIsOpen, find,
 			return
 		}
 		if (items && !loading) {
-			setInfo(`Resultados para "${find}" (${items?.length})`)
+			setInfo(`Resultados para "${searchTerm}" (${items?.length})`)
 		}
 	}, [items, loading])
 
 	const viewAllResults = () => {
-		push(`/busca/?term=${find}`, undefined, { shallow: true })
+		push(`/busca?term=${setSearchTerm}${query.sortBy ? `&sortBy=${query.sortBy}` : ''}`, undefined, { shallow: true })
 		setIsOpen(false)
 	}
 	return (
@@ -33,7 +33,7 @@ export default function SearchModal({ items, setItems, loading, setIsOpen, find,
 			transition={{ delay: .2, duration: .5 }}
 			scrolldirection={scrolldirection}
 		>
-			{find?.length !== 0 && <HeaderSearchModal info={info} setFind={setFind} setItems={setItems} setIsOpen={setIsOpen} />}
+			{setSearchTerm?.length !== 0 && <HeaderSearchModal info={info} setSearchTerm={setSearchTerm} setItems={setItems} setIsOpen={setIsOpen} />}
 
 			{
 				items?.length !== 0 &&

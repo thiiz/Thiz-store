@@ -42,11 +42,11 @@ const UserName = styled.p`
 
 const Loader = styled.div`
 --height-of-loader: .25rem;
---loader-color: #000000;
+--loader-color: ${props => props.theme.text.default};
 width: 90%;
 height: var(--height-of-loader);
 border-radius: 30px;
-background-color: rgba(0, 0, 0, 0.2);
+background-color: ${props => props.theme.disable};
 position: relative;
 margin-top: .25rem;
 

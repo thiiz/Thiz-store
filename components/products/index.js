@@ -1,22 +1,18 @@
-import { useMemo, useState } from "react";
 import ProductsGridProvider from "../../contexts/productsGridContext";
 import Filters from './filters/Filters'
 import ProductMap from "./ProductMap";
-import { Container, ProductsTitle } from './styles/styleIndex'
+import { Container, ProductsTitle, PaginationButton } from './styles/styleIndex'
 
-export default function Products({ data, title }) {
-	const [filter, setFilter] = useState([])
+export default function Products({ products, setProducts, title, initialProducts }) {
 
-	useMemo(() => {
-		setFilter(data);
-	}, [data])
 	return (
 		<Container>
 			<ProductsTitle>{title}</ProductsTitle>
 			<ProductsGridProvider>
-				<Filters data={data} filter={filter} setFilter={setFilter} />
-				<ProductMap products={filter} />
+				<Filters initialProducts={initialProducts} products={products} setProducts={setProducts} />
+				<ProductMap products={products} />
 			</ProductsGridProvider>
+			<PaginationButton>VER MAIS</PaginationButton>
 		</Container>
 	)
 }

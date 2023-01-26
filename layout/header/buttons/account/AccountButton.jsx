@@ -37,8 +37,6 @@ export default function AccountButton({ scrolldirection }) {
 		};
 	}, [toggleUserModal]);
 
-
-
 	return (
 		<Container ref={accountRef}>
 			{auth.user && auth.token ?
@@ -60,7 +58,8 @@ export default function AccountButton({ scrolldirection }) {
 					{scrolldirection !== "down" && isLoading &&
 						<Loader />
 					}
-				</Button>}
+				</Button>
+			}
 			<AnimatePresence>
 				{toggleUserModal &&
 					<UserModal scrolldirection={scrolldirection} />

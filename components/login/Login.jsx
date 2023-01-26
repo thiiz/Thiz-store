@@ -12,7 +12,7 @@ import { validateEmail } from '../../utils/validateEmail'
 import { ContainerForm, Title } from './styles/styleForms'
 
 function Login({ setSwitchModal, setToggleLoginModal }) {
-	const { setAuth } = useAuth()
+	const { setAuth, setIsLoading } = useAuth()
 	const [showPass, setShowPass] = useState(false)
 	const [rememberUser, setRememberUser] = useState(true)
 	const { notifyPromise, notifyPromiseSuccess, notifyPromiseError } = useNotify()
@@ -49,7 +49,7 @@ function Login({ setSwitchModal, setToggleLoginModal }) {
 		if (rememberUser) {
 			const oneDay = 86400
 			setCookie(null, 'refreshtoken', res.refresh_token, {
-				maxAge: oneDay * 7, // 7 days
+				maxAge: oneDay * 7,
 				path: '/api/auth/accessToken',
 			})
 			localStorage.setItem('firstLogin', true)

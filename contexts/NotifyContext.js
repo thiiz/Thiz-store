@@ -16,7 +16,7 @@ export default function NotifyProvider({ children }) {
 	const notifySuccess = ({ msg }) => toast.success(<NotifySuccess msg={msg} />, {
 		position: "top-center",
 		autoClose: 3500,
-		theme: "dark",
+		theme: `${isDarkTheme ? "dark" : "light"}`,
 		hideProgressBar: true,
 		closeButton: true,
 		pauseOnHover: false,
@@ -75,7 +75,6 @@ export default function NotifyProvider({ children }) {
 	const notifyPromiseInfo = ({ msg }) => toast.update("promise", {
 		render: msg,
 		type: "info",
-		theme: "dark",
 		hideProgressBar: true,
 		isLoading: false,
 		closeOnClick: true,
