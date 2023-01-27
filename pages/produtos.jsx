@@ -1,13 +1,17 @@
 import Head from "next/head"
 import { parseCookies } from "nookies";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useState } from "react";
 import Products from "../components/products";
 import { getAllProducts } from "../lib/getProducts";
 import { Page } from "../styles/page";
 
 export default function Produtos({ data }) {
-	const [products, setProducts] = useState(data)
+	const [products, setProducts] = useState([])
+
+	useEffect(() => {
+		setProducts(data)
+	}, [])
 
 	return (
 		<>
@@ -28,9 +32,10 @@ export default function Produtos({ data }) {
 }
 
 export async function getServerSideProps(ctx) {
-	const sort = ctx.query.sortBy || "inStock_DESC"
+	const sort = ctx.query.sortBy
 	const limit = 12
-	const { products } = await getAllProducts(sort, limit)
+	const search = ""
+	const { products } = await getAllProducts(search, limit, sort)
 	return {
 		props: { data: products },
 	}

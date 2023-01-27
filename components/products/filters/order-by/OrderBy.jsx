@@ -20,11 +20,13 @@ export default function OrderBy({ products, setProducts, initialProducts }) {
 
 	const handleChangeSortBy = (option) => {
 		setSelectedOption(option);
+		
 		const sort = option.value
 		const limit = 12
-		if (option.value === options[0].value) {
+		const search = term
 
-			getAllProducts(sort, limit).then((response) => {
+		if (sort === options[0].value) {
+			getAllProducts(search, limit, sort).then((response) => {
 				const allProducts = response?.products
 				setProducts(allProducts)
 
@@ -32,24 +34,26 @@ export default function OrderBy({ products, setProducts, initialProducts }) {
 				console.log(err)
 				return
 			})
-
-			if (isSearchPage) {
-				push({ query: { term: term } })
-				return
-			}
-			push(`${pathname}`, undefined, { shallow: true })
 			setProducts(initialProducts)
 			return
 		}
 
+
 		if (isSearchPage) {
-			push({ query: { term: term, sortBy: option.value } }, undefined, { shallow: true })
-			setProducts(items?.sort((a, b) => parseFloat(b.price) - (parseFloat(a.price))))
-			return
+			push({ query: { term: term, sortBy: sort } })
+			if (sort === options[1].value) {
+				setProducts(items.sort((a, b) => parseFloat(b.price) - parseFloat(a.price)))
+				return
+			}
+			if (sort === options[2].value) {
+				setProducts(items.sort((a, b) => parseFloat(a.price) - parseFloat(b.price)))
+				return
+			}
 		}
 
-		push({ query: { sortBy: option.value } })
-		getAllProducts(sort, limit).then((response) => {
+
+		push({ query: { sortBy: sort } })
+		getAllProducts(search, limit, sort).then((response) => {
 			const allProducts = response?.products
 
 			setProducts(allProducts)
