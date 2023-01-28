@@ -6,6 +6,8 @@ const Container = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-start;
+	margin-bottom: 4rem;
+
 `
 
 const ButtonToggle = styled.button`
@@ -13,12 +15,12 @@ const ButtonToggle = styled.button`
 	align-items: center;
 	justify-content: space-around;
 	width: 7.2rem;
+	margin-bottom: 1rem;
 	column-gap: .3rem;
 	padding: .5rem .9rem;
 	border: 1px solid ${props => props.theme.bg.contrast};
 	background-color: transparent;
 	color: ${props => props.theme.text.default};
-	margin-bottom: 2rem;
 	& #text {
 		font-family: 'Roboto', Arial, Helvetica, sans-serif;
 		font-weight: 600;
@@ -85,4 +87,19 @@ const ContainerFilter = styled.div`
 	}
 `;
 
-export { Container, ButtonToggle, ContainerFilter }
+const CLearFiltersButton = styled.button`
+	border: none;
+	background-color: transparent;
+	color: ${props => props.theme.text.default};
+
+	&:hover{
+		text-decoration: underline;
+	}
+`;
+
+export {
+	Container,
+	ButtonToggle,
+	ContainerFilter,
+	CLearFiltersButton
+}

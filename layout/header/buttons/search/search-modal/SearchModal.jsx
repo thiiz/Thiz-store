@@ -23,7 +23,7 @@ export default function SearchModal({ items, setItems, loading, setIsOpen, searc
 	}, [items, loading])
 
 	const viewAllResults = () => {
-		push(`/busca?term=${searchTerm}${query.sortBy ? `&sortBy=${query.sortBy}` : ''}`, undefined, { shallow: true })
+		push(`/produtos?term=${searchTerm}${query.sortBy ? `&sortBy=${query.sortBy}` : ''}`, undefined, { shallow: false })
 		setIsOpen(false)
 	}
 	return (

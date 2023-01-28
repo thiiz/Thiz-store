@@ -3,13 +3,12 @@ import { useEffect, useId, useState } from "react";
 import Select from 'react-select';
 import { getAllProducts } from '../../../../lib/getProducts';
 import { useRouter } from 'next/router';
-import { highToLowSort, lowToHighSort } from './filterOrder';
 
-export default function OrderBy({ products, setProducts, initialProducts }) {
+export default function OrderBy({ products, setProducts }) {
 	const { query, push, pathname, isReady } = useRouter()
 	const term = query.term;
 	const sortBy = query.sortBy;
-	const isSearchPage = term?.length >= 0
+	const isSearch = term?.length >= 0
 	const items = products?.map(product => product)
 	const options = [
 		{ value: 'inStock_DESC', label: 'RECOMENDADO' },
@@ -19,13 +18,19 @@ export default function OrderBy({ products, setProducts, initialProducts }) {
 	const [selectedOption, setSelectedOption] = useState(undefined)
 
 	const handleChangeSortBy = (option) => {
-		setSelectedOption(option);
-		
+		if (option.value === selectedOption.value) return
+
 		const sort = option.value
 		const limit = 12
 		const search = term
+		if (option.value === options[0].value) {
+			setSelectedOption(options[0])
+			if (isSearch) {
+				push({ query: { term: term } }, undefined, { shallow: true })
+			} else {
+				push(`${pathname}`, undefined, { shallow: true })
 
-		if (sort === options[0].value) {
+			}
 			getAllProducts(search, limit, sort).then((response) => {
 				const allProducts = response?.products
 				setProducts(allProducts)
@@ -34,18 +39,17 @@ export default function OrderBy({ products, setProducts, initialProducts }) {
 				console.log(err)
 				return
 			})
-			setProducts(initialProducts)
 			return
 		}
 
 
-		if (isSearchPage) {
+		if (isSearch) {
 			push({ query: { term: term, sortBy: sort } })
-			if (sort === options[1].value) {
+			if (option.value === options[1].value) {
 				setProducts(items.sort((a, b) => parseFloat(b.price) - parseFloat(a.price)))
 				return
 			}
-			if (sort === options[2].value) {
+			if (option.value === options[2].value) {
 				setProducts(items.sort((a, b) => parseFloat(a.price) - parseFloat(b.price)))
 				return
 			}
@@ -66,6 +70,22 @@ export default function OrderBy({ products, setProducts, initialProducts }) {
 	}
 
 	useEffect(() => {
+		const search = term;
+		const limit = 12;
+		const sort = query.sortBy
+
+		getAllProducts(search, limit, sort).then((response) => {
+			const allProducts = response?.products
+			setProducts(allProducts)
+			return
+
+		}).catch(err => {
+			console.log(err)
+			return
+		})
+	}, [term]);
+
+	useEffect(() => {
 		if (!isReady) return
 		if (!sortBy)
 			return setSelectedOption(options[0])
@@ -74,8 +94,11 @@ export default function OrderBy({ products, setProducts, initialProducts }) {
 			setSelectedOption(options[1])
 			return
 		}
-		setSelectedOption(options[2])
-	}, [isReady])
+		if (sortBy === options[2].value) {
+			setSelectedOption(options[2])
+			return
+		}
+	}, [isReady, query])
 
 	return (
 		<ContainerLabel>

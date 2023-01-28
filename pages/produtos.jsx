@@ -7,11 +7,7 @@ import { getAllProducts } from "../lib/getProducts";
 import { Page } from "../styles/page";
 
 export default function Produtos({ data }) {
-	const [products, setProducts] = useState([])
-
-	useEffect(() => {
-		setProducts(data)
-	}, [])
+	const [products, setProducts] = useState(data)
 
 	return (
 		<>
@@ -20,7 +16,6 @@ export default function Produtos({ data }) {
 			</Head>
 			<Page>
 				<Products
-					initialProducts={data}
 					products={products}
 					setProducts={setProducts}
 					title="PRODUTOS"
@@ -32,9 +27,9 @@ export default function Produtos({ data }) {
 }
 
 export async function getServerSideProps(ctx) {
+	const search = ctx.query.term
 	const sort = ctx.query.sortBy
 	const limit = 12
-	const search = ""
 	const { products } = await getAllProducts(search, limit, sort)
 	return {
 		props: { data: products },

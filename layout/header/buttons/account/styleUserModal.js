@@ -39,7 +39,6 @@ const Ul = styled.ul`
 const Li = styled.li`
     list-style-type: none;
     cursor: pointer;
-    padding: .2rem;
     transition: 250ms ease-in-out;
     font-family: 'Varela Round', sans-serif;
     color: ${props => props.theme.text.default};
@@ -53,6 +52,10 @@ const Li = styled.li`
     & svg {
         font-size: 1.72em;
         color: ${props => props.theme.text.default};
+    }
+    & a,
+    button{
+        padding-block: .3rem;
     }
 `;
 

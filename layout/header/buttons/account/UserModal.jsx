@@ -15,7 +15,7 @@ export default function UserModal({ scrolldirection }) {
 	const { notifySuccess } = useNotify()
 
 	const dropdownVariant = {
-		open: { zIndex: "16", opacity: 1, height: "8.138rem", padding: ".67rem .95rem .67rem .95rem" },
+		open: { zIndex: "16", opacity: 1, height: "8.938rem", padding: ".57rem .95rem .57rem .95rem" },
 		closed: { zIndex: -1, opacity: 0, height: 0, padding: 0 },
 	}
 	const handleLogout = () => {

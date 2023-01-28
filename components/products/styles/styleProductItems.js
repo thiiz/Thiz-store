@@ -2,10 +2,10 @@ import Image from "next/image";
 import styled, { css } from "styled-components";
 
 const ProductContainer = styled.div`
-	text-align: center;
 	padding: 0 .5em .5em .5em;
+	cursor: pointer;
 	border-radius: 8px;
-	font-family: 'Varela Round', 'Arial', sans-serif;
+	font-family: 'Roboto', 'Arial', sans-serif;
 	color: ${props => props.theme.text.default};
 	${props => {
 		switch (props.grid) {
@@ -28,9 +28,7 @@ const ProductContainer = styled.div`
 const ImageContainer = styled.div`
 transition: ease-in-out 200ms;
 	user-select: none;
-	border-radius: 8px;
 	position: relative;
-	cursor: pointer;
 	transition: 250ms ease-in-out;
 	${props => {
 		switch (props.grid) {
@@ -58,7 +56,6 @@ transition: ease-in-out 200ms;
 const ProductImage = styled(Image)`
 	transition: ease-in-out 200ms;
 	user-select: none;
-	border-radius: 8px;
 
 	&:hover{
 		box-shadow: 0 0 5px #000000cc;
@@ -66,53 +63,56 @@ const ProductImage = styled(Image)`
 	}
 `;
 const Name = styled.p`
-	font-size: 1.063em;
+	font-size: .963em;
+	font-weight: 300;
 	text-decoration: none;
-	margin-bottom: 20px;
+	margin-bottom: 7px;
 	margin-top: 10px;
-	cursor: pointer;
 	text-transform: capitalize;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 `;
 
-const DivBar = styled.div`
-	width: 25px;
-	height: 2px;
-	background-color: ${props => props.theme.bg.variant};
-	position: absolute;
-	top: -10px;
-	left: 50%;
-	margin-left: -.625em;
-`;
+
 
 const ContainerPrice = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 	position: relative;
 	column-gap: 1rem;
 `;
 const Price = styled.p`
-	font-size: 1.125em;
-	font-family: 'Roboto', sans-serif;	
+	font-size: .925em;
 `;
 
 const OldPrice = styled.p`
-text-decoration: line-through;
-	font-weight: lighter;
-	font-size: .82rem;
+	text-decoration: line-through;
+	font-weight: 300;
+	font-size: .785em;
 	color: ${props => props.theme.disable};
 `;
 
 const Parcel = styled.p`
 	margin: .188em 0;
-	font-size: .725em;
+	font-size: .625em;
 	color: ${props => props.theme.disable};
-	font-weight: 600;
+	font-weight: 300;
 `;
 
-export { ProductContainer, ImageContainer, ProductImage, Name, DivBar, ContainerPrice, Price, OldPrice, Parcel }
+const TextUnavailable = styled.span`
+	font-family: "Varela Round", Arial, Helvetica, sans-serif;
+`;
+
+export {
+	ProductContainer,
+	ImageContainer,
+	ProductImage,
+	Name,
+	ContainerPrice,
+	Price,
+	OldPrice,
+	Parcel,
+	TextUnavailable
+}
 

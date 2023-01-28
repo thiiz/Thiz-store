@@ -16,7 +16,7 @@ const NavMenuListItem = styled.li`
   z-index: -1;
   width: 0%;
   height: 100%;
-  border-bottom: 3px solid #0099ff;
+  border-bottom: 3px solid ${props => props.theme.bg.variant};
   transition: 250ms ease-in-out;
   overflow: hidden;
   }

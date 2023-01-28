@@ -12,7 +12,7 @@ const FooterOption = styled.div`
 
   a{
 	text-decoration: none;
-	color: ${props => props.theme.text.contrast};
+	color: ${props => props.theme.text.default};
 	font-size: 0.863rem;
 	display: flex;
 	align-items: center;
@@ -42,8 +42,8 @@ const SocialMedia = styled.div`
   
   & a{
   font-size: 1.725rem;
-  color: ${props => props.theme.text.default};
-  background-color: ${props => props.theme.bg.default};
+  color: ${props => props.theme.text.contrast};
+  background-color: ${props => props.theme.bg.contrast};
   padding: 0.313rem;
   border-radius: 50%;
   margin-top: 0.625rem;
@@ -78,8 +78,8 @@ const ContainerFooter = styled.footer`
   width: 100%;
   height: 14.563rem;
   bottom: 0px;
-  background-color: ${props => props.theme.bg.variant};
-  color: ${props => props.theme.text.contrast};
+  background-color: ${props => props.theme.bg.layout};
+  color: ${props => props.theme.text.default};
   position: fixed;
   font-family: 'Varela Round', 'Arial', sans-serif;
   display: grid;

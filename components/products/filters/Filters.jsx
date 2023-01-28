@@ -1,12 +1,25 @@
-import { Container, ButtonToggle, ContainerFilter } from './styleFilters';
+import {
+	Container,
+	ButtonToggle,
+	ContainerFilter,
+	CLearFiltersButton
+} from './styleFilters';
 import Grid from './grid/Grid';
 import OrderBy from './order-by/OrderBy'
 import { RiArrowDownSLine } from 'react-icons/ri'
-import { useCallback, useState } from 'react';
-import { useMemo } from 'react';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { getAllProducts } from '../../../lib/getProducts';
 
 export default function Filters({ products, setProducts, initialProducts }) {
 	const [isOpen, setIsOpen] = useState(false)
+	const { push, pathname, query } = useRouter()
+
+	const clearFilters = async () => {
+		push(`${pathname}`, undefined, { shallow: true })
+		const { products } = await getAllProducts()
+		setProducts(products)
+	}
 
 	return (
 		<Container>
@@ -14,6 +27,7 @@ export default function Filters({ products, setProducts, initialProducts }) {
 				<span id="text">Filtrar</span>
 				<RiArrowDownSLine id="icon" />
 			</ButtonToggle>
+			{query.term || query.sortBy ? <CLearFiltersButton onClick={clearFilters}>Limpar Filtros</CLearFiltersButton> : ''}
 			<ContainerFilter isOpen={isOpen}>
 
 				<div id="five">
