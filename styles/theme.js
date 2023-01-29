@@ -10,8 +10,10 @@ const lightTheme = {
 		variant: '#0099ff',
 		contrast: '#fdfdfd',
 	},
+	hover: {
+		variant: '#16a2ff',
+	},
 	disable: '#4e4e4e',
-	hover: '#dfdfdf',
 	division: '#c7c7c7',
 
 }
@@ -29,7 +31,9 @@ const darkTheme = {
 		contrast: '#222831',
 	},
 	disable: '#999999',
-	hover: '#3f3f3f',
+	hover: {
+		variant: '#fdbad2',
+	},
 	division: '#5a5a5a',
 }
 

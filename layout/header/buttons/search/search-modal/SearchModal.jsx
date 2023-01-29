@@ -47,7 +47,7 @@ export default function SearchModal({ items, setItems, loading, setIsOpen, searc
 							}
 						})}
 					</ContainerItems>
-					{items?.length > 2 &&
+					{items?.length > 6 &&
 						<ContainerViewMore>
 							<ViewMore onClick={viewAllResults}>Ver todos resultados</ViewMore>
 						</ContainerViewMore>

@@ -23,13 +23,16 @@ const ProductContainer = styled.div`
 				`;
 		}
 	}}
-`;
+`
 
 const ImageContainer = styled.div`
 transition: ease-in-out 200ms;
 	user-select: none;
 	position: relative;
 	transition: 250ms ease-in-out;
+	& img{
+		object-fit: cover;
+	}
 	${props => {
 		switch (props.grid) {
 			case 2:
@@ -51,7 +54,7 @@ transition: ease-in-out 200ms;
 		-webkit-filter: grayscale(1);
 		filter: grayscale(1);
 	}
-`;
+`
 
 const ProductImage = styled(Image)`
 	transition: ease-in-out 200ms;
@@ -61,7 +64,8 @@ const ProductImage = styled(Image)`
 		box-shadow: 0 0 5px #000000cc;
 		scale: 1.05;
 	}
-`;
+`
+
 const Name = styled.p`
 	font-size: .963em;
 	font-weight: 300;
@@ -72,37 +76,36 @@ const Name = styled.p`
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-`;
-
-
+`
 
 const ContainerPrice = styled.div`
 	display: flex;
 	flex-direction: column;
 	position: relative;
 	column-gap: 1rem;
-`;
+`
+
 const Price = styled.p`
 	font-size: .925em;
-`;
+`
 
 const OldPrice = styled.p`
 	text-decoration: line-through;
 	font-weight: 300;
 	font-size: .785em;
 	color: ${props => props.theme.disable};
-`;
+`
 
 const Parcel = styled.p`
 	margin: .188em 0;
 	font-size: .625em;
 	color: ${props => props.theme.disable};
 	font-weight: 300;
-`;
+`
 
 const TextUnavailable = styled.span`
 	font-family: "Varela Round", Arial, Helvetica, sans-serif;
-`;
+`
 
 export {
 	ProductContainer,

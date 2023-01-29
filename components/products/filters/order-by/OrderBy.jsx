@@ -4,7 +4,7 @@ import Select from 'react-select';
 import { getAllProducts } from '../../../../lib/getProducts';
 import { useRouter } from 'next/router';
 
-export default function OrderBy({ products, setProducts }) {
+export default function OrderBy({ products, setProducts, setPageInfo }) {
 	const { query, push, pathname, isReady } = useRouter()
 	const term = query.term;
 	const sortBy = query.sortBy;
@@ -32,14 +32,13 @@ export default function OrderBy({ products, setProducts }) {
 
 			}
 			getAllProducts(search, limit, sort).then((response) => {
-				const allProducts = response?.products
-				setProducts(allProducts)
-
+				setProducts(response?.products)
+				setPageInfo(response?.pageInfo)
+				return
 			}).catch(err => {
 				console.log(err)
 				return
 			})
-			return
 		}
 
 
@@ -55,35 +54,16 @@ export default function OrderBy({ products, setProducts }) {
 			}
 		}
 
-
 		push({ query: { sortBy: sort } })
 		getAllProducts(search, limit, sort).then((response) => {
-			const allProducts = response?.products
-
-			setProducts(allProducts)
+			setProducts(response?.products)
+			setPageInfo(response?.pageInfo)
 			return
-
 		}).catch(err => {
 			console.log(err)
 			return
 		})
 	}
-
-	useEffect(() => {
-		const search = term;
-		const limit = 12;
-		const sort = query.sortBy
-
-		getAllProducts(search, limit, sort).then((response) => {
-			const allProducts = response?.products
-			setProducts(allProducts)
-			return
-
-		}).catch(err => {
-			console.log(err)
-			return
-		})
-	}, [term]);
 
 	useEffect(() => {
 		if (!isReady) return
@@ -98,7 +78,7 @@ export default function OrderBy({ products, setProducts }) {
 			setSelectedOption(options[2])
 			return
 		}
-	}, [isReady, query])
+	}, [isReady, sortBy])
 
 	return (
 		<ContainerLabel>

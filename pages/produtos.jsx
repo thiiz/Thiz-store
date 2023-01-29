@@ -6,9 +6,8 @@ import Products from "../components/products";
 import { getAllProducts } from "../lib/getProducts";
 import { Page } from "../styles/page";
 
-export default function Produtos({ data }) {
+export default function Produtos({ data, info }) {
 	const [products, setProducts] = useState(data)
-
 	return (
 		<>
 			<Head>
@@ -16,6 +15,7 @@ export default function Produtos({ data }) {
 			</Head>
 			<Page>
 				<Products
+					info={info}
 					products={products}
 					setProducts={setProducts}
 					title="PRODUTOS"
@@ -30,8 +30,11 @@ export async function getServerSideProps(ctx) {
 	const search = ctx.query.term
 	const sort = ctx.query.sortBy
 	const limit = 12
-	const { products } = await getAllProducts(search, limit, sort)
+	const { products, pageInfo } = await getAllProducts(search, limit, sort)
 	return {
-		props: { data: products },
+		props: {
+			data: products,
+			info: pageInfo,
+		},
 	}
 }

@@ -11,7 +11,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { getAllProducts } from '../../../lib/getProducts';
 
-export default function Filters({ products, setProducts, initialProducts }) {
+export default function Filters({ products, setProducts, setPageInfo }) {
 	const [isOpen, setIsOpen] = useState(false)
 	const { push, pathname, query } = useRouter()
 
@@ -27,18 +27,17 @@ export default function Filters({ products, setProducts, initialProducts }) {
 				<span id="text">Filtrar</span>
 				<RiArrowDownSLine id="icon" />
 			</ButtonToggle>
-			{query.term || query.sortBy ? <CLearFiltersButton onClick={clearFilters}>Limpar Filtros</CLearFiltersButton> : ''}
 			<ContainerFilter isOpen={isOpen}>
-
 				<div id="five">
 					<Grid />
 				</div>
 
 				<div id="six">
-					<OrderBy setProducts={setProducts} products={products} initialProducts={initialProducts} />
+					<OrderBy setProducts={setProducts} products={products} setPageInfo={setPageInfo} />
 				</div>
 
 			</ContainerFilter>
+			{query.term || query.sortBy ? <CLearFiltersButton onClick={clearFilters}>Limpar Filtros</CLearFiltersButton> : ''}
 		</Container>
 
 	)

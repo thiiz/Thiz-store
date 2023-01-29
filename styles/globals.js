@@ -16,8 +16,45 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
-  img {
-    object-fit: cover;
+  .btnLoading  {
+  position: relative;
+  border: none;
+
+  .btnText {
+    color: #ffffff;
+    transition: all 0.2s;
+  }
+
+  .btnText {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+  }
+
+  @keyframes button-loading-spinner {
+    from {
+      transform: rotate(0turn);
+    }
+
+    to {
+      transform: rotate(1turn);
+    }
+  }
   }
 
   body {

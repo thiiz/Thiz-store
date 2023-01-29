@@ -16,7 +16,7 @@ const HeaderBtns = styled.button`
 
 	& svg {
 	transition: 400ms ease-in-out;
-	color: #000;
+	color: ${props => props.theme.text.default};
 	border-radius: 10%;
 }
 
