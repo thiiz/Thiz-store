@@ -44,7 +44,7 @@ export default class MyDocument extends Document {
 					<meta name="twitter:title" content="Thiz Store" />
 					<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;600&family=Oswald:wght@500;600&family=Poppins:wght@300;600&family=Roboto:wght@100;300;400;500;700&family=Varela+Round&display=swap" rel="stylesheet" />
 				</Head>
-				<body>
+				<body style={{ visibility: "hidden" }}>
 					<Main />
 					<NextScript />
 				</body>

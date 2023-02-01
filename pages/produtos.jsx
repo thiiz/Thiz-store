@@ -1,13 +1,12 @@
 import Head from "next/head"
-import { parseCookies } from "nookies";
-import { useEffect, useMemo } from "react";
 import { useState } from "react";
 import Products from "../components/products";
-import { getAllProducts } from "../lib/getProducts";
+import { getAllProducts } from "../lib/hygraph/getProducts";
 import { Page } from "../styles/page";
 
 export default function Produtos({ data, info }) {
 	const [products, setProducts] = useState(data)
+
 	return (
 		<>
 			<Head>
@@ -18,7 +17,6 @@ export default function Produtos({ data, info }) {
 					info={info}
 					products={products}
 					setProducts={setProducts}
-					title="PRODUTOS"
 				/>
 			</Page>
 			<div className="marginFooter"></div>
@@ -29,8 +27,7 @@ export default function Produtos({ data, info }) {
 export async function getServerSideProps(ctx) {
 	const search = ctx.query.term
 	const sort = ctx.query.sortBy
-	const limit = 12
-	const { products, pageInfo } = await getAllProducts(search, limit, sort)
+	const { products, pageInfo } = await getAllProducts(search, sort)
 	return {
 		props: {
 			data: products,

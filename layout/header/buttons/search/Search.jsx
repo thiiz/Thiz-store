@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 import { Container, Button, Form, SearchInput } from './styleSearch'
 import { useForm } from 'react-hook-form';
-import { getPrevSearchProducts } from '../../../../lib/getProducts';
+import { getPrevSearchProducts } from '../../../../lib/hygraph/getProducts';
 
 export default function Search({ scrolldirection }) {
 	const [items, setItems] = useState(undefined)

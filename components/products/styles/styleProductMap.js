@@ -1,57 +1,34 @@
 import styled, { css } from 'styled-components';
 
 const Container = styled.section`
-	height: 100%;
-	gap: 1.8vw 1.6vw;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
-	padding: 0 1.875em 5vh 1.875em;
-	font-size: 100%;
 	background-color: inherit;
+	display: grid;
+	padding-inline: 2rem;
+	margin-bottom: 140px;
 	${props => {
 		switch (props.grid) {
 			case 2:
 				return css`
-					width: 80%;	
-				`;
+				grid-template-columns: repeat(2, minmax(0px, 1fr));
+				gap: 9.5rem 1rem;
+				font-size: 160%;
+				`
 			case 3:
 				return css`
-					width: 90%;
-				`;
+				grid-template-columns: repeat(3, minmax(0px, 1fr));
+			    gap: 7.5rem 1.5rem;
+				font-size: 145%;
+         		`
 			default:
 				return css`
-					width: 100%;
+				grid-template-columns: repeat(4, minmax(0px, 1fr));
+				gap: 6.5rem 2rem;
+				font-size: 116%;
 				`
 		}
 	}}
 
-@media (max-width: 590px) {
-	&{
-		gap: 3vh 2vw;
-		padding-bottom: 4.375em;
-	}
-	}
 
-@media (max-width: 1331px) {
-	&{
-		font-size: 80%;
-	}
-	}
-
-
-@media (min-width: 1332px) and (max-width: 1533px) {
-	&{
-		font-size: 100%;
-	}
-}
-
-@media (min-width: 1534px) {
-	&{
-		font-size: 115%;
-	}
-}
 `;
 
 export { Container }

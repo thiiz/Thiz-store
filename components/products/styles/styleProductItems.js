@@ -1,28 +1,15 @@
 import Image from "next/image";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const ProductContainer = styled.div`
-	padding: 0 .5em .5em .5em;
+const ProductContainer = styled(motion.div)`
+	padding: .5em;
 	cursor: pointer;
 	border-radius: 8px;
 	font-family: 'Roboto', 'Arial', sans-serif;
 	color: ${props => props.theme.text.default};
-	${props => {
-		switch (props.grid) {
-			case 2:
-				return css`
-					width: 30.813em;
-				`;
-			case 3:
-				return css`
-					width: 22.563em;
-				`;
-			default:
-				return css`
-					width: 18.875em;
-				`;
-		}
-	}}
+	height: 20.666em;
+	width: 21.966em;
 `
 
 const ImageContainer = styled.div`
@@ -30,25 +17,13 @@ transition: ease-in-out 200ms;
 	user-select: none;
 	position: relative;
 	transition: 250ms ease-in-out;
+	width: 100%;
+	height: 100%;
 	& img{
 		object-fit: cover;
 	}
-	${props => {
-		switch (props.grid) {
-			case 2:
-				return css`
-					height: 29.875em;
-				`;
-			case 3:
-				return css`
-					height: 21.313em;
-				`;
-			default:
-				return css`
-					height: 17.313em;
-				`;
-		}
-	}}
+
+					
 	& .imgUnavailable{
 		filter: gray;
 		-webkit-filter: grayscale(1);
@@ -70,7 +45,7 @@ const Name = styled.p`
 	font-size: .963em;
 	font-weight: 300;
 	text-decoration: none;
-	margin-bottom: 7px;
+	margin-bottom: 5px;
 	margin-top: 10px;
 	text-transform: capitalize;
 	white-space: nowrap;
@@ -107,6 +82,12 @@ const TextUnavailable = styled.span`
 	font-family: "Varela Round", Arial, Helvetica, sans-serif;
 `
 
+const BtContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+`
+
 export {
 	ProductContainer,
 	ImageContainer,
@@ -116,6 +97,7 @@ export {
 	Price,
 	OldPrice,
 	Parcel,
-	TextUnavailable
+	TextUnavailable,
+	BtContainer,
 }
 

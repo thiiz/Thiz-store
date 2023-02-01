@@ -1,12 +1,11 @@
 import style from './slug.module.css'
-import { gql } from '@apollo/client';
-import { SLUG_QUERY, VIEW_PRODUCT_QUERY } from '../../lib/Queries'
+import { SLUG_QUERY, VIEW_PRODUCT_QUERY } from '../../lib/hygraph/Queries'
 import Head from 'next/head';
 import StarReview from '../../components/star-review/StarReview';
 import { BsFillBagFill } from 'react-icons/bs'
 import { ImBlocked } from 'react-icons/im'
 import { useCart } from '../../contexts/CartContext';
-import { client } from '../../lib/graphcms';
+import { client } from '../../lib/hygraph/graphcmsQUERY';
 import Image from 'next/image';
 
 

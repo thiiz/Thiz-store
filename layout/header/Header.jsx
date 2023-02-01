@@ -16,9 +16,9 @@ function Header() {
 				color={bg.variant}
 				startPosition={0.1}
 				stopDelayMs={150}
-				height={6}
+				height={1.5}
 				showOnShallow={true}
-				options={{ easing: 'ease', speed: 500 }}
+				options={{ showSpinner: false }}
 			/>
 			<UserModalContextProvider>
 				<HeaderContainer>

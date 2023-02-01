@@ -7,6 +7,7 @@ import { useContextUserModal } from '../../../../contexts/UserModalContext'
 import { IoIosHelpCircle } from 'react-icons/io'
 import { RiShieldUserFill } from 'react-icons/ri'
 import { IoLogOut } from 'react-icons/io5'
+import { MdOutlineBookmark } from 'react-icons/md'
 
 export default function UserModal({ scrolldirection }) {
 	const { pathname, push } = useRouter()
@@ -15,7 +16,7 @@ export default function UserModal({ scrolldirection }) {
 	const { notifySuccess } = useNotify()
 
 	const dropdownVariant = {
-		open: { zIndex: "16", opacity: 1, height: "8.938rem", padding: ".57rem .95rem .57rem .95rem" },
+		open: { zIndex: "16", opacity: 1, height: "11.538rem", padding: ".57rem .95rem .57rem .95rem" },
 		closed: { zIndex: -1, opacity: 0, height: 0, padding: 0 },
 	}
 	const handleLogout = () => {
@@ -43,6 +44,13 @@ export default function UserModal({ scrolldirection }) {
 					<ContainerLink href="/perfil"><span>Minha conta</span>
 						<RiShieldUserFill />
 					</ContainerLink>
+				</Li>
+				<Division />
+				<Li>
+					<Buttons>
+						<span>Lista de Desejos</span>
+						<MdOutlineBookmark />
+					</Buttons>
 				</Li>
 				<Division />
 				<Li>

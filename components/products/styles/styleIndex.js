@@ -12,7 +12,7 @@ const Container = styled.div`
 `
 
 const ProductsTitle = styled.h1`
-	font-size: 2.2rem;
+	font-size: 2.8rem;
 	font-family: 'Oswald', sans-serif;
 	color: inherit;
 `

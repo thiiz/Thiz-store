@@ -2,42 +2,52 @@ import {
 	Container,
 	ButtonToggle,
 	ContainerFilter,
-	CLearFiltersButton
+	CLearFiltersButton,
+	ContainerTopButtons
 } from './styleFilters';
 import Grid from './grid/Grid';
 import OrderBy from './order-by/OrderBy'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { getAllProducts } from '../../../lib/getProducts';
+import { getAllProducts } from '../../../lib/hygraph/getProducts';
 
 export default function Filters({ products, setProducts, setPageInfo }) {
 	const [isOpen, setIsOpen] = useState(false)
 	const { push, pathname, query } = useRouter()
 
-	const clearFilters = async () => {
+	const clearFilters = () => {
 		push(`${pathname}`, undefined, { shallow: true })
-		const { products } = await getAllProducts()
-		setProducts(products)
+		getAllProducts().then((response) => {
+			setProducts(response?.products)
+			setPageInfo(response?.pageInfo)
+
+		}).catch(err => {
+			console.log(err)
+			return
+		})
+		return
 	}
 
 	return (
 		<Container>
-			<ButtonToggle onClick={() => setIsOpen(prev => !prev)} isOpen={isOpen} type="button" id="buttonToggle">
-				<span id="text">Filtrar</span>
-				<RiArrowDownSLine id="icon" />
-			</ButtonToggle>
+			<ContainerTopButtons>
+				<ButtonToggle onClick={() => setIsOpen(prev => !prev)} isOpen={isOpen} type="button" id="buttonToggle">
+					<span id="text">Filtrar</span>
+					<RiArrowDownSLine id="icon" />
+				</ButtonToggle>
+				{query.term || query.sortBy ? <CLearFiltersButton onClick={clearFilters}>Limpar Filtros</CLearFiltersButton> : ''}
+			</ContainerTopButtons>
 			<ContainerFilter isOpen={isOpen}>
-				<div id="five">
+				<div id="btMid">
 					<Grid />
 				</div>
 
-				<div id="six">
+				<div id="btRight">
 					<OrderBy setProducts={setProducts} products={products} setPageInfo={setPageInfo} />
 				</div>
 
 			</ContainerFilter>
-			{query.term || query.sortBy ? <CLearFiltersButton onClick={clearFilters}>Limpar Filtros</CLearFiltersButton> : ''}
 		</Container>
 
 	)

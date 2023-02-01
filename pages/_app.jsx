@@ -13,14 +13,13 @@ import ModalLogin from '../components/login/index';
 import CartMenu from '../components/cart/CartMenu';
 import CookiesConsentPopup from '../components/cookies-consent/CookiesConsentPopup';
 import ThemeContextProvider from '../contexts/ThemeContext';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
-  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    setIsMounted(true)
-  }, []);
+    document.body.style.visibility = "visible";
+  }, [])
   return (
     <>
       <Head>
@@ -32,7 +31,7 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
             <NotifyProvider>
               <LoginModalProvider>
                 <CartProvider>
-                  {isMounted && <Header />}
+                  <Header />
                   <ToastContainer
                     position
                     pauseOnFocusLoss={false}
@@ -51,14 +50,14 @@ function MaeTerra({ Component, pageProps: { session, ...pageProps } }) {
                   />
                   <ModalLogin />
                   <CartMenu />
-                  {isMounted && <Component {...pageProps} />}
+                  <Component {...pageProps} />
                 </CartProvider>
               </LoginModalProvider>
             </NotifyProvider>
           </OpenCartMenuProvider>
           <CookiesConsentPopup />
         </AuthProvider>
-        {isMounted && <Footer />}
+        <Footer />
       </ThemeContextProvider>
     </>
   )

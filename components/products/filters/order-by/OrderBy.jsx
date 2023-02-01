@@ -1,7 +1,7 @@
 import { ContainerLabel, OrderBySpan } from './styleOrderBy'
 import { useEffect, useId, useState } from "react";
 import Select from 'react-select';
-import { getAllProducts } from '../../../../lib/getProducts';
+import { getAllProducts } from '../../../../lib/hygraph/getProducts';
 import { useRouter } from 'next/router';
 
 export default function OrderBy({ products, setProducts, setPageInfo }) {
@@ -19,26 +19,23 @@ export default function OrderBy({ products, setProducts, setPageInfo }) {
 
 	const handleChangeSortBy = (option) => {
 		if (option.value === selectedOption.value) return
-
 		const sort = option.value
-		const limit = 12
 		const search = term
 		if (option.value === options[0].value) {
-			setSelectedOption(options[0])
 			if (isSearch) {
 				push({ query: { term: term } }, undefined, { shallow: true })
 			} else {
 				push(`${pathname}`, undefined, { shallow: true })
-
 			}
-			getAllProducts(search, limit, sort).then((response) => {
+			getAllProducts(search, sort).then((response) => {
 				setProducts(response?.products)
 				setPageInfo(response?.pageInfo)
-				return
+
 			}).catch(err => {
 				console.log(err)
 				return
 			})
+			return
 		}
 
 
@@ -55,14 +52,14 @@ export default function OrderBy({ products, setProducts, setPageInfo }) {
 		}
 
 		push({ query: { sortBy: sort } })
-		getAllProducts(search, limit, sort).then((response) => {
+		getAllProducts(search, sort).then((response) => {
 			setProducts(response?.products)
 			setPageInfo(response?.pageInfo)
-			return
 		}).catch(err => {
 			console.log(err)
 			return
 		})
+		return
 	}
 
 	useEffect(() => {

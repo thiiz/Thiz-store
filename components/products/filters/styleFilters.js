@@ -1,13 +1,19 @@
 import styled, { css } from "styled-components"
 
 const Container = styled.div`
-	width: 76%;
+	width: 89.5%;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-start;
-	margin-bottom: 4rem;
+	margin-bottom: 1rem;
+`
 
+const ContainerTopButtons = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
 `
 
 const ButtonToggle = styled.button`
@@ -51,8 +57,8 @@ const ContainerFilter = styled.div`
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
 	grid-template-areas: 
-	'one two three'
-	'four five six';
+	'tpLeft tpMid tpRight'
+	'btLeft btMid btRight';
 	margin-bottom: 2rem;
 	position: relative;
 	width: 100%;
@@ -76,13 +82,28 @@ const ContainerFilter = styled.div`
 	}
 	}
 
-	& #five{
-		grid-area: five;
+	& #tpLeft{
+		grid-area: tpLeft;
+		justify-self: flex-start;
+	}
+	& #tpMid{
+		grid-area: tpMid;
 		justify-self: center;
 	}
-
-	& #six {
-		grid-area: six;
+	& #tpRight{
+		grid-area: tpRight;
+		justify-self: flex-end;
+	}
+	& #btLeft{
+		grid-area: btLeft;
+		justify-self: flex-start;
+	}
+	& #btMid{
+		grid-area: btMid;
+		justify-self: center;
+	}
+	& #btRight {
+		grid-area: btRight;
 		justify-self: flex-end;
 	}
 `;
@@ -99,6 +120,7 @@ const CLearFiltersButton = styled.button`
 
 export {
 	Container,
+	ContainerTopButtons,
 	ButtonToggle,
 	ContainerFilter,
 	CLearFiltersButton
