@@ -10,7 +10,6 @@ import { useState } from 'react'
 import ShowPass from '../showpass/ShowPass'
 import { useNotify } from '../../contexts/NotifyContext'
 import { ContainerForm, Title } from './styles/styleForms'
-import { createUserWishlist } from '../../lib/hygraph/wishlist'
 
 export default function Register({ setSwitchModal }) {
 	const [showPass, setShowPass] = useState(false)
@@ -48,7 +47,8 @@ export default function Register({ setSwitchModal }) {
 			if (res.err === 'Endereço de email indisponível.') return setError('email', { type: 'custom', message: res.err })
 			if (res.err) return notifyError({ msg: "Falha ao se cadastrar, por favor tente mais tarde" })
 		}
-		await postData('wishlist/create', { userEmail: data.email }).catch((err) => { console.log(err) })
+
+		await postData('wishlist/create', { userEmail: data.email }).catch((err) => { console.log(err) }) // erro ao retornar a resposta em JSON
 
 		setSwitchModal("login")
 		return notifySuccess({ msg: res.msg })

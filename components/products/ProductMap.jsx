@@ -12,9 +12,9 @@ export default function ProductMap({ products }) {
 	const desktop = useIsLarge()
 	const { auth } = useAuth()
 	const [productsIdsInWishlist, setProductsIdsInWishlist] = useState([]);
+	const productIDS = products.map(product => product.id)
 
 	useEffect(() => {
-		const productIDS = products.map(product => product.id)
 		if (!auth.user) return
 		getWishlist({ userEmail: auth.user.email }).then((productsInWishlist) => {
 			const inWishlistProductsIds = productIDS.filter(idObject => {
